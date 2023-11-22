@@ -1,0 +1,118 @@
+/* accordion.component.css */
+.Accordion{
+    margin-top: 10vh;
+    display: flex;
+    justify-content: space-around;
+}
+section {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  article {
+    position: relative;
+    overflow: hidden;
+    background: #a6b1b1;
+    width: 64px;
+    height: 500px;
+    border-radius: 36px;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0.9;
+    transition: 0.5s;
+  }
+  
+  h2,
+  p {
+    margin: 0;
+  }
+  
+  article h2 {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(235, 224, 224, 0.96);
+  }
+  
+  article p {
+    color: rgba(255, 255, 255, 0.66);
+  }
+  
+  article.active {
+    width: 400px;
+    opacity: 1;
+  }
+  
+  article .material-symbols-outlined {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.80);
+    border-radius: 50%;
+    font-size: 28px;
+  }
+  
+  article .content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    padding:100px 35px 20px 20px !important;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.80)
+    );
+    transition: 0.25s;
+  }
+  
+  article.active .content {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  article img {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 150%;
+    filter: grayscale(0.5);
+  }
+  table {
+    width: 100%;
+  }
+  table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  // th{
+  //   text-transform: uppercase;
+  // }
+  td{
+    padding: 22px;
+  }
+
+  .example-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.grid-wrapper {
+    flex: 1 1 0px;
+    width: 100%;
+}
+
+#myGrid {
+    height: 100%;
+}

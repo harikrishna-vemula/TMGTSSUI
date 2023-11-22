@@ -1,0 +1,23 @@
+.main_div {
+    margin: 10px;
+  
+    .title {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  .one {
+    display: flex;
+   
+  }
+  mat-form-field {
+    width: -webkit-fill-available;
+    margin: 0px 10px;
+  }
+  .button-container a {
+    margin-right: 30px; 
+  }
+  
+  .button-container {
+    margin-bottom: 30px; 
+  }

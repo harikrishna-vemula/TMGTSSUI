@@ -1,0 +1,12 @@
+/* Apply styles to the container that holds the Ag-Grid component */
+.app-tmg-users {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+  
+    .ag-theme-alpine {
+      flex: 1; /* The grid will take up all available vertical space */
+    }
+  }
+  

@@ -1,0 +1,32 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      <form class="example-form" [formGroup]="register" (ngSubmit)="submitForm()" novalidate>
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" formControlName="username">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" type="password" formControlName="Password">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Choose a role...</mat-label>
+            <mat-select formControlName="roles">
+              <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+        <button type="submit" mat-raised-button color="primary" class="btn-block">Register</button>
+      </form>
+      <mat-card class="abc">
+        <mat-card-title>Existing user?<a routerLink="/login"> Log in </a></mat-card-title>
+    </mat-card>
+    </mat-card>
+    
+  </div>

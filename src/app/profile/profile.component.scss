@@ -1,0 +1,84 @@
+.profile {
+  max-width: 400px;
+  margin: 0 auto; /* Horizontally center the form */
+  margin-top: 10vh; /* Vertically center the form relative to the viewport */
+  padding: 20px;
+  border: 1px solid #d8ad6c;
+  border-radius: 5px;
+  background-color: #dce0e2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .password-input {
+      position: relative;
+      
+      input[type="password"] {
+        width: calc(100% - 30px);
+        padding-right: 30px;
+      }
+      
+      .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+    }
+
+    .password-strength {
+      font-size: 0.875rem;
+      color: #888;
+    }
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    button[type="button"] {
+      background-color: #ccc;
+      color: #333;
+    }
+  }
+}

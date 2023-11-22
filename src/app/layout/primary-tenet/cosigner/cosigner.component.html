@@ -1,0 +1,600 @@
+<div class="main_div">
+    <div>
+      <div class="title">
+        <h2>Co-Signer</h2>
+      </div>
+      <form>
+        <div class="one">
+          <mat-form-field appearance="outline" class="Acc_width ">
+            <mat-label>Account Name</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Single/Couple/Roommates</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Property</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+        </div>
+  
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Zip</mat-label>
+            <input type="number" matInput>
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline" class="Acc_width ">
+            <mat-label>Monthly Rent</mat-label>
+            <input type="number" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Section 8 Rent (if applicable)</mat-label>
+            <input type="number" matInput>
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline" class="Acc_width ">
+            <mat-label>Standard Deposit for Property</mat-label>
+            <input type="text" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+            <input type="number" matInput>
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Property Type</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let property of Propertys" [value]="property">
+                {{property}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- Income Verification -->
+        <div class="incom_verification">
+          <div>
+            <h2>Income Verification :</h2>
+            <p>  Married/Domestic Partners (Combined income)- Gross Must be 3x rent.  Roommates (each person) - Must be 2.5x rent</p>
+          </div>
+  
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Monthly</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Monthly</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+  
+            <mat-form-field appearance="outline">
+              <mat-label>X rent</mat-label>
+              <input type="text" matInput value="#NA">
+            </mat-form-field>
+          </div>
+          <div class="one">
+  
+            <mat-form-field appearance="outline">
+              <mat-label>income Adequate</mat-label>
+              <input type="text" matInput value="NO">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="credit_summary">
+          <div>
+            <h2>Credit Summary :</h2>
+            <p>FICO Score: Under 550 or 5 Collection Accounts (Medical Exempt) = 6 points, 4 Collection Accounts = 4 points, 2-3 Collection  Accounts or No Score= 3 points.  If Bankruptcy discharged or dismissed, +1 point each.  60+ late payment +1 point each. Debt must be total $500 or greater.  If No Score, or more information is needed, full approval may be required in order to accept Deposit to Hold.  </p>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Credit Lines</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options1" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Credit Score</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Credit Score Available</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options1" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Collection Accounts</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Medical Collection</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Property Related Housing REcord</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options1" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Bankruptcy discharged or dismissed</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Bankruptcy Active</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options1" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Lines Repossessions</mat-label>
+              <input type="date" matInput>
+            </mat-form-field>
+          </div>
+          <div class="other_summary">
+            <div>
+              <h2>Other Screening Summary :</h2>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Eviction History</mat-label>
+                <input type="date" matInput>
+              </mat-form-field>
+            </div>
+            <div>
+              <h3>Criminal Search :</h3>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Class1 felonies</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let option of options1" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Class2 felonies</mat-label>
+                <input type="date" matInput>
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Class1 mesdemeaners</mat-label>
+                <input type="date" matInput>
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Class2 mesdemeaners</mat-label>
+                <input type="date" matInput>
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Deposit Approved</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let option of options1" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Deposit To Hold</mat-label>
+                <input type="number" matInput placeholder="$0.00" value="$0.00">
+              </mat-form-field>
+            </div>
+  
+          </div>
+        </div>
+        <!--other_summary completed -->
+        <div class="landlord_ref">
+          <div>
+  
+            <h2>Landlord Reference:</h2>
+            <p> Improper notice on previous, NSF, more than one late payment, 16-day, 10-day notice and/or HOA Violation= 1 point each.  If current landlord will not re-rent for documented reasons = auto denial.  </p>
+  
+          </div>
+          <div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Rental Reference</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let option of options1" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="landlord1">
+            <div>
+              <h2><u>Landlord 1:</u></h2>
+            </div>
+            <div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Proper Notice</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>NSF</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Late Payments</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Pay Rent or Vacate Notice</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>10 days Notice to comply </mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>HOA Voliation</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Proper CleanLiness</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options2" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Pets</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Adverse pet Reference</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Re-Rent</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+  
+            </div>
+          </div>
+          <div class="landlord2">
+            <div>
+              <h2><u>Landlord 2:</u></h2>
+            </div>
+            <div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Proper Notice</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>NSF</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Late Payments</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Pay Rent or Vacate Notice</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>10 days Notice to comply </mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>HOA Voliation</mat-label>
+                  <input type="text" matInput>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Proper CleanLiness</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options2" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Pets</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Adverse pet Reference</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>Re-Rent</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let option of options1" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Proerty History -->
+        <div class="rental_history">
+          <div>
+            <h2>Rental History</h2>
+            <p>Applicant must have 12 months or more rent or mortage history</p>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>RentalHistory Length</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options1" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- PETS -->
+        <div class="pets">
+          <div>
+            <h2>Pets:</h2>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Pet Approved</mat-label>
+              <input type="text" matInput placeholder="based on landlord Reference #1" value="#NA">
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Pet Approved</mat-label>
+              <input type="text" matInput placeholder="based on landlord Reference #2" value="#NA">
+            </mat-form-field>
+          </div>
+          <div class="#of_cats">
+            <div>
+              <h3><u># of cats:</u></h3>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Compansion Animal y/n</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let option of options1" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline">
+                <mat-label>Enter Number</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="#of_large_dogs">
+            <div>
+              <h3><u># of large dogs:</u></h3>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Compansion Animal y/n</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let option of options1" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Enter Number</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="#of_small_dogs">
+            <div>
+              <h3><u># of small dogs:</u></h3>
+            </div>
+            <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Compansion Animal y/n</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let option of options1" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline">
+                <mat-label>Enter Number</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+  
+        <!-- final session total -->
+        <div class="final_sesstion">
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Total points</mat-label>
+              <input type="number" matInput>
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Final Approval</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let option of options1" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Total Deposit Tenant 1</mat-label>
+              <input type="number" matInput placeholder="$0.00">
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Deposit TO Hold</mat-label>
+              <input type="number" matInput placeholder="$0.00">
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Pet Deposit - Primary Tenant</mat-label>
+              <input type="number" matInput placeholder="$0.00">
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label> Aditional Deposit - Primary Tenant</mat-label>
+              <input type="number" matInput placeholder="$0.00">
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Balance of Deposit Due</mat-label>
+              <input type="number" matInput placeholder="$0.00">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="button-container">
+            <a mat-raised-button href="/primary-tenant" target="_top" style="background: #5DADE2">Primary tenant</a>
+            <a mat-raised-button href="/tenant2" target="_top" style="background: #5DADE2">Tenant 2</a>
+            <a mat-raised-button href="/tenant3" target="_top" style="background: #5DADE2">Tenant 3</a>
+            <a mat-raised-button href="/tenant4" target="_top" style="background: #5DADE2">Tenant 4</a>
+            
+          </div>
+      </form>
+    </div>
+  </div>
+  

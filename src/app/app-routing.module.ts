@@ -9,7 +9,7 @@ import { RegisterComponent } from './layout/register/register.component';
 import { PrimaryTenantComponent } from './layout/primary-tenet/primary-tenant.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'primarytenant', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'footer', component: FooterComponent },

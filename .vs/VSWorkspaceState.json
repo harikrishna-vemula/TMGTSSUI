@@ -4,7 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\layout",
-    "\\src\\app\\layout\\login"
+    "\\src\\app\\layout\\dashboard",
+    "\\src\\app\\layout\\login",
+    "\\src\\app\\layout\\primary-tenet"
   ],
+  "SelectedNode": "\\src\\app\\app-routing.module.ts",
   "PreviewInSolutionExplorer": false
 }

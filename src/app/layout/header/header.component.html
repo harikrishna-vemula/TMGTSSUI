@@ -1,10 +1,19 @@
 <mat-toolbar color="primary">
-    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button> -->
-    <span style="cursor: pointer;" routerLink="">TMG T3</span>
-    <span class="example-spacer"></span>
-    <button  routerLink="/login" mat-icon-button class="example-icon" aria-label="Example icon-button with person icon">
-      <mat-icon >person</mat-icon>
-    </button>
-  </mat-toolbar> 
+
+  <img src="https://tmgnorthwest.com/wp-content/uploads/2021/10/TMG-Property-Management-Services-sticky-logo-100x41.png"/>
+  <span style="cursor: pointer;" routerLink="">Tenant Sheet</span>
+  <span class="example-spacer"></span>
+
+  <!-- Add a mat-menu-trigger for the logout dropdown -->
+  <button mat-icon-button [matMenuTriggerFor]="logoutMenu" aria-label="Logout">
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <!-- Define the logout dropdown menu -->
+  <mat-menu #logoutMenu="matMenu">
+    <button mat-menu-item routerLink="/profile">Profile</button>
+    <button mat-menu-item routerLink="/primarytenant">Primary Tenant</button>
+    <button mat-menu-item routerLink="/login">Logout</button>
+    <!-- <button  routerLink="/login" mat-icon-button class="example-icon" aria-label="Example icon-button with person icon"> -->
+  </mat-menu>
+</mat-toolbar>

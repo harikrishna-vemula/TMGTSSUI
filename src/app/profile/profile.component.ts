@@ -1,4 +1,4 @@
-// profile.component.ts
+import { FormsModule } from '@angular/forms'
 import { Component } from '@angular/core';
 
 @Component({

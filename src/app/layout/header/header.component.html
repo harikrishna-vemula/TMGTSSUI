@@ -1,19 +1,211 @@
-<mat-toolbar color="primary">
+<header class="fixed-header">
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+       style="background-color: #2ba8ce !important" >
 
-  <img src="https://tmgnorthwest.com/wp-content/uploads/2021/10/TMG-Property-Management-Services-sticky-logo-100x41.png"/>
-  <span style="cursor: pointer;" routerLink="">Tenant Sheet</span>
-  <span class="example-spacer"></span>
+    <button  mat-button style="color: antiquewhite;" routerLink="/scoresheet">TMG Tenant Sheet  
+    </button>
 
-  <!-- Add a mat-menu-trigger for the logout dropdown -->
-  <button mat-icon-button [matMenuTriggerFor]="logoutMenu" aria-label="Logout">
-    <mat-icon>person</mat-icon>
-  </button>
 
-  <!-- Define the logout dropdown menu -->
-  <mat-menu #logoutMenu="matMenu">
-    <button mat-menu-item routerLink="/profile">Profile</button>
-    <button mat-menu-item routerLink="/primarytenant">Primary Tenant</button>
-    <button mat-menu-item routerLink="/login">Logout</button>
-    <!-- <button  routerLink="/login" mat-icon-button class="example-icon" aria-label="Example icon-button with person icon"> -->
-  </mat-menu>
-</mat-toolbar>
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }">
+      <!-- Admin Navigation Starts here-->
+      <!-- <button mat-icon-button [matMenuTriggerFor]="adminMenu">
+        Administration
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    
+      <mat-menu #adminMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="usersMenu">
+          Users
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+        <button mat-menu-item routerLink="/userroles">
+          Roles
+        </button>
+      </mat-menu> -->
+
+      <div *ngIf="isAdmin">
+        <button mat-button [matMenuTriggerFor]="menu1" style="color: antiquewhite;">
+          Administration
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu1="matMenu">
+          <button mat-menu-item routerLink="/users">
+            <mat-icon>account_box</mat-icon>
+            Users
+          </button>
+          
+          <!-- <button mat-menu-item routerLink="/userroles">
+            <mat-icon>perm_identity</mat-icon>
+            Roles
+          </button> -->
+          
+          <!-- <button mat-menu-item routerLink="/primarytenant">
+            <mat-icon>turned_in</mat-icon>
+            Primary Tenant
+          </button> -->
+          <!-- <button mat-menu-item routerLink="/editusers">
+            <mat-icon>turned_in</mat-icon>
+            Edit Users
+          </button> -->
+          
+          <!-- <button mat-menu-item routerLink="/coversheet">
+            <mat-icon>turned_in</mat-icon>
+            cover sheet
+          </button> -->
+          <!-- <button mat-menu-item routerLink="/addusers">
+            <mat-icon>turned_in</mat-icon>
+            Add Users
+          </button> -->
+          
+          
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu3" style="color: antiquewhite;">
+          Tenant Score Sheet
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu3="matMenu">
+          <button mat-menu-item routerLink="/scoresheet">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            Select Score sheet
+          </button>
+        
+          <button mat-menu-item routerLink="/primarytenant">
+            <mat-icon>add_circle</mat-icon>
+            Add Tenant Score Sheet
+          </button>
+           <!-- <button mat-menu-item routerLink="/coversheet">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            Cover Sheet
+          </button> -->
+          
+          
+        
+          
+          
+        </mat-menu>
+        <!-- <button mat-fab color="primary"  [matMenuTriggerFor]="menu2" (click)="logout()"  >
+          <mat-icon>account_box</mat-icon>
+        </button> -->
+        <button mat-button [matMenuTriggerFor]="menu2" style="color: antiquewhite;">
+          
+          <mat-icon>account_box</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon> <!-- Profile Icon -->
+            Profile
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon> <!-- Logout Icon -->
+            Logout
+          </button>
+          <!-- <button mat-menu-item routerLink="/primarytenant">Primary Tenant</button> -->
+        </mat-menu>
+        <!-- <button mat-button [matMenuTriggerFor]="menu2" (click)="logout()">Logout</button> -->
+        <!-- <mat-menu #menu2="matMenu">
+
+        </mat-menu> -->
+      </div>
+      <div *ngIf="isEditor">
+        
+        <button mat-button [matMenuTriggerFor]="menu3" style="color: antiquewhite;">
+          Tenant Score Sheet
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu3="matMenu">
+          <button mat-menu-item routerLink="/scoresheet">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            Select Score sheet
+          </button>
+        
+          <button mat-menu-item routerLink="/primarytenant">
+            <mat-icon>add_circle</mat-icon>
+            Add Tenant Score Sheet
+          </button>
+          
+        </mat-menu>
+        <!-- <button mat-fab color="primary"  [matMenuTriggerFor]="menu2" (click)="logout()"  >
+          <mat-icon>account_box</mat-icon>
+        </button> -->
+        <button mat-button [matMenuTriggerFor]="menu2" style="color: antiquewhite;">
+          
+          <mat-icon>account_box</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon> <!-- Profile Icon -->
+            Profile
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon> <!-- Logout Icon -->
+            Logout
+          </button>
+          <!-- <button mat-menu-item routerLink="/primarytenant">Primary Tenant</button> -->
+        </mat-menu>
+        <!-- <button mat-button [matMenuTriggerFor]="menu2" (click)="logout()">Logout</button> -->
+        <mat-menu #menu2="matMenu">
+
+        </mat-menu>
+      </div>
+      <div *ngIf="isReader">
+        <button mat-button [matMenuTriggerFor]="menu4" style="color: antiquewhite;">
+          Tenant Score Sheet
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu4="matMenu">
+        
+          <button mat-menu-item routerLink="/primarytenant">
+            <mat-icon>turned_in</mat-icon>
+            Tenant Score Sheet
+          </button>
+           <button mat-menu-item routerLink="/coversheet">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            Cover Sheet
+          </button>
+          <button mat-menu-item routerLink="/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+          </button>
+          <button mat-menu-item routerLink="/scoresheet">
+            <mat-icon>Expand</mat-icon>
+            Scoresheet
+          </button>
+        
+          
+          
+        </mat-menu>
+        <!-- <button mat-fab color="primary"  [matMenuTriggerFor]="menu2" (click)="logout()"  >
+          <mat-icon>account_box</mat-icon>
+        </button> -->
+        <button mat-button [matMenuTriggerFor]="menu2" style="color: antiquewhite;">
+          
+          <mat-icon>account_box</mat-icon>
+        </button>
+        <!-- <button mat-button [matMenuTriggerFor]="menu1">Administration</button> -->
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item routerLink="/profile">
+            <mat-icon>person</mat-icon> <!-- Profile Icon -->
+            Profile
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon> <!-- Logout Icon -->
+            Logout
+          </button>
+          <!-- <button mat-menu-item routerLink="/primarytenant">Primary Tenant</button> -->
+        </mat-menu>
+        <!-- <button mat-button [matMenuTriggerFor]="menu2" (click)="logout()">Logout</button> -->
+        <mat-menu #menu2="matMenu">
+
+        </mat-menu>
+      </div>
+      <!-- Admin Navigation ends here-->
+
+    </div>
+  </nav>
+</header>

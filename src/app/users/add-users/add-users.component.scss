@@ -1,0 +1,65 @@
+mat-card {
+    margin: 100px auto;
+    width: 400px;
+    height: 700px;
+  
+    h2 {
+      margin-bottom: 20px;
+    }
+  
+    form {
+      div {
+        margin-top: 20px;
+  
+        mat-form-field {
+          width: 100%;
+          border: 2px solid rgba(0, 0, 0, 0.12); /* Material border color */
+  
+          input, textarea {
+            width: calc(100% - 16px); /* Adjusted width for padding */
+          }
+  
+          mat-label {
+            color: rgba(19, 70, 65, 0.54); /* Material label color */
+          }
+  
+          &.mat-focused {
+            border-color:  rgba(5, 22, 22, 0.54); /* Adjust with your primary color */
+          }
+        }
+  
+        mat-select {
+          width: 100%;
+          border: 2px solid rgba(0, 0, 0, 0.12);
+  
+          mat-label {
+            color: rgba(0, 0, 0, 0.54);
+          }
+  
+          &.mat-focused {
+            border-color:  rgba(245, 176, 176, 0.54);
+          }
+        }
+  
+        button {
+          width: 45%;
+        }
+      }
+  
+      div:last-child {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+   body {
+      font-family: Arial, sans-serif;
+    }
+
+    .card-title {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }

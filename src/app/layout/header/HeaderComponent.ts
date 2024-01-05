@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
     });
     
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log('Current User:', this.currentUser);
   }
   get isAdmin() {
     return this.currentUser && this.currentUser.roleName === 'Admin';
@@ -40,6 +41,7 @@ export class HeaderComponent implements OnInit {
 
   get isEditor() {
     return this.currentUser && this.currentUser.roleName === 'Editor';
+   
   }
   collapse() {
     this.isExpanded = false;

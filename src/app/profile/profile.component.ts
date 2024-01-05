@@ -1,5 +1,6 @@
-import { FormsModule } from '@angular/forms'
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -14,21 +15,27 @@ export class ProfileComponent {
   phoneNumber: string = '';
   password: string = '';
   address: string = '';
-  showPassword: boolean = false; // Add this property
+  showPassword: boolean = false;
   passwordStrengthMessage: string = '';
 
-  constructor() {}
-
-  // Add your existing methods
   submitForm() {
-    // Implement form submission logic here
+    // Add your form submission logic here
+    console.log('Form submitted:', this.firstName, this.lastName, this.userName, this.email, this.phoneNumber, this.password, this.address);
   }
 
   cancel() {
-    // Implement cancel button logic here
+    // Add your cancel logic here
+    console.log('Form canceled');
   }
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 }
+
+@NgModule({
+  declarations: [ProfileComponent],
+  imports: [CommonModule, FormsModule],
+  exports: [ProfileComponent]
+})
+export class ProfileModule { }

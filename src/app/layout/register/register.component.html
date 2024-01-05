@@ -3,7 +3,7 @@
       <mat-card-header>
         <mat-card-title>Register</mat-card-title>
       </mat-card-header>
-      <form class="example-form" [formGroup]="register" (ngSubmit)="submitForm()" novalidate>
+      <form class="example-form" [formGroup]="register" (ngSubmit)="onSubmit()" novalidate>
         <mat-card-content>
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Username" formControlName="username">

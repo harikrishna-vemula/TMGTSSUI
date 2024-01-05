@@ -1,28 +1,57 @@
-<!-- profile.component.html -->
-<div class="profile">
-  <h2>Profile</h2>
-  <form (ngSubmit)="submitForm() " style="width: 335px;" >
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" required>
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" required>
-    </div>
-    <div class="form-group">
-      <label for="userName">User Name:</label>
-      <input type="text" id="userName" [(ngModel)]="userName" name="userName" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" [(ngModel)]="email" name="email" required>
-    </div>
-    <div class="form-group">
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="tel" id="phoneNumber" [(ngModel)]="phoneNumber" name="phoneNumber" required>
-    </div>
-    <div class="form-group">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ <style>
+    .far {
+      cursor: pointer;
+    }
+
+    .fa-eye-slash {
+      display: text;
+    }
+
+    .password-input {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="profile">
+    <h2>User Profile</h2>
+    <form (ngSubmit)="submitForm()" style="width: 335px;">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="userName">User Name:</label>
+        <input type="text" id="userName" [(ngModel)]="userName" name="userName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+      </div>
+      <div class="form-group">
         <label for="password">Password:</label>
         <div class="password-input">
           <input type="password" id="password" [(ngModel)]="password" name="password" minlength="8" required>
@@ -34,13 +63,16 @@
           {{ passwordStrengthMessage }}
         </div>
       </div>
-    <div class="form-group">
-      <label for="address">Address:</label>
-      <textarea id="address" [(ngModel)]="address" name="address" required></textarea>
-    </div>
-    <div class="button-group">
-      <button type="submit">Submit</button>
-      <button type="button" (click)="cancel()">Cancel</button>
-    </div>
-  </form>
-</div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea id="address" [(ngModel)]="address" name="address" required></textarea>
+      </div>
+      <div class="button-group">
+        <button type="submit">Submit</button>
+        <button  mat-raised-button color="warn" type="button"  (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

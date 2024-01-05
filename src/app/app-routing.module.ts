@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'editusers', component: EditUserComponent },
   { path: 'editusers/:id', component: EditUserComponent },
   { path: 'coversheet', component: CoversheetComponent },
+  { path: 'coversheet/:id', component: CoversheetComponent },
   { path: 'scoresheet', component: ScoresheetComponent },
   { path: 'addusers', component: AddUsersComponent ,
   // {path: 'editusers/:id', component: EditUserComponent,
@@ -46,6 +47,7 @@ const routes: Routes = [
 
   { path: '**', component: PagenotfoundComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

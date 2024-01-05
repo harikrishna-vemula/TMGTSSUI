@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/users/users.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'coversheet-component',
@@ -15,96 +16,122 @@ export class CoversheetComponent implements OnInit {
   UpdateCoverSheet: any;
   GetCoverSheetbyapplicantId: any;
   router: any;
-  activate: any;
+  
   snapshot:any;
-  constructor(private fb: FormBuilder, private _http: UsersService) { }
+  constructor(private fb: FormBuilder, private _http: UsersService, private activate: ActivatedRoute, private _userservice: UsersService) { }
 
   ngOnInit() {
+    debugger;
 
-    this.initForm();   
-      this.snapid = this.activate.snapshot.paramMap.get('applicantid') || '';
-      this.getdata();
-      console.log(this.snapid,"snap id editapplicant componet");
-  
-    
+    this.initForm();
+    if (this.activate && this.activate.snapshot) {
+      this.snapid = this.activate.snapshot.paramMap.get('id') || '';
+    }
+    this.getdata();
+    console.log(this.snapid, "snap id Coversheet component");
+
 
   }
 
   initForm(): void {
     this.coverSheetForm = this.fb.group({
-      PropertyManager: ['', Validators.required],
-      PrimaryTenant: ['', Validators.required],
-      Tenant2: ['', Validators.required],
-      Tenant3: ['', Validators.required],
-      Tenant4: ['', Validators.required],
-      PropertyAddress: ['', Validators.required],
-      City: ['', Validators.required],
-      State: ['', Validators.required],
-      UnitCode: ['', Validators.required],
-      BestPOC: ['', Validators.required],
-      RentReadyDate: ['', Validators.required],
-      DepositPaidDate: ['', Validators.required],
-      RentResponsibleDate: ['', Validators.required],
-      AgreementType: ['', Validators.required],
-      QCDate: ['', Validators.required],
-      SigningDate: ['', Validators.required],
-      SigningTime: ['', Validators.required],
-      WithWhom: ['', Validators.required],
-      OtherTerms: ['', Validators.required],
-      ListPaidUtilities: ['', Validators.required],
-      OtherMonthlyCharge11: ['', Validators.required],
-      OtherMonthlyCharge12: ['', Validators.required],
-      OtherMonthlyCharge21: ['', Validators.required],
-      OtherMonthlyCharge22: ['', Validators.required],
-      OtherMonthlyCharge31: ['', Validators.required],
-      OtherMonthlyCharge32: ['', Validators.required],
-      OtherMonthlyCharge41: ['', Validators.required],
-      OtherMonthlyCharge42: ['', Validators.required],
-      OtherMoveinCharge1: ['', Validators.required],
-      OtherMoveinChargePaid1: ['', Validators.required],
-      MoveinRent1: ['', Validators.required],
-      MoveinRent2: ['', Validators.required],
+      propertyManager: ['', Validators.required],
+      primaryTenant: ['', Validators.required],
+      tenant2: ['', Validators.required],
+      tenant3: ['', Validators.required],
+      tenant4: ['', Validators.required],
+      propertyAddress: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      unitCode: ['', Validators.required],
+      bestPOC: ['', Validators.required],
+      rentReadyDate: ['', Validators.required],
+      depositPaidDate: ['', Validators.required],
+      rentResponsibleDate: ['', Validators.required],
+      agreementType: ['', Validators.required],
+      qCDate: ['', Validators.required],
+      signingDate: ['', Validators.required],
+      //signingTime: [Time, Validators.required],
+      withWhom: ['', Validators.required],
+      otherTerms: ['', Validators.required],
+      listPaidUtilities: ['', Validators.required],
+      otherMonthlyCharge11: ['', Validators.required],
+      otherMonthlyCharge12: ['', Validators.required],
+      otherMonthlyCharge21: ['', Validators.required],
+      otherMonthlyCharge22: ['', Validators.required],
+      otherMonthlyCharge31: ['', Validators.required],
+      otherMonthlyCharge32: ['', Validators.required],
+      otherMonthlyCharge41: ['', Validators.required],
+      otherMonthlyCharge42: ['', Validators.required],
+      otherMoveinCharge1: ['', Validators.required],
+      otherMoveinChargePaid1: ['', Validators.required],
+      moveinRent1: ['', Validators.required],
+      moveinRent2: ['', Validators.required],
 
-      OtherMoveinCharge2: ['', Validators.required],
-      OtherMoveinChargePaid2: ['', Validators.required],
-      OtherMoveinCharge3: ['', Validators.required],
-      OtherMoveinChargePaid3: ['', Validators.required],
-      RubsMoveinCharge: ['', Validators.required],
-      RubsMoveinChargePaid: ['', Validators.required],
-      PrepaidCleaningCharge: ['', Validators.required],
-      PrepaidCleaningPaid: ['', Validators.required],
+      otherMoveinCharge2: ['', Validators.required],
+      otherMoveinChargePaid2: ['', Validators.required],
+      otherMoveinCharge3: ['', Validators.required],
+      otherMoveinChargePaid3: ['', Validators.required],
+      rubsMoveinCharge: ['', Validators.required],
+      rubsMoveinChargePaid: ['', Validators.required],
+      prepaidCleaningCharge: ['', Validators.required],
+      prepaidCleaningPaid: ['', Validators.required],
 
 
-      SecurityDepositCharge: ['', Validators.required],
-      SecurityDepositPaid: ['', Validators.required],
-      NonRefProcessingFeeCharge: ['', Validators.required],
-      NonRefProcessingFeePaid: ['', Validators.required],
-      PetDepositCharge: ['', Validators.required],
-      PetDepositPaid: ['', Validators.required],
-      PetNonRefFeeCharge: ['', Validators.required],
-      PetNonRefFeePaid: ['', Validators.required],
+      securityDepositCharge: ['', Validators.required],
+      securityDepositPaid: ['', Validators.required],
+      nonRefProcessingFeeCharge: ['', Validators.required],
+      nonRefProcessingFeePaid: ['', Validators.required],
+      petDepositCharge: ['', Validators.required],
+      petDepositPaid: ['', Validators.required],
+      petNonRefFeeCharge: ['', Validators.required],
+      petNonRefFeePaid: ['', Validators.required],
 
-      AdditionDepositCharge: ['', Validators.required],
-      AdditionDepositPaid: ['', Validators.required],
-      SubTotal: ['', Validators.required],
-      Paid: ['', Validators.required],
-      DueatMoveinKeyPickup: ['', Validators.required],
-      CreatedBy: ['', Validators.required],
-      CreatedDate: ['', Validators.required],
-      ModifiedBy: ['', Validators.required],
-      ModifiedDate: ['', Validators.required],
+      additionDepositCharge: ['', Validators.required],
+      additionDepositPaid: ['', Validators.required],
+      subTotal: ['', Validators.required],
+      paid: ['', Validators.required],
+      dueatMoveinKeyPickup: ['', Validators.required],
+      createdBy: ['', Validators.required],
+    
+      modifiedBy: ['', Validators.required],
+      
 
       // Other charges...
     });
   }
   onSubmit() {
+
     if (this.snapid) {
       this.coverSheetForm.patchValue({
-        incom_verification: {
-          applicantId: this.snapid.toString(),
-        },
+
+        applicantId: this.snapid.toString(),
+
       })
+      this._userservice.CreateCoverSheet(this.coverSheetForm.value).subscribe(
+        (data) => {
+          console.log('Data sent to Create applications:', data);
+           
+          // Move to the next tab
+          // Optionally, reset the form or perform other actions after moving to the next tab
+          // this.firstCtrl.reset(); // Reset the form if needed
+        },
+        (error) => {
+          console.error('Error creating applicant:', error);
+          // Handle error response here
+        }
+      );
+            
+
+
+          
+          // Move to the next tab
+          // Optionally, reset the form or perform other actions after moving to the next tab
+          // this.firstCtrl.reset(); // Reset the form if needed
+       
+      
     }
+    
 
     console.log(this.coverSheetForm.value, "form values");
 
@@ -126,7 +153,7 @@ export class CoversheetComponent implements OnInit {
       console.log(data, "getting data");
       this.result = data
       debugger;
-      this.GetCoverSheetbyapplicantId.patchValue({
+      this.coverSheetForm.patchValue({
          propertyManager: this.result[0]?.propertyManager || '',
       primaryTenant: this.result[0]?.primaryTenant || '',
       tenant2: this.result[0]?.tenant2 || '',
@@ -143,7 +170,7 @@ export class CoversheetComponent implements OnInit {
       agreementType:  this.result[0]?.agreementType || '',
       qCDate:  this.result[0]?.qCDate || '',
       signingDate:  this.result[0]?.signingDate || '',
-      signingTime: this.result[0]?.signingTime || '',
+      //signingTime: this.result[0]?.signingTime || '',
       withWhom:  this.result[0]?.withWhom || '',
       otherTerms:  this.result[0]?.otherTerms || '',
       listPaidUtilities:  this.result[0]?.listPaidUtilities || '',
@@ -181,7 +208,7 @@ export class CoversheetComponent implements OnInit {
       paid: this.result[0]?.paid || '',
       dueatMoveinKeyPickup:  this.result[0]?.dueatMoveinKeyPickup || '',
       createdBy:  this.result[0]?.createdBy  || '',
-      createdDate : this.result[0]?.createdDate || '',
+     
 
       // ... continue for other form controls
       ModifiedBy: this.result[0]?.modifiedBy || '',
@@ -247,14 +274,14 @@ export class CoversheetComponent implements OnInit {
       paid: this.result[0]?.paid || '',
       dueatMoveinKeyPickup:  this.result[0]?.dueatMoveinKeyPickup || '',
       createdBy:  this.result[0]?.createdBy  || '',
-      createdDate : this.result[0]?.createdDate || '',
+     
 
       // ... continue for other form controls
       ModifiedBy: this.result[0]?.modifiedBy || '',
       ModifiedDate: this.result[0]?.modifiedDate || ''
     }
     this._http.UpdateUser1(payload).subscribe((res: any) => {
-      console.log(res, "this is updateddddd data");
+      console.log(res, "this is updated data");
       this.router.navigate(['/scoresheet']);
 
     })

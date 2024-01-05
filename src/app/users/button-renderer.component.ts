@@ -10,7 +10,7 @@ import { ICellRendererParams } from 'ag-grid-community';
   <span>
   <button mat-button (click)="edit()" style="background-color: #2ba8ce !important;">Edit</button>
   <span style="margin-left: 10px;"></span> <!-- Add space between buttons -->
-  <button  mat-raised-button *ngIf="showLinkButton"  style="background-color: #2ba8ce !important;" (click)="copyText('https://tmgwashington.appfolio.com?ApplicantId=')" value="click to copy">Copy Link</button>
+  <button  mat-raised-button *ngIf="showLinkButton"  style="background-color: #2ba8ce !important;" (click)="copyText('http://localhost:4200/primarytenant/')" value="click to copy">Copy Link</button>
 </span>
 
   `,

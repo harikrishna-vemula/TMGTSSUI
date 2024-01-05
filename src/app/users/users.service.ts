@@ -128,13 +128,17 @@ export class UsersService {
         })
       );
   }
+  CreateCoverSheet(data: any) {
+    return this._http.post(this.url + 'Scoresheet/CreateCoverSheet', data)
+  }
+
   GetCoverSheetbyapplicantId(appid: any): Observable<any> {
     //return this._http.get(this.url + 'Scoresheet/GetScroreSheetByApplicantId/${appid}/${sno}')
 
-    return this._http.get<any>(this.url + `Scoresheet/GetCoversheettByApplicantId/${appid}`)
+    return this._http.get<any>(this.url + `Scoresheet/getCoversheettByApplicantId/${appid}`)
       .pipe(
         tap((data) => {
-          console.log('Data from GetUserDetailsById:', data);
+          console.log('Data from getCoversheettByApplicantId:', data);
         }),
         catchError((error) => {
           console.error('Error in GetAllUsers:', error);

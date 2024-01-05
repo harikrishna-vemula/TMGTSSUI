@@ -638,7 +638,7 @@
                 </div>
 
 
-                <button mat-raised-button matStepperNext type="submit" color="accent">Submit</button>
+                <button mat-raised-button matStepperNext type="submit"  style="background-color: #2ba8ce !important">Submit</button>
               </mat-tab>
 
 
@@ -1281,7 +1281,7 @@
                 </div>
 
 
-                <button mat-raised-button matStepperNext type="submit" color="accent">Submit</button>
+                <button mat-raised-button matStepperNext type="submit" style="background-color: #2ba8ce !important">Submit</button>
               </mat-tab>
 
 
@@ -1924,7 +1924,7 @@
                 </div>
 
 
-                <button mat-raised-button matStepperNext type="submit" color="accent">Submit</button>
+                <button mat-raised-button matStepperNext type="submit"  style="background-color: #2ba8ce !important">Submit</button>
               </mat-tab>
 
 
@@ -1940,6 +1940,14 @@
           </form>
 
         </mat-step>
+        <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">
+          <ng-template matStepLabel>Tenant4</ng-template>
+
+        </mat-step>
+        <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">
+          <ng-template matStepLabel>Co-Signer</ng-template>
+        </mat-step>
+
 
 
       </div>

@@ -1,18 +1,18 @@
 
 <mat-card class="box">
-   <mat-card-header>
+  <mat-card-header>
     <mat-card-title>Primary Tenant</mat-card-title>
-  </mat-card-header> 
+  </mat-card-header>
 
 
-  <mat-horizontal-stepper #stepper>
+  <mat-horizontal-stepper #stepper (selectionChange)="onStepChange($event)">
 
     <div class="main_div">
       <div>
         <div class="title">
           <h2>Primary Tenant</h2>
         </div>
-        <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">
+        <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)"  >
           <ng-template matStepLabel>Primary Tenant</ng-template>
           <form [formGroup]="frmPrimary" (ngSubmit)="onPrimaryTenantSubmit1()">
             <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)">
@@ -41,11 +41,11 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                    </div> -->
 
                     <div class="one">
                       <mat-form-field appearance="outline">
@@ -76,15 +76,15 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline" class="Acc_width ">
-                  <mat-label>Standard Deposit for Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Pet Deposit if applicable(per pet)</mat-label>
-                  <input type="number" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline" class="Acc_width ">
+                        <mat-label>Standard Deposit for Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+                        <input type="number" matInput>
+                      </mat-form-field>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Property Type</mat-label>
@@ -122,30 +122,33 @@
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
-                        <input type="text" matInput formControlName="paystubRecent">
+                        <input type="number" matInput formControlName="paystubRecent">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
+                        <mat-label>Months</mat-label>
+                        <input type="number" matInput formControlName="yTD_Earnings">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+
                         <mat-label>Monthly</mat-label>
                         <input type="number" matInput formControlName="paystubRecentMonthly">
                       </mat-form-field>
-                      <!-- <mat-form-field appearance="outline">
-                  <mat-label>Result</mat-label>
-                  <input type="text" matInput formControlName="yTD_Earnings">
-                </mat-form-field> -->
+
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
-                        <input type="text" matInput formControlName="secondPayStub">
+                        <input type="number" matInput formControlName="secondPayStub">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Months</mat-label>
+                        <input type="number" matInput formControlName="bankStatement">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Monthly</mat-label>
                         <input type="number" matInput formControlName="bankStatementMonthly">
                       </mat-form-field>
-                      <mat-form-field appearance="outline">
-                        <mat-label>Result</mat-label>
-                        <input type="text" matInput formControlName="bankStatement">
-                      </mat-form-field>
+
                     </div>
                     <div class="one">
 
@@ -163,19 +166,19 @@
                     </div>
                     <!-- <div class="one">
 
-                <mat-form-field appearance="outline">
-                  <mat-label>income Adequate</mat-label>
-                  <input type="text" matInput value="NO">
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>income Adequate</mat-label>
+                        <input type="text" matInput value="NO">
+                      </mat-form-field>
+                    </div> -->
                   </div>
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="previousTab()">Back</button> -->
                       <span style="margin: 0 10px;"></span>
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Next</button>
-                <span style="flex: 1;"></span>
-                <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
+                      <span style="flex: 1;"></span>
+                      <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
                     </div>
                   </div>
                 </div>
@@ -235,9 +238,9 @@
                         <mat-label>Bankruptcy discharged or dismissed</mat-label>
                         <input type="number" matInput formControlName="bankruptcy">
                         <!--<mat-select formControlName="bankRupty">
-                    <mat-option [value]="true">Discharged</mat-option>
-                    <mat-option [value]="false">Dismissed</mat-option>
-                  </mat-select>-->
+                          <mat-option [value]="true">Discharged</mat-option>
+                          <mat-option [value]="false">Dismissed</mat-option>
+                        </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Bankruptcy Active</mat-label>
@@ -638,7 +641,7 @@
                 </div>
 
 
-                <button mat-raised-button matStepperNext type="submit"  style="background-color: #2ba8ce !important">Submit</button>
+                <button mat-raised-button matStepperNext type="submit" style="background-color: #2ba8ce !important">Submit</button>
               </mat-tab>
 
 
@@ -655,7 +658,7 @@
 
         </mat-step>
 
-        <mat-step [stepControl]="frmTenant2" [ngClass]="stepColorClass(stepper?.selected)">
+        <mat-step [stepControl]="frmTenant2" [ngClass]="stepColorClass(stepper?.selected)" >
           <ng-template matStepLabel>Tenant 2</ng-template>
           <form [formGroup]="frmTenant2" (ngSubmit)="onTenant2Submit()">
             <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)">
@@ -684,11 +687,11 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                    </div> -->
 
                     <div class="one">
                       <mat-form-field appearance="outline">
@@ -719,15 +722,15 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline" class="Acc_width ">
-                  <mat-label>Standard Deposit for Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Pet Deposit if applicable(per pet)</mat-label>
-                  <input type="number" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline" class="Acc_width ">
+                        <mat-label>Standard Deposit for Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+                        <input type="number" matInput>
+                      </mat-form-field>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Property Type</mat-label>
@@ -765,30 +768,33 @@
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
-                        <input type="text" matInput formControlName="paystubRecent">
+                        <input type="number" matInput formControlName="paystubRecent">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
+                        <mat-label>Months</mat-label>
+                        <input type="number" matInput formControlName="yTD_Earnings">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+
                         <mat-label>Monthly</mat-label>
                         <input type="number" matInput formControlName="paystubRecentMonthly">
                       </mat-form-field>
-                      <!-- <mat-form-field appearance="outline">
-                  <mat-label>Result</mat-label>
-                  <input type="text" matInput formControlName="yTD_Earnings">
-                </mat-form-field> -->
+
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
-                        <input type="text" matInput formControlName="secondPayStub">
+                        <input type="number" matInput formControlName="secondPayStub">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Months</mat-label>
+                        <input type="number" matInput formControlName="bankStatement">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Monthly</mat-label>
                         <input type="number" matInput formControlName="bankStatementMonthly">
                       </mat-form-field>
-                      <mat-form-field appearance="outline">
-                        <mat-label>Result</mat-label>
-                        <input type="text" matInput formControlName="bankStatement">
-                      </mat-form-field>
+
                     </div>
                     <div class="one">
 
@@ -806,19 +812,19 @@
                     </div>
                     <!-- <div class="one">
 
-                <mat-form-field appearance="outline">
-                  <mat-label>income Adequate</mat-label>
-                  <input type="text" matInput value="NO">
-                </mat-form-field>
-              </div> -->
+    <mat-form-field appearance="outline">
+      <mat-label>income Adequate</mat-label>
+      <input type="text" matInput value="NO">
+    </mat-form-field>
+  </div> -->
                   </div>
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="previousTab()">Back</button> -->
                       <span style="margin: 0 10px;"></span>
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Next</button>
-                <span style="flex: 1;"></span>
-                <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
+                      <span style="flex: 1;"></span>
+                      <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
                     </div>
                   </div>
                 </div>
@@ -878,9 +884,9 @@
                         <mat-label>Bankruptcy discharged or dismissed</mat-label>
                         <input type="number" matInput formControlName="bankruptcy">
                         <!--<mat-select formControlName="bankRupty">
-                    <mat-option [value]="true">Discharged</mat-option>
-                    <mat-option [value]="false">Dismissed</mat-option>
-                  </mat-select>-->
+                          <mat-option [value]="true">Discharged</mat-option>
+                          <mat-option [value]="false">Dismissed</mat-option>
+                        </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Bankruptcy Active</mat-label>
@@ -1327,11 +1333,11 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                    </div> -->
 
                     <div class="one">
                       <mat-form-field appearance="outline">
@@ -1362,15 +1368,15 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline" class="Acc_width ">
-                  <mat-label>Standard Deposit for Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Pet Deposit if applicable(per pet)</mat-label>
-                  <input type="number" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline" class="Acc_width ">
+                        <mat-label>Standard Deposit for Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+                        <input type="number" matInput>
+                      </mat-form-field>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Property Type</mat-label>
@@ -1408,30 +1414,33 @@
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
-                        <input type="text" matInput formControlName="paystubRecent">
+                        <input type="number" matInput formControlName="paystubRecent">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
+                        <mat-label>Months</mat-label>
+                        <input type="number" matInput formControlName="yTD_Earnings">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+
                         <mat-label>Monthly</mat-label>
                         <input type="number" matInput formControlName="paystubRecentMonthly">
                       </mat-form-field>
-                      <!-- <mat-form-field appearance="outline">
-                  <mat-label>Result</mat-label>
-                  <input type="text" matInput formControlName="yTD_Earnings">
-                </mat-form-field> -->
+
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
-                        <input type="text" matInput formControlName="secondPayStub">
+                        <input type="number" matInput formControlName="secondPayStub">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Months</mat-label>
+                        <input type="number" matInput formControlName="bankStatement">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Monthly</mat-label>
                         <input type="number" matInput formControlName="bankStatementMonthly">
                       </mat-form-field>
-                      <mat-form-field appearance="outline">
-                        <mat-label>Result</mat-label>
-                        <input type="text" matInput formControlName="bankStatement">
-                      </mat-form-field>
+
                     </div>
                     <div class="one">
 
@@ -1449,19 +1458,19 @@
                     </div>
                     <!-- <div class="one">
 
-                <mat-form-field appearance="outline">
-                  <mat-label>income Adequate</mat-label>
-                  <input type="text" matInput value="NO">
-                </mat-form-field>
-              </div> -->
+    <mat-form-field appearance="outline">
+      <mat-label>income Adequate</mat-label>
+      <input type="text" matInput value="NO">
+    </mat-form-field>
+  </div> -->
                   </div>
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="previousTab()">Back</button> -->
                       <span style="margin: 0 10px;"></span>
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Next</button>
-                <span style="flex: 1;"></span>
-                <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
+                      <span style="flex: 1;"></span>
+                      <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
                     </div>
                   </div>
                 </div>
@@ -1521,9 +1530,9 @@
                         <mat-label>Bankruptcy discharged or dismissed</mat-label>
                         <input type="number" matInput formControlName="bankruptcy">
                         <!--<mat-select formControlName="bankRupty">
-                    <mat-option [value]="true">Discharged</mat-option>
-                    <mat-option [value]="false">Dismissed</mat-option>
-                  </mat-select>-->
+                          <mat-option [value]="true">Discharged</mat-option>
+                          <mat-option [value]="false">Dismissed</mat-option>
+                        </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Bankruptcy Active</mat-label>
@@ -1924,7 +1933,7 @@
                 </div>
 
 
-                <button mat-raised-button matStepperNext type="submit"  style="background-color: #2ba8ce !important">Submit</button>
+                <button mat-raised-button matStepperNext type="submit" style="background-color: #2ba8ce !important">Submit</button>
               </mat-tab>
 
 
@@ -1943,7 +1952,6 @@
         <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Tenant4</ng-template>
           <form [formGroup]="frmPrimary" (ngSubmit)="onPrimaryTenantSubmit1()">
-
           </form>
 
 

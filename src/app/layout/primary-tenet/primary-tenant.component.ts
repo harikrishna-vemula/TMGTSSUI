@@ -1,4 +1,4 @@
-import { CdkStep } from '@angular/cdk/stepper';
+import { CdkStep, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStep } from '@angular/material/stepper';
@@ -36,7 +36,7 @@ export class PrimaryTenantComponent {
   //   { value: '4', label: 'Couple+Roommates' }
   //   // Add more options as needed
   // ];
-  propertyTypes: string[]  = ['Multi-Family', 'Single-Family']
+  propertyTypes: string[] = ['Multi-Family', 'Single-Family']
   options1: any = ['Yes', 'No'];
   options2: any = ['Fair/good', 'Poor']
   stepper: any;
@@ -47,7 +47,7 @@ export class PrimaryTenantComponent {
   private _http: any;
   createApplicant: any;
   snapid: any;
-  applicantId: number = 0;
+  applicantId: number = 0; frmTenant: any; tenantId: number = 0;
   primaryTenantIncomeVerification: number = 0;
   constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private _userservice: UsersService, private activate: ActivatedRoute) {
     this.authservice.currentUser.subscribe(x => this.currentUser = x);
@@ -69,8 +69,9 @@ export class PrimaryTenantComponent {
 
   //Primary Tenant Section 
   frmPrimary = this.fb.group({
-    // basicinfo: this.fb.group({      
+    // basicinfo: this.fb.group({
     // firstCtrl:['',Validators.required],
+    appilcantId: [0, Validators.required],
     applicantName: ['', Validators.required],
     applicantType: ['', Validators.required],
     property: ['', Validators.required],
@@ -86,7 +87,7 @@ export class PrimaryTenantComponent {
     // ptype: ['', Validators.required],
     applicantId: ['', Validators.required],
     tenantSNo: ['', Validators.required],
-    tenantId: ['', Validators.required],
+    tenantId: [Number],
     paystubRecent: ['', Validators.required],
     applicantTypeId: ['', Validators.required],
     propertyTypeId: ['', Validators.required],
@@ -103,6 +104,7 @@ export class PrimaryTenantComponent {
       incomeAdequate: [Boolean, Validators.required], //incomeAdequate
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     credit_summary: this.fb.group({
@@ -135,6 +137,7 @@ export class PrimaryTenantComponent {
       depositToHold: [''],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     landlord_ref: this.fb.group({
@@ -185,12 +188,14 @@ export class PrimaryTenantComponent {
       //lL2RerentPoints: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     rental_history: this.fb.group({
       rentalHistoryLength: [Boolean, Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
     pets: this.fb.group({
       petApprovedLandlordReferance1: ['', Validators.required],
@@ -203,6 +208,7 @@ export class PrimaryTenantComponent {
       noOfSmallDogsCompanions: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
@@ -214,6 +220,7 @@ export class PrimaryTenantComponent {
       balanceDepositDue: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
   })
 
@@ -239,7 +246,7 @@ export class PrimaryTenantComponent {
     // ptype: ['', Validators.required],
     applicantId: ['', Validators.required],
     tenantSNo: ['', Validators.required],
-    tenantId: ['', Validators.required],
+    tenantId: [Number],
     paystubRecent: ['', Validators.required],
     applicantTypeId: ['', Validators.required],
     propertyTypeId: ['', Validators.required],
@@ -256,7 +263,7 @@ export class PrimaryTenantComponent {
       incomeAdequate: [Boolean, Validators.required], //incomeAdequate
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
-
+      tenantId: [Number],
     }),
     credit_summary: this.fb.group({
       creditLines: [Boolean, Validators.required],
@@ -288,6 +295,7 @@ export class PrimaryTenantComponent {
       depositToHold: [''],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     landlord_ref: this.fb.group({
@@ -338,12 +346,14 @@ export class PrimaryTenantComponent {
       //lL2RerentPoints: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     rental_history: this.fb.group({
       rentalHistoryLength: [Boolean, Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
     pets: this.fb.group({
       petApprovedLandlordReferance1: ['', Validators.required],
@@ -356,6 +366,7 @@ export class PrimaryTenantComponent {
       noOfSmallDogsCompanions: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
@@ -367,6 +378,7 @@ export class PrimaryTenantComponent {
       balanceDepositDue: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
   })
 
@@ -388,7 +400,7 @@ export class PrimaryTenantComponent {
     // ptype: ['', Validators.required],
     applicantId: ['', Validators.required],
     tenantSNo: ['', Validators.required],
-    tenantId: ['', Validators.required],
+    tenantId: [Number],
     paystubRecent: ['', Validators.required],
     applicantTypeId: ['', Validators.required],
     propertyTypeId: ['', Validators.required],
@@ -405,7 +417,7 @@ export class PrimaryTenantComponent {
       incomeAdequate: [Boolean, Validators.required], //incomeAdequate
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
-
+      tenantId: [Number],
     }),
     credit_summary: this.fb.group({
       creditLines: [Boolean, Validators.required],
@@ -437,6 +449,7 @@ export class PrimaryTenantComponent {
       depositToHold: [''],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     landlord_ref: this.fb.group({
@@ -487,12 +500,14 @@ export class PrimaryTenantComponent {
       //lL2RerentPoints: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
 
     }),
     rental_history: this.fb.group({
       rentalHistoryLength: [Boolean, Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
     pets: this.fb.group({
       petApprovedLandlordReferance1: ['', Validators.required],
@@ -505,6 +520,7 @@ export class PrimaryTenantComponent {
       noOfSmallDogsCompanions: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
@@ -516,10 +532,11 @@ export class PrimaryTenantComponent {
       balanceDepositDue: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
+      tenantId: [Number],
     }),
   })
 
-  
+
 
 
 
@@ -572,9 +589,28 @@ export class PrimaryTenantComponent {
 
   }
   onTenantSubmit(tenantSNo: any) {
-    debugger;
+
+    if (tenantSNo == '1') {
+      this.frmTenant = this.frmPrimary;
+    }
+    else if (tenantSNo == '2') {
+      this.frmTenant = this.frmTenant2;
+    }
+    else if (tenantSNo == '3') {
+      this.frmTenant = this.frmTenant3;
+    }
+    else if (tenantSNo == '4') {
+      //this.frmTenant = this.frmTenant4;
+    }
+    else if (tenantSNo == '5') {
+      //this.frmTenant = this.frmTenant3;
+    }
+    this.frmTenant.patchValue({
+      tenantSNo: tenantSNo
+    })
     if (this.snapid) {
-      this.frmPrimary.patchValue({
+      this.frmTenant.patchValue({
+        applicantId: this.snapid.toString(),
         incom_verification: {
           applicantId: this.snapid.toString(),
           tenantSNo: tenantSNo
@@ -609,46 +645,54 @@ export class PrimaryTenantComponent {
     // if (this.myForm.valid) {
     console.log(this.tabIndex, "tab index values");
     // Send data to the backend
-    console.log(this.frmPrimary.value, "primary post data console");
+    console.log(this.frmTenant.value, "primary post data console");
     if (this.tabIndex == 0) {
       // alert("tab1")
       console.log(this.tabIndex, "tab index values");
-      this._userservice.CreateApplicant(this.frmPrimary.value).subscribe(
+      this._userservice.CreateApplicant(this.frmTenant.value).subscribe(
         (data) => {
           console.log('Data sent to Create applications:', data);
           if (data.ApplicantId > 0) {
             this.applicantId = data.ApplicantId;
-            this.frmPrimary.patchValue({
-              applicantId: this.applicantId.toString()
+            this.tenantId = data.TenantId;
+            this.frmTenant.patchValue({
+              applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+              tenantId: this.tenantId
             });
-            this.frmPrimary.patchValue({
+            this.frmTenant.patchValue({
               incom_verification: {
-                applicantId: this.applicantId.toString(),
-                tenantSNo: tenantSNo
+                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+                tenantSNo: tenantSNo,
+                tenantId: this.tenantId
               },
               credit_summary: {
-                applicantId: this.applicantId.toString(),
-                tenantSNo: tenantSNo
+                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+                tenantSNo: tenantSNo,
+                tenantId: this.tenantId
               }
               ,
               landlord_ref: {
-                applicantId: this.applicantId.toString(),
-                tenantSNo: tenantSNo
+                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+                tenantSNo: tenantSNo,
+                tenantId: this.tenantId
               }
               ,
               rental_history: {
-                applicantId: this.applicantId.toString(),
-                tenantSNo: tenantSNo
+                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+                tenantSNo: tenantSNo,
+                tenantId: this.tenantId
               }
               ,
               pets: {
-                applicantId: this.applicantId.toString(),
-                tenantSNo: tenantSNo
+                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+                tenantSNo: tenantSNo,
+                tenantId: this.tenantId
               }
               ,
               points_summary: {
-                applicantId: this.applicantId.toString(),
-                tenantSNo: tenantSNo
+                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+                tenantSNo: tenantSNo,
+                tenantId: this.tenantId
               }
 
             })
@@ -667,7 +711,7 @@ export class PrimaryTenantComponent {
     }
     else if (this.tabIndex == 1) {
 
-      this._userservice.CreateIncomeVerfication(this.frmPrimary.value.incom_verification).subscribe(
+      this._userservice.CreateIncomeVerfication(this.frmTenant.value.incom_verification).subscribe(
         (data) => {
 
         },
@@ -680,7 +724,7 @@ export class PrimaryTenantComponent {
     else if (this.tabIndex == 2) {
 
 
-      this._userservice.CreateCreditSummary(this.frmPrimary.value.credit_summary).subscribe(
+      this._userservice.CreateCreditSummary(this.frmTenant.value.credit_summary).subscribe(
         (data) => {
 
         },
@@ -694,7 +738,7 @@ export class PrimaryTenantComponent {
     else if (this.tabIndex == 3) {
 
 
-      this._userservice.CreateLandLordReferences(this.frmPrimary.value.landlord_ref).subscribe(
+      this._userservice.CreateLandLordReferences(this.frmTenant.value.landlord_ref).subscribe(
         (data) => {
 
         },
@@ -706,7 +750,7 @@ export class PrimaryTenantComponent {
     else if (this.tabIndex == 4) {
 
 
-      this._userservice.createRentalHistory(this.frmPrimary.value.rental_history).subscribe(
+      this._userservice.createRentalHistory(this.frmTenant.value.rental_history).subscribe(
         (data) => {
 
         },
@@ -718,7 +762,7 @@ export class PrimaryTenantComponent {
     else if (this.tabIndex == 5) {
 
 
-      this._userservice.CreatePets(this.frmPrimary.value.pets).subscribe(
+      this._userservice.CreatePets(this.frmTenant.value.pets).subscribe(
         (data) => {
 
         },
@@ -730,7 +774,7 @@ export class PrimaryTenantComponent {
     else if (this.tabIndex == 6) {
 
 
-      this._userservice.CreatePointsSummary(this.frmPrimary.value.points_summary).subscribe(
+      this._userservice.CreatePointsSummary(this.frmTenant.value.points_summary).subscribe(
         (data) => {
 
         },
@@ -743,6 +787,16 @@ export class PrimaryTenantComponent {
     // }
   }
 
+  onStepChange(event: StepperSelectionEvent): void {
+    console.log('Step changed:', event.selectedIndex);
+    if (this.snapid) {
+      this.getScroreSheetByApplicantId(this.snapid, (event.selectedIndex+1).toString());
+    }
+    // Additional logic can be added here based on the step change
+  }
+  selectionChange(sNo:any) {
+    
+  }
 
 
   getdata() {
@@ -781,17 +835,31 @@ export class PrimaryTenantComponent {
   getScroreSheetByApplicantId(snapid: any, sno: any) {
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {
       console.log(data, "getting data");
-      console.log(data[0].applicantType,"applicant type");
-      console.log(data[0].propertyType,"propertyType type");
-      
+      console.log(data[0].applicantType, "applicant type");
+      console.log(data[0].propertyType, "propertyType type");
+
       this.result = data
-      
-    
-      this.frmPrimary.patchValue({
+      if (sno == '1') {
+        this.frmTenant = this.frmPrimary;
+      }
+      else if (sno == '2') {
+        this.frmTenant = this.frmTenant2;
+      }
+      else if (sno == '3') {
+        this.frmTenant = this.frmTenant3;
+      }
+      else if (sno == '4') {
+        //this.frmTenant = this.frmTenant4;
+      }
+      else if (sno == '5') {
+        //this.frmTenant = this.frmTenant3;
+      }
+
+      this.frmTenant.patchValue({
         // firstname: this.result[0].firstname,
 
         // firstname: this.result[0].firstname,
-        tenantId: snapid,
+        tenantId: this.result[0].tenantId ,
         tenantSNo: sno,
         applicantName: this.result[0].applicantName,
         property: this.result[0].property,
@@ -838,7 +906,7 @@ export class PrimaryTenantComponent {
           liensRepossessions: this.result[0].liensRepossessions,
           // liensRepossessionsPoints: ['',Validators.required],
           //evectionHistoryPoints: ['', Validators.required],
-         
+
           evectionHistory: this.result[0]?.evectionHistory,
           class1Felonies: this.result[0].class1Felonies,
           // class1FeloniesPoints: ['',Validators.required],

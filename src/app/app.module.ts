@@ -26,6 +26,11 @@ import { AddUsersComponent } from './users/add-users/add-users.component';
 import { UsersService } from './users/users.service';
 import { ScoresheetComponent } from './scoresheet/scoresheet.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativeDateModule
+
+
+
 // import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 
@@ -61,7 +66,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     NgxSpinnerModule,
     AgGridModule,
     MatTabsModule,
-    
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [DatePipe,UsersService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

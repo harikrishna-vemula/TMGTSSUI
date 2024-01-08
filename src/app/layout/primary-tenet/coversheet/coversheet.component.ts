@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/users/users.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'coversheet-component',
@@ -10,19 +12,18 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class CoversheetComponent implements OnInit {
   snapid: any;
-  result: any; currentUser: any={ };
+  result: any; currentUser: any = {};
   coverSheetForm!: FormGroup;
   Agreements: string[] = ["AgreementType1", "AgreementType2", "AgreementType3"];
   UpdateCoverSheet: any;
   GetCoverSheetbyapplicantId: any;
   router: any;
-  
-  snapshot:any;
+
+  snapshot: any;
   constructor(private fb: FormBuilder, private _http: UsersService, private activate: ActivatedRoute, private _userservice: UsersService) { }
 
   ngOnInit() {
-    debugger;
-
+    
     this.initForm();
     if (this.activate && this.activate.snapshot) {
       this.snapid = this.activate.snapshot.paramMap.get('id') || '';
@@ -32,9 +33,13 @@ export class CoversheetComponent implements OnInit {
 
 
   }
+  dateChanged(event: MatDatepickerInputEvent<Date>) {
+    console.log(event.value); // handle the selected date here
+  }
 
   initForm(): void {
     this.coverSheetForm = this.fb.group({
+      applicantId: ['', Validators.required],
       propertyManager: ['', Validators.required],
       primaryTenant: ['', Validators.required],
       tenant2: ['', Validators.required],
@@ -49,7 +54,7 @@ export class CoversheetComponent implements OnInit {
       depositPaidDate: ['', Validators.required],
       rentResponsibleDate: ['', Validators.required],
       agreementType: ['', Validators.required],
-      qCDate: ['', Validators.required],
+      qcDate: ['', Validators.required],
       signingDate: ['', Validators.required],
       //signingTime: [Time, Validators.required],
       withWhom: ['', Validators.required],
@@ -65,8 +70,8 @@ export class CoversheetComponent implements OnInit {
       otherMonthlyCharge42: ['', Validators.required],
       otherMoveinCharge1: ['', Validators.required],
       otherMoveinChargePaid1: ['', Validators.required],
-      moveinRent1: ['', Validators.required],
-      moveinRent2: ['', Validators.required],
+      moveinRentCharge: ['', Validators.required],
+      moveinRentPaid: ['', Validators.required],
 
       otherMoveinCharge2: ['', Validators.required],
       otherMoveinChargePaid2: ['', Validators.required],
@@ -93,9 +98,9 @@ export class CoversheetComponent implements OnInit {
       paid: ['', Validators.required],
       dueatMoveinKeyPickup: ['', Validators.required],
       createdBy: ['', Validators.required],
-    
+
       modifiedBy: ['', Validators.required],
-      
+
 
       // Other charges...
     });
@@ -104,14 +109,12 @@ export class CoversheetComponent implements OnInit {
 
     if (this.snapid) {
       this.coverSheetForm.patchValue({
-
-        applicantId: this.snapid.toString(),
-
+        applicantId: this.snapid,
       })
       this._userservice.CreateCoverSheet(this.coverSheetForm.value).subscribe(
         (data) => {
           console.log('Data sent to Create applications:', data);
-           
+
           // Move to the next tab
           // Optionally, reset the form or perform other actions after moving to the next tab
           // this.firstCtrl.reset(); // Reset the form if needed
@@ -121,17 +124,17 @@ export class CoversheetComponent implements OnInit {
           // Handle error response here
         }
       );
-            
 
 
-          
-          // Move to the next tab
-          // Optionally, reset the form or perform other actions after moving to the next tab
-          // this.firstCtrl.reset(); // Reset the form if needed
-       
-      
+
+
+      // Move to the next tab
+      // Optionally, reset the form or perform other actions after moving to the next tab
+      // this.firstCtrl.reset(); // Reset the form if needed
+
+
     }
-    
+
 
     console.log(this.coverSheetForm.value, "form values");
 
@@ -147,73 +150,73 @@ export class CoversheetComponent implements OnInit {
     //}
   }
   getdata() {
-    debugger;
+
     // alert("edit-user compont")
     this._http.GetCoverSheetbyapplicantId(this.snapid).subscribe((data) => {
       console.log(data, "getting data");
       this.result = data
-      debugger;
-      this.coverSheetForm.patchValue({
-         propertyManager: this.result[0]?.propertyManager || '',
-      primaryTenant: this.result[0]?.primaryTenant || '',
-      tenant2: this.result[0]?.tenant2 || '',
-      tenant3: this.result[0]?.tenant3 || '',
-      tenant4: this.result[0]?.tenant4 || '',
-      propertyAddress: this.result[0]?.propertyAddress || '',
-      city: this.result[0]?.city || '',
-      state: this.result[0]?.state || '',
-      unitCode: this.result[0]?.unitCode || '',
-      bestPOC: this.result[0]?.bestPOC || '',
-      rentReadyDate : this.result[0]?.rentReadyDate || '',
-      depositPaidDate : this.result[0]?.depositPaidDate || '',
-      rentResponsibleDate:  this.result[0]?.rentResponsibleDate || '',
-      agreementType:  this.result[0]?.agreementType || '',
-      qCDate:  this.result[0]?.qCDate || '',
-      signingDate:  this.result[0]?.signingDate || '',
-      //signingTime: this.result[0]?.signingTime || '',
-      withWhom:  this.result[0]?.withWhom || '',
-      otherTerms:  this.result[0]?.otherTerms || '',
-      listPaidUtilities:  this.result[0]?.listPaidUtilities || '',
-      otherMonthlyCharge11:  this.result[0]?.otherMonthlyCharge11 || '',
-      otherMonthlyCharge12: this.result[0]?.otherMonthlyCharge12 || '',
-      otherMonthlyCharge21: this.result[0]?.otherMonthlyCharge21 || '',
-      otherMonthlyCharge22: this.result[0]?.otherMonthlyCharge22 || '',
-      otherMonthlyCharge31: this.result[0]?.otherMonthlyCharge31 || '',
-      otherMonthlyCharge32: this.result[0]?.otherMonthlyCharge32 || '',
-      otherMonthlyCharge41: this.result[0]?.otherMonthlyCharge41 || '',
-      otherMonthlyCharge42: this.result[0]?.otherMonthlyCharge42 || '',
-      otherMoveinChargePaid1:  this.result[0]?.otherMoveinChargePaid1  || '',
-      moveinRent1:  this.result[0]?.moveinRent1 || '',
-      moveinRent2: this.result[0]?.moveinRent2 || '',
-      otherMoveinCharge1: this.result[0]?.otherMoveinCharge1 || '',
-      otherMoveinCharge2: this.result[0]?.otherMoveinCharge2 || '',
-      otherMoveinChargePaid2: this.result[0]?.otherMoveinChargePaid2 || '',
-      otherMoveinCharge3: this.result[0]?.otherMoveinCharge3 || '',
-      otherMoveinChargePaid3: this.result[0]?.otherMoveinChargePaid3 || '',
-      rubsMoveinCharge: this.result[0]?.rubsMoveinCharge || '',
-      rubsMoveinChargePaid:  this.result[0]?.rubsMoveinChargePaid || '',
-      prepaidCleaningCharge:  this.result[0]?.prepaidCleaningCharge || '',
-      prepaidCleaningPaid:  this.result[0]?.prepaidCleaningPaid || '',
-      securityDepositCharge:  this.result[0]?.securityDepositCharge || '',
-      securityDepositPaid:  this.result[0]?.securityDepositPaid || '',
-      nonRefProcessingFeeCharge: this.result[0]?.nonRefProcessingFeeCharge || '',
-      nonRefProcessingFeePaid:  this.result[0]?.nonRefProcessingFeePaid || '',
-      petDepositCharge: this.result[0]?.petDepositCharge || '',
-      petDepositPaid: this.result[0]?.petDepositPaid || '',
-      petNonRefFeeCharge:  this.result[0]?.petNonRefFeeCharge || '',
-      petNonRefFeePaid: this.result[0]?.petNonRefFeePaid || '',
-      additionDepositCharge: this.result[0]?.additionDepositCharge || '',
-      additionDepositPaid: this.result[0]?.additionDepositPaid || '',
-      subTotal:  this.result[0]?.subTotal || '',
-      paid: this.result[0]?.paid || '',
-      dueatMoveinKeyPickup:  this.result[0]?.dueatMoveinKeyPickup || '',
-      createdBy:  this.result[0]?.createdBy  || '',
-     
 
-      // ... continue for other form controls
-      ModifiedBy: this.result[0]?.modifiedBy || '',
-      ModifiedDate: this.result[0]?.modifiedDate || ''
-    })
+      this.coverSheetForm.patchValue({
+        propertyManager: this.result[0]?.propertyManager || '',
+        primaryTenant: this.result[0]?.primaryTenant || '',
+        tenant2: this.result[0]?.tenant2 || '',
+        tenant3: this.result[0]?.tenant3 || '',
+        tenant4: this.result[0]?.tenant4 || '',
+        propertyAddress: this.result[0]?.propertyAddress || '',
+        city: this.result[0]?.city || '',
+        state: this.result[0]?.state || '',
+        unitCode: this.result[0]?.unitCode || '',
+        bestPOC: this.result[0]?.bestPOC || '',
+        rentReadyDate: this.result[0]?.rentReadyDate || '',
+        depositPaidDate: this.result[0]?.depositPaidDate || '',
+        rentResponsibleDate: this.result[0]?.rentResponsibleDate || '',
+        agreementType: this.result[0]?.agreementType || '',
+        qcDate: this.result[0]?.qcDate || '',
+        signingDate: this.result[0]?.signingDate || '',
+        //signingTime: this.result[0]?.signingTime || '',
+        withWhom: this.result[0]?.withWhom || '',
+        otherTerms: this.result[0]?.otherTerms || '',
+        listPaidUtilities: this.result[0]?.listPaidUtilities || '',
+        otherMonthlyCharge11: this.result[0]?.otherMonthlyCharge11 || '',
+        otherMonthlyCharge12: this.result[0]?.otherMonthlyCharge12 || '',
+        otherMonthlyCharge21: this.result[0]?.otherMonthlyCharge21 || '',
+        otherMonthlyCharge22: this.result[0]?.otherMonthlyCharge22 || '',
+        otherMonthlyCharge31: this.result[0]?.otherMonthlyCharge31 || '',
+        otherMonthlyCharge32: this.result[0]?.otherMonthlyCharge32 || '',
+        otherMonthlyCharge41: this.result[0]?.otherMonthlyCharge41 || '',
+        otherMonthlyCharge42: this.result[0]?.otherMonthlyCharge42 || '',
+        otherMoveinChargePaid1: this.result[0]?.otherMoveinChargePaid1 || '',
+        moveinRentCharge: this.result[0]?.moveinRentCharge || '',
+        moveinRentPaid: this.result[0]?.moveinRentPaid || '',
+        otherMoveinCharge1: this.result[0]?.otherMoveinCharge1 || '',
+        otherMoveinCharge2: this.result[0]?.otherMoveinCharge2 || '',
+        otherMoveinChargePaid2: this.result[0]?.otherMoveinChargePaid2 || '',
+        otherMoveinCharge3: this.result[0]?.otherMoveinCharge3 || '',
+        otherMoveinChargePaid3: this.result[0]?.otherMoveinChargePaid3 || '',
+        rubsMoveinCharge: this.result[0]?.rubsMoveinCharge || '',
+        rubsMoveinChargePaid: this.result[0]?.rubsMoveinChargePaid || '',
+        prepaidCleaningCharge: this.result[0]?.prepaidCleaningCharge || '',
+        prepaidCleaningPaid: this.result[0]?.prepaidCleaningPaid || '',
+        securityDepositCharge: this.result[0]?.securityDepositCharge || '',
+        securityDepositPaid: this.result[0]?.securityDepositPaid || '',
+        nonRefProcessingFeeCharge: this.result[0]?.nonRefProcessingFeeCharge || '',
+        nonRefProcessingFeePaid: this.result[0]?.nonRefProcessingFeePaid || '',
+        petDepositCharge: this.result[0]?.petDepositCharge || '',
+        petDepositPaid: this.result[0]?.petDepositPaid || '',
+        petNonRefFeeCharge: this.result[0]?.petNonRefFeeCharge || '',
+        petNonRefFeePaid: this.result[0]?.petNonRefFeePaid || '',
+        additionDepositCharge: this.result[0]?.additionDepositCharge || '',
+        additionDepositPaid: this.result[0]?.additionDepositPaid || '',
+        subTotal: this.result[0]?.subTotal || '',
+        paid: this.result[0]?.paid || '',
+        dueatMoveinKeyPickup: this.result[0]?.dueatMoveinKeyPickup || '',
+        //createdBy: this.result[0]?.createdBy || '',
+
+
+        // ... continue for other form controls
+        ///ModifiedBy: this.result[0]?.modifiedBy || '',
+        //ModifiedDate: this.result[0]?.modifiedDate || ''
+      })
     })
   }
 
@@ -230,17 +233,17 @@ export class CoversheetComponent implements OnInit {
       state: this.result[0]?.state || '',
       unitCode: this.result[0]?.unitCode || '',
       bestPOC: this.result[0]?.bestPOC || '',
-      rentReadyDate : this.result[0]?.rentReadyDate || '',
-      depositPaidDate : this.result[0]?.depositPaidDate || '',
-      rentResponsibleDate:  this.result[0]?.rentResponsibleDate || '',
-      agreementType:  this.result[0]?.agreementType || '',
-      qCDate:  this.result[0]?.qCDate || '',
-      signingDate:  this.result[0]?.signingDate || '',
+      rentReadyDate: this.result[0]?.rentReadyDate || '',
+      depositPaidDate: this.result[0]?.depositPaidDate || '',
+      rentResponsibleDate: this.result[0]?.rentResponsibleDate || '',
+      agreementType: this.result[0]?.agreementType || '',
+      qcDate: this.result[0]?.qcDate || '',
+      signingDate: this.result[0]?.signingDate || '',
       signingTime: this.result[0]?.signingTime || '',
-      withWhom:  this.result[0]?.withWhom || '',
-      otherTerms:  this.result[0]?.otherTerms || '',
-      listPaidUtilities:  this.result[0]?.listPaidUtilities || '',
-      otherMonthlyCharge11:  this.result[0]?.otherMonthlyCharge11 || '',
+      withWhom: this.result[0]?.withWhom || '',
+      otherTerms: this.result[0]?.otherTerms || '',
+      listPaidUtilities: this.result[0]?.listPaidUtilities || '',
+      otherMonthlyCharge11: this.result[0]?.otherMonthlyCharge11 || '',
       otherMonthlyCharge12: this.result[0]?.otherMonthlyCharge12 || '',
       otherMonthlyCharge21: this.result[0]?.otherMonthlyCharge21 || '',
       otherMonthlyCharge22: this.result[0]?.otherMonthlyCharge22 || '',
@@ -248,8 +251,8 @@ export class CoversheetComponent implements OnInit {
       otherMonthlyCharge32: this.result[0]?.otherMonthlyCharge32 || '',
       otherMonthlyCharge41: this.result[0]?.otherMonthlyCharge41 || '',
       otherMonthlyCharge42: this.result[0]?.otherMonthlyCharge42 || '',
-      otherMoveinChargePaid1:  this.result[0]?.otherMoveinChargePaid1  || '',
-      moveinRent1:  this.result[0]?.moveinRent1 || '',
+      otherMoveinChargePaid1: this.result[0]?.otherMoveinChargePaid1 || '',
+      moveinRent1: this.result[0]?.moveinRent1 || '',
       moveinRent2: this.result[0]?.moveinRent2 || '',
       otherMoveinCharge1: this.result[0]?.otherMoveinCharge1 || '',
       otherMoveinCharge2: this.result[0]?.otherMoveinCharge2 || '',
@@ -257,24 +260,24 @@ export class CoversheetComponent implements OnInit {
       otherMoveinCharge3: this.result[0]?.otherMoveinCharge3 || '',
       otherMoveinChargePaid3: this.result[0]?.otherMoveinChargePaid3 || '',
       rubsMoveinCharge: this.result[0]?.rubsMoveinCharge || '',
-      rubsMoveinChargePaid:  this.result[0]?.rubsMoveinChargePaid || '',
-      prepaidCleaningCharge:  this.result[0]?.prepaidCleaningCharge || '',
-      prepaidCleaningPaid:  this.result[0]?.prepaidCleaningPaid || '',
-      securityDepositCharge:  this.result[0]?.securityDepositCharge || '',
-      securityDepositPaid:  this.result[0]?.securityDepositPaid || '',
+      rubsMoveinChargePaid: this.result[0]?.rubsMoveinChargePaid || '',
+      prepaidCleaningCharge: this.result[0]?.prepaidCleaningCharge || '',
+      prepaidCleaningPaid: this.result[0]?.prepaidCleaningPaid || '',
+      securityDepositCharge: this.result[0]?.securityDepositCharge || '',
+      securityDepositPaid: this.result[0]?.securityDepositPaid || '',
       nonRefProcessingFeeCharge: this.result[0]?.nonRefProcessingFeeCharge || '',
-      nonRefProcessingFeePaid:  this.result[0]?.nonRefProcessingFeePaid || '',
+      nonRefProcessingFeePaid: this.result[0]?.nonRefProcessingFeePaid || '',
       petDepositCharge: this.result[0]?.petDepositCharge || '',
       petDepositPaid: this.result[0]?.petDepositPaid || '',
-      petNonRefFeeCharge:  this.result[0]?.petNonRefFeeCharge || '',
+      petNonRefFeeCharge: this.result[0]?.petNonRefFeeCharge || '',
       petNonRefFeePaid: this.result[0]?.petNonRefFeePaid || '',
       additionDepositCharge: this.result[0]?.additionDepositCharge || '',
       additionDepositPaid: this.result[0]?.additionDepositPaid || '',
-      subTotal:  this.result[0]?.subTotal || '',
+      subTotal: this.result[0]?.subTotal || '',
       paid: this.result[0]?.paid || '',
-      dueatMoveinKeyPickup:  this.result[0]?.dueatMoveinKeyPickup || '',
-      createdBy:  this.result[0]?.createdBy  || '',
-     
+      dueatMoveinKeyPickup: this.result[0]?.dueatMoveinKeyPickup || '',
+      createdBy: this.result[0]?.createdBy || '',
+
 
       // ... continue for other form controls
       ModifiedBy: this.result[0]?.modifiedBy || '',
@@ -286,7 +289,7 @@ export class CoversheetComponent implements OnInit {
 
     })
   }
-  onCancel(){
+  onCancel() {
     this.router.navigate(['/scoresheet']);
 
   }
@@ -309,10 +312,10 @@ export class CoversheetComponent implements OnInit {
 
 
 
-  // Access the data like this:
-  // const tenantId = data.tenantId;
-  // const paystubRecent = data.paystubRecent;
-  // ...
+// Access the data like this:
+// const tenantId = data.tenantId;
+// const paystubRecent = data.paystubRecent;
+// ...
 
-  // You can add any additional methods or event handlers here
+// You can add any additional methods or event handlers here
 

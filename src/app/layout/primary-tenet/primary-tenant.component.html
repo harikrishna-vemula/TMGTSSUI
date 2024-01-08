@@ -1,8 +1,8 @@
 
 <mat-card class="box">
-  <!-- <mat-card-header>
+   <mat-card-header>
     <mat-card-title>Primary Tenant</mat-card-title>
-  </mat-card-header> -->
+  </mat-card-header> 
 
 
   <mat-horizontal-stepper #stepper>
@@ -657,7 +657,7 @@
 
         <mat-step [stepControl]="frmTenant2" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Tenant 2</ng-template>
-          <form [formGroup]="frmTenant2" (ngSubmit)="onPrimaryTenantSubmit1()">
+          <form [formGroup]="frmTenant2" (ngSubmit)="onTenant2Submit()">
             <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)">
               <mat-tab label="Basic Details">
                 <div class="card" style=" padding: 2%">
@@ -1942,6 +1942,10 @@
         </mat-step>
         <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Tenant4</ng-template>
+          <form [formGroup]="frmPrimary" (ngSubmit)="onPrimaryTenantSubmit1()">
+
+          </form>
+
 
         </mat-step>
         <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">

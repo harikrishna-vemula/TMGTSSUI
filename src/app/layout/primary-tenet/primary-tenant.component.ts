@@ -568,6 +568,9 @@ export class PrimaryTenantComponent {
   onPrimaryTenantSubmit1() {
 
   }
+  onTenant2Submit() {
+
+  }
   onTenantSubmit(tenantSNo: any) {
     debugger;
     if (this.snapid) {
@@ -931,6 +934,153 @@ export class PrimaryTenantComponent {
     })
 
   }
+  //this.frmPrimary.patchValue({
+  //  // firstname: this.result[0].firstname,
+
+  //  // firstname: this.result[0].firstname,
+  //  tenantId: snapid,
+  //  tenantSNo: sno,
+  //  applicantName: this.result[0].applicantName,
+  //  property: this.result[0].property,
+  //  applicantTypeId: this.result[0].applicantTypeId,
+  //  city: this.result[0].city,
+  //  state: this.result[0].state,
+  //  zip: this.result[0].zip,
+  //  monthlyRent: this.result[0].monthlyRent,
+  //  section8Rent: this.result[0].section8Rent,
+  //  standardDepositProperty: this.result[0].standardDepositProperty,
+  //  propertyTypeId: this.result[0].propertyTypeId,
+
+  //  incom_verification: {
+  //    paystubRecent: this.result[0].paystubRecent,
+  //    paystubRecentMonthly: this.result[0].paystubRecentMonthly,
+  //    yTD_Earnings: this.result[0].yTD_Earnings,
+  //    secondPayStub: this.result[0].secondPayStub,
+  //    bankStatementMonthly: this.result[0].bankStatementMonthly,
+  //    bankStatement: this.result[0].bankStatement,
+  //    xRent: this.result[0].xRent,
+  //    incomeAdequate: this.result[0].incomeAdequate
+  //  },
+  //  credit_summary: {
+  //    creditLines: this.result[0].creditLines,
+  //    creditScore: this.result[0].creditScore,
+  //    //creditScorePoints: this.result[0].creditScorePoints,
+  //    creditScoreAvailable: this.result[0].creditScoreAvailable,
+  //    medicalCollections: this.result[0].medicalCollections,
+  //    //creditScoreAvailable: this.result[0].creditScoreAvailable,
+  //    //creditScoreAvailable: this.result[0].creditScoreAvailable,
+
+
+  //    //creditScorePoints: [Number, Validators.required],
+
+  //    // creditScoreAvailablePoints: ['',Validators.required],
+  //    // accountPastDue60Days: ['',Validators.required],
+  //    collectionAccounts: this.result[0].collectionAccounts,
+  //    // collectionAccountsPoints: ['',Validators.required],
+
+  //    propertyRelatedHousingRecord: this.result[0].propertyRelatedHousingRecord,
+  //    // propertyRelatedHousingRecordPoints: ['',Validators.required],
+  //    bankRuptyActive: this.result[0].bankRuptyActive,
+  //    // bankRuptyActivePoints: this.result[0].bankRuptyActivePoints,
+  //    liensRepossessions: this.result[0].liensRepossessions,
+  //    // liensRepossessionsPoints: ['',Validators.required],
+  //    //evectionHistoryPoints: ['', Validators.required],
+
+  //    evectionHistory: this.result[0]?.evectionHistory,
+  //    class1Felonies: this.result[0].class1Felonies,
+  //    // class1FeloniesPoints: ['',Validators.required],
+  //    class2Felonies: this.result[0].class2Felonies,
+  //    // class2FeloniesPoints : ['',Validators.required],
+  //    class1Misdemeaners: this.result[0].class1Misdemeaners,
+  //    // class1MisdemeanersPoints: ['',Validators.required],
+  //    class2Misdemeaners: this.result[0].class2Misdemeaners,
+  //    depositApproved: this.result[0].depositApproved,
+  //    depositToHold: this.result[0].depositToHold,
+  //    bankruptcy: this.result[0].bankruptcy,
+
+  //    // ... add other properties
+  //  },
+  //  landlord_ref: {
+  //    rentalReferance: this.result[0].rentalReferance,
+
+  //    //lL1LandlordType: this.result[0].lL1LandlordType,
+  //    lL1ProperNotice: this.result[0].lL1ProperNotice,
+  //    //lL1ProperNoticePoints: this.result[0].lL1ProperNoticePoints,
+  //    lL1NSF: this.result[0].lL1NSF,
+  //    //lL1NSFPoints: this.result[0].lL1NSFPoints,
+  //    lL1LatePayments: this.result[0].lL1LatePayments,
+  //    //lL1LatePaymentsPoints: this.result[0].lL1LatePaymentsPoints,
+  //    lL1PaymentOrVacantNotices: this.result[0].lL1PaymentOrVacantNotices,
+  //    //lL1PaymentOrVacantNoticesPoints: this.result[0].lL1PaymentOrVacantNoticesPoints,
+  //    lL1TendayComplyNotice: this.result[0].lL1TendayComplyNotice,
+  //    //lL1TendayComplyNoticePoints: this.result[0].lL1TendayComplyNoticePoints,
+  //    lL1HOAViolations: this.result[0].lL1HOAViolations,
+  //    //lL1HOAViolationsPoints: this.result[0].lL1HOAViolationsPoints,
+  //    lL1PropertyCleanliness: this.result[0].lL1PropertyCleanliness,
+  //    //lL1PropertyCleanlinessPoints: this.result[0].lL1PropertyCleanlinessPoints,
+  //    lL1Pets: this.result[0].lL1Pets,
+  //    //lL1PetsPoints: this.result[0].lL1PetsPoints,
+  //    lL1AdversePetReferance: this.result[0].lL1AdversePetReferance,
+  //    //lL1AdversePetReferancePoints: this.result[0].lL1AdversePetReferancePoints,
+  //    lL1Rerent: this.result[0].lL1Rerent,
+  //    //lL1RerentPoints: this.result[0].lL1RerentPoints,
+
+
+  //    //lL2LandlordType: this.result[0].rentalReferance,
+  //    lL2ProperNotice: this.result[0].lL2ProperNotice,
+  //    //lL2ProperNoticePoints: this.result[0].lL2ProperNoticePoints,
+  //    lL2NSF: this.result[0].lL2NSF,
+  //    //lL2NSFPoints: this.result[0].lL2NSFPoints,
+  //    lL2LatePayments: this.result[0].lL2LatePayments,
+  //    //lL2LatePaymentsPoints: this.result[0].lL2LatePaymentsPoints,
+  //    lL2PaymentOrVacantNotices: this.result[0].lL2PaymentOrVacantNotices,
+  //    //lL2PaymentOrVacantNoticesPoints: this.result[0].lL2PaymentOrVacantNoticesPoints,
+  //    lL2TendayComplyNotice: this.result[0].lL2TendayComplyNotice,
+  //    //lL2TendayComplyNoticePoints: this.result[0].lL2TendayComplyNoticePoints,
+  //    lL2HOAViolations: this.result[0].lL2HOAViolations,
+  //    //lL2HOAViolationsPoints: this.result[0].lL2HOAViolationsPoints,
+  //    lL2PropertyCleanliness: this.result[0].lL2PropertyCleanliness,
+  //    //lL2PropertyCleanlinessPoints: this.result[0].lL2PropertyCleanlinessPoints,
+  //    lL2Pets: this.result[0].lL2Pets,
+  //    //lL2PetsPoints: this.result[0].lL2PetsPoints,
+  //    lL2AdversePetReferance: this.result[0].lL2AdversePetReferance,
+  //    //lL2AdversePetReferancePoints: this.result[0].lL2AdversePetReferancePoints,
+  //    lL2Rerent: this.result[0].lL2Rerent,
+  //    //lL2RerentPoints: this.result[0].lL2RerentPoints,
+  //    // ... add other properties
+  //  },
+  //  rental_history: {
+  //    rentalHistoryLength: this.result[0].rentalHistoryLength,
+  //  },
+  //  pets: {
+  //    petApprovedLandlordReferance1: this.result[0].petApprovedLandlordReferance1,
+  //    petApprovedLandlordReferance2: this.result[0].petApprovedLandlordReferance2,
+
+
+  //    noOfCatsCompanion: this.result[0].noOfCatsCompanion,
+  //    noOfCatsCompanions: this.result[0].noOfCatsCompanions,
+  //    noOfLargeDogsCompanion: this.result[0].noOfLargeDogsCompanion,
+  //    noOfLargeDogsCompanions: this.result[0].noOfLargeDogsCompanions,
+  //    noOfSmallDogsCompanion: this.result[0].noOfSmallDogsCompanion,
+  //    noOfSmallDogsCompanions: this.result[0].noOfSmallDogsCompanions,
+  //    // ... add other properties
+  //  },
+  //  points_summary: {
+  //    totalPoints: this.result[0].totalPoints,
+  //    finalApproval: this.result[0].finalApproval,
+  //    totalDeposit: this.result[0].totalDeposit,
+  //    depositToHoldPaid: this.result[0].depositToHoldpaid,
+  //    petDeposit: this.result[0].petDeposit,
+  //    additionalDeposit: this.result[0].additionalDeposit,
+  //    balanceDepositDue: this.result[0].balanceDepositDue,
+  //  },
+  //})
+
+
+  //    // modifiedBy: this.currentUser.id
+  //  })
+
+  //}
 
   // updatedata() {
   //   // alert("bye")

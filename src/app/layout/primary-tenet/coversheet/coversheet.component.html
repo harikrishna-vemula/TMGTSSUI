@@ -59,47 +59,74 @@
   </div>
 
   <div class="one">
-    <mat-form-field appearance="outline">
+    <!--<mat-form-field appearance="outline">
       <mat-label>Rent Ready Date</mat-label>
       <input type="date" matInput formControlName="rentReadyDate">
-    </mat-form-field>
+    </mat-form-field>-->
+
     <mat-form-field appearance="outline">
       <mat-label>Deposit Paid Date</mat-label>
-      <input type="date" matInput formControlName="depositPaidDate">
+
+      <input matInput [matDatepicker]="rentReadyDatePicker" placeholder="Choose a date" formControlName="rentReadyDate">
+      <mat-datepicker-toggle matSuffix [for]="rentReadyDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #rentReadyDatePicker></mat-datepicker>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Deposit Paid Date</mat-label>
+      <input matInput [matDatepicker]="depositPaidDatePicker" placeholder="Choose a date" formControlName="depositPaidDate">
+      <mat-datepicker-toggle matSuffix [for]="depositPaidDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #depositPaidDatePicker></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="one">
     <mat-form-field appearance="outline">
       <mat-label>Rent Responsible Date</mat-label>
-      <input type="date" matInput formControlName="rentResponsibleDate">
+      <input matInput [matDatepicker]="rentResponsibleDatePicker" placeholder="Choose a date" formControlName="rentResponsibleDate">
+      <mat-datepicker-toggle matSuffix [for]="rentResponsibleDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #rentResponsibleDatePicker></mat-datepicker>
     </mat-form-field>
+  
   </div>
   <div class="one">
     <mat-form-field appearance="outline">
       <mat-label>Agreement Type</mat-label>
+     
       <mat-select formControlName="agreementType">
-        <mat-option *ngFor="let Agreement of Agreements" [value]="Agreement">
-          {{Agreement}}
-        </mat-option>
+        <mat-option [value]="1">MTM</mat-option>
+        <mat-option [value]="2">6 mo lease</mat-option>
+        <mat-option [value]="3">12 mo lease</mat-option>
+        <mat-option [value]="4">FF</mat-option>
+        <mat-option [value]="5">Other Lease Term</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div class="one">
     <mat-form-field appearance="outline">
       <mat-label>QC Date</mat-label>
-      <input type="date" matInput formControlName="qCDate">
+      <input matInput [matDatepicker]="qCDatePicker" placeholder="Choose a date" formControlName="qcDate">
+      <mat-datepicker-toggle matSuffix [for]="qCDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #qCDatePicker></mat-datepicker>
     </mat-form-field>
+    
   </div>
 
   <div class="one">
     <mat-form-field appearance="outline">
-      <mat-label>Signing Date</mat-label>
-      <input type="date" matInput formControlName="signingDate">
+      <mat-label>Rent Responsible Date</mat-label>
+      <input matInput [matDatepicker]="signingDatePicker" placeholder="Choose a date" formControlName="signingDate">
+      <mat-datepicker-toggle matSuffix [for]="signingDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #signingDatePicker></mat-datepicker>
     </mat-form-field>
     <!--<mat-form-field appearance="outline">
-      <mat-label>Time</mat-label>
-      <input type="time" matInput formControlName="signingTime">
+      <mat-label>Signing Date</mat-label>
+      <input type="date" matInput formControlName="signingDate">
     </mat-form-field>-->
+    <!--<mat-form-field appearance="outline">
+    <mat-label>Time</mat-label>
+    <input type="time" matInput formControlName="signingTime">
+  </mat-form-field>-->
     <mat-form-field appearance="outline">
       <mat-label>With Whome</mat-label>
       <input type="text" matInput formControlName="withWhom">
@@ -176,11 +203,11 @@
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Move-in Rent</mat-label>
-        <input type="number" matInput formControlName="moveinRent1">
+        <input type="number" matInput formControlName="moveinRentCharge">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Move-in Rent</mat-label>
-        <input type="number" matInput formControlName="moveinRent2">
+        <input type="number" matInput formControlName="moveinRentPaid">
       </mat-form-field>
     </div>
     <div class="one">
@@ -330,7 +357,7 @@
 
   </mat-grid-list>
 
-  
+
 
 
   <!-- <div class="one">
@@ -343,7 +370,9 @@
   <div style="display: flex; justify-content: space-between; align-items: safe center;">
     <!--<button type="button" (click)="onCancel()"  mat-raised-button color="primary" class="btn btn-secondary ml-2">Cancel</button>-->
 
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <!--<button type="submit" mat-raised-button color="primary">Submit</button>-->
+    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;" >Submit</button>
+
 
   </div>
 </form>

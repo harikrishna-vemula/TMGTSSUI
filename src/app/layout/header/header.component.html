@@ -34,6 +34,11 @@
             <mat-icon>account_box</mat-icon>
             Users
           </button>
+          <mat-menu #menu1="matMenu"></mat-menu>
+          <button mat-menu-item routerLink="/primarytenant">
+            <mat-icon>archive</mat-icon>
+            Archived Score Sheets
+          </button>
           
           <!-- <button mat-menu-item routerLink="/userroles">
             <mat-icon>perm_identity</mat-icon>
@@ -75,6 +80,8 @@
             <mat-icon>add_circle</mat-icon>
             Add Tenant Score Sheet
           </button>
+          
+          
            <!-- <button mat-menu-item routerLink="/coversheet">
             <mat-icon>chrome_reader_mode</mat-icon>
             Cover Sheet

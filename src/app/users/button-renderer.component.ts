@@ -8,6 +8,8 @@ import { ICellRendererParams } from 'ag-grid-community';
   selector: 'app-action-button-renderer',
   template: `
   <span>
+  <button mat-button (click)="open()" style="background-color: #2ba8ce !important;">Open</button>
+  <span style="margin-left: 10px;"></span>
   <button mat-button (click)="edit()" style="background-color: #2ba8ce !important;">Edit</button>
   <span style="margin-left: 10px;"></span> <!-- Add space between buttons -->
   <button  mat-raised-button *ngIf="showLinkButton"  style="background-color: #2ba8ce !important;" (click)="copyText('http://localhost:4200/primarytenant/')" value="click to copy">Copy Link</button>
@@ -34,6 +36,20 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     this._mode = params.mode; 
   }
 
+  open() {
+    if (this._mode === 'scoresheet') {
+      this.router.navigate(['/primarytenant', this.id]);
+    } else if (this._mode === 'editusers') {
+      this.router.navigate(['/editusers', this.id]);
+    } else if (this._mode === 'coversheet') {
+      this.router.navigate(['/coversheet']);
+    } else {
+      console.error('Invalid mode or route.');
+    }
+    // Open your external link here
+    window.open('/primarytenant');
+  }
+
   edit() {
     if (this._mode === 'scoresheet') {
       this.router.navigate(['/primarytenant', this.id]);
@@ -45,6 +61,7 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
       console.error('Invalid mode or route.');
     }
   }
+
   ngOnInit() {
     this.abcd = this.shouldShowSubmitButton();
     if (this._mode === 'scoresheet') {
@@ -53,6 +70,7 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     else {
       this.showLinkButton = false;
 }
+
   }
 
   isSubmitDisabled(): boolean {

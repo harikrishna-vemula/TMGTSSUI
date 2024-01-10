@@ -7,6 +7,9 @@ import { map, Observable, BehaviorSubject, tap, catchError } from 'rxjs'
   providedIn: 'root'
 })
 export class UsersService {
+  open(content: any, arg1: { ariaLabelledBy: string; }) {
+    throw new Error('Method not implemented.');
+  }
   getUsers() {
     throw new Error('User display error');
   }

@@ -10,6 +10,20 @@
     display: flex;
    
   }
+  .custom-mat-field {
+    height: 20px !important; /* Adjust the height as needed */
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make sure the body covers the entire viewport height */
+    margin: 0; /* Remove default body margin */
+  }
+
+  .one {
+    text-align: center;
+  }
 
 mat-form-field {
   width: -webkit-fill-available;

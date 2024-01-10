@@ -3,12 +3,13 @@
     <h2>Cover Sheet</h2>
   </div>
   <div class="col-md-8">
-    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 20px;height:40px; width:75px;" routerLink="/primarytenant">View</button>
+    <button class="btn btn-sm btn-success mr-2" (click)="viewRecord()" style="background-color: #2ba8ce !important; margin-right: 10px;" >View</button>
 
-    <!--<button style="background-color: #2ba8ce !important ;" class="btn btn-sm btn-success" (click)="onBtExport()">Export to CSV</button>-->
   </div>
-  <div class="one">
-    <mat-form-field appearance="outline" class="Acc_width ">
+  
+  
+  <div class="one" style="display: flex; justify-content: center; align-items: center;">
+    <mat-form-field appearance="outline" class="Acc_width" style="width: 30%;">
       <mat-label>Property Manager</mat-label>
       <input type="text" matInput formControlName="propertyManager">
     </mat-form-field>
@@ -18,20 +19,17 @@
       <mat-label>Primary Tenant</mat-label>
       <input type="text" matInput formControlName="primaryTenant">
     </mat-form-field>
-  </div>
-  <div class="one">
+  
     <mat-form-field appearance="outline">
       <mat-label>Tenant2</mat-label>
       <input type="text" matInput formControlName="tenant2">
     </mat-form-field>
-  </div>
-  <div class="one">
+  
     <mat-form-field appearance="outline">
       <mat-label>Tenant3</mat-label>
       <input type="text" matInput formControlName="tenant3">
     </mat-form-field>
-  </div>
-  <div class="one">
+  
     <mat-form-field appearance="outline">
       <mat-label>Tenant4</mat-label>
       <input type="text" matInput formControlName="tenant4">
@@ -50,6 +48,7 @@
       <mat-label>State</mat-label>
       <input type="text" matInput formControlName="state">
     </mat-form-field>
+    
   </div>
 
   <div class="one">
@@ -362,21 +361,28 @@
 
   </mat-grid-list>
 
-
-
-
-  <!-- <div class="one">
-            <mat-form-field appearance="outline">
-              <mat-label>Rent Ready Date</mat-label>
-              <input type="text" matInput>
-            </mat-form-field>
-          </div> -->
-  <!-- </div> -->
-  <div style="display: flex; justify-content: space-between; align-items: safe center;">
-    <!--<button type="button" (click)="onCancel()"  mat-raised-button color="primary" class="btn btn-secondary ml-2">Cancel</button>-->
-    <!--<button type="submit" mat-raised-button color="primary">Submit</button>-->
-    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;">Submit</button>
-
-
+ <ng-template #view_record let-modal>
+  <div class="modal-header" style="width: 1020px; background-color: white;">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ _record[0]?.primarytenant }} {{ _record[0]?.tenant2 }} {{ _record[0]?.tenant3 }} {{ _record[0]?.tenant4 }}
+    </h4>
   </div>
+</ng-template>
+
+
+
+    <!-- <div class="one">
+              <mat-form-field appearance="outline">
+                <mat-label>Rent Ready Date</mat-label>
+                <input type="text" matInput>
+              </mat-form-field>
+            </div> -->
+    <!-- </div> -->
+    <div style="display: flex; justify-content: space-between; align-items: safe center;">
+      <!--<button type="button" (click)="onCancel()"  mat-raised-button color="primary" class="btn btn-secondary ml-2">Cancel</button>-->
+      <!--<button type="submit" mat-raised-button color="primary">Submit</button>-->
+      <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;">Submit</button>
+
+
+    </div>
 </form>

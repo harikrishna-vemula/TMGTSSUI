@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/users/users.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -10,19 +12,34 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   templateUrl: './coversheet.component.html',
   styleUrls: ['./coversheet.component.scss']
 })
-export class CoversheetComponent implements OnInit {
+export 
+class CoversheetComponent implements OnInit {
+  @ViewChild('view_record', { static: false })
+  viewRecordElmRef!: ElementRef;
   snapid: any;
+  _record:any;
   result: any; currentUser: any = {};
   coverSheetForm!: FormGroup;
   Agreements: string[] = ["AgreementType1", "AgreementType2", "AgreementType3"];
   UpdateCoverSheet: any;
   GetCoverSheetbyapplicantId: any;
-  router: any;
+ 
+  
+  
    
   snapshot: any;
-  constructor(private fb: FormBuilder, private _http: UsersService, private activate: ActivatedRoute, private _userservice: UsersService) {
+  id: MatDialogConfig<any> | undefined;
+  // closeResult: string;
+  constructor(
+    private fb: FormBuilder,
+    private _http: UsersService,
+    private activate: ActivatedRoute,
+    private _userservice: UsersService,
+    private router: Router,
+    private dialog: MatDialog  // Inject MatDialog here
+  ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-}
+  }
 
   ngOnInit() {
     
@@ -296,6 +313,30 @@ export class CoversheetComponent implements OnInit {
     this.router.navigate(['/scoresheet']);
 
   }
+  viewRecord() {
+    console.log('View Record:', this.result);
+  
+    // Open the dialog here using MatDialog
+    const dialogRef = this.dialog.open(CoversheetComponent, {
+      width: '1010px',
+      data: {
+        id: this.id,       // Pass the id to the dialog
+        recordData: this.result[0],  // Pass the data to the dialog
+      },
+    });
+  
+    // Subscribe to the afterClosed event to handle actions after the dialog is closed
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed with result:', result);
+      // You can perform any actions based on the result here
+    });
+  }
+  
+  
+  open(content: any) {
+ 
+  }
+ 
   // getdata(){
   //   this._http.GetAllUsers(this.snapid).subscribe((data)=>{
   //     console.log(data,"getting data");

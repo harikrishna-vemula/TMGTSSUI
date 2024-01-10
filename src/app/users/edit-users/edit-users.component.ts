@@ -51,7 +51,10 @@ export class EditUserComponent implements OnInit {
   }
   onSubmit() {
     // console.log(this.createUser.value,"post data");
-
+    this.UpdateUser.patchValue({
+      modifiedBy: this.currentUser.id.toString()
+      
+    })
     this._http.UpdateUser(this.UpdateUser.value).subscribe((res) => {
       console.log(res, "posted data");
       this.router.navigate(['/users']);

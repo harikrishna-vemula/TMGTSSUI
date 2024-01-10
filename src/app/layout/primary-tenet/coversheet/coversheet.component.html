@@ -2,6 +2,11 @@
   <div class="title">
     <h2>Cover Sheet</h2>
   </div>
+  <div class="col-md-8">
+    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 20px;height:40px; width:75px;" routerLink="/primarytenant">View</button>
+
+    <!--<button style="background-color: #2ba8ce !important ;" class="btn btn-sm btn-success" (click)="onBtExport()">Export to CSV</button>-->
+  </div>
   <div class="one">
     <mat-form-field appearance="outline" class="Acc_width ">
       <mat-label>Property Manager</mat-label>
@@ -87,12 +92,12 @@
       <mat-datepicker-toggle matSuffix [for]="rentResponsibleDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #rentResponsibleDatePicker></mat-datepicker>
     </mat-form-field>
-  
+
   </div>
   <div class="one">
     <mat-form-field appearance="outline">
       <mat-label>Agreement Type</mat-label>
-     
+
       <mat-select formControlName="agreementType">
         <mat-option [value]="1">MTM</mat-option>
         <mat-option [value]="2">6 mo lease</mat-option>
@@ -109,7 +114,7 @@
       <mat-datepicker-toggle matSuffix [for]="qCDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #qCDatePicker></mat-datepicker>
     </mat-form-field>
-    
+
   </div>
 
   <div class="one">
@@ -124,9 +129,9 @@
       <input type="date" matInput formControlName="signingDate">
     </mat-form-field>-->
     <!--<mat-form-field appearance="outline">
-    <mat-label>Time</mat-label>
-    <input type="time" matInput formControlName="signingTime">
-  </mat-form-field>-->
+      <mat-label>Time</mat-label>
+      <input type="time" matInput formControlName="signingTime">
+    </mat-form-field>-->
     <mat-form-field appearance="outline">
       <mat-label>With Whome</mat-label>
       <input type="text" matInput formControlName="withWhom">
@@ -369,9 +374,8 @@
   <!-- </div> -->
   <div style="display: flex; justify-content: space-between; align-items: safe center;">
     <!--<button type="button" (click)="onCancel()"  mat-raised-button color="primary" class="btn btn-secondary ml-2">Cancel</button>-->
-
     <!--<button type="submit" mat-raised-button color="primary">Submit</button>-->
-    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;" >Submit</button>
+    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;">Submit</button>
 
 
   </div>

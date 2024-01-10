@@ -8,6 +8,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { LoginComponent } from './layout/login/login.component';
 import { RegisterComponent } from './layout/register/register.component';
 import { PrimaryTenantComponent } from './layout/primary-tenet/primary-tenant.component';
+//import { Tanant4Component } from './layout/primary-tenet/tenant4/tenant4.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserRoleComponent } from './users/userroles/userroles.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'primarytenant', component: PrimaryTenantComponent },
   { path: 'primarytenant/:id', component: PrimaryTenantComponent },
+  //{ path: 'tanant4Component', component: Tanant4Component },
   { path: 'users', component: UsersComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'userroles', component: UserRoleComponent },

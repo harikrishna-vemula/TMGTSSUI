@@ -12,6 +12,7 @@ import { LoginComponent } from './layout/login/login.component';
 import { RegisterComponent } from './layout/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimaryTenantComponent } from './layout/primary-tenet/primary-tenant.component';
+import { Tanant4Component } from './layout/primary-tenet/tenant4/tenant4.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { UserRoleComponent } from './users/userroles/userroles.component';
@@ -28,6 +29,7 @@ import { ScoresheetComponent } from './scoresheet/scoresheet.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativeDateModule
+import { CosignerComponent } from './layout/primary-tenet/cosigner/cosigner.component';
 
 
 
@@ -52,6 +54,8 @@ import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativ
     UsersButtonRendererComponent,
     AddUsersComponent,
     ScoresheetComponent,
+    CosignerComponent,
+    Tanant4Component,
     // NavMenuComponent,
 
   ],

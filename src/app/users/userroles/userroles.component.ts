@@ -1,5 +1,5 @@
-import { Component, Output, EventEmitter ,Input, OnInit } from '@angular/core';
-import {DatePipe} from '@angular/common';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -9,34 +9,34 @@ import {DatePipe} from '@angular/common';
   styleUrls: ['./userroles.component.scss']
 })
 export class UserRoleComponent implements OnInit {
-  loggedUserRole : string = 'Admin';
-  pageSize:any;
-  searchText:any;
-  frameworkComponents : any;
-  users :any =[
-    
-]
+  loggedUserRole: string = 'Admin';
+  pageSize: any;
+  searchText: any;
+  frameworkComponents: any;
+  users: any = [
 
- paginationPageSize :number = 50;
- 
- dateFormatter(params: any) {
-  const date = new Date(params.value);
-  return date.toLocaleDateString(); // Change the format as needed
-}
+  ]
 
-  
+  paginationPageSize: number = 50;
+
+  dateFormatter(params: any) {
+    const date = new Date(params.value);
+    return date.toLocaleDateString(); // Change the format as needed
+  }
+
+
 
 
   rowData = [
-    
-]
+
+  ]
 
   defaultColDef = {
     width: 170,
     sortable: true,
     resizable: true,
   };
-  columnDefs:any;
+  columnDefs: any;
 
   // rowData = [
   //   // Sample data goes here (replace with your actual data)
@@ -44,7 +44,7 @@ export class UserRoleComponent implements OnInit {
   //   { id: 2, user: 'Demoreader', userName: 'Demo reader', role: 'reader', emailId: 'demoreader@tmgnorthwest.com', password: '********' },
   //   // Add more rows as needed
   // ];
-  _record:any = {
+  _record: any = {
     "fullName": "admin",
     "password": "admin",
     "email": "admin@edc.com",
@@ -58,38 +58,41 @@ export class UserRoleComponent implements OnInit {
     "statusId": 1,
     "id": 1,
     "createdDate": "2021-04-14T00:00:00"
-}
-dateFilterParams:any;
+  }
+  dateFilterParams: any;
 
-  context:any;
-  constructor( private datePipe: DatePipe,){
+  context: any;
+  currentUser: any = {};
+  constructor(private datePipe: DatePipe,) {
     this.context = {
       componentParent: this
     };
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
   }
   ngOnInit() {
     this.columnDefs = [
       { headerName: "Id", field: "id" },
-        { headerName: "UserName", field: "userName" },
-        { headerName: "Email", field: "email" },
-        { headerName: "Phone", field: "phone" },
-        { headerName: "Address", field: "address" },
-        { headerName: "Role", field: "role" },
-        { headerName: "UserName", field: "userName" },
-        { headerName: "CreatedDate", field: "createdDate" ,       valueFormatter: this.dateFormatter,
+      { headerName: "UserName", field: "userName" },
+      { headerName: "Email", field: "email" },
+      { headerName: "Phone", field: "phone" },
+      { headerName: "Address", field: "address" },
+      { headerName: "Role", field: "role" },
+      { headerName: "UserName", field: "userName" },
+      {
+        headerName: "CreatedDate", field: "createdDate", valueFormatter: this.dateFormatter,
       },
     ];
   }
- 
-  addUser(){
+
+  addUser() {
 
   }
-  onBtExport(){
+  onBtExport() {
 
   }
-  onPageSizeChanged(){}
-  onBtSearch(){}
-  onGridReady(event:any){
+  onPageSizeChanged() { }
+  onBtSearch() { }
+  onGridReady(event: any) {
     console.log(event)
   }
 }

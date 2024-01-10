@@ -8,11 +8,13 @@
 }
 .one {
   display: flex;
+  height:62px;
  
 }
 mat-form-field {
   width: -webkit-fill-available;
   margin: 0px 5px;
+  height:20px;
 }
 .button-container a {
   margin-right: 30px; 
@@ -23,5 +25,11 @@ mat-form-field {
 }
 ::ng-deep .mat-step-header .mat-step-icon-state-done {
   background-color: green; 
+}
+
+.Account-2-bind{
+  padding: 10px;
+    width: 55%;
+    font-size: 20px;
 }
 

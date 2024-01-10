@@ -11,7 +11,14 @@ export class UsersService {
     throw new Error('User display error');
   }
   url = 'http://localhost:5132/api/';
-  constructor(private _http: HttpClient) { }
+  private currentUserSubject: BehaviorSubject<any> | undefined;
+
+  currentUser: any = {};
+  constructor(private _http: HttpClient) {
+
+    //this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')!));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+}
 
   // getUsers(){
   //   alert("working")

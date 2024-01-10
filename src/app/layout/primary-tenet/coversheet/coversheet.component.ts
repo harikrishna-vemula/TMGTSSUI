@@ -18,9 +18,11 @@ export class CoversheetComponent implements OnInit {
   UpdateCoverSheet: any;
   GetCoverSheetbyapplicantId: any;
   router: any;
-
+   
   snapshot: any;
-  constructor(private fb: FormBuilder, private _http: UsersService, private activate: ActivatedRoute, private _userservice: UsersService) { }
+  constructor(private fb: FormBuilder, private _http: UsersService, private activate: ActivatedRoute, private _userservice: UsersService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+}
 
   ngOnInit() {
     
@@ -110,6 +112,7 @@ export class CoversheetComponent implements OnInit {
     if (this.snapid) {
       this.coverSheetForm.patchValue({
         applicantId: this.snapid,
+        createdBy: this.currentUser.id.toString(),
       })
       this._userservice.CreateCoverSheet(this.coverSheetForm.value).subscribe(
         (data) => {

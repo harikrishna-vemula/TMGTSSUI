@@ -51,6 +51,10 @@ export class AddUsersComponent {
       }
       onSubmit(){
         // console.log(this.createUser.value,"post data");
+        this.createUser.patchValue({
+          createdBy: this.currentUser.id.toString()
+
+        })
                 this._http.createUser(this.createUser.value).subscribe((res)=>{
           console.log(res,"posted data");
           this.router.navigate(['/users']);

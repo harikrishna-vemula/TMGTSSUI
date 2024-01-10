@@ -28,7 +28,7 @@ export class PrimaryTenantComponent {
   steps = [true, true]; // Use an array to represent steps, e.g., [true, false, false] for three steps
   currentStep = 0;
   state?: string;
-  applicantTypes: string[] = ['Single', 'Couple', 'Roommates'];
+  // applicantTypes: string[] = ['Single', 'Couple', 'Roommates'];
   // applicantTypes = [
   //   { value: '1', label: 'Single' },
   //   { value: '2', label: 'Couple' },
@@ -51,11 +51,12 @@ export class PrimaryTenantComponent {
   primaryTenantIncomeVerification: number = 0;
   constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private _userservice: UsersService, private activate: ActivatedRoute) {
     this.authservice.currentUser.subscribe(x => this.currentUser = x);
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
   }
 
 
   ngOnInit() {
-
+    this.frmPrimary.get('applicantName')?.setValue('');
 
     this.snapid = this.activate.snapshot.paramMap.get('id') || '';
 
@@ -73,7 +74,7 @@ export class PrimaryTenantComponent {
     // firstCtrl:['',Validators.required],
     appilcantId: [0, Validators.required],
     applicantName: ['', Validators.required],
-    applicantType: ['', Validators.required],
+    applicantType: [''],
     property: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -89,9 +90,9 @@ export class PrimaryTenantComponent {
     tenantSNo: ['', Validators.required],
     tenantId: [Number],
     paystubRecent: ['', Validators.required],
-    applicantTypeId: ['', Validators.required],
+    applicantTypeId: [Number],
     propertyTypeId: ['', Validators.required],
-
+    createdBy: ['', Validators.required],
     // }),
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
@@ -105,21 +106,21 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
-
+      createdBy: ['', Validators.required],
     }),
     credit_summary: this.fb.group({
       creditLines: [Boolean, Validators.required],
-      creditScore: ['', Validators.required],
+      creditScore: [Number],
       //creditScorePoints: [Number, Validators.required],
       creditScoreAvailable: [Boolean, Validators.required],
       // creditScoreAvailablePoints: ['',Validators.required],
       // accountPastDue60Days: ['',Validators.required],
-      collectionAccounts: ['', Validators.required],
+      collectionAccounts: [Number],
       // collectionAccountsPoints: ['',Validators.required],
       medicalCollections: ['', Validators.required],
       propertyRelatedHousingRecord: [Boolean, Validators.required],
       // propertyRelatedHousingRecordPoints: ['',Validators.required],
-      bankruptcy: [0, Validators.required],
+      bankruptcy: [Number],
       bankRuptyActive: [Boolean, Validators.required],
       //bankRuptyActivePoints: ['', Validators.required],
       liensRepossessions: [Date, Validators.required],
@@ -138,7 +139,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
-
+      createdBy: ['', Validators.required],
     }),
     landlord_ref: this.fb.group({
       rentalReferance: [Boolean, Validators.required],
@@ -189,26 +190,28 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
-
+      createdBy: ['', Validators.required],
     }),
     rental_history: this.fb.group({
       rentalHistoryLength: [Boolean, Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     pets: this.fb.group({
       petApprovedLandlordReferance1: ['', Validators.required],
       petApprovedLandlordReferance2: ['', Validators.required],
       noOfCatsCompanion: [Boolean, Validators.required],
-      noOfCatsCompanions: ['', Validators.required],
+      noOfCatsCompanions: [Number],
       noOfLargeDogsCompanion: [Boolean, Validators.required],
-      noOfLargeDogsCompanions: ['', Validators.required],
+      noOfLargeDogsCompanions: [Number],
       noOfSmallDogsCompanion: [Boolean, Validators.required],
-      noOfSmallDogsCompanions: ['', Validators.required],
+      noOfSmallDogsCompanions: [Number],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
@@ -221,18 +224,84 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
   })
 
   //Primary Tenant Section End
 
 
+  coverSheetForm = this.fb.group({
+    applicantId: ['', Validators.required],
+    propertyManager: ['', Validators.required],
+    primaryTenant: ['', Validators.required],
+    tenant2: ['', Validators.required],
+    tenant3: ['', Validators.required],
+    tenant4: ['', Validators.required],
+    propertyAddress: ['', Validators.required],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    unitCode: ['', Validators.required],
+    bestPOC: ['', Validators.required],
+    rentReadyDate: ['', Validators.required],
+    depositPaidDate: ['', Validators.required],
+    rentResponsibleDate: ['', Validators.required],
+    agreementType: ['', Validators.required],
+    qcDate: ['', Validators.required],
+    signingDate: ['', Validators.required],
+    //signingTime: [Time, Validators.required],
+    withWhom: ['', Validators.required],
+    otherTerms: ['', Validators.required],
+    listPaidUtilities: ['', Validators.required],
+    otherMonthlyCharge11: ['', Validators.required],
+    otherMonthlyCharge12: ['', Validators.required],
+    otherMonthlyCharge21: ['', Validators.required],
+    otherMonthlyCharge22: ['', Validators.required],
+    otherMonthlyCharge31: ['', Validators.required],
+    otherMonthlyCharge32: ['', Validators.required],
+    otherMonthlyCharge41: ['', Validators.required],
+    otherMonthlyCharge42: ['', Validators.required],
+    otherMoveinCharge1: ['', Validators.required],
+    otherMoveinChargePaid1: ['', Validators.required],
+    moveinRentCharge: ['', Validators.required],
+    moveinRentPaid: ['', Validators.required],
 
+    otherMoveinCharge2: ['', Validators.required],
+    otherMoveinChargePaid2: ['', Validators.required],
+    otherMoveinCharge3: ['', Validators.required],
+    otherMoveinChargePaid3: ['', Validators.required],
+    rubsMoveinCharge: ['', Validators.required],
+    rubsMoveinChargePaid: ['', Validators.required],
+    prepaidCleaningCharge: ['', Validators.required],
+    prepaidCleaningPaid: ['', Validators.required],
+
+
+    securityDepositCharge: ['', Validators.required],
+    securityDepositPaid: ['', Validators.required],
+    nonRefProcessingFeeCharge: ['', Validators.required],
+    nonRefProcessingFeePaid: ['', Validators.required],
+    petDepositCharge: ['', Validators.required],
+    petDepositPaid: ['', Validators.required],
+    petNonRefFeeCharge: ['', Validators.required],
+    petNonRefFeePaid: ['', Validators.required],
+
+    additionDepositCharge: ['', Validators.required],
+    additionDepositPaid: ['', Validators.required],
+    subTotal: ['', Validators.required],
+    paid: ['', Validators.required],
+    dueatMoveinKeyPickup: ['', Validators.required],
+    createdBy: ['', Validators.required],
+
+    modifiedBy: ['', Validators.required],
+
+
+    // Other charges...
+  });
   frmTenant2 = this.fb.group({
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
     applicantName: ['', Validators.required],
-    applicantType: ['', Validators.required],
+    applicantType: [''],
     property: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -248,8 +317,9 @@ export class PrimaryTenantComponent {
     tenantSNo: ['', Validators.required],
     tenantId: [Number],
     paystubRecent: ['', Validators.required],
-    applicantTypeId: ['', Validators.required],
+    applicantTypeId: [Number],
     propertyTypeId: ['', Validators.required],
+    createdBy: ['', Validators.required],
 
     // }),
     incom_verification: this.fb.group({
@@ -264,6 +334,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     credit_summary: this.fb.group({
       creditLines: [Boolean, Validators.required],
@@ -296,6 +367,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
 
     }),
     landlord_ref: this.fb.group({
@@ -347,6 +419,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
 
     }),
     rental_history: this.fb.group({
@@ -354,6 +427,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     pets: this.fb.group({
       petApprovedLandlordReferance1: ['', Validators.required],
@@ -367,6 +441,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
@@ -379,6 +454,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
   })
 
@@ -386,7 +462,7 @@ export class PrimaryTenantComponent {
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
     applicantName: ['', Validators.required],
-    applicantType: ['', Validators.required],
+    applicantType: [''],
     property: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -402,8 +478,9 @@ export class PrimaryTenantComponent {
     tenantSNo: ['', Validators.required],
     tenantId: [Number],
     paystubRecent: ['', Validators.required],
-    applicantTypeId: ['', Validators.required],
+    applicantTypeId: [Number],
     propertyTypeId: ['', Validators.required],
+    createdBy: ['', Validators.required],
 
     // }),
     incom_verification: this.fb.group({
@@ -418,6 +495,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     credit_summary: this.fb.group({
       creditLines: [Boolean, Validators.required],
@@ -450,6 +528,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
 
     }),
     landlord_ref: this.fb.group({
@@ -501,6 +580,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
 
     }),
     rental_history: this.fb.group({
@@ -508,6 +588,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     pets: this.fb.group({
       petApprovedLandlordReferance1: ['', Validators.required],
@@ -521,6 +602,7 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
@@ -533,10 +615,330 @@ export class PrimaryTenantComponent {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+  })
+  frmTenant4 = this.fb.group({
+    // basicinfo: this.fb.group({      
+    // firstCtrl:['',Validators.required],
+    applicantName: ['', Validators.required],
+    applicantType: ['', Validators.required],
+    property: ['', Validators.required],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    zip: ['', Validators.required],
+    monthlyRent: ['', Validators.required],
+    section8Rent: ['', Validators.required],
+    standardDepositProperty: ['', Validators.required],
+    // propertyTypeId: ['', Validators.required],
+    propertyType: ['', Validators.required],
+    // applicantTypeId: ['', Validators.required],
+    // ptype: ['', Validators.required],
+    applicantId: ['', Validators.required],
+    tenantSNo: ['', Validators.required],
+    tenantId: [Number],
+    paystubRecent: ['', Validators.required],
+    applicantTypeId: [Number],
+    propertyTypeId: ['', Validators.required],
+    createdBy: ['', Validators.required],
+
+    // }),
+    incom_verification: this.fb.group({
+      paystubRecent: ['', Validators.required], //pay stub
+      paystubRecentMonthly: ['', Validators.required], //monthly
+      yTD_Earnings: ['', Validators.required], //results
+      secondPayStub: ['', Validators.required], //2nd stub
+      bankStatementMonthly: ['', Validators.required], //monthly
+      bankStatement: ['', Validators.required], //result
+      xRent: ['', Validators.required], //x-rent
+      incomeAdequate: [Boolean, Validators.required], //incomeAdequate
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+    credit_summary: this.fb.group({
+      creditLines: [Boolean, Validators.required],
+      creditScore: ['', Validators.required],
+      //creditScorePoints: [Number, Validators.required],
+      creditScoreAvailable: [Boolean, Validators.required],
+      // creditScoreAvailablePoints: ['',Validators.required],
+      // accountPastDue60Days: ['',Validators.required],
+      collectionAccounts: ['', Validators.required],
+      // collectionAccountsPoints: ['',Validators.required],
+      medicalCollections: ['', Validators.required],
+      propertyRelatedHousingRecord: [Boolean, Validators.required],
+      // propertyRelatedHousingRecordPoints: ['',Validators.required],
+      bankruptcy: [0, Validators.required],
+      bankRuptyActive: [Boolean, Validators.required],
+      //bankRuptyActivePoints: ['', Validators.required],
+      liensRepossessions: [Date, Validators.required],
+      // liensRepossessionsPoints: ['',Validators.required],
+      //evectionHistoryPoints: ['', Validators.required],
+      evectionHistory: [null],
+      class1Felonies: [Boolean, Validators.required],
+      // class1FeloniesPoints: ['',Validators.required],
+      class2Felonies: [Date, Validators.required],
+      // class2FeloniesPoints : ['',Validators.required],
+      class1Misdemeaners: [Date, Validators.required],
+      // class1MisdemeanersPoints: ['',Validators.required],
+      class2Misdemeaners: [Date, Validators.required],
+      depositApproved: [Boolean, Validators.required],
+      depositToHold: [''],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+
+    }),
+    landlord_ref: this.fb.group({
+      rentalReferance: [Boolean, Validators.required],
+      lL1LandlordType: [Number, Validators.required],
+      lL1ProperNotice: [Boolean, Validators.required],
+      //lL1ProperNoticePoints: [0, Validators.required],
+      lL1NSF: ['', Validators.required],
+      //lL1NSFPoints: [0, Validators.required],
+      lL1LatePayments: ['', Validators.required],
+      //lL1LatePaymentsPoints: [0, Validators.required],
+      lL1PaymentOrVacantNotices: ['', Validators.required],
+      //lL1PaymentOrVacantNoticesPoints: [0, Validators.required],
+      lL1TendayComplyNotice: ['', Validators.required],
+      //lL1TendayComplyNoticePoints: [0, Validators.required],
+      lL1HOAViolations: ['', Validators.required],
+      //lL1HOAViolationsPoints: [0, Validators.required],
+      lL1PropertyCleanliness: ['', Validators.required],
+      //lL1PropertyCleanlinessPoints: [0, Validators.required],
+      lL1Pets: [Boolean, Validators.required],
+      //lL1PetsPoints: ['', Validators.required],
+      lL1AdversePetReferance: [Boolean, Validators.required],
+      //lL1AdversePetReferancePoints: [0, Validators.required],
+      lL1Rerent: [Boolean, Validators.required],
+      //lL1RerentPoints: [0, Validators.required],
+
+
+      lL2LandlordType: [Number, Validators.required],
+      lL2ProperNotice: [Boolean, Validators.required],
+      //lL2ProperNoticePoints: ['', Validators.required],
+      lL2NSF: ['', Validators.required],
+      //lL2NSFPoints: ['', Validators.required],
+      lL2LatePayments: ['', Validators.required],
+      //L2LatePaymentsPoints: ['', Validators.required],
+      lL2PaymentOrVacantNotices: ['', Validators.required],
+      //lL2PaymentOrVacantNoticesPoints: ['', Validators.required],
+      lL2TendayComplyNotice: ['', Validators.required],
+      //lL2TendayComplyNoticePoints: ['', Validators.required],
+      lL2HOAViolations: ['', Validators.required],
+      //lL2HOAViolationsPoints: ['', Validators.required],
+      lL2PropertyCleanliness: ['', Validators.required],
+      //lL2PropertyCleanlinessPoints: ['', Validators.required],
+      lL2Pets: [Boolean, Validators.required],
+      //lL2PetsPoints: ['', Validators.required],
+      lL2AdversePetReferance: [Boolean, Validators.required],
+      //lL2AdversePetReferancePoints: ['', Validators.required],
+      lL2Rerent: [Boolean, Validators.required],
+      //lL2RerentPoints: ['', Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+
+    }),
+    rental_history: this.fb.group({
+      rentalHistoryLength: [Boolean, Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+    pets: this.fb.group({
+      petApprovedLandlordReferance1: ['', Validators.required],
+      petApprovedLandlordReferance2: ['', Validators.required],
+      noOfCatsCompanion: [Boolean, Validators.required],
+      noOfCatsCompanions: ['', Validators.required],
+      noOfLargeDogsCompanion: [Boolean, Validators.required],
+      noOfLargeDogsCompanions: ['', Validators.required],
+      noOfSmallDogsCompanion: [Boolean, Validators.required],
+      noOfSmallDogsCompanions: ['', Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+    points_summary: this.fb.group({
+      totalPoints: ['', Validators.required],
+      finalApproval: [Boolean, Validators.required],
+      totalDeposit: ['', Validators.required],
+      depositToHoldPaid: ['', Validators.required],
+      petDeposit: ['', Validators.required],
+      additionalDeposit: ['', Validators.required],
+      balanceDepositDue: ['', Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
   })
 
+  frmTenant5 = this.fb.group({
+    // basicinfo: this.fb.group({      
+    // firstCtrl:['',Validators.required],
+    applicantName: ['', Validators.required],
+    applicantType: ['', Validators.required],
+    property: ['', Validators.required],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    zip: ['', Validators.required],
+    monthlyRent: ['', Validators.required],
+    section8Rent: ['', Validators.required],
+    standardDepositProperty: ['', Validators.required],
+    // propertyTypeId: ['', Validators.required],
+    propertyType: ['', Validators.required],
+    // applicantTypeId: ['', Validators.required],
+    // ptype: ['', Validators.required],
+    applicantId: ['', Validators.required],
+    tenantSNo: ['', Validators.required],
+    tenantId: [Number],
+    paystubRecent: ['', Validators.required],
+    applicantTypeId: ['', Validators.required],
+    propertyTypeId: ['', Validators.required],
+    createdBy: ['', Validators.required],
 
+    // }),
+    incom_verification: this.fb.group({
+      paystubRecent: ['', Validators.required], //pay stub
+      paystubRecentMonthly: ['', Validators.required], //monthly
+      yTD_Earnings: ['', Validators.required], //results
+      secondPayStub: ['', Validators.required], //2nd stub
+      bankStatementMonthly: ['', Validators.required], //monthly
+      bankStatement: ['', Validators.required], //result
+      xRent: ['', Validators.required], //x-rent
+      incomeAdequate: [Boolean, Validators.required], //incomeAdequate
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+    credit_summary: this.fb.group({
+      creditLines: [Boolean, Validators.required],
+      creditScore: ['', Validators.required],
+      //creditScorePoints: [Number, Validators.required],
+      creditScoreAvailable: [Boolean, Validators.required],
+      // creditScoreAvailablePoints: ['',Validators.required],
+      // accountPastDue60Days: ['',Validators.required],
+      collectionAccounts: ['', Validators.required],
+      // collectionAccountsPoints: ['',Validators.required],
+      medicalCollections: ['', Validators.required],
+      propertyRelatedHousingRecord: [Boolean, Validators.required],
+      // propertyRelatedHousingRecordPoints: ['',Validators.required],
+      bankruptcy: [0, Validators.required],
+      bankRuptyActive: [Boolean, Validators.required],
+      //bankRuptyActivePoints: ['', Validators.required],
+      liensRepossessions: [Date, Validators.required],
+      // liensRepossessionsPoints: ['',Validators.required],
+      //evectionHistoryPoints: ['', Validators.required],
+      evectionHistory: [null],
+      class1Felonies: [Boolean, Validators.required],
+      // class1FeloniesPoints: ['',Validators.required],
+      class2Felonies: [Date, Validators.required],
+      // class2FeloniesPoints : ['',Validators.required],
+      class1Misdemeaners: [Date, Validators.required],
+      // class1MisdemeanersPoints: ['',Validators.required],
+      class2Misdemeaners: [Date, Validators.required],
+      depositApproved: [Boolean, Validators.required],
+      depositToHold: [''],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+
+    }),
+    landlord_ref: this.fb.group({
+      rentalReferance: [Boolean, Validators.required],
+      lL1LandlordType: [Number, Validators.required],
+      lL1ProperNotice: [Boolean, Validators.required],
+      //lL1ProperNoticePoints: [0, Validators.required],
+      lL1NSF: ['', Validators.required],
+      //lL1NSFPoints: [0, Validators.required],
+      lL1LatePayments: ['', Validators.required],
+      //lL1LatePaymentsPoints: [0, Validators.required],
+      lL1PaymentOrVacantNotices: ['', Validators.required],
+      //lL1PaymentOrVacantNoticesPoints: [0, Validators.required],
+      lL1TendayComplyNotice: ['', Validators.required],
+      //lL1TendayComplyNoticePoints: [0, Validators.required],
+      lL1HOAViolations: ['', Validators.required],
+      //lL1HOAViolationsPoints: [0, Validators.required],
+      lL1PropertyCleanliness: ['', Validators.required],
+      //lL1PropertyCleanlinessPoints: [0, Validators.required],
+      lL1Pets: [Boolean, Validators.required],
+      //lL1PetsPoints: ['', Validators.required],
+      lL1AdversePetReferance: [Boolean, Validators.required],
+      //lL1AdversePetReferancePoints: [0, Validators.required],
+      lL1Rerent: [Boolean, Validators.required],
+      //lL1RerentPoints: [0, Validators.required],
+
+
+      lL2LandlordType: [Number, Validators.required],
+      lL2ProperNotice: [Boolean, Validators.required],
+      //lL2ProperNoticePoints: ['', Validators.required],
+      lL2NSF: ['', Validators.required],
+      //lL2NSFPoints: ['', Validators.required],
+      lL2LatePayments: ['', Validators.required],
+      //L2LatePaymentsPoints: ['', Validators.required],
+      lL2PaymentOrVacantNotices: ['', Validators.required],
+      //lL2PaymentOrVacantNoticesPoints: ['', Validators.required],
+      lL2TendayComplyNotice: ['', Validators.required],
+      //lL2TendayComplyNoticePoints: ['', Validators.required],
+      lL2HOAViolations: ['', Validators.required],
+      //lL2HOAViolationsPoints: ['', Validators.required],
+      lL2PropertyCleanliness: ['', Validators.required],
+      //lL2PropertyCleanlinessPoints: ['', Validators.required],
+      lL2Pets: [Boolean, Validators.required],
+      //lL2PetsPoints: ['', Validators.required],
+      lL2AdversePetReferance: [Boolean, Validators.required],
+      //lL2AdversePetReferancePoints: ['', Validators.required],
+      lL2Rerent: [Boolean, Validators.required],
+      //lL2RerentPoints: ['', Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+
+    }),
+    rental_history: this.fb.group({
+      rentalHistoryLength: [Boolean, Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+    pets: this.fb.group({
+      petApprovedLandlordReferance1: ['', Validators.required],
+      petApprovedLandlordReferance2: ['', Validators.required],
+      noOfCatsCompanion: [Boolean, Validators.required],
+      noOfCatsCompanions: ['', Validators.required],
+      noOfLargeDogsCompanion: [Boolean, Validators.required],
+      noOfLargeDogsCompanions: ['', Validators.required],
+      noOfSmallDogsCompanion: [Boolean, Validators.required],
+      noOfSmallDogsCompanions: ['', Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+    points_summary: this.fb.group({
+      totalPoints: ['', Validators.required],
+      finalApproval: [Boolean, Validators.required],
+      totalDeposit: ['', Validators.required],
+      depositToHoldPaid: ['', Validators.required],
+      petDeposit: ['', Validators.required],
+      additionalDeposit: ['', Validators.required],
+      balanceDepositDue: ['', Validators.required],
+      applicantId: ['', Validators.required],
+      tenantSNo: ['', Validators.required],
+      tenantId: [Number],
+      createdBy: ['', Validators.required],
+    }),
+  })
 
 
 
@@ -589,7 +991,7 @@ export class PrimaryTenantComponent {
 
   }
   onTenantSubmit(tenantSNo: any) {
-
+    
     if (tenantSNo == '1') {
       this.frmTenant = this.frmPrimary;
     }
@@ -600,13 +1002,43 @@ export class PrimaryTenantComponent {
       this.frmTenant = this.frmTenant3;
     }
     else if (tenantSNo == '4') {
-      //this.frmTenant = this.frmTenant4;
+      this.frmTenant = this.frmTenant4;
     }
     else if (tenantSNo == '5') {
-      //this.frmTenant = this.frmTenant3;
+      this.frmTenant = this.frmTenant3;
     }
     this.frmTenant.patchValue({
-      tenantSNo: tenantSNo
+      tenantSNo: tenantSNo,
+      createdBy: this.currentUser.id.toString(),
+      applicantId: '0',
+      incom_verification: {
+        createdBy: this.currentUser.id.toString(),
+        
+      },
+      credit_summary: {
+        createdBy: this.currentUser.id.toString(),
+        
+      }
+      ,
+      landlord_ref: {
+        createdBy: this.currentUser.id.toString(),
+        
+      }
+      ,
+      rental_history: {
+        createdBy: this.currentUser.id.toString(),
+       
+      }
+      ,
+      pets: {
+        createdBy: this.currentUser.id.toString(),
+        
+      }
+      ,
+      points_summary: {
+        createdBy: this.currentUser.id.toString(),
+        
+      }
     })
     if (this.snapid) {
       this.frmTenant.patchValue({
@@ -833,6 +1265,7 @@ export class PrimaryTenantComponent {
   }
 
   getScroreSheetByApplicantId(snapid: any, sno: any) {
+    debugger;
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {
       console.log(data, "getting data");
       console.log(data[0].applicantType, "applicant type");

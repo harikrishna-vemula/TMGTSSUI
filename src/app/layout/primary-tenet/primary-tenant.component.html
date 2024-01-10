@@ -2,10 +2,10 @@
 <mat-card class="box">
   <mat-card-header>
     <mat-card-title>Primary Tenant Name :</mat-card-title><br>
-    
-    <div  class="Acc_width " style=" width: 35%;margin-left: 2vw ">
+
+    <div class="Acc_width " style=" width: 35%;margin-left: 2vw ">
       <!-- <mat-label>Applicant Name (Read-only)</mat-label> -->
-      <input class="Account-2-bind"  type="text"  [ngModel]="frmPrimary.get('applicantName')?.value" disabled>
+      <input class="Account-2-bind" type="text" [ngModel]="frmPrimary.get('applicantName')?.value" disabled>
     </div>
   </mat-card-header>
 
@@ -17,7 +17,7 @@
         <div class="title">
           <h2>Primary Tenant</h2>
         </div>
-        <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)">
+        <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)" >
           <ng-template matStepLabel>Primary Tenant</ng-template>
           <form [formGroup]="frmPrimary" (ngSubmit)="onPrimaryTenantSubmit1()">
             <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)">
@@ -46,11 +46,11 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                    </div> -->
 
                     <div class="one">
                       <mat-form-field appearance="outline">
@@ -81,15 +81,15 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline" class="Acc_width ">
-                  <mat-label>Standard Deposit for Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Pet Deposit if applicable(per pet)</mat-label>
-                  <input type="number" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline" class="Acc_width ">
+                        <mat-label>Standard Deposit for Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+                        <input type="number" matInput>
+                      </mat-form-field>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Property Type</mat-label>
@@ -126,7 +126,7 @@
 
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
+                        <mat-label>Pay Stub-(recent)-YTD Earnings :</mat-label>
                         <input type="number" matInput formControlName="paystubRecent">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
@@ -142,7 +142,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
+                        <mat-label>Bank Statement (recent)/2nd Pay Stub :</mat-label>
                         <input type="number" matInput formControlName="secondPayStub">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
@@ -162,7 +162,7 @@
                         <input type="text" matInput formControlName="xRent" value="#NA">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
-                        <mat-label>income Adequate</mat-label>
+                        <mat-label>Income Adequate</mat-label>
                         <mat-select formControlName="incomeAdequate">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -171,19 +171,19 @@
                     </div>
                     <!-- <div class="one">
 
-                <mat-form-field appearance="outline">
-                  <mat-label>income Adequate</mat-label>
-                  <input type="text" matInput value="NO">
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>income Adequate</mat-label>
+                        <input type="text" matInput value="NO">
+                      </mat-form-field>
+                    </div> -->
                   </div>
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="previousTab()">Back</button> -->
                       <span style="margin: 0 10px;"></span>
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Next</button>
-                <span style="flex: 1;"></span>
-                <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
+                      <span style="flex: 1;"></span>
+                      <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
                     </div>
                   </div>
                 </div>
@@ -243,9 +243,9 @@
                         <mat-label>Bankruptcy discharged or dismissed</mat-label>
                         <input type="number" matInput formControlName="bankruptcy">
                         <!--<mat-select formControlName="bankRupty">
-                    <mat-option [value]="true">Discharged</mat-option>
-                    <mat-option [value]="false">Dismissed</mat-option>
-                  </mat-select>-->
+                          <mat-option [value]="true">Discharged</mat-option>
+                          <mat-option [value]="false">Dismissed</mat-option>
+                        </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Bankruptcy Active</mat-label>
@@ -255,9 +255,12 @@
                         </mat-select>
 
                       </mat-form-field>
+
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Lines Repossessions</mat-label>
-                        <input type="date" matInput formControlName="liensRepossessions">
+                        <input matInput [matDatepicker]="liensRepossessionsDatePicker" placeholder="Choose a date" formControlName="liensRepossessions">
+                        <mat-datepicker-toggle matSuffix [for]="liensRepossessionsDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #liensRepossessionsDatePicker></mat-datepicker>
                       </mat-form-field>
                     </div>
 
@@ -266,14 +269,16 @@
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 55%">
                           <mat-label>Eviction History</mat-label>
-                          <input type="date" matInput formControlName="evectionHistory">
+                          <input matInput [matDatepicker]="evectionHistoryDatePicker" placeholder="Choose a date" formControlName="evectionHistory">
+                          <mat-datepicker-toggle matSuffix [for]="evectionHistoryDatePicker"></mat-datepicker-toggle>
+                          <mat-datepicker #evectionHistoryDatePicker></mat-datepicker>
                         </mat-form-field>
                       </div>
 
                       <h2>Criminal Search :</h2>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 felonies</mat-label>
+                          <mat-label>Class1 Felonies</mat-label>
                           <mat-select formControlName="class1Felonies">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -281,18 +286,26 @@
 
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class2 felonies</mat-label>
-                          <input type="date" matInput formControlName="class2Felonies">
+                          <mat-label>Class2 Felonies</mat-label>
+                          <input matInput [matDatepicker]="class2FeloniesDatePicker" placeholder="Choose a date" formControlName="class2Felonies">
+                          <mat-datepicker-toggle matSuffix [for]="class2FeloniesDatePicker"></mat-datepicker-toggle>
+                          <mat-datepicker #class2FeloniesDatePicker></mat-datepicker>
                         </mat-form-field>
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 mesdemeaners</mat-label>
-                          <input type="date" matInput formControlName="class1Misdemeaners">
+                          <mat-label>Class1 Misdemeaners</mat-label>
+                          <input matInput [matDatepicker]="class1MisdemeanersDatePicker" placeholder="Choose a date" formControlName="class1Misdemeaners">
+                          <mat-datepicker-toggle matSuffix [for]="class1MisdemeanersDatePicker"></mat-datepicker-toggle>
+                          <mat-datepicker #class1MisdemeanersDatePicker></mat-datepicker>
                         </mat-form-field>
                       </div>
                       <div class="one">
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class2 mesdemeaners</mat-label>
-                          <input type="date" matInput formControlName="class2Misdemeaners">
+                          <mat-label>Class2 Misdemeaners</mat-label>
+                          <input matInput [matDatepicker]="class2MisdemeanersDatePicker" placeholder="Choose a date" formControlName="class2Misdemeaners">
+                          <mat-datepicker-toggle matSuffix [for]="class2MisdemeanersDatePicker"></mat-datepicker-toggle>
+                          <mat-datepicker #class2MisdemeanersDatePicker></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
                           <mat-label>Deposit Approved</mat-label>
@@ -665,7 +678,7 @@
 
 
         <mat-step [stepControl]="coverSheetForm" [ngClass]="stepColorClass(stepper?.selected)">
-          <ng-template matStepLabel>Coversheet</ng-template>
+          <ng-template matStepLabel>Cover Sheet</ng-template>
           <coversheet-component></coversheet-component>
         </mat-step>
 
@@ -698,11 +711,11 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                    </div> -->
 
                     <div class="one">
                       <mat-form-field appearance="outline">
@@ -733,15 +746,15 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline" class="Acc_width ">
-                  <mat-label>Standard Deposit for Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Pet Deposit if applicable(per pet)</mat-label>
-                  <input type="number" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline" class="Acc_width ">
+                        <mat-label>Standard Deposit for Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+                        <input type="number" matInput>
+                      </mat-form-field>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Property Type</mat-label>
@@ -778,7 +791,7 @@
 
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
+                        <mat-label>Pay Stub-(recent)-YTD Earnings :</mat-label>
                         <input type="number" matInput formControlName="paystubRecent">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
@@ -794,7 +807,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
+                        <mat-label>Bank Statement (recent)/2nd Pay Stub :</mat-label>
                         <input type="number" matInput formControlName="secondPayStub">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
@@ -814,7 +827,7 @@
                         <input type="text" matInput formControlName="xRent" value="#NA">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
-                        <mat-label>income Adequate</mat-label>
+                        <mat-label>Income Adequate</mat-label>
                         <mat-select formControlName="incomeAdequate">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -823,19 +836,19 @@
                     </div>
                     <!-- <div class="one">
 
-                <mat-form-field appearance="outline">
-                  <mat-label>income Adequate</mat-label>
-                  <input type="text" matInput value="NO">
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>income Adequate</mat-label>
+                        <input type="text" matInput value="NO">
+                      </mat-form-field>
+                    </div> -->
                   </div>
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="previousTab()">Back</button> -->
                       <span style="margin: 0 10px;"></span>
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Next</button>
-                <span style="flex: 1;"></span>
-                <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
+                      <span style="flex: 1;"></span>
+                      <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
                     </div>
                   </div>
                 </div>
@@ -895,9 +908,9 @@
                         <mat-label>Bankruptcy discharged or dismissed</mat-label>
                         <input type="number" matInput formControlName="bankruptcy">
                         <!--<mat-select formControlName="bankRupty">
-                    <mat-option [value]="true">Discharged</mat-option>
-                    <mat-option [value]="false">Dismissed</mat-option>
-                  </mat-select>-->
+                          <mat-option [value]="true">Discharged</mat-option>
+                          <mat-option [value]="false">Dismissed</mat-option>
+                        </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Bankruptcy Active</mat-label>
@@ -909,7 +922,9 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Lines Repossessions</mat-label>
-                        <input type="date" matInput formControlName="liensRepossessions">
+                        <input matInput [matDatepicker]="liensRepossessionsDatePicker2" placeholder="Choose a date" formControlName="liensRepossessions">
+                        <mat-datepicker-toggle matSuffix [for]="liensRepossessionsDatePicker2"></mat-datepicker-toggle>
+                        <mat-datepicker #liensRepossessionsDatePicker2></mat-datepicker>
                       </mat-form-field>
                     </div>
 
@@ -918,14 +933,16 @@
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 55%">
                           <mat-label>Eviction History</mat-label>
-                          <input type="date" matInput formControlName="evectionHistory">
+                          <input matInput [matDatepicker]="evectionHistoryDatePicker2" placeholder="Choose a date" formControlName="evectionHistory">
+                          <mat-datepicker-toggle matSuffix [for]="evectionHistoryDatePicker2"></mat-datepicker-toggle>
+                          <mat-datepicker #evectionHistoryDatePicker2></mat-datepicker>
                         </mat-form-field>
                       </div>
 
                       <h2>Criminal Search :</h2>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 felonies</mat-label>
+                          <mat-label>Class1 Felonies</mat-label>
                           <mat-select formControlName="class1Felonies">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -933,18 +950,26 @@
 
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class2 felonies</mat-label>
-                          <input type="date" matInput formControlName="class2Felonies">
+                          <mat-label>Class2 Felonies</mat-label>
+                          <input matInput [matDatepicker]="class2FeloniesDatePicker2" placeholder="Choose a date" formControlName="class2Felonies">
+                          <mat-datepicker-toggle matSuffix [for]="class2FeloniesDatePicker2"></mat-datepicker-toggle>
+                          <mat-datepicker #class2FeloniesDatePicker2></mat-datepicker>
                         </mat-form-field>
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 mesdemeaners</mat-label>
-                          <input type="date" matInput formControlName="class1Misdemeaners">
+                          <mat-label>Class1 Misdemeaners</mat-label>
+                          <input matInput [matDatepicker]="class1MisdemeanersDatePicker2" placeholder="Choose a date" formControlName="class1Misdemeaners">
+                          <mat-datepicker-toggle matSuffix [for]="class1MisdemeanersDatePicker2"></mat-datepicker-toggle>
+                          <mat-datepicker #class1MisdemeanersDatePicker2></mat-datepicker>
                         </mat-form-field>
                       </div>
                       <div class="one">
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class2 mesdemeaners</mat-label>
-                          <input type="date" matInput formControlName="class2Misdemeaners">
+                          <mat-label>Class2 Misdemeaners</mat-label>
+                          <input matInput [matDatepicker]="class2MisdemeanersDatePicker2" placeholder="Choose a date" formControlName="class2Misdemeaners">
+                          <mat-datepicker-toggle matSuffix [for]="class2MisdemeanersDatePicker2"></mat-datepicker-toggle>
+                          <mat-datepicker #class2MisdemeanersDatePicker2></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
                           <mat-label>Deposit Approved</mat-label>
@@ -1344,11 +1369,11 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                    </div> -->
 
                     <div class="one">
                       <mat-form-field appearance="outline">
@@ -1379,15 +1404,15 @@
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
-                <mat-form-field appearance="outline" class="Acc_width ">
-                  <mat-label>Standard Deposit for Property</mat-label>
-                  <input type="text" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label>Pet Deposit if applicable(per pet)</mat-label>
-                  <input type="number" matInput>
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline" class="Acc_width ">
+                        <mat-label>Standard Deposit for Property</mat-label>
+                        <input type="text" matInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Pet Deposit if applicable(per pet)</mat-label>
+                        <input type="number" matInput>
+                      </mat-form-field>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
                         <mat-label>Property Type</mat-label>
@@ -1424,7 +1449,7 @@
 
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>pay stub-(recent)-YTD Earnings :</mat-label>
+                        <mat-label>Pay Stub-(recent)-YTD Earnings :</mat-label>
                         <input type="number" matInput formControlName="paystubRecent">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
@@ -1440,7 +1465,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Bank statement (recent)/2nd pay Stub :</mat-label>
+                        <mat-label>Bank Statement (recent)/2nd Pay Stub :</mat-label>
                         <input type="number" matInput formControlName="secondPayStub">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
@@ -1460,7 +1485,7 @@
                         <input type="text" matInput formControlName="xRent" value="#NA">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
-                        <mat-label>income Adequate</mat-label>
+                        <mat-label>Income Adequate</mat-label>
                         <mat-select formControlName="incomeAdequate">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1469,19 +1494,19 @@
                     </div>
                     <!-- <div class="one">
 
-                <mat-form-field appearance="outline">
-                  <mat-label>income Adequate</mat-label>
-                  <input type="text" matInput value="NO">
-                </mat-form-field>
-              </div> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>income Adequate</mat-label>
+                        <input type="text" matInput value="NO">
+                      </mat-form-field>
+                    </div> -->
                   </div>
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="previousTab()">Back</button> -->
                       <span style="margin: 0 10px;"></span>
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Next</button>
-                <span style="flex: 1;"></span>
-                <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
+                      <span style="flex: 1;"></span>
+                      <button mat-raised-button matStepperNext="!firstCtrl.valid" type="submit" color="primary">Save</button> -->
                     </div>
                   </div>
                 </div>
@@ -1541,9 +1566,9 @@
                         <mat-label>Bankruptcy discharged or dismissed</mat-label>
                         <input type="number" matInput formControlName="bankruptcy">
                         <!--<mat-select formControlName="bankRupty">
-                    <mat-option [value]="true">Discharged</mat-option>
-                    <mat-option [value]="false">Dismissed</mat-option>
-                  </mat-select>-->
+                          <mat-option [value]="true">Discharged</mat-option>
+                          <mat-option [value]="false">Dismissed</mat-option>
+                        </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Bankruptcy Active</mat-label>
@@ -1555,42 +1580,56 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
                         <mat-label>Lines Repossessions</mat-label>
-                        <input type="date" matInput formControlName="liensRepossessions">
+                        <input matInput [matDatepicker]="liensRepossessionsDatePicker3" placeholder="Choose a date" formControlName="liensRepossessions">
+                        <mat-datepicker-toggle matSuffix [for]="liensRepossessionsDatePicker3"></mat-datepicker-toggle>
+                        <mat-datepicker #liensRepossessionsDatePicker3></mat-datepicker>
                       </mat-form-field>
                     </div>
 
                     <div class="other_summary">
                       <h2>Other Screening Summary :</h2>
                       <div class="one">
+
                         <mat-form-field appearance="outline" style=" width: 55%">
                           <mat-label>Eviction History</mat-label>
-                          <input type="date" matInput formControlName="evectionHistory">
+                          <input matInput [matDatepicker]="evectionHistoryDatePicker3" placeholder="Choose a date" formControlName="evectionHistory">
+                          <mat-datepicker-toggle matSuffix [for]="evectionHistoryDatePicker3"></mat-datepicker-toggle>
+                          <mat-datepicker #evectionHistoryDatePicker3></mat-datepicker>
                         </mat-form-field>
                       </div>
 
                       <h2>Criminal Search :</h2>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 felonies</mat-label>
+                          <mat-label>Class1 Felonies</mat-label>
                           <mat-select formControlName="class1Felonies">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
                           </mat-select>
 
                         </mat-form-field>
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class2 felonies</mat-label>
-                          <input type="date" matInput formControlName="class2Felonies">
+                          <mat-label>Class2 Felonies</mat-label>
+                          <input matInput [matDatepicker]="class2FeloniesDatePicker3" placeholder="Choose a date" formControlName="class2Felonies">
+                          <mat-datepicker-toggle matSuffix [for]="class2FeloniesDatePicker3"></mat-datepicker-toggle>
+                          <mat-datepicker #class2FeloniesDatePicker3></mat-datepicker>
                         </mat-form-field>
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 mesdemeaners</mat-label>
-                          <input type="date" matInput formControlName="class1Misdemeaners">
+                          <mat-label>Class1 Misdemeaners</mat-label>
+                          <input matInput [matDatepicker]="class1MisdemeanersDatePicker3" placeholder="Choose a date" formControlName="class1Misdemeaners">
+                          <mat-datepicker-toggle matSuffix [for]="class1MisdemeanersDatePicker3"></mat-datepicker-toggle>
+                          <mat-datepicker #class1MisdemeanersDatePicker3></mat-datepicker>
                         </mat-form-field>
                       </div>
                       <div class="one">
+
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class2 mesdemeaners</mat-label>
-                          <input type="date" matInput formControlName="class2Misdemeaners">
+                          <mat-label>Class2 Misdemeaners</mat-label>
+                          <input matInput [matDatepicker]="class2MisdemeanersDatePicker3" placeholder="Choose a date" formControlName="class2Misdemeaners">
+                          <mat-datepicker-toggle matSuffix [for]="class2MisdemeanersDatePicker3"></mat-datepicker-toggle>
+                          <mat-datepicker #class2MisdemeanersDatePicker3></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
                           <mat-label>Deposit Approved</mat-label>

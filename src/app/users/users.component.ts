@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit {
     };
     this.defaultColDef = {
       resizable: true,
-      width:170,
+     
       sortable: true,
       filter: true,
     };
@@ -68,18 +68,10 @@ export class UsersComponent implements OnInit {
       field: 'id',headerName: 'Id', headerTooltip: 'Id',tooltipField:'id',sortable: true, width: 80, filter: 'agNumberColumnFilter',
       filterParams: numberFilterParams, hidden:true
     },
-    {
-      field: 'roleName',headerName: 'Role Name', headerTooltip: 'roleName',tooltipField:'roleName',sortable: true, filter: 'agNumberColumnFilter',
-      filterParams: numberFilterParams
-    },
+   
       {field: 'userName', headerTooltip: 'User Name',tooltipField:'userName',sortable: true, filter: true, filterParams: stdFilterParams},
-      {field: 'email', headerTooltip: 'Email',tooltipField:'email',sortable: true, filter: true, width: 220, filterParams: stdFilterParams},
-      //{field: 'password', sortable: true, filter: true, filterParams: dateFilterParams},
-      // {field: 'phone', headerTooltip: 'Phone',tooltipField:'phone',sortable: true, filter: true, filterParams: dateFilterParams},
-      // {field: 'address', headerTooltip: 'Address',tooltipField:'address', sortable: true, filter: true, filterParams: stdFilterParams},
-      //{field: 'roleId', sortable: true, filter: true, filterParams: dateFilterParams},
+      {field: 'email', headerTooltip: 'Email',tooltipField:'email',sortable: true, filter: true, width: 220, filterParams: stdFilterParams},     
       {field: 'roleName',headerTooltip: 'Role Name',tooltipField:'roleName', sortable: true, filter: true,  width: 150, filterParams: stdFilterParams},
-      
       {field: 'createdBy',headerTooltip: 'Created By',tooltipField:'createdBy', sortable: true, filter: true,width: 150, filterParams: stdFilterParams},
       {
         field: 'createdDate',headerTooltip: 'Created Date',tooltipField:'createdDate', sortable: true, width: 200, filter: 'agDateColumnFilter', filterParams: dateFilterParams,
@@ -129,7 +121,8 @@ onGridReady(params : any) {
    
   this.gridApi = params.api;
   this.gridColumnApi = params.columnApi;
-
+  this.gridColumnApi.autoSizeColumns();
+  this.gridApi.setDomLayout('autoHeight');
   this._logservice.GetAllUsers()
     .subscribe(data => {
        

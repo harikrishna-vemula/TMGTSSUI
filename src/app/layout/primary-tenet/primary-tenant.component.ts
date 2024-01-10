@@ -47,7 +47,7 @@ export class PrimaryTenantComponent {
   private _http: any;
   createApplicant: any;
   snapid: any;
-  applicantId: number = 0; frmTenant: any; tenantId: number = 0;
+  applicantId: number = 0; frmTenant: any; tenantId: number = 0; tenantSNO: number = 0;
   primaryTenantIncomeVerification: number = 0;
   constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private _userservice: UsersService, private activate: ActivatedRoute) {
     this.authservice.currentUser.subscribe(x => this.currentUser = x);
@@ -1220,9 +1220,17 @@ export class PrimaryTenantComponent {
   }
 
   onStepChange(event: StepperSelectionEvent): void {
-    console.log('Step changed:', event.selectedIndex);
+     
+    if (event.selectedIndex == 0 || event.selectedIndex == 0) {
+      this.tenantSNO = 1;
+    }
+    else {
+      this.tenantSNO = event.selectedIndex;
+    }
+
+    
     if (this.snapid) {
-      this.getScroreSheetByApplicantId(this.snapid, (event.selectedIndex+1).toString());
+      this.getScroreSheetByApplicantId(this.snapid, this.tenantSNO.toString());
     }
     // Additional logic can be added here based on the step change
   }
@@ -1265,7 +1273,7 @@ export class PrimaryTenantComponent {
   }
 
   getScroreSheetByApplicantId(snapid: any, sno: any) {
-    debugger;
+    
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {
       console.log(data, "getting data");
       console.log(data[0].applicantType, "applicant type");

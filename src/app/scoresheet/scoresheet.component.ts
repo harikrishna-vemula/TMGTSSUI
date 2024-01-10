@@ -8,6 +8,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { CellClickedEvent, ColDef} from 'ag-grid-community';
 import { UsersService } from '../users/users.service';
 import { ButtonRendererComponent } from '../users/button-renderer.component';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-scoresheet',
@@ -49,7 +50,7 @@ export class ScoresheetComponent implements OnInit {
     };
     this.defaultColDef = {
       resizable: true,
-      width:170,
+      
       sortable: true,
       filter: true,
     };
@@ -63,17 +64,17 @@ export class ScoresheetComponent implements OnInit {
     this.columnDefs = [
       
       {
-      field: 'id',headerName: 'Id', headerTooltip: 'Id',tooltipField:'id',sortable: true, width: 80, filter: 'agNumberColumnFilter',
+        field: 'id', headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', sortable: true,  filter: 'agNumberColumnFilter',
       filterParams: numberFilterParams, hidden:true
     },
-    {
-      field: 'applicantName',headerName: 'Applicant Name', headerTooltip: 'applicantName',tooltipField:'applicantName',sortable: true, width: 180, filter: 'agNumberColumnFilter',
+      {
+        field: 'applicantName', headerName: 'Applicant Name', headerTooltip: 'ApplicantName', tooltipField: 'applicantName', sortable: true, filter: 'agNumberColumnFilter',
       filterParams: numberFilterParams
     },
-      {field: 'property',headerName: 'Property', headerTooltip: 'property',tooltipField:'property',sortable: true, filter: true, width: 120, filterParams: stdFilterParams},
-      {field: 'state', headerName: 'State',headerTooltip: 'state',tooltipField:'State',sortable: true, filter: true, width: 100, filterParams: stdFilterParams},
-      {field: 'city',headerName: 'City', headerTooltip: 'city',tooltipField:'city',sortable: true, filter: true,width: 100, filterParams: stdFilterParams},
-      {field: 'zip', headerName: 'Zip',headerTooltip: 'zip',tooltipField:'zip',sortable: true, filter: true, width: 80, filterParams: stdFilterParams},
+      {field: 'property',headerName: 'Property', headerTooltip: 'Property',tooltipField:'property',sortable: true, filter: true,  filterParams: stdFilterParams},
+      {field: 'state', headerName: 'State',headerTooltip: 'State',tooltipField:'State',sortable: true, filter: true, filterParams: stdFilterParams},
+      {field: 'city',headerName: 'City', headerTooltip: 'City',tooltipField:'city',sortable: true, filter: true,  filterParams: stdFilterParams},
+      {field: 'zip', headerName: 'Zip',headerTooltip: 'Zip',tooltipField:'zip',sortable: true, filter: true,   filterParams: stdFilterParams},
       //{field: 'StandardDepositProperty', sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'standardDepositProperty', headerName: 'StandardDepositProperty', headerTooltip: 'standardDepositProperty',tooltipField:'StandardDepositProperty',sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'address', headerTooltip: 'Address',tooltipField:'address', sortable: true, filter: true, filterParams: stdFilterParams},
@@ -82,18 +83,19 @@ export class ScoresheetComponent implements OnInit {
       
       // {field: 'createdBy',headerTooltip: 'Created By',tooltipField:'createdBy', sortable: true, filter: true, filterParams: stdFilterParams},
       {
-        field: 'createdDate',headerTooltip: 'Created Date',tooltipField:'createdDate', sortable: true, filter: 'agDateColumnFilter', filterParams: dateFilterParams,
+        field: 'createdDate', headerTooltip: 'Created Date', tooltipField: 'createdDate', sortable: true, filter: 'agDateColumnFilter', filterParams: dateFilterParams, 
         cellRenderer: (data: any) => {
           return this.datePipe.transform(data.value, 'MM/dd/yyyy');
         }
 
       },
-      {field: 'applicantType', headerTooltip: 'ApplicantType',tooltipField:'applicantType', sortable: true, filter: true,  width: 180, filterParams: stdFilterParams},
+      {field: 'applicantType', headerTooltip: 'ApplicantType',tooltipField:'applicantType', sortable: true, filter: true,   filterParams: stdFilterParams},
       {
         headerName: 'Score Sheet Action(s)',
+        headerTooltip: 'Score Sheet Action(s)',
         filter:false,
         sortable:false,
-        field: 'id', width: 240,
+        field: 'id',  
         cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           mode: 'scoresheet', // Define the mode here for the scoresheet component
@@ -102,10 +104,11 @@ export class ScoresheetComponent implements OnInit {
       },
 
       {
-        headerName: 'Cover sheet Action(s)',
+        headerName: 'Cover Sheet Action(s)',
+        headerTooltip: 'Cover Sheet Action(s)',
         filter:false,
         sortable:false,
-        field: 'id', width: 240,
+        field: 'id',
         cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           mode: 'coversheet', // Define the mode here for the scoresheet component
@@ -153,8 +156,8 @@ onGridReady(params : any) {
    
   this.gridApi = params.api;
   this.gridColumnApi = params.columnApi;
-       this.gridApi.sizeColumnsToFit();
-
+  this.gridColumnApi.autoSizeColumns();
+  this.gridApi.setDomLayout('autoHeight');
 
   this._logservice.Getapplicantinfo()
     .subscribe((data: any) => {

@@ -64,7 +64,7 @@ export class ScoresheetComponent implements OnInit {
     this.columnDefs = [
       
       {
-        field: 'id', headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', sortable: true,  filter: 'agNumberColumnFilter',
+        field: 'id', headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', width:'80', sortable: true,  filter: 'agNumberColumnFilter',
       filterParams: numberFilterParams, hidden:true
     },
       {
@@ -90,9 +90,13 @@ export class ScoresheetComponent implements OnInit {
 
       },
       {field: 'applicantType', headerTooltip: 'ApplicantType',tooltipField:'applicantType', sortable: true, filter: true,   filterParams: stdFilterParams},
+      
+      {field: 'applicationStatus', headerTooltip: 'applicationStatus',tooltipField:'applicationStatus', sortable: true, filter: true,   filterParams: stdFilterParams},
       {
         headerName: 'Score Sheet Action(s)',
+        
         headerTooltip: 'Score Sheet Action(s)',
+        width:'300',
         filter:false,
         sortable:false,
         field: 'id',  

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/users/users.service';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -36,7 +36,8 @@ class CoversheetComponent implements OnInit {
     private activate: ActivatedRoute,
     private _userservice: UsersService,
     private router: Router,
-    private dialog: MatDialog  // Inject MatDialog here
+    private dialog: MatDialog,  // Inject MatDialog here
+    // @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
   }

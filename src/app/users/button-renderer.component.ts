@@ -3,12 +3,14 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { Router } from "@angular/router";
 import { UsersService } from './users.service';
 import { ICellRendererParams } from 'ag-grid-community';
+import { CoversheetComponent } from '../layout/primary-tenet/coversheet/coversheet.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-action-button-renderer',
   template: `
   <span>
-  <button mat-button (click)="open()" style="background-color: #2ba8ce !important;">Open</button>
+  <button mat-button (click)="open()" *ngIf="openButton" style="background-color: #2ba8ce !important;">Open</button>
   <span style="margin-left: 10px;"></span>
   <button mat-button (click)="edit()" style="background-color: #2ba8ce !important;">Edit</button>
   <span style="margin-left: 10px;"></span> <!-- Add space between buttons -->
@@ -19,12 +21,15 @@ import { ICellRendererParams } from 'ag-grid-community';
   styles: ['a { cursor:pointer; }']
 })
 export class ButtonRendererComponent implements ICellRendererAngularComp {
+  result: any;
+  // dialog: any;
   
-  constructor(private router: Router, private _http: UsersService) { }
+  constructor(private router: Router, private _http: UsersService, private dialog: MatDialog) { }
   // refresh(params: ICellRendererParams<any, any, any>): boolean {
   //   throw new Error('Method not implemented.');
   // }
   abcd: boolean = true; 
+  openButton:boolean =false;
   params: any;
   id: any;
   _mode: any;
@@ -36,18 +41,24 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     this._mode = params.mode; 
   }
 
-  open() {
-    if (this._mode === 'scoresheet') {
-      this.router.navigate(['/primarytenant', this.id]);
-    } else if (this._mode === 'editusers') {
-      this.router.navigate(['/editusers', this.id]);
-    } else if (this._mode === 'coversheet') {
-      this.router.navigate(['/coversheet']);
-    } else {
-      console.error('Invalid mode or route.');
-    }
-    // Open your external link here
-    window.open('/primarytenant');
+  open(){
+    alert("working open popup")
+    console.log('View Record:', this.result);
+  
+    // Open the dialog here using MatDialog
+    const dialogRef = this.dialog.open(CoversheetComponent, {
+      width: '100%',
+      data: {
+        // id: this.id,       // Pass the id to the dialog
+        // recordData: this.result[0],  // Pass the data to the dialog
+      },
+    });
+  
+    // Subscribe to the afterClosed event to handle actions after the dialog is closed
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log('Dialog closed with result:', result);
+      // You can perform any actions based on the result here
+    });
   }
 
   edit() {
@@ -69,6 +80,13 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     }
     else {
       this.showLinkButton = false;
+}
+
+if (this._mode === 'scoresheet') {
+  this.openButton = true;
+}
+else {
+  this.openButton = false;
 }
 
   }

@@ -14,7 +14,7 @@
 mat-form-field {
   width: -webkit-fill-available;
   margin: 0px 5px;
-  height:20px;
+  height:10px !important;
 }
 .button-container a {
   margin-right: 30px; 
@@ -32,4 +32,22 @@ mat-form-field {
     width: 55%;
     font-size: 20px;
 }
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  font-size: 12px;
+}
+mat-label {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  // color: #000000;
+}
+// .custom-width .mat-input-element {
+//   font-size: 12px !important; /* Adjust the font size */
+//   padding: 5px; /* Adjust the padding */
+// }
+// .custom-width .mat-form-field-outline-end,
+// .custom-width .mat-form-field-outline-start,
+// .custom-width .mat-form-field-outline-gap {
+//   width: 2px; /* Adjust the width of the outline */
+// }
 

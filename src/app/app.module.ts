@@ -30,6 +30,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativeDateModule
 import { CosignerComponent } from './layout/primary-tenet/cosigner/cosigner.component';
+import { ArchivedComponent } from './archived/archived.component';
 
 
 
@@ -56,6 +57,7 @@ import { CosignerComponent } from './layout/primary-tenet/cosigner/cosigner.comp
     ScoresheetComponent,
     CosignerComponent,
     Tanant4Component,
+    ArchivedComponent,
     // NavMenuComponent,
 
   ],

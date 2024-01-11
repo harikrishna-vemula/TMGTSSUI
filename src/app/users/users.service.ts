@@ -40,6 +40,18 @@ export class UsersService {
         })
       );
   }
+  GetArchivedScoreSheets(): Observable<any> {
+    
+    return this._http.get<any>(this.url + 'Scoresheet/getArchivedScoreSheets')
+      .pipe(
+        tap((data) => {
+        }),
+        catchError((error) => {
+          throw error; // Rethrow the error or handle as needed
+        })
+        
+      );
+  }
   // GetAllUsers1(snapid:any): Observable<any> {
   //   alert("working")
   //   console.log(snapid,"service id");
@@ -102,7 +114,7 @@ export class UsersService {
   CreatePointsSummary(data: any): Observable<any> {
     return this._http.post(this.url + 'Scoresheet/createPointsSummary', data)
   }
-  
+ 
   
   Getapplicantinfo(): Observable<any> {
     return this._http.get(this.url + 'Scoresheet/getAllApplicants')

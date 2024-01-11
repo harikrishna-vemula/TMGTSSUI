@@ -86,12 +86,13 @@ export class PrimaryTenantComponent {
     propertyType: ['', Validators.required],
     // applicantTypeId: ['', Validators.required],
     // ptype: ['', Validators.required],
-    applicantId: ['', Validators.required],
+    applicantId: [''],
     tenantSNo: ['', Validators.required],
     tenantId: [Number],
     paystubRecent: ['', Validators.required],
     applicantTypeId: [Number],
     propertyTypeId: ['', Validators.required],
+    applicationStatus: ['', Validators.required],
     createdBy: ['', Validators.required],
     // }),
     incom_verification: this.fb.group({
@@ -228,75 +229,7 @@ export class PrimaryTenantComponent {
     }),
   })
 
-  //Primary Tenant Section End
-
-
-  coverSheetForm = this.fb.group({
-    applicantId: ['', Validators.required],
-    propertyManager: ['', Validators.required],
-    primaryTenant: ['', Validators.required],
-    tenant2: ['', Validators.required],
-    tenant3: ['', Validators.required],
-    tenant4: ['', Validators.required],
-    propertyAddress: ['', Validators.required],
-    city: ['', Validators.required],
-    state: ['', Validators.required],
-    unitCode: ['', Validators.required],
-    bestPOC: ['', Validators.required],
-    rentReadyDate: ['', Validators.required],
-    depositPaidDate: ['', Validators.required],
-    rentResponsibleDate: ['', Validators.required],
-    agreementType: ['', Validators.required],
-    qcDate: ['', Validators.required],
-    signingDate: ['', Validators.required],
-    //signingTime: [Time, Validators.required],
-    withWhom: ['', Validators.required],
-    otherTerms: ['', Validators.required],
-    listPaidUtilities: ['', Validators.required],
-    otherMonthlyCharge11: ['', Validators.required],
-    otherMonthlyCharge12: ['', Validators.required],
-    otherMonthlyCharge21: ['', Validators.required],
-    otherMonthlyCharge22: ['', Validators.required],
-    otherMonthlyCharge31: ['', Validators.required],
-    otherMonthlyCharge32: ['', Validators.required],
-    otherMonthlyCharge41: ['', Validators.required],
-    otherMonthlyCharge42: ['', Validators.required],
-    otherMoveinCharge1: ['', Validators.required],
-    otherMoveinChargePaid1: ['', Validators.required],
-    moveinRentCharge: ['', Validators.required],
-    moveinRentPaid: ['', Validators.required],
-
-    otherMoveinCharge2: ['', Validators.required],
-    otherMoveinChargePaid2: ['', Validators.required],
-    otherMoveinCharge3: ['', Validators.required],
-    otherMoveinChargePaid3: ['', Validators.required],
-    rubsMoveinCharge: ['', Validators.required],
-    rubsMoveinChargePaid: ['', Validators.required],
-    prepaidCleaningCharge: ['', Validators.required],
-    prepaidCleaningPaid: ['', Validators.required],
-
-
-    securityDepositCharge: ['', Validators.required],
-    securityDepositPaid: ['', Validators.required],
-    nonRefProcessingFeeCharge: ['', Validators.required],
-    nonRefProcessingFeePaid: ['', Validators.required],
-    petDepositCharge: ['', Validators.required],
-    petDepositPaid: ['', Validators.required],
-    petNonRefFeeCharge: ['', Validators.required],
-    petNonRefFeePaid: ['', Validators.required],
-
-    additionDepositCharge: ['', Validators.required],
-    additionDepositPaid: ['', Validators.required],
-    subTotal: ['', Validators.required],
-    paid: ['', Validators.required],
-    dueatMoveinKeyPickup: ['', Validators.required],
-    createdBy: ['', Validators.required],
-
-    modifiedBy: ['', Validators.required],
-
-
-    // Other charges...
-  });
+  //Tenant 2 Section stats here 
   frmTenant2 = this.fb.group({
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
@@ -446,8 +379,8 @@ export class PrimaryTenantComponent {
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
       finalApproval: [Boolean, Validators.required],
-      totalDeposit: ['', Validators.required],
-      depositToHoldPaid: ['', Validators.required],
+      // totalDeposit: ['', Validators.required],
+      // depositToHoldPaid: ['', Validators.required],
       petDeposit: ['', Validators.required],
       additionalDeposit: ['', Validators.required],
       balanceDepositDue: ['', Validators.required],
@@ -458,6 +391,7 @@ export class PrimaryTenantComponent {
     }),
   })
 
+// Tenant 3 section starts here 
   frmTenant3 = this.fb.group({
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
@@ -607,8 +541,8 @@ export class PrimaryTenantComponent {
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
       finalApproval: [Boolean, Validators.required],
-      totalDeposit: ['', Validators.required],
-      depositToHoldPaid: ['', Validators.required],
+      // totalDeposit: ['', Validators.required],
+      // depositToHoldPaid: ['', Validators.required],
       petDeposit: ['', Validators.required],
       additionalDeposit: ['', Validators.required],
       balanceDepositDue: ['', Validators.required],
@@ -618,6 +552,8 @@ export class PrimaryTenantComponent {
       createdBy: ['', Validators.required],
     }),
   })
+
+  //tenant 4 Section Stats here
   frmTenant4 = this.fb.group({
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
@@ -750,25 +686,25 @@ export class PrimaryTenantComponent {
       tenantId: [Number],
       createdBy: ['', Validators.required],
     }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['', Validators.required],
-      petApprovedLandlordReferance2: ['', Validators.required],
-      noOfCatsCompanion: [Boolean, Validators.required],
-      noOfCatsCompanions: ['', Validators.required],
-      noOfLargeDogsCompanion: [Boolean, Validators.required],
-      noOfLargeDogsCompanions: ['', Validators.required],
-      noOfSmallDogsCompanion: [Boolean, Validators.required],
-      noOfSmallDogsCompanions: ['', Validators.required],
-      applicantId: ['', Validators.required],
-      tenantSNo: ['', Validators.required],
-      tenantId: [Number],
-      createdBy: ['', Validators.required],
-    }),
+    // pets: this.fb.group({
+    //   petApprovedLandlordReferance1: ['', Validators.required],
+    //   petApprovedLandlordReferance2: ['', Validators.required],
+    //   noOfCatsCompanion: [Boolean, Validators.required],
+    //   noOfCatsCompanions: ['', Validators.required],
+    //   noOfLargeDogsCompanion: [Boolean, Validators.required],
+    //   noOfLargeDogsCompanions: ['', Validators.required],
+    //   noOfSmallDogsCompanion: [Boolean, Validators.required],
+    //   noOfSmallDogsCompanions: ['', Validators.required],
+    //   applicantId: ['', Validators.required],
+    //   tenantSNo: ['', Validators.required],
+    //   tenantId: [Number],
+    //   createdBy: ['', Validators.required],
+    // }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
       finalApproval: [Boolean, Validators.required],
-      totalDeposit: ['', Validators.required],
-      depositToHoldPaid: ['', Validators.required],
+      // totalDeposit: ['', Validators.required],
+      // depositToHoldPaid: ['', Validators.required],
       petDeposit: ['', Validators.required],
       additionalDeposit: ['', Validators.required],
       balanceDepositDue: ['', Validators.required],
@@ -779,6 +715,7 @@ export class PrimaryTenantComponent {
     }),
   })
 
+  //Co-signer section starts here 
   frmTenant5 = this.fb.group({
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
@@ -940,6 +877,73 @@ export class PrimaryTenantComponent {
     }),
   })
 
+  //Coversheet Section Starts here 
+  coverSheetForm = this.fb.group({
+    applicantId: ['', Validators.required],
+    propertyManager: ['', Validators.required],
+    primaryTenant: ['', Validators.required],
+    tenant2: ['', Validators.required],
+    tenant3: ['', Validators.required],
+    tenant4: ['', Validators.required],
+    propertyAddress: ['', Validators.required],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    unitCode: ['', Validators.required],
+    bestPOC: ['', Validators.required],
+    rentReadyDate: ['', Validators.required],
+    depositPaidDate: ['', Validators.required],
+    rentResponsibleDate: ['', Validators.required],
+    agreementType: ['', Validators.required],
+    qcDate: ['', Validators.required],
+    signingDate: ['', Validators.required],
+    //signingTime: [Time, Validators.required],
+    withWhom: ['', Validators.required],
+    otherTerms: ['', Validators.required],
+    listPaidUtilities: ['', Validators.required],
+    otherMonthlyCharge11: ['', Validators.required],
+    otherMonthlyCharge12: ['', Validators.required],
+    otherMonthlyCharge21: ['', Validators.required],
+    otherMonthlyCharge22: ['', Validators.required],
+    otherMonthlyCharge31: ['', Validators.required],
+    otherMonthlyCharge32: ['', Validators.required],
+    otherMonthlyCharge41: ['', Validators.required],
+    otherMonthlyCharge42: ['', Validators.required],
+    otherMoveinCharge1: ['', Validators.required],
+    otherMoveinChargePaid1: ['', Validators.required],
+    moveinRentCharge: ['', Validators.required],
+    moveinRentPaid: ['', Validators.required],
+
+    otherMoveinCharge2: ['', Validators.required],
+    otherMoveinChargePaid2: ['', Validators.required],
+    otherMoveinCharge3: ['', Validators.required],
+    otherMoveinChargePaid3: ['', Validators.required],
+    rubsMoveinCharge: ['', Validators.required],
+    rubsMoveinChargePaid: ['', Validators.required],
+    prepaidCleaningCharge: ['', Validators.required],
+    prepaidCleaningPaid: ['', Validators.required],
+
+
+    securityDepositCharge: ['', Validators.required],
+    securityDepositPaid: ['', Validators.required],
+    nonRefProcessingFeeCharge: ['', Validators.required],
+    nonRefProcessingFeePaid: ['', Validators.required],
+    petDepositCharge: ['', Validators.required],
+    petDepositPaid: ['', Validators.required],
+    petNonRefFeeCharge: ['', Validators.required],
+    petNonRefFeePaid: ['', Validators.required],
+
+    additionDepositCharge: ['', Validators.required],
+    additionDepositPaid: ['', Validators.required],
+    subTotal: ['', Validators.required],
+    paid: ['', Validators.required],
+    dueatMoveinKeyPickup: ['', Validators.required],
+    createdBy: ['', Validators.required],
+
+    modifiedBy: ['', Validators.required],
+
+
+    // Other charges...
+  });
 
 
 
@@ -1312,6 +1316,7 @@ export class PrimaryTenantComponent {
         section8Rent: this.result[0].section8Rent,
         standardDepositProperty: this.result[0].standardDepositProperty,
         propertyTypeId: this.result[0].propertyTypeId,
+        applicationStatus: this.result[0].applicationStatus,
 
         incom_verification: {
           paystubRecent: this.result[0].paystubRecent,

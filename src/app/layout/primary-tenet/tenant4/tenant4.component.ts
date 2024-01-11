@@ -150,19 +150,19 @@ export class Tanant4Component {
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
     }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['', Validators.required],
-      petApprovedLandlordReferance2: ['', Validators.required],
-      noOfCatsCompanion: [Boolean, Validators.required],
-      noOfCatsCompanions: ['', Validators.required],
-      noOfLargeDogsCompanion: [Boolean, Validators.required],
-      noOfLargeDogsCompanions: ['', Validators.required],
-      noOfSmallDogsCompanion: [Boolean, Validators.required],
-      noOfSmallDogsCompanions: ['', Validators.required],
-      applicantId: ['', Validators.required],
-      tenantSNo: ['', Validators.required],
-      tenantId: [Number],
-    }),
+    // pets: this.fb.group({
+    //   petApprovedLandlordReferance1: ['', Validators.required],
+    //   petApprovedLandlordReferance2: ['', Validators.required],
+    //   noOfCatsCompanion: [Boolean, Validators.required],
+    //   noOfCatsCompanions: ['', Validators.required],
+    //   noOfLargeDogsCompanion: [Boolean, Validators.required],
+    //   noOfLargeDogsCompanions: ['', Validators.required],
+    //   noOfSmallDogsCompanion: [Boolean, Validators.required],
+    //   noOfSmallDogsCompanions: ['', Validators.required],
+    //   applicantId: ['', Validators.required],
+    //   tenantSNo: ['', Validators.required],
+    //   tenantId: [Number],
+    // }),
     points_summary: this.fb.group({
       totalPoints: ['', Validators.required],
       finalApproval: [Boolean, Validators.required],
@@ -339,19 +339,19 @@ export class Tanant4Component {
         rental_history: {
           rentalHistoryLength: this.result[0].rentalHistoryLength,
         },
-        pets: {
-          petApprovedLandlordReferance1: this.result[0].petApprovedLandlordReferance1,
-          petApprovedLandlordReferance2: this.result[0].petApprovedLandlordReferance2,
+        // pets: {
+        //   petApprovedLandlordReferance1: this.result[0].petApprovedLandlordReferance1,
+        //   petApprovedLandlordReferance2: this.result[0].petApprovedLandlordReferance2,
 
 
-          noOfCatsCompanion: this.result[0].noOfCatsCompanion,
-          noOfCatsCompanions: this.result[0].noOfCatsCompanions,
-          noOfLargeDogsCompanion: this.result[0].noOfLargeDogsCompanion,
-          noOfLargeDogsCompanions: this.result[0].noOfLargeDogsCompanions,
-          noOfSmallDogsCompanion: this.result[0].noOfSmallDogsCompanion,
-          noOfSmallDogsCompanions: this.result[0].noOfSmallDogsCompanions,
-          // ... add other properties
-        },
+        //   noOfCatsCompanion: this.result[0].noOfCatsCompanion,
+        //   noOfCatsCompanions: this.result[0].noOfCatsCompanions,
+        //   noOfLargeDogsCompanion: this.result[0].noOfLargeDogsCompanion,
+        //   noOfLargeDogsCompanions: this.result[0].noOfLargeDogsCompanions,
+        //   noOfSmallDogsCompanion: this.result[0].noOfSmallDogsCompanion,
+        //   noOfSmallDogsCompanions: this.result[0].noOfSmallDogsCompanions,
+        //   // ... add other properties
+        // },
         points_summary: {
           totalPoints: this.result[0].totalPoints,
           finalApproval: this.result[0].finalApproval,
@@ -400,11 +400,11 @@ export class Tanant4Component {
         createdBy: this.currentUser.id.toString(),
 
       }
-      ,
-      pets: {
-        createdBy: this.currentUser.id.toString(),
+      // ,
+      // pets: {
+      //   createdBy: this.currentUser.id.toString(),
 
-      }
+      // }
       ,
       points_summary: {
         createdBy: this.currentUser.id.toString(),
@@ -432,11 +432,11 @@ export class Tanant4Component {
           applicantId: this.snapid.toString(),
           tenantSNo: tenantSNo
         }
-        ,
-        pets: {
-          applicantId: this.snapid.toString(),
-          tenantSNo: tenantSNo
-        }
+        // ,
+        // pets: {
+        //   applicantId: this.snapid.toString(),
+        //   tenantSNo: tenantSNo
+        // }
         ,
         points_summary: {
           applicantId: this.snapid.toString(),
@@ -485,12 +485,12 @@ export class Tanant4Component {
                 tenantSNo: tenantSNo,
                 tenantId: this.tenantId
               }
-              ,
-              pets: {
-                applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
-                tenantSNo: tenantSNo,
-                tenantId: this.tenantId
-              }
+              // ,
+              // pets: {
+              //   applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
+              //   tenantSNo: tenantSNo,
+              //   tenantId: this.tenantId
+              // }
               ,
               points_summary: {
                 applicantId: this.snapid ? this.snapid : this.applicantId.toString(),
@@ -562,19 +562,19 @@ export class Tanant4Component {
         }
       );
     }
+    // else if (this.tabIndex == 5) {
+
+
+    //   this._userservice.CreatePets(this.frmTenant.value.pets).subscribe(
+    //     (data) => {
+
+    //     },
+    //     (error) => {
+    //       console.error('Error creating pets:', error);
+    //     }
+    //   );
+    // }
     else if (this.tabIndex == 5) {
-
-
-      this._userservice.CreatePets(this.frmTenant.value.pets).subscribe(
-        (data) => {
-
-        },
-        (error) => {
-          console.error('Error creating pets:', error);
-        }
-      );
-    }
-    else if (this.tabIndex == 6) {
 
 
       this._userservice.CreatePointsSummary(this.frmTenant.value.points_summary).subscribe(

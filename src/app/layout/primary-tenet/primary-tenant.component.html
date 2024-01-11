@@ -1,11 +1,14 @@
 
 <mat-card class="box">
   <mat-card-header>
-    <mat-card-title>Primary Tenant Name :</mat-card-title><br>
+    <mat-card-title style="font-size: 18px;">Primary Tenant Name :</mat-card-title>
 
-    <div class="Acc_width " style=" width: 35%;margin-left: 2vw ">
-      <!-- <mat-label>Applicant Name (Read-only)</mat-label> -->
-      <input class="Account-2-bind" type="text" [ngModel]="frmPrimary.get('applicantName')?.value" disabled>
+    <div class="Acc_width" style="width: 30%; margin-left: 2vw;">
+      <mat-card style="background-color: #e0e0e0;">
+        <mat-card-content style="font-weight: bold; font-size: 16px;">
+          <p>{{ frmPrimary.get('applicantName')?.value }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </mat-card-header>
 
@@ -17,6 +20,7 @@
         <div class="title">
           <h2>Primary Tenant</h2>
         </div>
+        <!-- Primary Tenant Stepper starts from here  -->
         <mat-step [stepControl]="frmPrimary" [ngClass]="stepColorClass(stepper?.selected)" >
           <ng-template matStepLabel>Primary Tenant</ng-template>
           <form [formGroup]="frmPrimary" (ngSubmit)="onPrimaryTenantSubmit1()">
@@ -101,6 +105,20 @@
 
 
                       </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Applicant Status</mat-label>
+                        <mat-select formControlName="applicationStatus">
+                          <mat-option [value]="1">Pending</mat-option>
+                          <mat-option [value]="2">Approved</mat-option>
+                          <mat-option [value]="3">Not Approved</mat-option>
+                          <mat-option [value]="4">Completed</mat-option>
+                          <mat-option [value]="5">Archive</mat-option>
+                          <mat-option [value]="6">Cancelled</mat-option>
+
+                        </mat-select>
+
+
+                      </mat-form-field>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                       <!-- <button mat-raised-button color="primary" (click)="nextTab()">Back</button> -->
@@ -162,7 +180,7 @@
                         <input type="text" matInput formControlName="xRent" value="#NA">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
-                        <mat-label>Income Adequate</mat-label>
+                        <mat-label>Income Adequate Y/N</mat-label>
                         <mat-select formControlName="incomeAdequate">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -199,7 +217,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Credit Lines</mat-label>
+                        <mat-label>Credit Lines Y/N</mat-label>
                         <mat-select formControlName="creditLines">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -210,7 +228,7 @@
                         <input type="number" matInput formControlName="creditScore">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Credit Score Available</mat-label>
+                        <mat-label>Credit Score Available Y/N</mat-label>
                         <mat-select formControlName="creditScoreAvailable">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -229,7 +247,7 @@
                         <input type="number" matInput formControlName="medicalCollections">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Property Related Housing Record</mat-label>
+                        <mat-label>Property Related Housing Record Y/N</mat-label>
                         <mat-select formControlName="propertyRelatedHousingRecord">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -248,7 +266,7 @@
                         </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Bankruptcy Active</mat-label>
+                        <mat-label>Bankruptcy Active Y/N</mat-label>
                         <mat-select formControlName="bankRuptyActive">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -278,7 +296,7 @@
                       <h2>Criminal Search :</h2>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 Felonies</mat-label>
+                          <mat-label>Class1 Felonies Y/N</mat-label>
                           <mat-select formControlName="class1Felonies">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -308,7 +326,7 @@
                           <mat-datepicker #class2MisdemeanersDatePicker></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Deposit Approved</mat-label>
+                          <mat-label>Deposit Approved Y/N</mat-label>
                           <mat-select formControlName="depositApproved">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -346,7 +364,7 @@
                     <div>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 55%">
-                          <mat-label>Rental Reference</mat-label>
+                          <mat-label>Rental Reference Y/N</mat-label>
                           <mat-select formControlName="rentalReferance">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -362,7 +380,7 @@
                       <div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Proper Notice</mat-label>
+                            <mat-label>Proper Notice Y/N</mat-label>
                             <mat-select formControlName="lL1ProperNotice">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -384,7 +402,7 @@
                         </div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>10 days Notice to comply </mat-label>
+                            <mat-label>10 days Notice to Comply </mat-label>
                             <input type="text" matInput formControlName="lL1TendayComplyNotice">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
@@ -396,7 +414,7 @@
                             <input type="text" matInput formControlName="lL1PropertyCleanliness">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Pets</mat-label>
+                            <mat-label>Pets Y/N</mat-label>
                             <mat-select formControlName="lL1Pets">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -407,14 +425,14 @@
                         <div class="one">
 
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Adverse pet Reference</mat-label>
+                            <mat-label>Adverse Pet Reference Y/N</mat-label>
                             <mat-select formControlName="lL1AdversePetReferance">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Re-Rent</mat-label>
+                            <mat-label>Re-Rent Y/N</mat-label>
                             <mat-select formControlName="lL1Rerent">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -431,7 +449,7 @@
                       <div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Proper Notice</mat-label>
+                            <mat-label>Proper Notice Y/N</mat-label>
                             <mat-select formControlName="lL2ProperNotice">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -453,7 +471,7 @@
                         </div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>10 days Notice to comply </mat-label>
+                            <mat-label>10 days Notice to Comply </mat-label>
                             <input type="text" matInput formControlName="lL2TendayComplyNotice">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
@@ -465,7 +483,7 @@
                             <input type="text" matInput formControlName="lL2PropertyCleanliness">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Pets</mat-label>
+                            <mat-label>Pets Y/N</mat-label>
                             <mat-select formControlName="lL2Pets">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -476,14 +494,14 @@
                         <div class="one">
 
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Adverse pet Reference</mat-label>
+                            <mat-label>Adverse Pet Reference Y/N</mat-label>
                             <mat-select formControlName="lL2AdversePetReferance">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Re-Rent</mat-label>
+                            <mat-label>Re-Rent Y/N</mat-label>
                             <mat-select formControlName="lL2Rerent">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -512,7 +530,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Rental History Length</mat-label>
+                        <mat-label>Rental History Length Y/N</mat-label>
                         <mat-select formControlName="rentalHistoryLength">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -550,7 +568,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfCatsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -569,7 +587,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfLargeDogsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -587,7 +605,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfSmallDogsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -614,11 +632,11 @@
                   <div class="final_session" formGroupName="points_summary">
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Total points</mat-label>
+                        <mat-label>Total Points</mat-label>
                         <input type="number" matInput formControlName="totalPoints">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Final Approval</mat-label>
+                        <mat-label>Final Approval  Y/N</mat-label>
                         <mat-select formControlName="finalApproval">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -677,10 +695,7 @@
         </mat-step>
 
 
-        <mat-step [stepControl]="coverSheetForm" [ngClass]="stepColorClass(stepper?.selected)">
-          <ng-template matStepLabel>Cover Sheet</ng-template>
-          <coversheet-component></coversheet-component>
-        </mat-step>
+       <!-- Tenant2 Stepper starts from here  -->
 
         <mat-step [stepControl]="frmTenant2" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Tenant 2</ng-template>
@@ -827,7 +842,7 @@
                         <input type="text" matInput formControlName="xRent" value="#NA">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
-                        <mat-label>Income Adequate</mat-label>
+                        <mat-label>Income Adequate  Y/N</mat-label>
                         <mat-select formControlName="incomeAdequate">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -864,7 +879,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Credit Lines</mat-label>
+                        <mat-label>Credit Lines Y/N</mat-label>
                         <mat-select formControlName="creditLines">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -875,7 +890,7 @@
                         <input type="number" matInput formControlName="creditScore">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Credit Score Available</mat-label>
+                        <mat-label>Credit Score Available Y/N</mat-label>
                         <mat-select formControlName="creditScoreAvailable">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -894,7 +909,7 @@
                         <input type="number" matInput formControlName="medicalCollections">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Property Related Housing Record</mat-label>
+                        <mat-label>Property Related Housing Record  Y/N</mat-label>
                         <mat-select formControlName="propertyRelatedHousingRecord">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -913,7 +928,7 @@
                         </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Bankruptcy Active</mat-label>
+                        <mat-label>Bankruptcy Active Y/N</mat-label>
                         <mat-select formControlName="bankRuptyActive">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -942,7 +957,7 @@
                       <h2>Criminal Search :</h2>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 Felonies</mat-label>
+                          <mat-label>Class1 Felonies Y/N</mat-label>
                           <mat-select formControlName="class1Felonies">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -972,7 +987,7 @@
                           <mat-datepicker #class2MisdemeanersDatePicker2></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Deposit Approved</mat-label>
+                          <mat-label>Deposit Approved Y/N</mat-label>
                           <mat-select formControlName="depositApproved">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1010,7 +1025,7 @@
                     <div>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 55%">
-                          <mat-label>Rental Reference</mat-label>
+                          <mat-label>Rental Reference Y/N</mat-label>
                           <mat-select formControlName="rentalReferance">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1026,7 +1041,7 @@
                       <div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Proper Notice</mat-label>
+                            <mat-label>Proper Notice Y/N</mat-label>
                             <mat-select formControlName="lL1ProperNotice">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1048,7 +1063,7 @@
                         </div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>10 days Notice to comply </mat-label>
+                            <mat-label>10 days Notice to Comply </mat-label>
                             <input type="text" matInput formControlName="lL1TendayComplyNotice">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
@@ -1060,7 +1075,7 @@
                             <input type="text" matInput formControlName="lL1PropertyCleanliness">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Pets</mat-label>
+                            <mat-label>Pets Y/N</mat-label>
                             <mat-select formControlName="lL1Pets">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1071,14 +1086,14 @@
                         <div class="one">
 
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Adverse pet Reference</mat-label>
+                            <mat-label>Adverse Pet Reference Y/N</mat-label>
                             <mat-select formControlName="lL1AdversePetReferance">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Re-Rent</mat-label>
+                            <mat-label>Re-Rent Y/N</mat-label>
                             <mat-select formControlName="lL1Rerent">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1095,7 +1110,7 @@
                       <div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Proper Notice</mat-label>
+                            <mat-label>Proper Notice Y/N</mat-label>
                             <mat-select formControlName="lL2ProperNotice">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1117,7 +1132,7 @@
                         </div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>10 days Notice to comply </mat-label>
+                            <mat-label>10 days Notice to Comply </mat-label>
                             <input type="text" matInput formControlName="lL2TendayComplyNotice">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
@@ -1129,7 +1144,7 @@
                             <input type="text" matInput formControlName="lL2PropertyCleanliness">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Pets</mat-label>
+                            <mat-label>Pets Y/N</mat-label>
                             <mat-select formControlName="lL2Pets">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1140,14 +1155,14 @@
                         <div class="one">
 
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Adverse pet Reference</mat-label>
+                            <mat-label>Adverse Pet Reference Y/N</mat-label>
                             <mat-select formControlName="lL2AdversePetReferance">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Re-Rent</mat-label>
+                            <mat-label>Re-Rent Y/N</mat-label>
                             <mat-select formControlName="lL2Rerent">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1176,7 +1191,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Rental History Length</mat-label>
+                        <mat-label>Rental History Length Y/N</mat-label>
                         <mat-select formControlName="rentalHistoryLength">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1214,7 +1229,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfCatsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1233,7 +1248,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfLargeDogsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1251,7 +1266,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfSmallDogsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1278,11 +1293,11 @@
                   <div class="final_session" formGroupName="points_summary">
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Total points</mat-label>
+                        <mat-label>Total Points</mat-label>
                         <input type="number" matInput formControlName="totalPoints">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Final Approval</mat-label>
+                        <mat-label>Final Approval Y/N</mat-label>
                         <mat-select formControlName="finalApproval">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1290,23 +1305,23 @@
                       </mat-form-field>
                     </div>
 
-                    <div class="one">
-                      <mat-form-field appearance="outline">
-                        <mat-label>Total Deposit Tenant 1</mat-label>
+                    <!-- <div class="one"> -->
+                      <!-- <mat-form-field appearance="outline">
+                        <mat-label>Total Deposit Tenant 2</mat-label>
                         <input type="number" formControlName="totalDeposit" matInput placeholder="$0.00">
-                      </mat-form-field>
-                      <mat-form-field appearance="outline">
+                      </mat-form-field> -->
+                      <!-- <mat-form-field appearance="outline">
                         <mat-label>Deposit To Hold</mat-label>
                         <input type="number" formControlName="depositToHoldPaid" matInput placeholder="$0.00">
-                      </mat-form-field>
-                    </div>
+                      </mat-form-field> -->
+                    <!-- </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Pet Deposit - Primary Tenant</mat-label>
+                        <mat-label>Pet Deposit- Tenant2</mat-label>
                         <input type="number" formControlName="petDeposit" matInput placeholder="$0.00">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label> Aditional Deposit - Primary Tenant</mat-label>
+                        <mat-label> Aditional Deposit -Tenant2</mat-label>
                         <input type="number" formControlName="additionalDeposit" matInput placeholder="$0.00">
                       </mat-form-field>
                     </div>
@@ -1339,6 +1354,7 @@
           </form>
 
         </mat-step>
+<!-- Tenant3 Stepper starts from here  -->
 
         <mat-step [stepControl]="frmTenant3" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Tenant 3</ng-template>
@@ -1485,7 +1501,7 @@
                         <input type="text" matInput formControlName="xRent" value="#NA">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
-                        <mat-label>Income Adequate</mat-label>
+                        <mat-label>Income Adequate Y/N</mat-label>
                         <mat-select formControlName="incomeAdequate">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1522,7 +1538,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Credit Lines</mat-label>
+                        <mat-label>Credit Lines Y/N</mat-label>
                         <mat-select formControlName="creditLines">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1533,7 +1549,7 @@
                         <input type="number" matInput formControlName="creditScore">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Credit Score Available</mat-label>
+                        <mat-label>Credit Score Available Y/N</mat-label>
                         <mat-select formControlName="creditScoreAvailable">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1552,7 +1568,7 @@
                         <input type="number" matInput formControlName="medicalCollections">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Property Related Housing Record</mat-label>
+                        <mat-label>Property Related Housing Record  Y/N</mat-label>
                         <mat-select formControlName="propertyRelatedHousingRecord">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1571,7 +1587,7 @@
                         </mat-select>-->
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
-                        <mat-label>Bankruptcy Active</mat-label>
+                        <mat-label>Bankruptcy Active Y/N</mat-label>
                         <mat-select formControlName="bankRuptyActive">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1601,7 +1617,7 @@
                       <h2>Criminal Search :</h2>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Class1 Felonies</mat-label>
+                          <mat-label>Class1 Felonies Y/N</mat-label>
                           <mat-select formControlName="class1Felonies">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1632,7 +1648,7 @@
                           <mat-datepicker #class2MisdemeanersDatePicker3></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field appearance="outline" style=" width: 35%">
-                          <mat-label>Deposit Approved</mat-label>
+                          <mat-label>Deposit Approved Y/N</mat-label>
                           <mat-select formControlName="depositApproved">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1670,7 +1686,7 @@
                     <div>
                       <div class="one">
                         <mat-form-field appearance="outline" style=" width: 55%">
-                          <mat-label>Rental Reference</mat-label>
+                          <mat-label>Rental Reference Y/N</mat-label>
                           <mat-select formControlName="rentalReferance">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1686,7 +1702,7 @@
                       <div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Proper Notice</mat-label>
+                            <mat-label>Proper Notice  Y/N</mat-label>
                             <mat-select formControlName="lL1ProperNotice">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1708,7 +1724,7 @@
                         </div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>10 days Notice to comply </mat-label>
+                            <mat-label>10 days Notice to Comply </mat-label>
                             <input type="text" matInput formControlName="lL1TendayComplyNotice">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
@@ -1720,7 +1736,7 @@
                             <input type="text" matInput formControlName="lL1PropertyCleanliness">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Pets</mat-label>
+                            <mat-label>Pets Y/N</mat-label>
                             <mat-select formControlName="lL1Pets">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1731,14 +1747,14 @@
                         <div class="one">
 
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Adverse pet Reference</mat-label>
+                            <mat-label>Adverse Pet Reference Y/N</mat-label>
                             <mat-select formControlName="lL1AdversePetReferance">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Re-Rent</mat-label>
+                            <mat-label>Re-Rent Y/N</mat-label>
                             <mat-select formControlName="lL1Rerent">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1755,7 +1771,7 @@
                       <div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Proper Notice</mat-label>
+                            <mat-label>Proper Notice Y/N</mat-label>
                             <mat-select formControlName="lL2ProperNotice">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1777,7 +1793,7 @@
                         </div>
                         <div class="one">
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>10 days Notice to comply </mat-label>
+                            <mat-label>10 days Notice to Comply </mat-label>
                             <input type="text" matInput formControlName="lL2TendayComplyNotice">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
@@ -1789,7 +1805,7 @@
                             <input type="text" matInput formControlName="lL2PropertyCleanliness">
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 35%">
-                            <mat-label>Pets</mat-label>
+                            <mat-label>Pets Y/N</mat-label>
                             <mat-select formControlName="lL2Pets">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1800,14 +1816,14 @@
                         <div class="one">
 
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Adverse pet Reference</mat-label>
+                            <mat-label>Adverse Pet Reference Y/N</mat-label>
                             <mat-select formControlName="lL2AdversePetReferance">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <mat-form-field appearance="outline" style=" width: 50%">
-                            <mat-label>Re-Rent</mat-label>
+                            <mat-label>Re-Rent Y/N</mat-label>
                             <mat-select formControlName="lL2Rerent">
                               <mat-option [value]="true">Yes</mat-option>
                               <mat-option [value]="false">No</mat-option>
@@ -1836,7 +1852,7 @@
                     </div>
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Rental History Length</mat-label>
+                        <mat-label>Rental History Length Y/N</mat-label>
                         <mat-select formControlName="rentalHistoryLength">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1874,7 +1890,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfCatsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1893,7 +1909,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfLargeDogsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1911,7 +1927,7 @@
                       </div>
                       <div class="one">
                         <mat-form-field appearance="outline">
-                          <mat-label>Compansion Animal y/n</mat-label>
+                          <mat-label>Compansion Animal Y/N</mat-label>
                           <mat-select formControlName="noOfSmallDogsCompanion">
                             <mat-option [value]="true">Yes</mat-option>
                             <mat-option [value]="false">No</mat-option>
@@ -1938,11 +1954,11 @@
                   <div class="final_session" formGroupName="points_summary">
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Total points</mat-label>
+                        <mat-label>Total Points</mat-label>
                         <input type="number" matInput formControlName="totalPoints">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Final Approval</mat-label>
+                        <mat-label>Final Approval Y/N</mat-label>
                         <mat-select formControlName="finalApproval">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
@@ -1950,23 +1966,23 @@
                       </mat-form-field>
                     </div>
 
-                    <div class="one">
+                    <!-- <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Total Deposit Tenant 1</mat-label>
+                        <mat-label>Total Deposit Tenant 3</mat-label>
                         <input type="number" formControlName="totalDeposit" matInput placeholder="$0.00">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Deposit To Hold</mat-label>
                         <input type="number" formControlName="depositToHoldPaid" matInput placeholder="$0.00">
                       </mat-form-field>
-                    </div>
+                    </div> -->
                     <div class="one">
                       <mat-form-field appearance="outline">
-                        <mat-label>Pet Deposit - Primary Tenant</mat-label>
+                        <mat-label>Pet Deposit -Tenant3</mat-label>
                         <input type="number" formControlName="petDeposit" matInput placeholder="$0.00">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label> Aditional Deposit - Primary Tenant</mat-label>
+                        <mat-label> Aditional Deposit - Tenant3</mat-label>
                         <input type="number" formControlName="additionalDeposit" matInput placeholder="$0.00">
                       </mat-form-field>
                     </div>
@@ -2000,18 +2016,24 @@
 
         </mat-step>
 
+<!-- Tenant 4 componenet intergarted here to resolve performance issue.  -->
 
         <mat-step [stepControl]="frmTenant4" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Tenant 4</ng-template>
           <app-tenant4></app-tenant4>
         </mat-step>
 
+<!-- Co-Signer componenet intergarted here  -->
         <mat-step [stepControl]="frmTenant5" [ngClass]="stepColorClass(stepper?.selected)">
           <ng-template matStepLabel>Co-Signer</ng-template>
           <app-cosigner></app-cosigner>
         </mat-step>
 
-
+        <!-- Coversheet componenet intergarted here  -->
+        <mat-step [stepControl]="coverSheetForm" [ngClass]="stepColorClass(stepper?.selected)">
+          <ng-template matStepLabel>Cover Sheet</ng-template>
+          <coversheet-component></coversheet-component>
+        </mat-step>
 
       </div>
     </div>

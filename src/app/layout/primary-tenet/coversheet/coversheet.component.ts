@@ -12,21 +12,23 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatDialog, MatDialogCon
   templateUrl: './coversheet.component.html',
   styleUrls: ['./coversheet.component.scss']
 })
-export 
-class CoversheetComponent implements OnInit {
+export
+  class CoversheetComponent implements OnInit {
   @ViewChild('view_record', { static: false })
   viewRecordElmRef!: ElementRef;
   snapid: any;
-  _record:any;
+  _record: any;
   result: any; currentUser: any = {};
   coverSheetForm!: FormGroup;
   Agreements: string[] = ["AgreementType1", "AgreementType2", "AgreementType3"];
   UpdateCoverSheet: any;
   GetCoverSheetbyapplicantId: any;
- 
-  
-  
-   
+  daysInMonth: any;
+  moveinRent: any;
+  lastDayOfMonth: any;
+  remainingDays: any;
+
+
   snapshot: any;
   id: MatDialogConfig<any> | undefined;
   // closeResult: string;
@@ -43,18 +45,103 @@ class CoversheetComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.initForm();
     if (this.activate && this.activate.snapshot) {
       this.snapid = this.activate.snapshot.paramMap.get('id') || '';
     }
     this.getdata();
     console.log(this.snapid, "snap id Coversheet component");
-
+    this.coverSheetForm.get('moveinRentCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('otherMoveinCharge1')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('otherMoveinCharge2')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('otherMoveinCharge3')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('rubsMoveinCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('prepaidCleaningCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('securityDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('nonRefProcessingFeeCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('petDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('petNonRefFeeCharge')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('additionDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
 
   }
   dateChanged(event: MatDatepickerInputEvent<Date>) {
     console.log(event.value); // handle the selected date here
+  }
+
+  getValues() {
+    //const rentResponsibleDateValue = this.coverSheetForm.get('rentResponsibleDate')?.value;
+    //const monthlyRentValue = this.coverSheetForm.get('monthlyRent')?.value;
+    const otherMonthlyCharge11Value = this.coverSheetForm.get('otherMonthlyCharge11')?.value;
+    const otherMonthlyCharge21Value = this.coverSheetForm.get('otherMonthlyCharge21')?.value;
+    const otherMonthlyCharge31Value = this.coverSheetForm.get('otherMonthlyCharge31')?.value;
+  }
+
+  calculateSum() {
+    const moveinRentChargeValue = parseFloat(this.coverSheetForm.get('moveinRentCharge')?.value) || 0;
+    const otherMoveinCharge1Value = parseFloat(this.coverSheetForm.get('otherMoveinCharge1')?.value) || 0;
+    const otherMoveinCharge2Value = parseFloat(this.coverSheetForm.get('otherMoveinCharge2')?.value) || 0;
+    const otherMoveinCharge3Value = parseFloat(this.coverSheetForm.get('otherMoveinCharge3')?.value) || 0;
+    const rubsMoveinChargeValue = this.coverSheetForm.get('rubsMoveinCharge')?.value || 0;
+    const prepaidCleaningChargeValue = this.coverSheetForm.get('prepaidCleaningCharge')?.value || 0;
+    const securityDepositChargeValue = this.coverSheetForm.get('securityDepositCharge')?.value || 0;
+    const nonRefProcessingFeeChargeValue = this.coverSheetForm.get('nonRefProcessingFeeCharge')?.value || 0;
+    const petDepositChargeValue = this.coverSheetForm.get('petDepositCharge')?.value || 0;
+    const petNonRefFeeChargeValue = this.coverSheetForm.get('petNonRefFeeCharge')?.value || 0;
+    const additionDepositChargeValue = this.coverSheetForm.get('additionDepositCharge')?.value || 0;
+
+
+
+
+    const sumTotalValue = (moveinRentChargeValue + otherMoveinCharge1Value + otherMoveinCharge2Value + otherMoveinCharge3Value + rubsMoveinChargeValue +
+      prepaidCleaningChargeValue + securityDepositChargeValue + nonRefProcessingFeeChargeValue + petDepositChargeValue + petNonRefFeeChargeValue + additionDepositChargeValue);
+    this.coverSheetForm.patchValue({
+      subTotal: sumTotalValue.toFixed(2),
+
+    })
+  }
+
+
+  getOtherMoveinCharge1() {
+    const otherMonthlyCharge11Value = this.coverSheetForm.get('otherMonthlyCharge11')?.value || 0;
+    this.coverSheetForm.patchValue({
+      otherMoveinCharge1: ((otherMonthlyCharge11Value / this.daysInMonth) * this.remainingDays).toFixed(2),
+
+    })
+  }
+  getOtherMoveinCharge2() {
+    const otherMonthlyCharge11Value = this.coverSheetForm.get('otherMonthlyCharge21')?.value || 0;
+    this.coverSheetForm.patchValue({
+      otherMoveinCharge2: ((otherMonthlyCharge11Value / this.daysInMonth) * this.remainingDays).toFixed(2),
+
+    })
+  }
+  getOtherMoveinCharge3() {
+    const otherMonthlyCharge11Value = this.coverSheetForm.get('otherMonthlyCharge31')?.value || 0;
+    this.coverSheetForm.patchValue({
+      otherMoveinCharge3: ((otherMonthlyCharge11Value / this.daysInMonth) * this.remainingDays).toFixed(2),
+
+    })
+  }
+
+  getMoveinRent(inputDate: any, monthlyRent: any) {
+    const selectedDate = inputDate.value ? new Date(inputDate.value):new Date(inputDate);
+
+    if (!isNaN(selectedDate.getTime())) {
+      const year = selectedDate.getFullYear();
+      const month = selectedDate.getMonth() + 1; // JavaScript months are 0-indexed
+      this.daysInMonth = new Date(year, month, 0).getDate();
+      this.lastDayOfMonth = new Date(year, month, 0).getDate();
+      this.remainingDays = this.lastDayOfMonth - selectedDate.getDate() + 1;
+      //this.daysInMonth = daysInMonth;
+
+      this.moveinRent = (monthlyRent / this.daysInMonth) * this.remainingDays;
+      this.coverSheetForm.patchValue({
+        moveinRentCharge: this.moveinRent.toFixed(2),
+
+      })
+    }
+
   }
 
   initForm(): void {
@@ -77,6 +164,7 @@ class CoversheetComponent implements OnInit {
       qcDate: ['', Validators.required],
       signingDate: ['', Validators.required],
       //signingTime: [Time, Validators.required],
+      monthlyRent: ['', Validators.required],
       withWhom: ['', Validators.required],
       otherTerms: ['', Validators.required],
       listPaidUtilities: ['', Validators.required],
@@ -176,7 +264,7 @@ class CoversheetComponent implements OnInit {
     this._http.GetCoverSheetbyapplicantId(this.snapid).subscribe((data) => {
       console.log(data, "getting data");
       this.result = data
-
+      this.getMoveinRent(new Date(this.result[0]?.rentResponsibleDate), this.result[0]?.monthlyRent || 0);
       this.coverSheetForm.patchValue({
         propertyManager: this.result[0]?.propertyManager || '',
         primaryTenant: this.result[0]?.primaryTenant || '',
@@ -198,6 +286,7 @@ class CoversheetComponent implements OnInit {
         withWhom: this.result[0]?.withWhom || '',
         otherTerms: this.result[0]?.otherTerms || '',
         listPaidUtilities: this.result[0]?.listPaidUtilities || '',
+        monthlyRent: this.result[0]?.monthlyRent || '',
         otherMonthlyCharge11: this.result[0]?.otherMonthlyCharge11 || '',
         otherMonthlyCharge12: this.result[0]?.otherMonthlyCharge12 || '',
         otherMonthlyCharge21: this.result[0]?.otherMonthlyCharge21 || '',
@@ -316,7 +405,7 @@ class CoversheetComponent implements OnInit {
   }
   viewRecord() {
     console.log('View Record:', this.result);
-  
+
     // Open the dialog here using MatDialog
     const dialogRef = this.dialog.open(CoversheetComponent, {
       width: '1010px',
@@ -325,19 +414,19 @@ class CoversheetComponent implements OnInit {
         recordData: this.result[0],  // Pass the data to the dialog
       },
     });
-  
+
     // Subscribe to the afterClosed event to handle actions after the dialog is closed
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed with result:', result);
       // You can perform any actions based on the result here
     });
   }
-  
-  
+
+
   open(content: any) {
- 
+
   }
- 
+
   // getdata(){
   //   this._http.GetAllUsers(this.snapid).subscribe((data)=>{
   //     console.log(data,"getting data");

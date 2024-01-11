@@ -6,8 +6,8 @@
     <button class="btn btn-sm btn-success mr-2" (click)="viewRecord()" style="background-color: #2ba8ce !important; margin-right: 10px;" >View</button>
 
   </div> -->
-  
-  
+
+
   <div class="one" style="display: flex; justify-content: center; align-items: center;">
     <mat-form-field appearance="outline" class="Acc_width" style="width: 30%;">
       <mat-label>Property Manager</mat-label>
@@ -19,17 +19,17 @@
       <mat-label>Primary Tenant</mat-label>
       <input type="text" matInput formControlName="primaryTenant">
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline">
       <mat-label>Tenant2</mat-label>
       <input type="text" matInput formControlName="tenant2">
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline">
       <mat-label>Tenant3</mat-label>
       <input type="text" matInput formControlName="tenant3">
     </mat-form-field>
-  
+
     <mat-form-field appearance="outline">
       <mat-label>Tenant4</mat-label>
       <input type="text" matInput formControlName="tenant4">
@@ -48,7 +48,7 @@
       <mat-label>State</mat-label>
       <input type="text" matInput formControlName="state">
     </mat-form-field>
-    
+
   </div>
 
   <div class="one">
@@ -87,7 +87,7 @@
   <div class="one">
     <mat-form-field appearance="outline">
       <mat-label>Rent Responsible Date</mat-label>
-      <input matInput [matDatepicker]="rentResponsibleDatePicker" placeholder="Choose a date" formControlName="rentResponsibleDate">
+      <input matInput [matDatepicker]="rentResponsibleDatePicker" placeholder="Choose a date" (dateChange)="getMoveinRent($event,coverSheetForm.get('monthlyRent')?.value)" formControlName="rentResponsibleDate">
       <mat-datepicker-toggle matSuffix [for]="rentResponsibleDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #rentResponsibleDatePicker></mat-datepicker>
     </mat-form-field>
@@ -118,7 +118,7 @@
 
   <div class="one">
     <mat-form-field appearance="outline">
-      <mat-label>Rent Responsible Date</mat-label>
+      <mat-label>Signing Date</mat-label>
       <input matInput [matDatepicker]="signingDatePicker" placeholder="Choose a date" formControlName="signingDate">
       <mat-datepicker-toggle matSuffix [for]="signingDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #signingDatePicker></mat-datepicker>
@@ -149,15 +149,19 @@
       <textarea type="text" matInput formControlName="listPaidUtilities"></textarea>
     </mat-form-field>
   </div>
+ 
 
   <div class="monthly_rent">
-    <div>
-      <h2>Monthly Rent :</h2>
+    <div class="one">
+      <mat-form-field appearance="outline">
+        <mat-label>Monthly Rent</mat-label>
+        <input type="number" matInput formControlName="monthlyRent">
+      </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Other Monthly charge</mat-label>
-        <input type="number" matInput formControlName="otherMonthlyCharge11">
+        <input type="number" matInput formControlName="otherMonthlyCharge11" (input)="getOtherMoveinCharge1()">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Other Monthly charge</mat-label>
@@ -167,7 +171,7 @@
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Other Monthly charge</mat-label>
-        <input type="number" matInput formControlName="otherMonthlyCharge21">
+        <input type="number" matInput formControlName="otherMonthlyCharge21" (input)="getOtherMoveinCharge2()">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Other Monthly charge</mat-label>
@@ -177,7 +181,7 @@
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Other Monthly charge</mat-label>
-        <input type="number" matInput formControlName="otherMonthlyCharge31">
+        <input type="number" matInput formControlName="otherMonthlyCharge31" (input)="getOtherMoveinCharge3()">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Other Monthly charge</mat-label>
@@ -361,28 +365,28 @@
 
   </mat-grid-list>
 
- <ng-template #view_record let-modal>
-  <div class="modal-header" style="width: 1020px; background-color: white;">
-    <h4 class="modal-title" id="modal-basic-title">
-      {{ _record[0]?.primarytenant }} {{ _record[0]?.tenant2 }} {{ _record[0]?.tenant3 }} {{ _record[0]?.tenant4 }}
-    </h4>
-  </div>
-</ng-template>
-
-
-
-    <!-- <div class="one">
-              <mat-form-field appearance="outline">
-                <mat-label>Rent Ready Date</mat-label>
-                <input type="text" matInput>
-              </mat-form-field>
-            </div> -->
-    <!-- </div> -->
-    <div style="display: flex; justify-content: space-between; align-items: safe center;">
-      <!--<button type="button" (click)="onCancel()"  mat-raised-button color="primary" class="btn btn-secondary ml-2">Cancel</button>-->
-      <!--<button type="submit" mat-raised-button color="primary">Submit</button>-->
-      <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;">Submit</button>
-
-
+  <ng-template #view_record let-modal>
+    <div class="modal-header" style="width: 1020px; background-color: white;">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{ _record[0]?.primarytenant }} {{ _record[0]?.tenant2 }} {{ _record[0]?.tenant3 }} {{ _record[0]?.tenant4 }}
+      </h4>
     </div>
+  </ng-template>
+
+
+
+  <!-- <div class="one">
+            <mat-form-field appearance="outline">
+              <mat-label>Rent Ready Date</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+          </div> -->
+  <!-- </div> -->
+  <div style="display: flex; justify-content: space-between; align-items: safe center;">
+    <!--<button type="button" (click)="onCancel()"  mat-raised-button color="primary" class="btn btn-secondary ml-2">Cancel</button>-->
+    <!--<button type="submit" mat-raised-button color="primary">Submit</button>-->
+    <button class="btn btn-sm btn-success mr-2" style="background-color: #2ba8ce !important; margin-right: 10px;">Submit</button>
+
+
+  </div>
 </form>

@@ -28,14 +28,7 @@ export class PrimaryTenantComponent {
   steps = [true, true]; // Use an array to represent steps, e.g., [true, false, false] for three steps
   currentStep = 0;
   state?: string;
-  // applicantTypes: string[] = ['Single', 'Couple', 'Roommates'];
-  // applicantTypes = [
-  //   { value: '1', label: 'Single' },
-  //   { value: '2', label: 'Couple' },
-  //   { value: '3', label: 'Roommates' },
-  //   { value: '4', label: 'Couple+Roommates' }
-  //   // Add more options as needed
-  // ];
+ 
   propertyTypes: string[] = ['Multi-Family', 'Single-Family']
   options1: any = ['Yes', 'No'];
   options2: any = ['Fair/good', 'Poor']
@@ -72,7 +65,7 @@ export class PrimaryTenantComponent {
   frmPrimary = this.fb.group({
     // basicinfo: this.fb.group({
     // firstCtrl:['',Validators.required],
-    appilcantId: [0, Validators.required],
+    // appilcantId: [0, Validators.required],
     applicantName: ['', Validators.required],
     applicantType: [''],
     property: ['', Validators.required],
@@ -92,13 +85,13 @@ export class PrimaryTenantComponent {
     paystubRecent: ['', Validators.required],
     applicantTypeId: [Number],
     propertyTypeId: ['', Validators.required],
-    applicationStatus: ['', Validators.required],
+    applicationStatusId: ['', Validators.required],
     createdBy: ['', Validators.required],
     // }),
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -258,7 +251,7 @@ export class PrimaryTenantComponent {
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -420,7 +413,7 @@ export class PrimaryTenantComponent {
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -558,7 +551,7 @@ export class PrimaryTenantComponent {
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
     applicantName: ['', Validators.required],
-    applicantType: ['', Validators.required],
+    applicantType: [''],
     property: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -582,7 +575,7 @@ export class PrimaryTenantComponent {
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -744,7 +737,7 @@ export class PrimaryTenantComponent {
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -1225,15 +1218,15 @@ export class PrimaryTenantComponent {
 
   onStepChange(event: StepperSelectionEvent): void {
      
-    if (event.selectedIndex == 0 || event.selectedIndex == 0) {
-      this.tenantSNO = 1;
-    }
-    else {
-      this.tenantSNO = event.selectedIndex;
-    }
-
+    //if (event.selectedIndex == 0) {
+    //  this.tenantSNO = 1;
+    //}
+    //else {
+      
+    //}
+    this.tenantSNO = event.selectedIndex + 1;
     
-    if (this.snapid) {
+    if (this.snapid && this.tenantSNO<4) {
       this.getScroreSheetByApplicantId(this.snapid, this.tenantSNO.toString());
     }
     // Additional logic can be added here based on the step change
@@ -1267,7 +1260,7 @@ export class PrimaryTenantComponent {
         applicantId: this.result.data.id,
         //   // paystubRecent: this.result.data.paystubRecent,
         // paystubRecentMonthly:this.result.data.paystubRecentMonthly,
-        // yTD_Earnings:this.result.data.yTD_Earnings,
+        // ytD_Earnings:this.result.data.ytD_Earnings,
         tenantSNo: "1",
 
         // },
@@ -1316,12 +1309,12 @@ export class PrimaryTenantComponent {
         section8Rent: this.result[0].section8Rent,
         standardDepositProperty: this.result[0].standardDepositProperty,
         propertyTypeId: this.result[0].propertyTypeId,
-        applicationStatus: this.result[0].applicationStatus,
+        applicationStatusId: this.result[0].applicationStatusId,
 
         incom_verification: {
           paystubRecent: this.result[0].paystubRecent,
           paystubRecentMonthly: this.result[0].paystubRecentMonthly,
-          yTD_Earnings: this.result[0].yTD_Earnings,
+          ytD_Earnings: this.result[0].ytD_Earnings,
           secondPayStub: this.result[0].secondPayStub,
           bankStatementMonthly: this.result[0].bankStatementMonthly,
           bankStatement: this.result[0].bankStatement,
@@ -1468,7 +1461,7 @@ export class PrimaryTenantComponent {
   //  incom_verification: {
   //    paystubRecent: this.result[0].paystubRecent,
   //    paystubRecentMonthly: this.result[0].paystubRecentMonthly,
-  //    yTD_Earnings: this.result[0].yTD_Earnings,
+  //    ytD_Earnings: this.result[0].ytD_Earnings,
   //    secondPayStub: this.result[0].secondPayStub,
   //    bankStatementMonthly: this.result[0].bankStatementMonthly,
   //    bankStatement: this.result[0].bankStatement,

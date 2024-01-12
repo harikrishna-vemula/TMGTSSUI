@@ -43,13 +43,33 @@ export
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
   }
+  //diablecontrols() {
+  //  this.coverSheetForm.get('primaryTenant')?.disable();
+  //  this.coverSheetForm.get('tenant2')?.disable();
+  //  this.coverSheetForm.get('tenant3')?.disable();
+  //  this.coverSheetForm.get('tenant4')?.disable();
+  //  this.coverSheetForm.get('moveinRentCharge')?.disable();
+  //  this.coverSheetForm.get('otherMoveinCharge1')?.disable();
+  //  this.coverSheetForm.get('otherMoveinCharge2')?.disable();
+  //  this.coverSheetForm.get('otherMoveinCharge3')?.disable();
+  //  this.coverSheetForm.get('rubsMoveinCharge')?.disable();
+  //  this.coverSheetForm.get('prepaidCleaningCharge')?.disable();
+  //  this.coverSheetForm.get('securityDepositCharge')?.disable();
+  //  this.coverSheetForm.get('nonRefProcessingFeeCharge')?.disable();
+  //  this.coverSheetForm.get('petDepositCharge')?.disable();
+  //  this.coverSheetForm.get('petNonRefFeeCharge')?.disable();
+  //  this.coverSheetForm.get('additionDepositCharge')?.disable();
 
+  //}
+    
+  
   ngOnInit() {
-
+   
     this.initForm();
     if (this.activate && this.activate.snapshot) {
       this.snapid = this.activate.snapshot.paramMap.get('id') || '';
     }
+
     this.getdata();
     console.log(this.snapid, "snap id Coversheet component");
     this.coverSheetForm.get('moveinRentCharge')?.valueChanges.subscribe(() => this.calculateSum());
@@ -63,7 +83,7 @@ export
     this.coverSheetForm.get('petDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
     this.coverSheetForm.get('petNonRefFeeCharge')?.valueChanges.subscribe(() => this.calculateSum());
     this.coverSheetForm.get('additionDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
-
+    //this.diablecontrols();
   }
   dateChanged(event: MatDatepickerInputEvent<Date>) {
     console.log(event.value); // handle the selected date here

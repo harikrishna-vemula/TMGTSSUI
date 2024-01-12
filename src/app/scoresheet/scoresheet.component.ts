@@ -72,9 +72,9 @@ export class ScoresheetComponent implements OnInit {
       filterParams: numberFilterParams
     },
       {field: 'property',headerName: 'Property', headerTooltip: 'Property',tooltipField:'property',sortable: true, filter: true,  filterParams: stdFilterParams},
-      {field: 'state', headerName: 'State',headerTooltip: 'State',tooltipField:'State',sortable: true, filter: true, filterParams: stdFilterParams},
+      // {field: 'state', headerName: 'State',headerTooltip: 'State',tooltipField:'State',sortable: true, filter: true, filterParams: stdFilterParams},
       {field: 'city',headerName: 'City', headerTooltip: 'City',tooltipField:'city',sortable: true, filter: true,  filterParams: stdFilterParams},
-      {field: 'zip', headerName: 'Zip',headerTooltip: 'Zip',tooltipField:'zip',sortable: true, filter: true,   filterParams: stdFilterParams},
+      // {field: 'zip', headerName: 'Zip',headerTooltip: 'Zip',tooltipField:'zip',sortable: true, filter: true,   filterParams: stdFilterParams},
       //{field: 'StandardDepositProperty', sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'standardDepositProperty', headerName: 'StandardDepositProperty', headerTooltip: 'standardDepositProperty',tooltipField:'StandardDepositProperty',sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'address', headerTooltip: 'Address',tooltipField:'address', sortable: true, filter: true, filterParams: stdFilterParams},

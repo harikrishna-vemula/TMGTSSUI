@@ -25,7 +25,7 @@
           <ng-template matStepLabel>Primary Tenant</ng-template>
           <form [formGroup]="frmPrimary" (ngSubmit)="onPrimaryTenantSubmit1()">
             <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)">
-              <mat-tab label="Basic Details">
+              <mat-tab label="Basic Details" >
                 <div class="card" style=" padding: 2%">
 
                   <div>
@@ -73,6 +73,7 @@
                     <div class="one">
                       <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
                         <mat-label>Monthly Rent</mat-label>
+                        <span matPrefix="$"></span>
                         <input type="number" matInput formControlName="monthlyRent">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
@@ -107,7 +108,7 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Applicant Status</mat-label>
-                        <mat-select formControlName="applicationStatus">
+                        <mat-select formControlName="applicationStatusId">
                           <mat-option [value]="1">Pending</mat-option>
                           <mat-option [value]="2">Approved</mat-option>
                           <mat-option [value]="3">Not Approved</mat-option>
@@ -149,7 +150,7 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Months</mat-label>
-                        <input type="number" matInput formControlName="yTD_Earnings">
+                        <input type="number" matInput formControlName="ytD_Earnings">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
 
@@ -707,7 +708,7 @@
                   <div>
                     <div class="one">
                       <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
-                        <mat-label>Applicant Name</mat-label>
+                        <mat-label>Tenant 2</mat-label>
                         <input type="text" matInput formControlName="applicantName">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
@@ -811,7 +812,7 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Months</mat-label>
-                        <input type="number" matInput formControlName="yTD_Earnings">
+                        <input type="number" matInput formControlName="ytD_Earnings">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
 
@@ -1366,7 +1367,7 @@
                   <div>
                     <div class="one">
                       <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
-                        <mat-label>Applicant Name</mat-label>
+                        <mat-label>Tenant 3</mat-label>
                         <input type="text" matInput formControlName="applicantName">
                       </mat-form-field>
                       <mat-form-field appearance="outline" style=" width: 35%">
@@ -1470,7 +1471,7 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline">
                         <mat-label>Months</mat-label>
-                        <input type="number" matInput formControlName="yTD_Earnings">
+                        <input type="number" matInput formControlName="ytD_Earnings">
                       </mat-form-field>
                       <mat-form-field appearance="outline">
 

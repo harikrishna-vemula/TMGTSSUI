@@ -1,14 +1,14 @@
 <!-- <mat-step [stepControl]="frmTenant3" [ngClass]="stepColorClass(stepper?.selected)"> -->
    
     <form [formGroup]="frmTenant4" >
-        <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)">
-          <mat-tab label="Basic Details">
+        <mat-tab-group [selectedIndex]="tabIndex" (selectedTabChange)="onTabSelect($event)" [(selectedIndex)]="selectedTabIndex">
+          <mat-tab label="Basic Details" tabindex="0">
             <div class="card" style=" padding: 2%">
 
               <div>
                 <div class="one">
                   <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
-                    <mat-label>Applicant Name</mat-label>
+                    <mat-label>Tenant 4</mat-label>
                     <input type="text" matInput formControlName="applicantName">
                   </mat-form-field>
                   <mat-form-field appearance="outline" style=" width: 35%">
@@ -74,7 +74,7 @@
             </div>
           </mat-tab>
           <!-- Income Verification -->
-          <mat-tab label="Income Verification">
+          <mat-tab label="Income Verification" tabindex="1">
             <div class="card" style=" padding: 2%">
               <div class="incom_verification" formGroupName="incom_verification">
                 <div>
@@ -91,7 +91,7 @@
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>Months</mat-label>
-                    <input type="number" matInput formControlName="yTD_Earnings">
+                    <input type="number" matInput formControlName="ytD_Earnings">
                   </mat-form-field>
                   <mat-form-field appearance="outline">
 
@@ -139,7 +139,7 @@
               </div>
             </div>
           </mat-tab>
-          <mat-tab label="Credit Summary ">
+          <mat-tab label="Credit Summary " tabindex="2">
             <div class="card" style=" padding: 2%">
               <div class="credit_summary" formGroupName="credit_summary">
                 <div>
@@ -267,6 +267,10 @@
                       <mat-label>Deposit To Hold</mat-label>
                       <input type="number" matInput formControlName="depositToHold">
                        </mat-form-field>
+                       <mat-form-field appearance="outline" style=" width: 35%">
+                        <mat-label>Paid by Primary Tenant</mat-label>
+                        <input type="number" matInput formControlName="">
+                         </mat-form-field>
                   </div>
 
                 </div>
@@ -278,7 +282,7 @@
             </div>
           </mat-tab>
           <!--other_summary completed -->
-          <mat-tab label="Reference">
+          <mat-tab label="Reference" tabindex="3">
             <div class="card" style=" padding: 2%">
               <div class="landlord_ref" formGroupName="landlord_ref">
                 <div>
@@ -447,7 +451,7 @@
             </div>
           </mat-tab>
           <!-- Proerty History -->
-          <mat-tab label="Rental History">
+          <mat-tab label="Rental History" tabindex="4">
             <div class="card" style=" padding: 2%">
               <div class="payment_history" formGroupName="rental_history">
                 <div>
@@ -473,7 +477,7 @@
           </mat-tab>
          
           <!-- final session total -->
-          <mat-tab label="Summary">
+          <mat-tab label="Summary" tabindex="5">
             <div class="card" style=" padding: 2%">
               <div class="final_session" formGroupName="points_summary">
                 <div class="one">

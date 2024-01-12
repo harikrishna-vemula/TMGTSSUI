@@ -15,38 +15,38 @@
     </mat-form-field>
   </div>
   <div class="one">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" >
       <mat-label>Primary Tenant</mat-label>
-      <input type="text" matInput formControlName="primaryTenant">
+      <input type="text" matInput formControlName="primaryTenant" [readonly]="true" >
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Tenant2</mat-label>
-      <input type="text" matInput formControlName="tenant2">
+      <input type="text" matInput formControlName="tenant2" [readonly]="true">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Tenant3</mat-label>
-      <input type="text" matInput formControlName="tenant3">
+      <input type="text" matInput formControlName="tenant3" [readonly]="true">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Tenant4</mat-label>
-      <input type="text" matInput formControlName="tenant4">
+      <input type="text" matInput formControlName="tenant4" [readonly]="true">
     </mat-form-field>
   </div>
   <div class="one">
     <mat-form-field appearance="outline">
       <mat-label>Property Address</mat-label>
-      <input type="text" matInput formControlName="propertyAddress">
+      <input type="text" matInput formControlName="propertyAddress" [readonly]="true">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>City</mat-label>
-      <input type="text" matInput formControlName="city">
+      <input type="text" matInput formControlName="city" [readonly]="true">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>State</mat-label>
-      <input type="text" matInput formControlName="state">
+      <input type="text" matInput formControlName="state" [readonly]="true">
     </mat-form-field>
 
   </div>
@@ -132,7 +132,7 @@
       <input type="time" matInput formControlName="signingTime">
     </mat-form-field>-->
     <mat-form-field appearance="outline">
-      <mat-label>With Whome</mat-label>
+      <mat-label>With Whom</mat-label>
       <input type="text" matInput formControlName="withWhom">
     </mat-form-field>
   </div>
@@ -155,46 +155,46 @@
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Monthly Rent</mat-label>
-        <input type="number" matInput formControlName="monthlyRent">
+        <input type="number" matInput formControlName="monthlyRent" [readonly]="true">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge11" (input)="getOtherMoveinCharge1()">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge12">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge21" (input)="getOtherMoveinCharge2()">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge22">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge31" (input)="getOtherMoveinCharge3()">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge32">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge41">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Other Monthly charge</mat-label>
+        <mat-label>Other Monthly Charge</mat-label>
         <input type="number" matInput formControlName="otherMonthlyCharge42">
       </mat-form-field>
     </div>
@@ -211,7 +211,7 @@
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Move-in Rent</mat-label>
-        <input type="number" matInput formControlName="moveinRentCharge">
+        <input type="number" matInput formControlName="moveinRentCharge" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Move-in Rent</mat-label>
@@ -220,8 +220,8 @@
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Move-in charge 1</mat-label>
-        <input type="number" matInput formControlName="otherMoveinCharge1">
+        <mat-label>Other Move-in Charge 1</mat-label>
+        <input type="number" matInput formControlName="otherMoveinCharge1" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Other Move-in Paid 1</mat-label>
@@ -230,31 +230,31 @@
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Move-in charge 2</mat-label>
-        <input type="number" matInput formControlName="otherMoveinCharge2">
+        <mat-label>Other Move-in Charge 2</mat-label>
+        <input type="number" matInput formControlName="otherMoveinCharge2" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Other Move-in charge Paid 2</mat-label>
+        <mat-label>Other Move-in Charge Paid 2</mat-label>
         <input type="number" matInput formControlName="otherMoveinChargePaid2">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Other Move-in charge 3</mat-label>
-        <input type="number" matInput formControlName="otherMoveinCharge3">
+        <mat-label>Other Move-in Charge 3</mat-label>
+        <input type="number" matInput formControlName="otherMoveinCharge3" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Other Move-in charge Paid 3</mat-label>
+        <mat-label>Other Move-in Charge Paid 3</mat-label>
         <input type="number" matInput formControlName="otherMoveinChargePaid3">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label><b>RUBS</b> Move-in charge</mat-label>
+        <mat-label><b>RUBS</b> Move-in Charge</mat-label>
         <input type="number" matInput formControlName="rubsMoveinCharge">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label><b>RUBS</b> Move-in charge Paid</mat-label>
+        <mat-label><b>RUBS</b> Move-in Charge Paid</mat-label>
         <input type="number" matInput formControlName="rubsMoveinChargePaid">
       </mat-form-field>
     </div>
@@ -270,28 +270,28 @@
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>security Deposit</mat-label>
-        <input type="number" matInput formControlName="securityDepositCharge">
+        <mat-label>Security Deposit</mat-label>
+        <input type="number" matInput formControlName="securityDepositCharge" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>security Deposit</mat-label>
+        <mat-label>Security Deposit</mat-label>
         <input type="number" matInput formControlName="securityDepositPaid">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Non-ref processing fee Charge</mat-label>
+        <mat-label>Non-Ref Processing Fee Charge</mat-label>
         <input type="number" matInput formControlName="nonRefProcessingFeeCharge">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Non-ref processing fee Paid</mat-label>
+        <mat-label>Non-Ref Processing Fee Paid</mat-label>
         <input type="number" matInput formControlName="nonRefProcessingFeePaid">
       </mat-form-field>
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
         <mat-label>Pet Deposit Charge</mat-label>
-        <input type="number" matInput formControlName="petDepositCharge">
+        <input type="number" matInput formControlName="petDepositCharge" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Pet Deposit Paid</mat-label>
@@ -300,11 +300,11 @@
     </div>
     <div class="one">
       <mat-form-field appearance="outline">
-        <mat-label>Pet Non-ref. fee Charge</mat-label>
+        <mat-label>Pet Non-Ref. Fee Charge</mat-label>
         <input type="number" matInput formControlName="petNonRefFeeCharge">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Pet Non-ref. fee Paid</mat-label>
+        <mat-label>Pet Non-Ref. Fee Paid</mat-label>
         <input type="number" matInput formControlName="petNonRefFeePaid">
       </mat-form-field>
     </div>
@@ -312,7 +312,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Additional Deposit Charge</mat-label>
-        <input type="number" matInput formControlName="additionDepositCharge">
+        <input type="number" matInput formControlName="additionDepositCharge" [readonly]="true">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Additional Deposit Paid</mat-label>
@@ -331,8 +331,8 @@
     <mat-grid-tile colspan="1" rowspan="1">
       <div class="one">
         <mat-form-field appearance="outline">
-          <mat-label>Pet Non-ref. fee</mat-label>
-          <input type="number" matInput formControlName="subTotal">
+          <mat-label>Sub Total</mat-label>
+          <input type="number" matInput formControlName="subTotal" [readonly]="true">
         </mat-form-field>
 
       </div>
@@ -342,8 +342,8 @@
     <mat-grid-tile colspan="1" rowspan="1">
       <div class="one">
         <mat-form-field appearance="outline">
-          <mat-label>Pet Non-ref. fee</mat-label>
-          <input type="number" matInput formControlName="paid">
+          <mat-label>Paid</mat-label>
+          <input type="number" matInput formControlName="paid" [readonly]="true">
         </mat-form-field>
 
       </div>
@@ -353,8 +353,8 @@
     <mat-grid-tile colspan="1" rowspan="1">
       <div class="one">
         <mat-form-field appearance="outline">
-          <mat-label>Pet Non-ref. fee</mat-label>
-          <input type="number" matInput formControlName="dueatMoveinKeyPickup">
+          <mat-label>Due at Movein KeyPickup</mat-label>
+          <input type="number" matInput formControlName="dueatMoveinKeyPickup" [readonly]="true">
         </mat-form-field>
 
       </div>

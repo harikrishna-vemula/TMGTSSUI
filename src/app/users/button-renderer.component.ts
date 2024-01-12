@@ -42,7 +42,7 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
   }
 
   open(){
-    alert("working open popup")
+    // alert("working open popup")
     console.log('View Record:', this.result);
   
     // Open the dialog here using MatDialog

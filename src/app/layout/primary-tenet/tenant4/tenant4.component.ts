@@ -17,7 +17,7 @@ export class Tanant4Component {
   isLinear = false;
   stepper: any; currentUser: any; result: any
   snapid: any;
-  applicantId: number = 0; frmTenant: any; tenantId: number = 0;
+  applicantId: number = 0; frmTenant: any; tenantId: number = 0; selectedTabIndex: number = 0;
   constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private _userservice: UsersService, private activate: ActivatedRoute) {
     this.authservice.currentUser.subscribe(x => this.currentUser = x);
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
@@ -27,7 +27,8 @@ export class Tanant4Component {
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
     applicantName: ['', Validators.required],
-    applicantType: ['', Validators.required],
+    applicantType: [''],
+    applicantTypeId: ['', Validators.required],
     property: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -36,21 +37,21 @@ export class Tanant4Component {
     section8Rent: ['', Validators.required],
     standardDepositProperty: ['', Validators.required],
     // propertyTypeId: ['', Validators.required],
-    propertyType: ['', Validators.required],
+    // propertyType: ['', Validators.required],
     // applicantTypeId: ['', Validators.required],
     // ptype: ['', Validators.required],
     applicantId: ['', Validators.required],
     tenantSNo: ['', Validators.required],
     tenantId: [Number],
-    paystubRecent: ['', Validators.required],
-    applicantTypeId: ['', Validators.required],
+    paystubRecent: ['', Validators.required],    
     propertyTypeId: ['', Validators.required],
+    createdBy: ['', Validators.required],
 
     // }),
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -59,6 +60,7 @@ export class Tanant4Component {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     credit_summary: this.fb.group({
       creditLines: [Boolean, Validators.required],
@@ -91,11 +93,12 @@ export class Tanant4Component {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
 
     }),
     landlord_ref: this.fb.group({
       rentalReferance: [Boolean, Validators.required],
-      lL1LandlordType: [Number, Validators.required],
+      // lL1LandlordType: [Number, Validators.required],
       lL1ProperNotice: [Boolean, Validators.required],
       //lL1ProperNoticePoints: [0, Validators.required],
       lL1NSF: ['', Validators.required],
@@ -118,7 +121,7 @@ export class Tanant4Component {
       //lL1RerentPoints: [0, Validators.required],
 
 
-      lL2LandlordType: [Number, Validators.required],
+      // lL2LandlordType: [Number, Validators.required],
       lL2ProperNotice: [Boolean, Validators.required],
       //lL2ProperNoticePoints: ['', Validators.required],
       lL2NSF: ['', Validators.required],
@@ -142,6 +145,7 @@ export class Tanant4Component {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
 
     }),
     rental_history: this.fb.group({
@@ -149,6 +153,7 @@ export class Tanant4Component {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
     // pets: this.fb.group({
     //   petApprovedLandlordReferance1: ['', Validators.required],
@@ -174,6 +179,7 @@ export class Tanant4Component {
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
+      createdBy: ['', Validators.required],
     }),
   })
 
@@ -187,7 +193,7 @@ export class Tanant4Component {
     // Add your custom logic here
   }
   nextTab() {
-    if (this.tabIndex < 6) {
+    if (this.tabIndex < 5) {
       this.tabIndex++;
     }
   }
@@ -211,15 +217,13 @@ export class Tanant4Component {
   getScroreSheetByApplicantId(snapid: any, sno: any) {
 
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {
-      console.log(data, "getting data");
-      console.log(data[0].applicantType, "applicant type");
-      console.log(data[0].propertyType, "propertyType type");
+   
 
       this.result = data
      if (sno == '4') {
         this.frmTenant = this.frmTenant4;
       }
-      
+      this.tenantId = this.result[0].tenantId,
 
       this.frmTenant.patchValue({
         // firstname: this.result[0].firstname,
@@ -229,6 +233,7 @@ export class Tanant4Component {
         tenantSNo: sno,
         applicantName: this.result[0].applicantName,
         property: this.result[0].property,
+        applicantType: this.result[0].applicantType,
         applicantTypeId: this.result[0].applicantTypeId,
         city: this.result[0].city,
         state: this.result[0].state,
@@ -241,7 +246,7 @@ export class Tanant4Component {
         incom_verification: {
           paystubRecent: this.result[0].paystubRecent,
           paystubRecentMonthly: this.result[0].paystubRecentMonthly,
-          yTD_Earnings: this.result[0].yTD_Earnings,
+          ytD_Earnings: this.result[0].ytD_Earnings,
           secondPayStub: this.result[0].secondPayStub,
           bankStatementMonthly: this.result[0].bankStatementMonthly,
           bankStatement: this.result[0].bankStatement,
@@ -416,21 +421,25 @@ export class Tanant4Component {
         applicantId: this.snapid.toString(),
         incom_verification: {
           applicantId: this.snapid.toString(),
-          tenantSNo: tenantSNo
+          tenantSNo: tenantSNo,
+          tenantId: this.tenantId
         },
         credit_summary: {
           applicantId: this.snapid.toString(),
-          tenantSNo: tenantSNo
+          tenantSNo: tenantSNo,
+          tenantId: this.tenantId
         }
         ,
         landlord_ref: {
           applicantId: this.snapid.toString(),
-          tenantSNo: tenantSNo
+          tenantSNo: tenantSNo,
+          tenantId: this.tenantId
         }
         ,
         rental_history: {
           applicantId: this.snapid.toString(),
-          tenantSNo: tenantSNo
+          tenantSNo: tenantSNo,
+          tenantId: this.tenantId
         }
         // ,
         // pets: {
@@ -440,7 +449,8 @@ export class Tanant4Component {
         ,
         points_summary: {
           applicantId: this.snapid.toString(),
-          tenantSNo: tenantSNo
+          tenantSNo: tenantSNo,
+          tenantId: this.tenantId
         }
       })
     }
@@ -586,9 +596,14 @@ export class Tanant4Component {
         }
       );
     }
-    this.tabIndex++;
+    if (this.tabIndex < 5) {
+      this.tabIndex++;
+    }
+   
     // }
   }
+
+
 
   stepColorClass(step: CdkStep | undefined): string {
     if (step) {

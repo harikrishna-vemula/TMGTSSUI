@@ -27,7 +27,7 @@ export class CosignerComponent {
     // basicinfo: this.fb.group({      
     // firstCtrl:['',Validators.required],
     applicantName: ['', Validators.required],
-    applicantType: ['', Validators.required],
+    // applicantType: ['', Validators.required],
     property: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
@@ -36,13 +36,13 @@ export class CosignerComponent {
     section8Rent: ['', Validators.required],
     standardDepositProperty: ['', Validators.required],
     // propertyTypeId: ['', Validators.required],
-    propertyType: ['', Validators.required],
+    // propertyType: ['', Validators.required],
     // applicantTypeId: ['', Validators.required],
     // ptype: ['', Validators.required],
     applicantId: ['', Validators.required],
     tenantSNo: ['', Validators.required],
     tenantId: [Number],
-    paystubRecent: ['', Validators.required],
+    // paystubRecent: ['', Validators.required],
     applicantTypeId: ['', Validators.required],
     propertyTypeId: ['', Validators.required],
     createdBy: ['', Validators.required],
@@ -51,7 +51,7 @@ export class CosignerComponent {
     incom_verification: this.fb.group({
       paystubRecent: ['', Validators.required], //pay stub
       paystubRecentMonthly: ['', Validators.required], //monthly
-      yTD_Earnings: ['', Validators.required], //results
+      ytD_Earnings: ['', Validators.required], //results
       secondPayStub: ['', Validators.required], //2nd stub
       bankStatementMonthly: ['', Validators.required], //monthly
       bankStatement: ['', Validators.required], //result
@@ -89,7 +89,7 @@ export class CosignerComponent {
       // class1MisdemeanersPoints: ['',Validators.required],
       class2Misdemeaners: [Date, Validators.required],
       depositApproved: [Boolean, Validators.required],
-      depositToHold: [''],
+      // depositToHold: [''],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
@@ -98,7 +98,7 @@ export class CosignerComponent {
     }),
     landlord_ref: this.fb.group({
       rentalReferance: [Boolean, Validators.required],
-      lL1LandlordType: [Number, Validators.required],
+      lL1LandlordType: [Number],
       lL1ProperNotice: [Boolean, Validators.required],
       //lL1ProperNoticePoints: [0, Validators.required],
       lL1NSF: ['', Validators.required],
@@ -118,65 +118,22 @@ export class CosignerComponent {
       lL1AdversePetReferance: [Boolean, Validators.required],
       //lL1AdversePetReferancePoints: [0, Validators.required],
       lL1Rerent: [Boolean, Validators.required],
-      //lL1RerentPoints: [0, Validators.required],
-
-
-      lL2LandlordType: [Number, Validators.required],
-      lL2ProperNotice: [Boolean, Validators.required],
-      //lL2ProperNoticePoints: ['', Validators.required],
-      lL2NSF: ['', Validators.required],
-      //lL2NSFPoints: ['', Validators.required],
-      lL2LatePayments: ['', Validators.required],
-      //L2LatePaymentsPoints: ['', Validators.required],
-      lL2PaymentOrVacantNotices: ['', Validators.required],
-      //lL2PaymentOrVacantNoticesPoints: ['', Validators.required],
-      lL2TendayComplyNotice: ['', Validators.required],
-      //lL2TendayComplyNoticePoints: ['', Validators.required],
-      lL2HOAViolations: ['', Validators.required],
-      //lL2HOAViolationsPoints: ['', Validators.required],
-      lL2PropertyCleanliness: ['', Validators.required],
-      //lL2PropertyCleanlinessPoints: ['', Validators.required],
-      lL2Pets: [Boolean, Validators.required],
-      //lL2PetsPoints: ['', Validators.required],
-      lL2AdversePetReferance: [Boolean, Validators.required],
-      //lL2AdversePetReferancePoints: ['', Validators.required],
-      lL2Rerent: [Boolean, Validators.required],
-      //lL2RerentPoints: ['', Validators.required],
+      //lL1RerentPoints: [0, Validators.required],      
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
       createdBy: ['', Validators.required],
 
     }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean, Validators.required],
-      applicantId: ['', Validators.required],
-      tenantSNo: ['', Validators.required],
-      tenantId: [Number],
-      createdBy: ['', Validators.required],
-    }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['', Validators.required],
-      petApprovedLandlordReferance2: ['', Validators.required],
-      noOfCatsCompanion: [Boolean, Validators.required],
-      noOfCatsCompanions: ['', Validators.required],
-      noOfLargeDogsCompanion: [Boolean, Validators.required],
-      noOfLargeDogsCompanions: ['', Validators.required],
-      noOfSmallDogsCompanion: [Boolean, Validators.required],
-      noOfSmallDogsCompanions: ['', Validators.required],
-      applicantId: ['', Validators.required],
-      tenantSNo: ['', Validators.required],
-      tenantId: [Number],
-      createdBy: ['', Validators.required],
-    }),
+
     points_summary: this.fb.group({
-      totalPoints: ['', Validators.required],
+      // totalPoints: ['', Validators.required],
       finalApproval: [Boolean, Validators.required],
-      totalDeposit: ['', Validators.required],
-      depositToHoldPaid: ['', Validators.required],
-      petDeposit: ['', Validators.required],
-      additionalDeposit: ['', Validators.required],
-      balanceDepositDue: ['', Validators.required],
+      // totalDeposit: ['', Validators.required],
+      // depositToHoldPaid: ['', Validators.required],
+      // petDeposit: ['', Validators.required],
+      // additionalDeposit: ['', Validators.required],
+      // balanceDepositDue: ['', Validators.required],
       applicantId: ['', Validators.required],
       tenantSNo: ['', Validators.required],
       tenantId: [Number],
@@ -200,9 +157,7 @@ export class CosignerComponent {
   getScroreSheetByApplicantId(snapid: any, sno: any) {
 
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {
-      console.log(data, "getting data");
-      console.log(data[0].applicantType, "applicant type");
-      console.log(data[0].propertyType, "propertyType type");
+
 
       this.result = data
       if (sno == '5') {
@@ -230,7 +185,7 @@ export class CosignerComponent {
         incom_verification: {
           paystubRecent: this.result[0].paystubRecent,
           paystubRecentMonthly: this.result[0].paystubRecentMonthly,
-          yTD_Earnings: this.result[0].yTD_Earnings,
+          ytD_Earnings: this.result[0].ytD_Earnings,
           secondPayStub: this.result[0].secondPayStub,
           bankStatementMonthly: this.result[0].bankStatementMonthly,
           bankStatement: this.result[0].bankStatement,
@@ -302,53 +257,18 @@ export class CosignerComponent {
           //lL1RerentPoints: this.result[0].lL1RerentPoints,
 
 
-          //lL2LandlordType: this.result[0].rentalReferance,
-          lL2ProperNotice: this.result[0].lL2ProperNotice,
-          //lL2ProperNoticePoints: this.result[0].lL2ProperNoticePoints,
-          lL2NSF: this.result[0].lL2NSF,
-          //lL2NSFPoints: this.result[0].lL2NSFPoints,
-          lL2LatePayments: this.result[0].lL2LatePayments,
-          //lL2LatePaymentsPoints: this.result[0].lL2LatePaymentsPoints,
-          lL2PaymentOrVacantNotices: this.result[0].lL2PaymentOrVacantNotices,
-          //lL2PaymentOrVacantNoticesPoints: this.result[0].lL2PaymentOrVacantNoticesPoints,
-          lL2TendayComplyNotice: this.result[0].lL2TendayComplyNotice,
-          //lL2TendayComplyNoticePoints: this.result[0].lL2TendayComplyNoticePoints,
-          lL2HOAViolations: this.result[0].lL2HOAViolations,
-          //lL2HOAViolationsPoints: this.result[0].lL2HOAViolationsPoints,
-          lL2PropertyCleanliness: this.result[0].lL2PropertyCleanliness,
-          //lL2PropertyCleanlinessPoints: this.result[0].lL2PropertyCleanlinessPoints,
-          lL2Pets: this.result[0].lL2Pets,
-          //lL2PetsPoints: this.result[0].lL2PetsPoints,
-          lL2AdversePetReferance: this.result[0].lL2AdversePetReferance,
-          //lL2AdversePetReferancePoints: this.result[0].lL2AdversePetReferancePoints,
-          lL2Rerent: this.result[0].lL2Rerent,
-          //lL2RerentPoints: this.result[0].lL2RerentPoints,
-          // ... add other properties
+
         },
-        rental_history: {
-          rentalHistoryLength: this.result[0].rentalHistoryLength,
-        },
-        pets: {
-          petApprovedLandlordReferance1: this.result[0].petApprovedLandlordReferance1,
-          petApprovedLandlordReferance2: this.result[0].petApprovedLandlordReferance2,
 
 
-          noOfCatsCompanion: this.result[0].noOfCatsCompanion,
-          noOfCatsCompanions: this.result[0].noOfCatsCompanions,
-          noOfLargeDogsCompanion: this.result[0].noOfLargeDogsCompanion,
-          noOfLargeDogsCompanions: this.result[0].noOfLargeDogsCompanions,
-          noOfSmallDogsCompanion: this.result[0].noOfSmallDogsCompanion,
-          noOfSmallDogsCompanions: this.result[0].noOfSmallDogsCompanions,
-          // ... add other properties
-        },
         points_summary: {
-          totalPoints: this.result[0].totalPoints,
+          // totalPoints: this.result[0].totalPoints,
           finalApproval: this.result[0].finalApproval,
-          totalDeposit: this.result[0].totalDeposit,
-          depositToHoldPaid: this.result[0].depositToHoldpaid,
-          petDeposit: this.result[0].petDeposit,
-          additionalDeposit: this.result[0].additionalDeposit,
-          balanceDepositDue: this.result[0].balanceDepositDue,
+          // totalDeposit: this.result[0].totalDeposit,
+          // depositToHoldPaid: this.result[0].depositToHoldpaid,
+          // petDeposit: this.result[0].petDeposit,
+          // additionalDeposit: this.result[0].additionalDeposit,
+          // balanceDepositDue: this.result[0].balanceDepositDue,
         },
       })
 
@@ -562,31 +482,6 @@ export class CosignerComponent {
     }
     else if (this.tabIndex == 4) {
 
-
-      this._userservice.createRentalHistory(this.frmTenant.value.rental_history).subscribe(
-        (data) => {
-
-        },
-        (error) => {
-          console.error('Error creating landlord reference:', error);
-        }
-      );
-    }
-    else if (this.tabIndex == 5) {
-
-
-      this._userservice.CreatePets(this.frmTenant.value.pets).subscribe(
-        (data) => {
-
-        },
-        (error) => {
-          console.error('Error creating pets:', error);
-        }
-      );
-    }
-    else if (this.tabIndex == 6) {
-
-
       this._userservice.CreatePointsSummary(this.frmTenant.value.points_summary).subscribe(
         (data) => {
 
@@ -596,7 +491,9 @@ export class CosignerComponent {
         }
       );
     }
-    this.tabIndex++;
+    if (this.tabIndex < 4) {
+      this.tabIndex++;
+    }
     // }
   }
 

@@ -5,6 +5,7 @@ import { UsersService } from './users.service';
 import { ICellRendererParams } from 'ag-grid-community';
 import { CoversheetComponent } from '../layout/primary-tenet/coversheet/coversheet.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ApprovalsummaryComponent } from '../approvalsummary/approvalsummary.component';
 
 @Component({
   selector: 'app-action-button-renderer',
@@ -46,19 +47,14 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     console.log('View Record:', this.result);
   
     // Open the dialog here using MatDialog
-    const dialogRef = this.dialog.open(CoversheetComponent, {
-      width: '100%',
-      data: {
-        // id: this.id,       // Pass the id to the dialog
-        // recordData: this.result[0],  // Pass the data to the dialog
-      },
-    });
+    this.router.navigate(['/approvals', this.id]);
+    // this.router.navigate(['/approvals']);
   
     // Subscribe to the afterClosed event to handle actions after the dialog is closed
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log('Dialog closed with result:', result);
-      // You can perform any actions based on the result here
-    });
+    // dialogRef.afterClosed().subscribe((result: any) => {
+    //   console.log('Dialog closed with result:', result);
+    //   // You can perform any actions based on the result here
+    // });
   }
 
   edit() {

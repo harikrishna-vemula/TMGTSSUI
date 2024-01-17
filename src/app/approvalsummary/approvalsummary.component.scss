@@ -1,0 +1,43 @@
+.main_div {
+  margin: 10px;
+
+  .title {
+    text-align: center;
+    font-weight: bold;
+  }
+}
+.one {
+  display: flex;
+ 
+}
+.custom-mat-field {
+  height: 20px !important; /* Adjust the height as needed */
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Make sure the body covers the entire viewport height */
+  margin: 0; /* Remove default body margin */
+}
+
+.one {
+  text-align: center;
+}
+
+mat-form-field {
+width: -webkit-fill-available;
+margin: 0px 10px;
+}
+::ng-deep .mat-step-header .mat-step-icon-state-done {
+  background-color: green; 
+}
+
+
+*{
+  background-color: white;
+}  
+.custom-width {
+  width: 200px; /* Adjust the width as needed */
+}
+

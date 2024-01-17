@@ -31,6 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativeDateModule
 import { CosignerComponent } from './layout/primary-tenet/cosigner/cosigner.component';
 import { ArchivedComponent } from './archived/archived.component';
+import { ApprovalsummaryComponent } from './approvalsummary/approvalsummary.component';
 
 
 
@@ -58,6 +59,7 @@ import { ArchivedComponent } from './archived/archived.component';
     CosignerComponent,
     Tanant4Component,
     ArchivedComponent,
+    ApprovalsummaryComponent,
     // NavMenuComponent,
 
   ],

@@ -20,6 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AgGridModule } from 'ag-grid-angular';
 import { ScoresheetComponent } from './scoresheet/scoresheet.component';
 import { ArchivedComponent } from './archived/archived.component';
+import { ApprovalsummaryComponent } from './approvalsummary/approvalsummary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'primarytenant', pathMatch: 'full' },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'coversheet/:id', component: CoversheetComponent },
   { path: 'scoresheet', component: ScoresheetComponent },
   { path: 'archived', component: ArchivedComponent },
+  { path: 'approvals/:id', component: ApprovalsummaryComponent },
   { path: 'addusers', component: AddUsersComponent ,
   // {path: 'editusers/:id', component: EditUserComponent,
   

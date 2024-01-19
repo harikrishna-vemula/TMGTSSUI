@@ -15,7 +15,7 @@ import { ApprovalsummaryComponent } from '../approvalsummary/approvalsummary.com
   <span style="margin-left: 10px;"></span>
   <button mat-button (click)="edit()" style="background-color: #2ba8ce !important;">Edit</button>
   <span style="margin-left: 10px;"></span> <!-- Add space between buttons -->
-  <button  mat-raised-button *ngIf="showLinkButton"  style="background-color: #2ba8ce !important;" (click)="copyText('http://localhost:4200/primarytenant/')" value="click to copy">Copy Link</button>
+  <button  mat-raised-button *ngIf="showLinkButton"  style="background-color: #2ba8ce !important;" (click)="copyText('http://localhost:4200/approvals/')" value="click to copy">Copy Link</button>
 </span>
 
   `,

@@ -67,7 +67,7 @@ export class ArchivedComponent implements OnInit {
      this.columnDefs = [
        
        {
-         field: 'id', headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', sortable: true,  filter: 'agNumberColumnFilter',
+         field: 'id', width: '80',headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', sortable: true,  filter: 'agNumberColumnFilter',
        filterParams: numberFilterParams, hidden:true
      },
        {
@@ -75,9 +75,9 @@ export class ArchivedComponent implements OnInit {
        filterParams: numberFilterParams
      },
        {field: 'property',headerName: 'Property', headerTooltip: 'Property',tooltipField:'property',sortable: true, filter: true,  filterParams: stdFilterParams},
-       {field: 'state', headerName: 'State',headerTooltip: 'State',tooltipField:'State',sortable: true, filter: true, filterParams: stdFilterParams},
+       //{field: 'state', headerName: 'State',headerTooltip: 'State',tooltipField:'State',sortable: true, filter: true, filterParams: stdFilterParams},
        {field: 'city',headerName: 'City', headerTooltip: 'City',tooltipField:'city',sortable: true, filter: true,  filterParams: stdFilterParams},
-       {field: 'zip', headerName: 'Zip',headerTooltip: 'Zip',tooltipField:'zip',sortable: true, filter: true,   filterParams: stdFilterParams},
+       //{field: 'zip', headerName: 'Zip',headerTooltip: 'Zip',tooltipField:'zip',sortable: true, filter: true,   filterParams: stdFilterParams},
        //{field: 'StandardDepositProperty', sortable: true, filter: true, filterParams: dateFilterParams},
        // {field: 'standardDepositProperty', headerName: 'StandardDepositProperty', headerTooltip: 'standardDepositProperty',tooltipField:'StandardDepositProperty',sortable: true, filter: true, filterParams: dateFilterParams},
        // {field: 'address', headerTooltip: 'Address',tooltipField:'address', sortable: true, filter: true, filterParams: stdFilterParams},
@@ -86,7 +86,7 @@ export class ArchivedComponent implements OnInit {
        
        // {field: 'createdBy',headerTooltip: 'Created By',tooltipField:'createdBy', sortable: true, filter: true, filterParams: stdFilterParams},
        {
-         field: 'createdDate', headerTooltip: 'Created Date', tooltipField: 'createdDate', sortable: true, filter: 'agDateColumnFilter', filterParams: dateFilterParams, 
+         field: 'createdDate', width: '140', headerTooltip: 'Created Date', tooltipField: 'createdDate', sortable: true, filter: 'agDateColumnFilter', filterParams: dateFilterParams, 
          cellRenderer: (data: any) => {
            return this.datePipe.transform(data.value, 'MM/dd/yyyy');
          }

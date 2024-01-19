@@ -1,450 +1,507 @@
-<mat-horizontal-stepper>
+<mat-card class="box">
+  <mat-card-header>
+    
 
-  <mat-step label="Move In CoverSheet">
-<form [formGroup]="coversheet1">
-
-  <div class="one" style="display: flex; justify-content: center; align-items: center;">
-    <mat-form-field appearance="outline" class="Acc_width" style="width: 30%;">
-      <mat-label>Property Manager</mat-label>
-      <input type="text" matInput  [readonly]= "true" formControlName="propertyManager">
-    </mat-form-field>
-  </div>
-  <div class="one">
-    <mat-form-field appearance="outline">
-      <mat-label>Primary Tenant</mat-label>
-      <input type="text" matInput  [readonly]= "true" formControlName="primaryTenant"  >
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Tenant2</mat-label>
-      <input type="text" matInput  [readonly]= "true" formControlName="tenant2"  >
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Tenant3</mat-label>
-      <input type="text" matInput  [readonly]= "true" formControlName="tenant3"  >
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Tenant4</mat-label>
-      <input type="text" matInput  [readonly]= "true" formControlName="tenant4"  >
-    </mat-form-field>
-  </div>
-    <div class="one">
-      <mat-form-field appearance="outline">
-        <mat-label>Property Address</mat-label>
-        <input type="text" matInput  [readonly]= "true" formControlName="propertyAddress"  >
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <input type="text" matInput  [readonly]= "true" formControlName="city"  >
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>State</mat-label>
-        <input type="text" matInput  [readonly]= "true" formControlName="state"  >
-      </mat-form-field>
-
-
-      <mat-form-field appearance="outline">
-        <mat-label>Unit Code</mat-label>
-        <input type="text" matInput  [readonly]= "true" formControlName="unitCode">
-      </mat-form-field>
+    <div class="Acc_width" style="width: 30%; margin-left: 2vw;">
+      <mat-card-title style="font-size: 18px;">Primary Tenant Name :</mat-card-title>
+      <mat-card style="background-color: #e0e0e0;">
+        <mat-card-content style="font-weight: bold; font-size: 16px;">
+          <p>{{ coversheet1.get('primaryTenant')?.value }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
-    <div class="one">
-      <mat-form-field appearance="outline">
-        <mat-label>Best POC/Method</mat-label>
-        <input type="text" matInput  [readonly]= "true" formControlName="bestPOC">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Deposit Paid Date</mat-label>
+  </mat-card-header>
+  <mat-horizontal-stepper>
 
-        <input matInput [matDatepicker]="rentReadyDatePicker" placeholder="Choose a date"  [readonly]= "true" formControlName="rentReadyDate">
-        <mat-datepicker-toggle matSuffix [for]="rentReadyDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #rentReadyDatePicker></mat-datepicker>
+    <mat-step label="Move In CoverSheet">
+      <form [formGroup]="coversheet1">
 
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Deposit Paid Date</mat-label>
-        <input matInput [matDatepicker]="depositPaidDatePicker" placeholder="Choose a date"  [readonly]= "true" formControlName="depositPaidDate">
-        <mat-datepicker-toggle matSuffix [for]="depositPaidDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #depositPaidDatePicker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Rent Responsible Date</mat-label>
-        <input matInput [matDatepicker]="rentResponsibleDatePicker" placeholder="Choose a date"  [readonly]= "true" formControlName="rentResponsibleDate">
-        <mat-datepicker-toggle matSuffix [for]="rentResponsibleDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #rentResponsibleDatePicker></mat-datepicker>
-      </mat-form-field>
-            
-    </div>
-    <div class="one">
-      <mat-form-field appearance="outline">
-        <mat-label>Agreement Type</mat-label>
-  
-        <mat-select  [readonly]= "true" formControlName="agreementType">
-          <mat-option [value]="1">MTM</mat-option>
-          <mat-option [value]="2">6 mo lease</mat-option>
-          <mat-option [value]="3">12 mo lease</mat-option>
-          <mat-option [value]="4">FF</mat-option>
-          <mat-option [value]="5">Other Lease Term</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>QC Date</mat-label>
-        <input matInput [matDatepicker]="qCDatePicker" placeholder="Choose a date"  [readonly]= "true" formControlName="qcDate">
-        <mat-datepicker-toggle matSuffix [for]="qCDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #qCDatePicker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Signing Date</mat-label>
-        <input matInput [matDatepicker]="signingDatePicker" placeholder="Choose a date"  [readonly]= "true" formControlName="signingDate">
-        <mat-datepicker-toggle matSuffix [for]="signingDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #signingDatePicker></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>With Whom</mat-label>
-        <input type="text" matInput  [readonly]= "true" formControlName="withWhom">
-      </mat-form-field>
-    </div>
-    <div class="one">
-      <mat-form-field appearance="outline">
-        <mat-label>Other Terms</mat-label>
-        <textarea type="text" matInput  [readonly]= "true" formControlName="otherTerms"></textarea>
-      </mat-form-field>
-   
-      <mat-form-field appearance="outline">
-        <mat-label>List Paid Utilities</mat-label>
-        <textarea type="text" matInput  [readonly]= "true" formControlName="listPaidUtilities"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="one" style="display: flex; justify-content: center; align-items: center;">
-      <mat-form-field appearance="outline" class="Acc_width" style="width: 30%;">
-        <mat-label>Monthly Rent</mat-label>
-        <input type="number" matInput  [readonly]= "true" formControlName="monthlyRent"  >
-      </mat-form-field>
-    </div>
-    <div class="monthly_rent">
-      <div class="one">
-                 
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Amount</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMonthlyCharge11">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Description</mat-label>
-          <input type="text" matInput  [readonly]= "true" formControlName="otherMonthlyCharge12">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Amount</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMonthlyCharge21" >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Description</mat-label>
-          <input type="text" matInput  [readonly]= "true" formControlName="otherMonthlyCharge22">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Amount</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMonthlyCharge31" >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Description</mat-label>
-          <input type="text" matInput  [readonly]= "true" formControlName="otherMonthlyCharge32">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Amount</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMonthlyCharge41">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Monthly Charge Description</mat-label>
-          <input type="text" matInput  [readonly]= "true" formControlName="otherMonthlyCharge42">
-        </mat-form-field>
-      </div>
-    </div>
-      <div class="one" style="display: flex; justify-content: space-around; text-align: center;">
-        <div>
-          <h2>Charge</h2>
+        <div class="one" style="display: flex; justify-content: center; align-items: center;">
+          <mat-form-field appearance="outline" class="Acc_width" style="width: 30%;">
+            <mat-label>Property Manager</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="propertyManager">
+          </mat-form-field>
         </div>
-        <div>
-          <h2>Paid</h2>
-        </div>
-      </div>
-     
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Move-in Rent Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="moveinRentCharge"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Move-in Rent Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="moveinRentPaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Other Move-in Charge 1</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMoveinCharge1"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Move-in Paid 1</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMoveinChargePaid1">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Other Move-in Charge 2</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMoveinCharge2"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Move-in Charge Paid 2</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMoveinChargePaid2">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Other Move-in Charge 3</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMoveinCharge3"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Other Move-in Charge Paid 3</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="otherMoveinChargePaid3">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label><b>RUBS</b> Move-in Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="rubsMoveinCharge">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label><b>RUBS</b> Move-in Charge Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="rubsMoveinChargePaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Prepaid Cleaning Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="prepaidCleaningCharge">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Prepaid Cleaning Charge Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="prepaidCleaningPaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Security Deposit Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="securityDepositCharge"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Security Deposit Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="securityDepositPaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Non-Ref Processing Fee Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="nonRefProcessingFeeCharge">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Non-Ref Processing Fee Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="nonRefProcessingFeePaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Pet Deposit Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="petDepositCharge"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Pet Deposit Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="petDepositPaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-        <mat-form-field appearance="outline">
-          <mat-label>Pet Non-Ref. Fee Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="petNonRefFeeCharge">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Pet Non-Ref. Fee Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="petNonRefFeePaid">
-        </mat-form-field>
-      </div>
-      <div class="one">
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Additional Deposit Charge</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="additionDepositCharge"  >
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Additional Deposit Paid</mat-label>
-          <input type="number" matInput  [readonly]= "true" formControlName="additionDepositPaid">
-        </mat-form-field>
-      </div>
-      <mat-grid-list cols="6" rowHeight="100px">
-       
-        <mat-grid-tile colspan="1" rowspan="1">Sub Total</mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
-          <div class="one">
-            <mat-form-field appearance="outline">
-              <mat-label>Sub Total</mat-label>
-              <input type="number" matInput  [readonly]= "true" formControlName="subTotal"  >
-            </mat-form-field>
-    
-          </div>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">Paid</mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
-          <div class="one">
-            <mat-form-field appearance="outline">
-              <mat-label>Paid</mat-label>
-              <input type="number" matInput  [readonly]= "true" formControlName="paid"  >
-            </mat-form-field>
-    
-          </div>
-    
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">Due at Movein KeyPickup</mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
-          <div class="one">
-            <mat-form-field appearance="outline">
-              <mat-label>Due at Movein KeyPickup</mat-label>
-              <input type="number" matInput  [readonly]= "true" formControlName="dueatMoveinKeyPickup"  >
-            </mat-form-field>
-    
-          </div>
-    
-        </mat-grid-tile>
-      </mat-grid-list>
-</form>
-  </mat-step>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Primary Tenant</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="primaryTenant">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tenant 2</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="tenant2">
+          </mat-form-field>
 
-  <mat-step label="Tenant Approval Summary">
-    <form [formGroup]="approvalSummaryForm" >
-    <div class="card" style=" padding: 2%">
+          <mat-form-field appearance="outline">
+            <mat-label>Tenant 3</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="tenant3">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tenant 4</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="tenant4">
+          </mat-form-field>
+
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Property Address</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="propertyAddress">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="city">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="state">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Unit Code</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="unitCode">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Best POC/Method</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="bestPOC">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rent Ready Paid</mat-label>
+
+            <input matInput [matDatepicker]="rentReadyDatePicker" placeholder="Choose a date" [readonly]="true" formControlName="rentReadyDate">
+            <!--<mat-datepicker-toggle matSuffix [for]="rentReadyDatePicker"></mat-datepicker-toggle>-->
+            <mat-datepicker #rentReadyDatePicker></mat-datepicker>
+
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Deposit Paid Date</mat-label>
+            <input matInput [matDatepicker]="depositPaidDatePicker" placeholder="Choose a date" [readonly]="true" formControlName="depositPaidDate">
+            <!--<mat-datepicker-toggle matSuffix [for]="depositPaidDatePicker"></mat-datepicker-toggle>-->
+            <mat-datepicker #depositPaidDatePicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Rent Responsible Date</mat-label>
+            <input matInput [matDatepicker]="rentResponsibleDatePicker" placeholder="Choose a date" [readonly]="true" formControlName="rentResponsibleDate">
+            <!--<mat-datepicker-toggle matSuffix [for]="rentResponsibleDatePicker"></mat-datepicker-toggle>-->
+            <mat-datepicker #rentResponsibleDatePicker></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Agreement Type</mat-label>
+
+            <mat-select [readonly]="true" formControlName="agreementType">
+              <mat-option [value]="1">MTM</mat-option>
+              <mat-option [value]="2">6 mo lease</mat-option>
+              <mat-option [value]="3">12 mo lease</mat-option>
+              <mat-option [value]="4">FF</mat-option>
+              <mat-option [value]="5">Other Lease Term</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>QC Date</mat-label>
+            <input matInput [matDatepicker]="qCDatePicker" placeholder="Choose a date" [readonly]="true" formControlName="qcDate">
+            <!--<mat-datepicker-toggle matSuffix [for]="qCDatePicker"></mat-datepicker-toggle>-->
+            <mat-datepicker #qCDatePicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Signing Date</mat-label>
+            <input matInput [matDatepicker]="signingDatePicker" placeholder="Choose a date" [readonly]="true" formControlName="signingDate">
+            <!--<mat-datepicker-toggle matSuffix [for]="signingDatePicker"></mat-datepicker-toggle>-->
+            <mat-datepicker #signingDatePicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>With Whom</mat-label>
+            <input type="text" matInput [readonly]="true" formControlName="withWhom">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <mat-form-field appearance="outline">
+            <mat-label>Other Terms</mat-label>
+            <textarea type="text" matInput [readonly]="true" formControlName="otherTerms"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>List Paid Utilities</mat-label>
+            <textarea type="text" matInput [readonly]="true" formControlName="listPaidUtilities"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="one" style="display: flex; justify-content: center; align-items: center;">
+          <div class=" one">
+            <span class="input-group-text" style="height: 58px;">$</span>
+            <mat-form-field appearance="outline" class="Acc_width" style="width: 60%;">
+              <mat-label>Monthly Rent</mat-label>
+              <input type="number" matInput [readonly]="true" formControlName="monthlyRent">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="monthly_rent">
+          <div class="one">
+            <span class="input-group-text" style="height: 58px;">$</span>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Amount</mat-label>
+              <input type="number" matInput [readonly]="true" formControlName="otherMonthlyCharge11">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Description</mat-label>
+              <input type="text" matInput [readonly]="true" formControlName="otherMonthlyCharge12">
+            </mat-form-field>
+         
+            <span class="input-group-text" style="height: 58px;">$</span>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Amount</mat-label>
+              <input type="number" matInput [readonly]="true" formControlName="otherMonthlyCharge21">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Description</mat-label>
+              <input type="text" matInput [readonly]="true" formControlName="otherMonthlyCharge22">
+            </mat-form-field>
+          </div>
+          <div class="one">
+            <span class="input-group-text" style="height: 58px;">$</span>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Amount</mat-label>
+              <input type="number" matInput [readonly]="true" formControlName="otherMonthlyCharge31">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Description</mat-label>
+              <input type="text" matInput [readonly]="true" formControlName="otherMonthlyCharge32">
+            </mat-form-field>
+        
+            <span class="input-group-text" style="height: 58px;">$</span>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Amount</mat-label>
+              <input type="number" matInput [readonly]="true" formControlName="otherMonthlyCharge41">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Other Monthly Charge Description</mat-label>
+              <input type="text" matInput [readonly]="true" formControlName="otherMonthlyCharge42">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="one" style="display: flex; justify-content: space-around; text-align: center;">
+          <div>
+            <h2>Charge</h2>
+          </div>
+          <div>
+            <h2>Paid</h2>
+          </div>
+          <div>
+            <h2>Charge</h2>
+          </div>
+          <div>
+            <h2>Paid</h2>
+          </div>
+        </div>
+
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Move-in Rent Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="moveinRentCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Move-in Rent Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="moveinRentPaid">
+          </mat-form-field>
+      
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Other Move-in Charge 1</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="otherMoveinCharge1">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Other Move-in Paid 1</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="otherMoveinChargePaid1">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Other Move-in Charge 2</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="otherMoveinCharge2">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Other Move-in Charge Paid 2</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="otherMoveinChargePaid2">
+          </mat-form-field>
+      
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Other Move-in Charge 3</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="otherMoveinCharge3">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Other Move-in Charge Paid 3</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="otherMoveinChargePaid3">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label><b>RUBS</b> Move-in Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="rubsMoveinCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label><b>RUBS</b> Move-in Charge Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="rubsMoveinChargePaid">
+          </mat-form-field>
+        
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Prepaid Cleaning Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="prepaidCleaningCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Prepaid Cleaning Charge Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="prepaidCleaningPaid">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Security Deposit Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="securityDepositCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Security Deposit Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="securityDepositPaid">
+          </mat-form-field>
+        
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Non-Ref Processing Fee Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="nonRefProcessingFeeCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Non-Ref Processing Fee Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="nonRefProcessingFeePaid">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Pet Deposit Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="petDepositCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Pet Deposit Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="petDepositPaid">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Pet Non-Ref. Fee Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="petNonRefFeeCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Pet Non-Ref. Fee Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="petNonRefFeePaid">
+          </mat-form-field>
+        </div>
+        <div class="one">
+          <span class="input-group-text" style="height: 58px;">$</span>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Additional Deposit Charge</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="additionDepositCharge">
+          </mat-form-field>
+          <span class="input-group-text" style="height: 58px;">$</span>
+          <mat-form-field appearance="outline">
+            <mat-label>Additional Deposit Paid</mat-label>
+            <input type="number" matInput [readonly]="true" formControlName="additionDepositPaid">
+          </mat-form-field>
+        </div>
+        <mat-grid-list cols="6" rowHeight="100px">
+
+          <mat-grid-tile colspan="1" rowspan="1">Sub Total</mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <mat-label>Sub Total</mat-label>
+                <input type="number" matInput [readonly]="true" formControlName="subTotal">
+              </mat-form-field>
+
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">Paid</mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <div class="one">
+
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <mat-label>Paid</mat-label>
+                <input type="number" matInput [readonly]="true" formControlName="paid">
+              </mat-form-field>
+
+            </div>
+
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">Due at Movein KeyPickup</mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="1">
+            <div class="one">
+
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <mat-label>Due at Movein KeyPickup</mat-label>
+                <input type="number" matInput [readonly]="true" formControlName="dueatMoveinKeyPickup">
+              </mat-form-field>
+
+            </div>
+
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </mat-step>
+
+    <mat-step label="Tenant Approval Summary">
+      <form [formGroup]="approvalSummaryForm">
+        <div class="card" style=" padding: 2%">
           <div class="title" style="display: flex; justify-content: center; align-items: center;">
             <h2>Tenant Approval Summary</h2>
           </div>
           <div class="approvalsummary1" formGroupName="approvalsummary1">
-          <div class="basic_details" >
-            <div class="one">
-              <mat-form-field appearance="outline">
-                <mat-label>
-                  <span style="font-weight: bold; font-size: max(100%, 16px);">Primary Tenant</span>
-                </mat-label>
-                <input type="number" matInput formControlName="primarytenant" [readonly]="true">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>
-                  <span style="font-weight: bold; font-size: max(100%, 16px);">Tenant2</span>
-                </mat-label>
-                <input type="number" matInput formControlName="tenant2" [readonly]="true">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>
-                  <span style="font-weight: bold; font-size: max(100%, 16px);">Tenant3</span>
-                </mat-label>
-                <input type="number" matInput formControlName="tenant3" [readonly]="true">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>
-                  <span style="font-weight: bold; font-size: max(100%, 16px);">Tenant4</span>
-                </mat-label>
-                <input type="number" matInput formControlName="tenant4" [readonly]="true">
-              </mat-form-field>
-             
+            <div class="basic_details">
+              <div class="one">
+                <mat-form-field appearance="outline">
+                  <mat-label>
+                    <span style="font-weight: bold; font-size: max(100%, 16px);">Primary Tenant</span>
+                  </mat-label>
+                  <input type="text" matInput formControlName="primarytenant" [readonly]="true">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>
+                    <span style="font-weight: bold; font-size: max(100%, 16px);">Tenant 2</span>
+                  </mat-label>
+                  <input type="text" matInput formControlName="tenant2" [readonly]="true">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>
+                    <span style="font-weight: bold; font-size: max(100%, 16px);">Tenant 3</span>
+                  </mat-label>
+                  <input type="text" matInput formControlName="tenant3" [readonly]="true">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>
+                    <span style="font-weight: bold; font-size: max(100%, 16px);">Tenant 4</span>
+                  </mat-label>
+                  <input type="text" matInput formControlName="tenant4" [readonly]="true">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Co-Signer</mat-label>
+                  <input type="text" matInput [readonly]="true" formControlName="tenant5">
+                </mat-form-field>
+
+              </div>
             </div>
-          </div>
             <div class="one">
               <mat-form-field appearance="outline">
                 <mat-label>
                   <span style="font-weight: bold; font-size: max(100%, 16px);">Property</span>
                 </mat-label>
-                <input type="number" matInput formControlName="property" [readonly]="true">
+                <input type="text" matInput formControlName="property" [readonly]="true">
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>
                   <span style="font-weight: bold; font-size: max(100%, 16px);">City</span>
                 </mat-label>
-                <input type="number" matInput formControlName="city" [readonly]="true">
+                <input type="text" matInput formControlName="city" [readonly]="true">
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>
                   <span style="font-weight: bold; font-size: max(100%, 16px);">State</span>
                 </mat-label>
-                <input type="number" matInput formControlName="state" [readonly]="true">
+                <input type="text" matInput formControlName="state" [readonly]="true">
               </mat-form-field>
             </div>
           </div>
-    </div>
-   
-          
-      
-        
-          <div class="card" style=" padding: 2%">
-            <div class="title" style="display: flex; justify-content: center; align-items: center;">
-              <h2>Primary Tenant</h2>
-            </div>
-     
-            <div class="approval_primary" formGroupName="approval_primary1">
-              <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>
-                    <span style="font-weight: bold; font-size: max(100%, 16px);">Total Points</span>
-                  </mat-label>
-                  <input type="number" matInput formControlName="totalPoints" [readonly]="true">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label class="adjustable-label">Final Approval  Y/N</mat-label>
-                  <mat-label>
-                    <span style="font-weight: bold; font-size: max(100%, 16px);">Final Approval</span>
-                  </mat-label>
-                  <mat-select formControlName="finalApproval" [readonly]="true">
-                    <mat-option [value]="true">Yes</mat-option>
-                    <mat-option [value]="false">No</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-      
-              <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Total Deposit Tenant 1</mat-label>
-                  <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Total Deposit Tenant 1</span>            </mat-label>           
-                  <input type="number" formControlName="totalDepositTenant1" matInput placeholder="$0.00">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Deposit To Hold</span>            </mat-label>
-                  <input type="number" formControlName="depositToHold" matInput placeholder="$0.00">
-                </mat-form-field>
-              </div>
-              <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Pet Deposit - Primary Tenant</span>            </mat-label>
-                  <input type="number" formControlName="petDepositPrimaryTenant" matInput placeholder="$0.00">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <mat-label> Aditional Deposit - Primary Tenant</mat-label>
-                  <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Aditional Deposit - Primary Tenant</span>            </mat-label>
-        additionalDepositPrimaryTenant: [''],
-                  <input type="number" formControlName="additionalDepositPrimaryTenant" matInput placeholder="$0.00">
-                </mat-form-field>
-              </div>
-              <div class="one">
-                <mat-form-field appearance="outline">
-                  <mat-label>Balance of Deposit Due</mat-label>
-                  <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Balance of Deposit Due</span>            </mat-label>
-                  <input type="number" formControlName="balanceOfDepositDue" matInput placeholder="$0.00">
-                </mat-form-field>
-              </div>
-            </div>
-      
-      
-      
+        </div>
+
+
+
+
+        <div class="card" style=" padding: 2%">
+          <div class="title" style="display: flex; justify-content: center; align-items: center;">
+            <h2>Primary Tenant</h2>
           </div>
-      
+
+          <div class="approval_primary" formGroupName="approval_primary1">
+            <div class="one">
+
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  <span style="font-weight: bold; font-size: max(100%, 16px);">Total Points</span>
+                </mat-label>
+                <input type="number" matInput formControlName="totalPoints" [readonly]="true">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label class="adjustable-label"><!--Final Approval  Y/N--></mat-label>
+                <mat-label>
+                  <span style="font-weight: bold; font-size: max(100%, 16px);">Final Approval</span>
+                </mat-label>
+                <mat-select formControlName="finalApproval" [readonly]="true">
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <!--<mat-label>Total Deposit Tenant 1</mat-label>-->
+                <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Total Deposit Tenant 1</span>            </mat-label>
+                <input type="number" formControlName="totalDepositTenant1" matInput placeholder="$0.00">
+              </mat-form-field>
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Deposit To Hold</span>            </mat-label>
+                <input type="number" formControlName="depositToHold" matInput placeholder="$0.00">
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Pet Deposit - Primary Tenant</span>            </mat-label>
+                <input type="number" formControlName="petDepositPrimaryTenant" matInput placeholder="$0.00">
+              </mat-form-field>
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <!--<mat-label> Aditional Deposit - Primary Tenant</mat-label-->
+                <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Aditional Deposit - Primary Tenant</span>            </mat-label>
+
+                <input type="number" formControlName="additionalDepositPrimaryTenant" matInput placeholder="$0.00">
+              </mat-form-field>
+            </div>
+            <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
+              <mat-form-field appearance="outline">
+                <!--<mat-label>--><!--Balance of Deposit Due--><!--</mat-label>-->
+                <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Balance of Deposit Due</span>            </mat-label>
+                <input type="number" formControlName="balanceOfDepositDue" matInput placeholder="$0.00">
+              </mat-form-field>
+            </div>
+          </div>
+
+
+
+        </div>
+
         <div class="card" style=" padding: 2%">
           <div class="title" style="display: flex; justify-content: center; align-items: center;">
             <h2>Tenant 2</h2>
@@ -458,7 +515,7 @@
                 <input type="number" matInput formControlName="totalPoints" [readonly]="true">
               </mat-form-field>
               <mat-form-field appearance="outline">
-                <mat-label class="adjustable-label">Final Approval  Y/N</mat-label>
+                <!--<mat-label class="adjustable-label">Final Approval  Y/N</mat-label>-->
                 <mat-label>
                   <span style="font-weight: bold; font-size: max(100%, 16px);">Final Approval</span>
                 </mat-label>
@@ -469,29 +526,32 @@
               </mat-form-field>
             </div>
             <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Pet Deposit - Tenant2</span>            </mat-label>
                 <input type="number" formControlName="petDepositTenant2" matInput placeholder="$0.00">
-              </mat-form-field>
+              </mat-form-field><span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
-                <mat-label> Aditional Deposit - Tenant2</mat-label>
+
+                <!--<mat-label> Aditional Deposit - Tenant2</mat-label>-->
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Aditional Deposit -Tenant2</span>            </mat-label>
                 <input type="number" formControlName="additionalDepositTenant2" matInput placeholder="$0.00">
               </mat-form-field>
             </div>
             <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
-                <mat-label>Balance of Deposit Due</mat-label>
+                <!--<mat-label>Balance of Deposit Due</mat-label>-->
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Balance of Deposit Due Tenant2</span>            </mat-label>
                 <input type="number" formControlName="balanceOfDepositDueTenant2" matInput placeholder="$0.00">
               </mat-form-field>
             </div>
           </div>
-      
-      
-      
+
+
+
         </div>
-      
+
         <div class="card" style=" padding: 2%">
           <div class="title" style="display: flex; justify-content: center; align-items: center;">
             <h2>Tenant 3</h2>
@@ -505,7 +565,7 @@
                 <input type="number" matInput formControlName="totalPoints" [readonly]="true">
               </mat-form-field>
               <mat-form-field appearance="outline">
-                <mat-label class="adjustable-label">Final Approval  Y/N</mat-label>
+                <mat-label class="adjustable-label"><!--Final Approval  Y/N--></mat-label>
                 <mat-label>
                   <span style="font-weight: bold; font-size: max(100%, 16px);">Final Approval</span>
                 </mat-label>
@@ -516,10 +576,12 @@
               </mat-form-field>
             </div>
             <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Pet Deposit -Tenant3</span>            </mat-label>
                 <input type="number" formControlName="petDepositTenant3" matInput placeholder="$0.00">
               </mat-form-field>
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <!-- <mat-label> Aditional Deposit - Primary Tenant</mat-label> -->
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Aditional Deposit -Tenant3</span>            </mat-label>
@@ -527,6 +589,7 @@
               </mat-form-field>
             </div>
             <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <!-- <mat-label>Balance of Deposit Due</mat-label> -->
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Balance of Deposit Due - Tenant3</span>            </mat-label>
@@ -534,11 +597,11 @@
               </mat-form-field>
             </div>
           </div>
-      
-      
-      
+
+
+
         </div>
-      
+
         <div class="card" style=" padding: 2%">
           <div class="title" style="display: flex; justify-content: center; align-items: center;">
             <h2>Tenant 4</h2>
@@ -563,10 +626,12 @@
               </mat-form-field>
             </div>
             <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Pet Deposit -Tenant4</span>            </mat-label>
                 <input type="number" formControlName="petDepositTenant4" matInput placeholder="$0.00">
               </mat-form-field>
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <!-- <mat-label> Aditional Deposit - Primary Tenant</mat-label> -->
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Aditional Deposit - Tenant4</span>            </mat-label>
@@ -574,6 +639,7 @@
               </mat-form-field>
             </div>
             <div class="one">
+              <span class="input-group-text" style="height: 58px;">$</span>
               <mat-form-field appearance="outline">
                 <!-- <mat-label>Balance of Deposit Due</mat-label> -->
                 <mat-label><span style="font-weight: bold; font-size: max(100%, 16px);">Balance of Deposit Due</span>            </mat-label>
@@ -581,11 +647,11 @@
               </mat-form-field>
             </div>
           </div>
-      
-      
-      
+
+
+
         </div>
-      
+
         <div class="card" style=" padding: 2%">
           <div class="title" style="display: flex; justify-content: center; align-items: center;">
             <h2>Co-Signer</h2>
@@ -594,20 +660,23 @@
             <div class="one">
               <mat-form-field appearance="outline">
                 <mat-label>
-                  <span style="font-weight: bold; font-size: max(100%, 16px);">Total Points</span>
+                  <span style="font-weight: bold; font-size: max(100%, 16px);">Final Approval</span>
                 </mat-label>
-                <input type="number" matInput formControlName="totalPoints" [readonly]="true">
+                <mat-select formControlName="finalApproval" [readonly]="true">
+                  <mat-option [value]="true">Yes</mat-option>
+                  <mat-option [value]="false">No</mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
-            </div>
+          </div>
         </div>
-        
+
       </form>
-  </mat-step>
-</mat-horizontal-stepper>
-      
-    
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>
 
 
 
-    
+
+

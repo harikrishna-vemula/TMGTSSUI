@@ -52,6 +52,7 @@ export class UsersService {
         
       );
   }
+
   // GetAllUsers1(snapid:any): Observable<any> {
   //   alert("working")
   //   console.log(snapid,"service id");
@@ -146,6 +147,20 @@ export class UsersService {
         }),
         catchError((error) => {
           console.error('Error in GetAllUsers:', error);
+          throw error; // Rethrow the error or handle as needed
+        })
+      );
+  }
+  GetApprovalSummaryByApplicantId(appid: any): Observable<any> {
+    //return this._http.get(this.url + 'Scoresheet/GetScroreSheetByApplicantId/${appid}/${sno}')
+
+    return this._http.get<any>(this.url + `Scoresheet/GetApprovalSummaryByApplicantId/${appid}`)
+      .pipe(
+        tap((data) => {
+          console.log('Data from GetApprovalSummaryByApplicantId:', data);
+        }),
+        catchError((error) => {
+          console.error('Error in GetApprovalSummaryByApplicantId:', error);
           throw error; // Rethrow the error or handle as needed
         })
       );

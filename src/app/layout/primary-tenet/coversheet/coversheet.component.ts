@@ -61,10 +61,10 @@ export
   //  this.coverSheetForm.get('additionDepositCharge')?.disable();
 
   //}
-    
-  
+
+
   ngOnInit() {
-   
+
     this.initForm();
     if (this.activate && this.activate.snapshot) {
       this.snapid = this.activate.snapshot.paramMap.get('id') || '';
@@ -83,6 +83,18 @@ export
     this.coverSheetForm.get('petDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
     this.coverSheetForm.get('petNonRefFeeCharge')?.valueChanges.subscribe(() => this.calculateSum());
     this.coverSheetForm.get('additionDepositCharge')?.valueChanges.subscribe(() => this.calculateSum());
+
+    this.coverSheetForm.get('moveinRentPaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('otherMoveinChargePaid1')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('otherMoveinChargePaid2')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('otherMoveinChargePaid3')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('rubsMoveinChargePaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('prepaidCleaningPaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('securityDepositPaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('nonRefProcessingFeePaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('petDepositPaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('petNonRefFeePaid')?.valueChanges.subscribe(() => this.calculateSum());
+    this.coverSheetForm.get('additionDepositPaid')?.valueChanges.subscribe(() => this.calculateSum());
     //this.diablecontrols();
   }
   dateChanged(event: MatDatepickerInputEvent<Date>) {
@@ -98,6 +110,7 @@ export
   }
 
   calculateSum() {
+    //Charge Values
     const moveinRentChargeValue = parseFloat(this.coverSheetForm.get('moveinRentCharge')?.value) || 0;
     const otherMoveinCharge1Value = parseFloat(this.coverSheetForm.get('otherMoveinCharge1')?.value) || 0;
     const otherMoveinCharge2Value = parseFloat(this.coverSheetForm.get('otherMoveinCharge2')?.value) || 0;
@@ -110,13 +123,35 @@ export
     const petNonRefFeeChargeValue = this.coverSheetForm.get('petNonRefFeeCharge')?.value || 0;
     const additionDepositChargeValue = this.coverSheetForm.get('additionDepositCharge')?.value || 0;
 
+    //Paid Values
+    const moveinRentPaidValue = this.coverSheetForm.get('moveinRentPaid')?.value || 0;
+    const otherMoveinChargePaid1Value = parseFloat(this.coverSheetForm.get('otherMoveinChargePaid1')?.value) || 0;
+    const otherMoveinChargePaid2Value = parseFloat(this.coverSheetForm.get('otherMoveinChargePaid2')?.value) || 0;
+    const otherMoveinChargePaid3Value = parseFloat(this.coverSheetForm.get('otherMoveinChargePaid3')?.value) || 0;
+    const rubsMoveinChargePaidValue = this.coverSheetForm.get('rubsMoveinChargePaid')?.value || 0;
+    const prepaidCleaningPaidValue = this.coverSheetForm.get('prepaidCleaningPaid')?.value || 0;
+    const securityDepositPaidValue = this.coverSheetForm.get('securityDepositPaid')?.value || 0;
+    const nonRefProcessingFeePaidValue = this.coverSheetForm.get('nonRefProcessingFeePaid')?.value || 0;
+    const petDepositPaidValue = this.coverSheetForm.get('petDepositPaid')?.value || 0;
+    const petNonRefFeePaidValue = this.coverSheetForm.get('petNonRefFeePaid')?.value || 0;
+    const additionDepositPaidValue = this.coverSheetForm.get('additionDepositPaid')?.value || 0;
+    //const dueatMoveinKeyPickupValue = this.coverSheetForm.get('dueatMoveinKeyPickup')?.value || 0;
 
 
-
+    //Total Charge Values
     const sumTotalValue = (moveinRentChargeValue + otherMoveinCharge1Value + otherMoveinCharge2Value + otherMoveinCharge3Value + rubsMoveinChargeValue +
       prepaidCleaningChargeValue + securityDepositChargeValue + nonRefProcessingFeeChargeValue + petDepositChargeValue + petNonRefFeeChargeValue + additionDepositChargeValue);
+
+    //Total Paid Values
+    const paidValue = (moveinRentPaidValue + otherMoveinChargePaid1Value + otherMoveinChargePaid2Value + otherMoveinChargePaid3Value + rubsMoveinChargePaidValue
+      + prepaidCleaningPaidValue + securityDepositPaidValue + nonRefProcessingFeePaidValue + petDepositPaidValue + petNonRefFeePaidValue+ additionDepositPaidValue);
+
+    const dueatMoveinKeyPickupValue = (sumTotalValue - paidValue);
+
     this.coverSheetForm.patchValue({
       subTotal: sumTotalValue.toFixed(2),
+      paid: paidValue.toFixed(2),
+      dueatMoveinKeyPickup: dueatMoveinKeyPickupValue.toFixed(2),
 
     })
   }
@@ -145,7 +180,7 @@ export
   }
 
   getMoveinRent(inputDate: any, monthlyRent: any) {
-    const selectedDate = inputDate.value ? new Date(inputDate.value):new Date(inputDate);
+    const selectedDate = inputDate.value ? new Date(inputDate.value) : new Date(inputDate);
 
     if (!isNaN(selectedDate.getTime())) {
       const year = selectedDate.getFullYear();
@@ -166,68 +201,68 @@ export
 
   initForm(): void {
     this.coverSheetForm = this.fb.group({
-      applicantId: ['',  ],
-      propertyManager: ['',  ],
-      primaryTenant: ['',  ],
-      tenant2: ['',  ],
-      tenant3: ['',  ],
-      tenant4: ['',  ],
-      propertyAddress: ['',  ],
-      city: ['',  ],
-      state: ['',  ],
-      unitCode: ['',  ],
-      bestPOC: ['',  ],
-      rentReadyDate: ['',  ],
-      depositPaidDate: ['',  ],
-      rentResponsibleDate: ['',  ],
-      agreementType: ['',  ],
-      qcDate: ['',  ],
-      signingDate: ['',  ],
+      applicantId: ['',],
+      propertyManager: ['',],
+      primaryTenant: ['',],
+      tenant2: ['',],
+      tenant3: ['',],
+      tenant4: ['',],
+      propertyAddress: ['',],
+      city: ['',],
+      state: ['',],
+      unitCode: ['',],
+      bestPOC: ['',],
+      rentReadyDate: ['',],
+      depositPaidDate: ['',],
+      rentResponsibleDate: ['',],
+      agreementType: ['',],
+      qcDate: ['',],
+      signingDate: ['',],
       //signingTime: [Time,  ],
-      monthlyRent: ['',  ],
-      withWhom: ['',  ],
-      otherTerms: ['',  ],
-      listPaidUtilities: ['',  ],
-      otherMonthlyCharge11: ['',  ],
-      otherMonthlyCharge12: ['',  ],
-      otherMonthlyCharge21: ['',  ],
-      otherMonthlyCharge22: ['',  ],
-      otherMonthlyCharge31: ['',  ],
-      otherMonthlyCharge32: ['',  ],
-      otherMonthlyCharge41: ['',  ],
-      otherMonthlyCharge42: ['',  ],
-      otherMoveinCharge1: ['',  ],
-      otherMoveinChargePaid1: ['',  ],
-      moveinRentCharge: ['',  ],
-      moveinRentPaid: ['',  ],
+      monthlyRent: ['',],
+      withWhom: ['',],
+      otherTerms: ['',],
+      listPaidUtilities: ['',],
+      otherMonthlyCharge11: ['',],
+      otherMonthlyCharge12: ['',],
+      otherMonthlyCharge21: ['',],
+      otherMonthlyCharge22: ['',],
+      otherMonthlyCharge31: ['',],
+      otherMonthlyCharge32: ['',],
+      otherMonthlyCharge41: ['',],
+      otherMonthlyCharge42: ['',],
+      otherMoveinCharge1: ['',],
+      otherMoveinChargePaid1: ['',],
+      moveinRentCharge: ['',],
+      moveinRentPaid: ['',],
 
-      otherMoveinCharge2: ['',  ],
-      otherMoveinChargePaid2: ['',  ],
-      otherMoveinCharge3: ['',  ],
-      otherMoveinChargePaid3: ['',  ],
-      rubsMoveinCharge: ['',  ],
-      rubsMoveinChargePaid: ['',  ],
-      prepaidCleaningCharge: ['',  ],
-      prepaidCleaningPaid: ['',  ],
+      otherMoveinCharge2: ['',],
+      otherMoveinChargePaid2: ['',],
+      otherMoveinCharge3: ['',],
+      otherMoveinChargePaid3: ['',],
+      rubsMoveinCharge: ['',],
+      rubsMoveinChargePaid: ['',],
+      prepaidCleaningCharge: ['',],
+      prepaidCleaningPaid: ['',],
 
 
-      securityDepositCharge: ['',  ],
-      securityDepositPaid: ['',  ],
-      nonRefProcessingFeeCharge: ['',  ],
-      nonRefProcessingFeePaid: ['',  ],
-      petDepositCharge: ['',  ],
-      petDepositPaid: ['',  ],
-      petNonRefFeeCharge: ['',  ],
-      petNonRefFeePaid: ['',  ],
+      securityDepositCharge: ['',],
+      securityDepositPaid: ['',],
+      nonRefProcessingFeeCharge: ['',],
+      nonRefProcessingFeePaid: ['',],
+      petDepositCharge: ['',],
+      petDepositPaid: ['',],
+      petNonRefFeeCharge: ['',],
+      petNonRefFeePaid: ['',],
 
-      additionDepositCharge: ['',  ],
-      additionDepositPaid: ['',  ],
-      subTotal: ['',  ],
-      paid: ['',  ],
-      dueatMoveinKeyPickup: ['',  ],
-      createdBy: ['',  ],
+      additionDepositCharge: ['',],
+      additionDepositPaid: ['',],
+      subTotal: ['',],
+      paid: ['',],
+      dueatMoveinKeyPickup: ['',],
+      createdBy: ['',],
 
-      modifiedBy: ['',  ],
+      modifiedBy: ['',],
 
 
       // Other charges...

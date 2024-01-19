@@ -1,11 +1,11 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgGridModule } from 'ag-grid-angular';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
 // import { ButtonRendererComponent } from './button-renderer.component';
 import { Router } from "@angular/router";
 import { AgGridAngular } from 'ag-grid-angular';
-import { CellClickedEvent, ColDef} from 'ag-grid-community';
+import { CellClickedEvent, ColDef } from 'ag-grid-community';
 import { UsersService } from '../users/users.service';
 import { ButtonRendererComponent } from '../users/button-renderer.component';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -18,12 +18,12 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 export class ScoresheetComponent implements OnInit {
 
-  
- // users:  User[] = [];
+
+  // users:  User[] = [];
   public gridApi: any;
-  public gridColumnApi: any ;
+  public gridColumnApi: any;
   public columnDefs: any;
-  public paginationPageSize: any ;
+  public paginationPageSize: any;
   public searchText: any;
   pageSize = 10;
   currentUser: any;
@@ -38,11 +38,11 @@ export class ScoresheetComponent implements OnInit {
   // editRecord: any;
   constructor(
     private router: Router,
-    private _logservice:UsersService,
+    private _logservice: UsersService,
     private datePipe: DatePipe,
-   // private spinnerService: NgxSpinnerService,
+    // private spinnerService: NgxSpinnerService,
 
-  ) { 
+  ) {
 
 
     this.frameworkComponents = {
@@ -50,56 +50,56 @@ export class ScoresheetComponent implements OnInit {
     };
     this.defaultColDef = {
       resizable: true,
-      
+
       sortable: true,
       filter: true,
     };
 
-   // this.loggedUserRole = this.currentUser.role;
-    
+    // this.loggedUserRole = this.currentUser.role;
+
   }
 
   ngOnInit(): void {
-   this.GetAllUsers()
+    this.GetAllUsers()
     this.columnDefs = [
-      
+
       {
-        field: 'id', headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', width:'80', sortable: true,  filter: 'agNumberColumnFilter',
-      filterParams: numberFilterParams, hidden:true
-    },
+        field: 'id', headerName: 'Id', headerTooltip: 'Id', tooltipField: 'id', width: '80', sortable: true, filter: 'agNumberColumnFilter',
+        filterParams: numberFilterParams, hidden: true
+      },
       {
         field: 'applicantName', headerName: 'Applicant Name', headerTooltip: 'ApplicantName', tooltipField: 'applicantName', sortable: true, filter: 'agNumberColumnFilter',
-      filterParams: numberFilterParams
-    },
-      {field: 'property',headerName: 'Property', headerTooltip: 'Property',tooltipField:'property',sortable: true, filter: true,  filterParams: stdFilterParams},
+        filterParams: numberFilterParams
+      },
+      { field: 'property', headerName: 'Property', headerTooltip: 'Property', tooltipField: 'property', sortable: true, filter: true, filterParams: stdFilterParams },
       // {field: 'state', headerName: 'State',headerTooltip: 'State',tooltipField:'State',sortable: true, filter: true, filterParams: stdFilterParams},
-      {field: 'city',headerName: 'City', headerTooltip: 'City',tooltipField:'city',sortable: true, filter: true,  filterParams: stdFilterParams},
+      { field: 'city', headerName: 'City', headerTooltip: 'City', tooltipField: 'city', sortable: true, filter: true, filterParams: stdFilterParams, width: '150' },
       // {field: 'zip', headerName: 'Zip',headerTooltip: 'Zip',tooltipField:'zip',sortable: true, filter: true,   filterParams: stdFilterParams},
       //{field: 'StandardDepositProperty', sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'standardDepositProperty', headerName: 'StandardDepositProperty', headerTooltip: 'standardDepositProperty',tooltipField:'StandardDepositProperty',sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'address', headerTooltip: 'Address',tooltipField:'address', sortable: true, filter: true, filterParams: stdFilterParams},
       //{field: 'roleId', sortable: true, filter: true, filterParams: dateFilterParams},
       // {field: 'applicantTypeId',headerName: 'ApplicantTypeId',headerTooltip: 'applicantTypeId',tooltipField:'applicantTypeId', sortable: true, filter: true,  width: 150, filterParams: stdFilterParams},
-      
+
       // {field: 'createdBy',headerTooltip: 'Created By',tooltipField:'createdBy', sortable: true, filter: true, filterParams: stdFilterParams},
       {
-        field: 'createdDate', headerTooltip: 'Created Date', tooltipField: 'createdDate', sortable: true, filter: 'agDateColumnFilter', filterParams: dateFilterParams, 
+        field: 'createdDate',  headerTooltip: 'Created Date', tooltipField: 'createdDate', sortable: true, filter: 'agDateColumnFilter', filterParams: dateFilterParams,
         cellRenderer: (data: any) => {
           return this.datePipe.transform(data.value, 'MM/dd/yyyy');
         }
 
       },
-      {field: 'applicantType', headerTooltip: 'ApplicantType',tooltipField:'applicantType', sortable: true, filter: true,   filterParams: stdFilterParams},
-      
-      {field: 'applicationStatus', headerTooltip: 'applicationStatus',tooltipField:'applicationStatus', sortable: true, filter: true,   filterParams: stdFilterParams},
+      { field: 'applicantType', width: '170', headerTooltip: 'ApplicantType', tooltipField: 'applicantType', sortable: true, filter: true, filterParams: stdFilterParams },
+
+      { field: 'applicationStatus', width: '170', headerTooltip: 'applicationStatus', tooltipField: 'applicationStatus', sortable: true, filter: true, filterParams: stdFilterParams },
       {
         headerName: 'Score Sheet Action(s)',
-        
+
         headerTooltip: 'Score Sheet Action(s)',
-        width:'300',
-        filter:false,
-        sortable:false,
-        field: 'id',  
+        width: '300',
+        filter: false,
+        sortable: false,
+        field: 'id',
         cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           mode: 'scoresheet', // Define the mode here for the scoresheet component
@@ -110,143 +110,142 @@ export class ScoresheetComponent implements OnInit {
       {
         headerName: 'Cover Sheet Action(s)',
         headerTooltip: 'Cover Sheet Action(s)',
-        filter:false,
-        sortable:false,
+        filter: false,
+        sortable: false,
         field: 'id',
         cellRenderer: ButtonRendererComponent,
         cellRendererParams: {
           mode: 'coversheet', // Define the mode here for the scoresheet component
           // onClick: this.customEditFunction.bind(this),
         },
-      
-      //{
-      //  headerName: 'Score Sheet Action(s)',
-      //  filter:false,
-      //  sortable:false,
-      //  field: 'id', width: 180,
-      //  cellRenderer: ButtonRendererComponent,
-      //  cellRendererParams: {
-      //    mode: 'scoresheet', // Define the mode here for the scoresheet component
-      //    // onClick: this.customEditFunction.bind(this),
-      //  },
+
+        //{
+        //  headerName: 'Score Sheet Action(s)',
+        //  filter:false,
+        //  sortable:false,
+        //  field: 'id', width: 180,
+        //  cellRenderer: ButtonRendererComponent,
+        //  cellRendererParams: {
+        //    mode: 'scoresheet', // Define the mode here for the scoresheet component
+        //    // onClick: this.customEditFunction.bind(this),
+        //  },
       },
     ];
   }
-//   customEditFunction(id: number) {
-//     this.router.navigate(['/scoresheet', id]);
-//   }
-//   editscoresheet(params: any): void {
-//     const editUrl = `/scoresheet/${params.data.id}`;
-//     this.router.navigate(['/scoresheet']);
-// }
-  
-//   addUser(): void {
-//     this.router.navigate(['users/add']);
-//   }
-  
-rowData: any
-  GetAllUsers()
-  {
+  //   customEditFunction(id: number) {
+  //     this.router.navigate(['/scoresheet', id]);
+  //   }
+  //   editscoresheet(params: any): void {
+  //     const editUrl = `/scoresheet/${params.data.id}`;
+  //     this.router.navigate(['/scoresheet']);
+  // }
+
+  //   addUser(): void {
+  //     this.router.navigate(['users/add']);
+  //   }
+
+  rowData: any
+  GetAllUsers() {
     //  alert("scoresheet working")
-    this._logservice.Getapplicantinfo().subscribe((data)=>{
-      console.log(data,"scrore sheet data");
-      
+    this._logservice.Getapplicantinfo().subscribe((data) => {
+      console.log(data, "scrore sheet data");
+
     })
-     
+
   }
 
-// Grid
-onGridReady(params : any) {
-   
-  this.gridApi = params.api;
-  this.gridColumnApi = params.columnApi;
-  this.gridColumnApi.autoSizeColumns();
-  this.gridApi.setDomLayout('autoHeight');
+  // Grid
+  onGridReady(params: any) {
 
-  this._logservice.Getapplicantinfo()
-    .subscribe((data: any) => {
-       
-      this.rowData = data;
-    });
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridColumnApi.autoSizeColumns();
+    this.gridApi.setDomLayout('autoHeight');
 
-  this.gridApi.setDomLayout('autoHeight');
- 
-  
-}
+    this._logservice.Getapplicantinfo()
+      .subscribe((data: any) => {
 
-onCellClicked( e: CellClickedEvent): void {
-  console.log('cellClicked', e);
-}
+        this.rowData = data;
+      });
 
-// getUserRoleName() {
-//   //return this.loggedUserRole;
-// }
-
-// onPageSizeChanged() {
-//   this.gridApi.paginationSetPageSize(Number(this.pageSize));
-// }
-
-onPageSizeChanged() {
-   
-  this.gridApi.paginationSetPageSize(Number(this.pageSize));
-  //this._logservice.saveUserSetting('rcm_users_paging_size', this.pageSize);
-}
+    this.gridApi.setDomLayout('autoHeight');
 
 
-onBtExport() {
-  const params = {
-    columnKeys: ['id', 'userName','email','phone','address','roleName','status', 'createdBy', 'createdDate','status'],
-    fileName: 'Users'
-  };
-  this.gridApi.exportDataAsCsv(params);
-}
+  }
+
+  onCellClicked(e: CellClickedEvent): void {
+    console.log('cellClicked', e);
+  }
+
+  // getUserRoleName() {
+  //   //return this.loggedUserRole;
+  // }
+
+  // onPageSizeChanged() {
+  //   this.gridApi.paginationSetPageSize(Number(this.pageSize));
+  // }
+
+  onPageSizeChanged() {
+
+    this.gridApi.paginationSetPageSize(Number(this.pageSize));
+    //this._logservice.saveUserSetting('rcm_users_paging_size', this.pageSize);
+  }
+
+
+  onBtExport() {
+    const params = {
+      columnKeys: ['id', 'userName', 'email', 'phone', 'address', 'roleName', 'status', 'createdBy', 'createdDate', 'status'],
+      fileName: 'Users'
+    };
+    this.gridApi.exportDataAsCsv(params);
+  }
 
   searchRecords(val: any) {
     this.gridApi.setQuickFilter(val);
   }
 
-onBtSearch() {
-   
-  // gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-  this.gridApi.setQuickFilter(this.searchText);
+  onBtSearch() {
+
+    // gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
+    this.gridApi.setQuickFilter(this.searchText);
+
+  }
+
+  // onEditButtonClick(user: User) {
+  //   localStorage.removeItem('editId');
+  //   localStorage.setItem('editId', user.Id.toString());
+  //   this.router.navigate(['edituser']);
+
+  // }
+
+  viewRecord(id: any) {
+    // this.spinnerService.show();
+    // this.apiService.getUser(id)
+    //   .subscribe(data => {
+    //     this.spinnerService.hide();
+    //     this._record = data;
+    //     this.modalService.open(this.viewRecordElmRef, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    //       this.closeResult = `Closed with: ${result}`;
+    //     }, (reason) => {
+    //       //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    //     });
+    //   });
+  }
+
+  //Grid
+
 
 }
 
-// onEditButtonClick(user: User) {
-//   localStorage.removeItem('editId');
-//   localStorage.setItem('editId', user.Id.toString());
-//   this.router.navigate(['edituser']);
-
-// }
-
-viewRecord(id : any) {
-  // this.spinnerService.show();
-  // this.apiService.getUser(id)
-  //   .subscribe(data => {
-  //     this.spinnerService.hide();
-  //     this._record = data;
-  //     this.modalService.open(this.viewRecordElmRef, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  //       this.closeResult = `Closed with: ${result}`;
-  //     }, (reason) => {
-  //       //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //     });
-  //   });
-}
-
-//Grid
 
 
-}
-
-
-
-function dateFormatter(datestring : any) {
+function dateFormatter(datestring: any) {
   var date = new Date(datestring);
   var dateAsString = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
   return dateAsString;
 }
 
-var numberValueFormatter = function (params : any) {
+var numberValueFormatter = function (params: any) {
   return params.value.toFixed(0);
 };
 
@@ -256,7 +255,7 @@ var numberFilterParams = {
 };
 var dateFilterParams = {
 
-  comparator: function (filterLocalDateAtMidnight : any, cellValue : any):any {
+  comparator: function (filterLocalDateAtMidnight: any, cellValue: any): any {
     var date = new Date(cellValue);
     var dateAsString = ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + date.getFullYear();
 
@@ -291,11 +290,11 @@ var stdFilterParams = {
 };
 
 
-function getTextValue(cssSelector : any) {
+function getTextValue(cssSelector: any) {
   return document.querySelector(cssSelector).value;
 }
 
-function getNumericValue(cssSelector : any) {
+function getNumericValue(cssSelector: any) {
   var value = parseFloat(getTextValue(cssSelector));
   if (isNaN(value)) {
     var message = 'Invalid number entered in ' + cssSelector + ' field';
@@ -305,7 +304,7 @@ function getNumericValue(cssSelector : any) {
   return value;
 }
 
-function myColumnWidthCallback(params : any) {
+function myColumnWidthCallback(params: any) {
   var originalWidth = params.column.getActualWidth();
   if (params.index < 7) {
     return originalWidth;
@@ -324,7 +323,7 @@ function getParams() {
   };
 }
 
-function getValue(text : any) {
+function getValue(text: any) {
   //var text = document.querySelector(inputSelector).value;
   switch (text) {
     case 'string':

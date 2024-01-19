@@ -18,171 +18,172 @@ export class Tanant4Component {
   stepper: any; currentUser: any; result: any
   snapid: any;
   applicantId: number = 0; frmTenant: any; tenantId: number = 0; selectedTabIndex: number = 0;
+  frmTenant4!: FormGroup;
   constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private _userservice: UsersService, private activate: ActivatedRoute) {
     this.authservice.currentUser.subscribe(x => this.currentUser = x);
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
   }
-
-  frmTenant4 = this.fb.group({
-    // basicinfo: this.fb.group({      
-    // firstCtrl:['', ],
-    applicantName: ['',  ],
-    applicantType: [''],
-    applicantTypeId: ['',  ],
-    property: ['',  ],
-    city: ['',  ],
-    state: ['',  ],
-    zip: ['',  ],
-    monthlyRent: ['',  ],
-    section8Rent: ['',  ],
-    standardDepositProperty: ['',  ],
-    // propertyTypeId: ['',  ],
-    // propertyType: ['',  ],
-    // applicantTypeId: ['',  ],
-    // ptype: ['',  ],
-    applicantId: ['',  ],
-    tenantSNo: ['',  ],
-    tenantId: [Number],
-    paystubRecent: ['',  ],    
-    propertyTypeId: ['',  ],
-    createdBy: ['',  ],
-
-    // }),
-    incom_verification: this.fb.group({
-      paystubRecent: ['',  ], //pay stub
-      paystubRecentMonthly: ['',  ], //monthly
-      ytD_Earnings: ['',  ], //results
-      secondPayStub: ['',  ], //2nd stub
-      bankStatementMonthly: ['',  ], //monthly
-      bankStatement: ['',  ], //result
-      xRent: ['',  ], //x-rent
-      incomeAdequate: [Boolean,  ], //incomeAdequate
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
+  initForm(): void {
+    this.frmTenant4 = this.fb.group({
+      // basicinfo: this.fb.group({      
+      // firstCtrl:['', ],
+      applicantName: ['',],
+      applicantType: [''],
+      applicantTypeId: ['',],
+      property: ['',],
+      city: ['',],
+      state: ['',],
+      zip: ['',],
+      monthlyRent: ['',],
+      section8Rent: ['',],
+      standardDepositProperty: ['',],
+      // propertyTypeId: ['',  ],
+      // propertyType: ['',  ],
+      // applicantTypeId: ['',  ],
+      // ptype: ['',  ],
+      applicantId: ['',],
+      tenantSNo: ['',],
       tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    credit_summary: this.fb.group({
-      creditLines: [Boolean,  ],
-      creditScore: ['',  ],
-      //creditScorePoints: [Number,  ],
-      creditScoreAvailable: [Boolean,  ],
-      // creditScoreAvailablePoints: ['', ],
-      // accountPastDue60Days: ['', ],
-      collectionAccounts: ['',  ],
-      // collectionAccountsPoints: ['', ],
-      medicalCollections: ['',  ],
-      propertyRelatedHousingRecord: [Boolean,  ],
-      // propertyRelatedHousingRecordPoints: ['', ],
-      bankruptcy: [0,  ],
-      bankRuptyActive: [Boolean,  ],
-      //bankRuptyActivePoints: ['',  ],
-      liensRepossessions: [Date,  ],
-      // liensRepossessionsPoints: ['', ],
-      //evectionHistoryPoints: ['',  ],
-      evectionHistory: [null],
-      class1Felonies: [Boolean,  ],
-      // class1FeloniesPoints: ['', ],
-      class2Felonies: [Date,  ],
-      // class2FeloniesPoints : ['', ],
-      class1Misdemeaners: [Date,  ],
-      // class1MisdemeanersPoints: ['', ],
-      class2Misdemeaners: [Date,  ],
-      depositApproved: [Boolean,  ],
-      depositToHold: [''],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
+      paystubRecent: ['',],
+      propertyTypeId: ['',],
+      createdBy: ['',],
 
-    }),
-    landlord_ref: this.fb.group({
-      rentalReferance: [Boolean,  ],
-      // lL1LandlordType: [Number,  ],
-      lL1ProperNotice: [Boolean,  ],
-      //lL1ProperNoticePoints: [0,  ],
-      lL1NSF: ['',  ],
-      //lL1NSFPoints: [0,  ],
-      lL1LatePayments: ['',  ],
-      //lL1LatePaymentsPoints: [0,  ],
-      lL1PaymentOrVacantNotices: ['',  ],
-      //lL1PaymentOrVacantNoticesPoints: [0,  ],
-      lL1TendayComplyNotice: ['',  ],
-      //lL1TendayComplyNoticePoints: [0,  ],
-      lL1HOAViolations: ['',  ],
-      //lL1HOAViolationsPoints: [0,  ],
-      lL1PropertyCleanliness: ['',  ],
-      //lL1PropertyCleanlinessPoints: [0,  ],
-      lL1Pets: [Boolean,  ],
-      //lL1PetsPoints: ['',  ],
-      lL1AdversePetReferance: [Boolean,  ],
-      //lL1AdversePetReferancePoints: [0,  ],
-      lL1Rerent: [Boolean,  ],
-      //lL1RerentPoints: [0,  ],
+      // }),
+      incom_verification: this.fb.group({
+        paystubRecent: ['',], //pay stub
+        paystubRecentMonthly: ['',], //monthly
+        ytD_Earnings: ['',], //results
+        secondPayStub: ['',], //2nd stub
+        bankStatementMonthly: ['',], //monthly
+        bankStatement: ['',], //result
+        xRent: ['',], //x-rent
+        incomeAdequate: [Boolean,], //incomeAdequate
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      credit_summary: this.fb.group({
+        creditLines: [Boolean,],
+        creditScore: ['',],
+        //creditScorePoints: [Number,  ],
+        creditScoreAvailable: [Boolean,],
+        // creditScoreAvailablePoints: ['', ],
+        // accountPastDue60Days: ['', ],
+        collectionAccounts: ['',],
+        // collectionAccountsPoints: ['', ],
+        medicalCollections: ['',],
+        propertyRelatedHousingRecord: [Boolean,],
+        // propertyRelatedHousingRecordPoints: ['', ],
+        bankruptcy: [0,],
+        bankRuptyActive: [Boolean,],
+        //bankRuptyActivePoints: ['',  ],
+        liensRepossessions: [Date,],
+        // liensRepossessionsPoints: ['', ],
+        //evectionHistoryPoints: ['',  ],
+        evectionHistory: [null],
+        class1Felonies: [Boolean,],
+        // class1FeloniesPoints: ['', ],
+        class2Felonies: [Date,],
+        // class2FeloniesPoints : ['', ],
+        class1Misdemeaners: [Date,],
+        // class1MisdemeanersPoints: ['', ],
+        class2Misdemeaners: [Date,],
+        depositApproved: [Boolean,],
+        depositToHold: [''],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      landlord_ref: this.fb.group({
+        rentalReferance: [Boolean,],
+        // lL1LandlordType: [Number,  ],
+        lL1ProperNotice: [Boolean,],
+        //lL1ProperNoticePoints: [0,  ],
+        lL1NSF: ['',],
+        //lL1NSFPoints: [0,  ],
+        lL1LatePayments: ['',],
+        //lL1LatePaymentsPoints: [0,  ],
+        lL1PaymentOrVacantNotices: ['',],
+        //lL1PaymentOrVacantNoticesPoints: [0,  ],
+        lL1TendayComplyNotice: ['',],
+        //lL1TendayComplyNoticePoints: [0,  ],
+        lL1HOAViolations: ['',],
+        //lL1HOAViolationsPoints: [0,  ],
+        lL1PropertyCleanliness: ['',],
+        //lL1PropertyCleanlinessPoints: [0,  ],
+        lL1Pets: [Boolean,],
+        //lL1PetsPoints: ['',  ],
+        lL1AdversePetReferance: [Boolean,],
+        //lL1AdversePetReferancePoints: [0,  ],
+        lL1Rerent: [Boolean,],
+        //lL1RerentPoints: [0,  ],
 
 
-      // lL2LandlordType: [Number,  ],
-      lL2ProperNotice: [Boolean,  ],
-      //lL2ProperNoticePoints: ['',  ],
-      lL2NSF: ['',  ],
-      //lL2NSFPoints: ['',  ],
-      lL2LatePayments: ['',  ],
-      //L2LatePaymentsPoints: ['',  ],
-      lL2PaymentOrVacantNotices: ['',  ],
-      //lL2PaymentOrVacantNoticesPoints: ['',  ],
-      lL2TendayComplyNotice: ['',  ],
-      //lL2TendayComplyNoticePoints: ['',  ],
-      lL2HOAViolations: ['',  ],
-      //lL2HOAViolationsPoints: ['',  ],
-      lL2PropertyCleanliness: ['',  ],
-      //lL2PropertyCleanlinessPoints: ['',  ],
-      lL2Pets: [Boolean,  ],
-      //lL2PetsPoints: ['',  ],
-      lL2AdversePetReferance: [Boolean,  ],
-      //lL2AdversePetReferancePoints: ['',  ],
-      lL2Rerent: [Boolean,  ],
-      //lL2RerentPoints: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
+        // lL2LandlordType: [Number,  ],
+        lL2ProperNotice: [Boolean,],
+        //lL2ProperNoticePoints: ['',  ],
+        lL2NSF: ['',],
+        //lL2NSFPoints: ['',  ],
+        lL2LatePayments: ['',],
+        //L2LatePaymentsPoints: ['',  ],
+        lL2PaymentOrVacantNotices: ['',],
+        //lL2PaymentOrVacantNoticesPoints: ['',  ],
+        lL2TendayComplyNotice: ['',],
+        //lL2TendayComplyNoticePoints: ['',  ],
+        lL2HOAViolations: ['',],
+        //lL2HOAViolationsPoints: ['',  ],
+        lL2PropertyCleanliness: ['',],
+        //lL2PropertyCleanlinessPoints: ['',  ],
+        lL2Pets: [Boolean,],
+        //lL2PetsPoints: ['',  ],
+        lL2AdversePetReferance: [Boolean,],
+        //lL2AdversePetReferancePoints: ['',  ],
+        lL2Rerent: [Boolean,],
+        //lL2RerentPoints: ['',  ],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
 
-    }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean,  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    // pets: this.fb.group({
-    //   petApprovedLandlordReferance1: ['',  ],
-    //   petApprovedLandlordReferance2: ['',  ],
-    //   noOfCatsCompanion: [Boolean,  ],
-    //   noOfCatsCompanions: ['',  ],
-    //   noOfLargeDogsCompanion: [Boolean,  ],
-    //   noOfLargeDogsCompanions: ['',  ],
-    //   noOfSmallDogsCompanion: [Boolean,  ],
-    //   noOfSmallDogsCompanions: ['',  ],
-    //   applicantId: ['',  ],
-    //   tenantSNo: ['',  ],
-    //   tenantId: [Number],
-    // }),
-    points_summary: this.fb.group({
-      totalPoints: ['',  ],
-      finalApproval: [Boolean,  ],
-      totalDeposit: ['',  ],
-      depositToHoldPaid: ['',  ],
-      petDeposit: ['',  ],
-      additionalDeposit: ['',  ],
-      balanceDepositDue: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-  })
-
+      }),
+      rental_history: this.fb.group({
+        rentalHistoryLength: [Boolean,],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      // pets: this.fb.group({
+      //   petApprovedLandlordReferance1: ['',  ],
+      //   petApprovedLandlordReferance2: ['',  ],
+      //   noOfCatsCompanion: [Boolean,  ],
+      //   noOfCatsCompanions: ['',  ],
+      //   noOfLargeDogsCompanion: [Boolean,  ],
+      //   noOfLargeDogsCompanions: ['',  ],
+      //   noOfSmallDogsCompanion: [Boolean,  ],
+      //   noOfSmallDogsCompanions: ['',  ],
+      //   applicantId: ['',  ],
+      //   tenantSNo: ['',  ],
+      //   tenantId: [Number],
+      // }),
+      points_summary: this.fb.group({
+        totalPoints: ['',],
+        finalApproval: [Boolean,],
+        totalDeposit: ['',],
+        depositToHoldPaid: ['',],
+        petDeposit: ['',],
+        additionalDeposit: ['',],
+        balanceDepositDue: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+    })
+  }
 
 
   tabIndex = 0;
@@ -203,6 +204,8 @@ export class Tanant4Component {
     }
   }
   ngOnInit() {
+    this.initForm();
+    this.subscribeControls();
     this.frmTenant4.get('applicantName')?.setValue('');
 
     this.snapid = this.activate.snapshot.paramMap.get('id') || '';
@@ -214,6 +217,27 @@ export class Tanant4Component {
     }
 
   }
+  subscribeControls() {
+    this.frmTenant4.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant4.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant4.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant4.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+  }
+  calculateIncomeAdequate() {
+    const primarypaystubRecentValue = parseFloat(this.frmTenant4.get('incom_verification.paystubRecent')?.value) || 0;
+    const primaryytD_EarningsValue = parseFloat(this.frmTenant4.get('incom_verification.ytD_Earnings')?.value) || 0;
+    const primarysecondPayStubValue = parseFloat(this.frmTenant4.get('incom_verification.secondPayStub')?.value) || 0;
+    const primarybankStatementValue = parseFloat(this.frmTenant4.get('incom_verification.bankStatement')?.value) || 0;
+
+    this.frmTenant4.patchValue({
+      incom_verification: {
+
+        paystubRecentMonthly: (primarypaystubRecentValue / primaryytD_EarningsValue).toFixed(2),
+        bankStatementMonthly: (primarysecondPayStubValue / primarybankStatementValue).toFixed(2),
+      }
+    })
+  }
+
   getScroreSheetByApplicantId(snapid: any, sno: any) {
 
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {

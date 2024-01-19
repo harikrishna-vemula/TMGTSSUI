@@ -1482,30 +1482,56 @@ export class PrimaryTenantComponent {
     this.frmPrimary.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmPrimary.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmPrimary.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+
+    this.frmTenant2.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant2.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant2.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant2.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+
+    this.frmTenant3.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant3.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant3.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmTenant3.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
   }
   calculateIncomeAdequate() {
     const primarypaystubRecentValue = parseFloat(this.frmPrimary.get('incom_verification.paystubRecent')?.value) || 0;
     const primaryytD_EarningsValue = parseFloat(this.frmPrimary.get('incom_verification.ytD_Earnings')?.value) || 0;
     const primarysecondPayStubValue = parseFloat(this.frmPrimary.get('incom_verification.secondPayStub')?.value) || 0;
     const primarybankStatementValue = parseFloat(this.frmPrimary.get('incom_verification.bankStatement')?.value) || 0;
-    //const primarypaystubRecentMonthlyValue = parseFloat(this.frmPrimary.get('incom_verification.paystubRecentMonthly')?.value) || 0;
+
+    const tenant2paystubRecentValue = parseFloat(this.frmTenant2.get('incom_verification.paystubRecent')?.value) || 0;
+    const tenant2ytD_EarningsValue = parseFloat(this.frmTenant2.get('incom_verification.ytD_Earnings')?.value) || 0;
+    const tenant2secondPayStubValue = parseFloat(this.frmTenant2.get('incom_verification.secondPayStub')?.value) || 0;
+    const tenant2bankStatementValue = parseFloat(this.frmTenant2.get('incom_verification.bankStatement')?.value) || 0;
+
+    const tenant3paystubRecentValue = parseFloat(this.frmTenant3.get('incom_verification.paystubRecent')?.value) || 0;
+    const tenant3ytD_EarningsValue = parseFloat(this.frmTenant3.get('incom_verification.ytD_Earnings')?.value) || 0;
+    const tenant3secondPayStubValue = parseFloat(this.frmTenant3.get('incom_verification.secondPayStub')?.value) || 0;
+    const tenant3bankStatementValue = parseFloat(this.frmTenant3.get('incom_verification.bankStatement')?.value) || 0;
+
     
-    //const primaryytD_EarningsValue = this.frmPrimary.get('incom_verification.ytD_Earnings')?.value || 0;
-    //const dueatMoveinKeyPickupValue = (primaryPaystubRecentValue/primaryytD_EarningsValue);
     this.frmPrimary.patchValue({
       incom_verification: {
 
         paystubRecentMonthly: (primarypaystubRecentValue / primaryytD_EarningsValue).toFixed(2),
-        bankStatementMonthly: (primarysecondPayStubValue / primarybankStatementValue).toFixed(2),
-        //ytD_Earnings: this.result[0].ytD_Earnings,
-        //secondPayStub: this.result[0].secondPayStub,
-        //bankStatementMonthly: this.result[0].bankStatementMonthly,
-        //bankStatement: this.result[0].bankStatement,
-        //xRent: this.result[0].xRent,
-        //incomeAdequate: this.result[0].incomeAdequate
+        bankStatementMonthly: (primarysecondPayStubValue / primarybankStatementValue).toFixed(2),        
       }
+    })
 
+    this.frmTenant2.patchValue({
+      incom_verification: {
 
+        paystubRecentMonthly: (tenant2paystubRecentValue / tenant2ytD_EarningsValue).toFixed(2),
+        bankStatementMonthly: (tenant2secondPayStubValue / tenant2bankStatementValue).toFixed(2),
+      }
+    })
+
+    this.frmTenant3.patchValue({
+      incom_verification: {
+
+        paystubRecentMonthly: (tenant3paystubRecentValue / tenant3ytD_EarningsValue).toFixed(2),
+        bankStatementMonthly: (tenant3secondPayStubValue / tenant3bankStatementValue).toFixed(2),
+      }
     })
   }
   // changeStep(index: number) {

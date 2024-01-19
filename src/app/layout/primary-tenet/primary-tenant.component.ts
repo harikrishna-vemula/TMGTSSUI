@@ -28,7 +28,7 @@ export class PrimaryTenantComponent {
   steps = [true, true]; // Use an array to represent steps, e.g., [true, false, false] for three steps
   currentStep = 0;
   state?: string;
- 
+  frmPrimary!: FormGroup; frmTenant2!: FormGroup; frmTenant3!: FormGroup; frmTenant4!: FormGroup; frmTenant5!: FormGroup; coverSheetForm!: FormGroup;
   propertyTypes: string[] = ['Multi-Family', 'Single-Family']
   options1: any = ['Yes', 'No'];
   options2: any = ['Fair/good', 'Poor']
@@ -49,6 +49,8 @@ export class PrimaryTenantComponent {
 
 
   ngOnInit() {
+    this.initForm();
+    this.subscribeControls()
     this.frmPrimary.get('applicantName')?.setValue('');
 
     this.snapid = this.activate.snapshot.paramMap.get('id') || '';
@@ -60,885 +62,885 @@ export class PrimaryTenantComponent {
     }
 
   }
-
-  //Primary Tenant Section 
-  frmPrimary = this.fb.group({
-    // basicinfo: this.fb.group({
-    // firstCtrl:['',Validators.required],
-    // appilcantId: [0, Validators.required],
-    applicantName: ['', Validators.required],
-    applicantType: ['',],
-    property: ['', Validators.required],
-    city: ['', Validators.required],
-    state: ['', Validators.required],
-    zip: ['', Validators.required],
-    monthlyRent: ['', Validators.required],
-    section8Rent: ['', Validators.required],
-    standardDepositProperty: ['', Validators.required],
-    // propertyTypeId: ['', Validators.required],
-    propertyType: ['', Validators.required],
-    // applicantTypeId: ['', Validators.required],
-    // ptype: ['', Validators.required],
-    applicantId: [''],
-    tenantSNo: ['', Validators.required],
-    tenantId: [Number],
-    paystubRecent: ['', Validators.required],
-    applicantTypeId: [Number,Validators.required],
-    propertyTypeId: ['', Validators.required],
-    applicationStatusId: ['', Validators.required],
-    createdBy: ['', Validators.required],
-    // }),
-    incom_verification: this.fb.group({
-      paystubRecent: [Number,  ], //pay stub
-      paystubRecentMonthly: [Number,  ], //monthly
-      ytD_Earnings: [Number,  ], //results
-      secondPayStub: ['',  ], //2nd stub
-      bankStatementMonthly: ['',  ], //monthly
-      bankStatement: ['',  ], //result
-      xRent: ['',  ], //x-rent
-      incomeAdequate: [Boolean,  ], //incomeAdequate
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
+  initForm(): void {
+    //Primary Tenant Section 
+    this.frmPrimary = this.fb.group({
+      // basicinfo: this.fb.group({
+      // firstCtrl:['',Validators.required],
+      // appilcantId: [0, Validators.required],
+      applicantName: ['', Validators.required],
+      applicantType: ['',],
+      property: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip: ['', Validators.required],
+      monthlyRent: ['', Validators.required],
+      section8Rent: ['', Validators.required],
+      standardDepositProperty: ['', Validators.required],
+      // propertyTypeId: ['', Validators.required],
+      propertyType: ['', Validators.required],
+      // applicantTypeId: ['', Validators.required],
+      // ptype: ['', Validators.required],
+      applicantId: [''],
+      tenantSNo: ['', Validators.required],
       tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    credit_summary: this.fb.group({
-      creditLines: [Boolean,  ],
-      creditScore: [Number],
-      //creditScorePoints: [Number,  ],
-      creditScoreAvailable: [Boolean,  ],
-      // creditScoreAvailablePoints: ['', ],
-      // accountPastDue60Days: ['', ],
-      collectionAccounts: [Number],
-      // collectionAccountsPoints: ['', ],
-      medicalCollections: ['',  ],
-      propertyRelatedHousingRecord: [Boolean,  ],
-      // propertyRelatedHousingRecordPoints: ['', ],
-      bankruptcy: [Number],
-      bankRuptyActive: [Boolean,  ],
-      //bankRuptyActivePoints: ['',  ],
-      liensRepossessions: [Date,  ],
-      // liensRepossessionsPoints: ['', ],
-      //evectionHistoryPoints: ['',  ],
-      evectionHistory: [null],
-      class1Felonies: [Boolean,  ],
-      // class1FeloniesPoints: ['', ],
-      class2Felonies: [Date,  ],
-      // class2FeloniesPoints : ['', ],
-      class1Misdemeaners: [Date,  ],
-      // class1MisdemeanersPoints: ['', ],
-      class2Misdemeaners: [Date,  ],
-      depositApproved: [Boolean,  ],
-      depositToHold: [''],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
+      paystubRecent: ['', Validators.required],
+      applicantTypeId: [Number, Validators.required],
+      propertyTypeId: ['', Validators.required],
+      applicationStatusId: ['', Validators.required],
+      createdBy: ['', Validators.required],
+      // }),
+      incom_verification: this.fb.group({
+        paystubRecent: ['',], //pay stub
+        paystubRecentMonthly: ['',], //monthly
+        ytD_Earnings: ['',], //results
+        secondPayStub: ['',], //2nd stub
+        bankStatementMonthly: ['',], //monthly
+        bankStatement: ['',], //result
+        xRent: ['',], //x-rent
+        incomeAdequate: [Boolean,], //incomeAdequate
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      credit_summary: this.fb.group({
+        creditLines: [Boolean,],
+        creditScore: [Number],
+        //creditScorePoints: [Number,  ],
+        creditScoreAvailable: [Boolean,],
+        // creditScoreAvailablePoints: ['', ],
+        // accountPastDue60Days: ['', ],
+        collectionAccounts: [Number],
+        // collectionAccountsPoints: ['', ],
+        medicalCollections: ['',],
+        propertyRelatedHousingRecord: [Boolean,],
+        // propertyRelatedHousingRecordPoints: ['', ],
+        bankruptcy: [Number],
+        bankRuptyActive: [Boolean,],
+        //bankRuptyActivePoints: ['',  ],
+        liensRepossessions: [Date,],
+        // liensRepossessionsPoints: ['', ],
+        //evectionHistoryPoints: ['',  ],
+        evectionHistory: [null],
+        class1Felonies: [Boolean,],
+        // class1FeloniesPoints: ['', ],
+        class2Felonies: [Date,],
+        // class2FeloniesPoints : ['', ],
+        class1Misdemeaners: [Date,],
+        // class1MisdemeanersPoints: ['', ],
+        class2Misdemeaners: [Date,],
+        depositApproved: [Boolean,],
+        depositToHold: [''],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      landlord_ref: this.fb.group({
+        rentalReferance: [Boolean,],
+        lL1LandlordType: [Number,],
+        lL1ProperNotice: [Boolean,],
+        //lL1ProperNoticePoints: [0,  ],
+        lL1NSF: ['',],
+        //lL1NSFPoints: [0,  ],
+        lL1LatePayments: ['',],
+        //lL1LatePaymentsPoints: [0,  ],
+        lL1PaymentOrVacantNotices: ['',],
+        //lL1PaymentOrVacantNoticesPoints: [0,  ],
+        lL1TendayComplyNotice: ['',],
+        //lL1TendayComplyNoticePoints: [0,  ],
+        lL1HOAViolations: ['',],
+        //lL1HOAViolationsPoints: [0,  ],
+        lL1PropertyCleanliness: ['',],
+        //lL1PropertyCleanlinessPoints: [0,  ],
+        lL1Pets: [Boolean,],
+        //lL1PetsPoints: ['',  ],
+        lL1AdversePetReferance: [Boolean,],
+        //lL1AdversePetReferancePoints: [0,  ],
+        lL1Rerent: [Boolean,],
+        //lL1RerentPoints: [0,  ],
+
+
+        lL2LandlordType: [Number,],
+        lL2ProperNotice: [Boolean,],
+        //lL2ProperNoticePoints: ['',  ],
+        lL2NSF: ['',],
+        //lL2NSFPoints: ['',  ],
+        lL2LatePayments: ['',],
+        //L2LatePaymentsPoints: ['',  ],
+        lL2PaymentOrVacantNotices: ['',],
+        //lL2PaymentOrVacantNoticesPoints: ['',  ],
+        lL2TendayComplyNotice: ['',],
+        //lL2TendayComplyNoticePoints: ['',  ],
+        lL2HOAViolations: ['',],
+        //lL2HOAViolationsPoints: ['',  ],
+        lL2PropertyCleanliness: ['',],
+        //lL2PropertyCleanlinessPoints: ['',  ],
+        lL2Pets: [Boolean,],
+        //lL2PetsPoints: ['',  ],
+        lL2AdversePetReferance: [Boolean,],
+        //lL2AdversePetReferancePoints: ['',  ],
+        lL2Rerent: [Boolean,],
+        //lL2RerentPoints: ['',  ],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      rental_history: this.fb.group({
+        rentalHistoryLength: [Boolean,],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      pets: this.fb.group({
+        petApprovedLandlordReferance1: ['',],
+        petApprovedLandlordReferance2: ['',],
+        noOfCatsCompanion: [Boolean,],
+        noOfCatsCompanions: [Number],
+        noOfLargeDogsCompanion: [Boolean,],
+        noOfLargeDogsCompanions: [Number],
+        noOfSmallDogsCompanion: [Boolean,],
+        noOfSmallDogsCompanions: [Number],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      points_summary: this.fb.group({
+        totalPoints: ['',],
+        finalApproval: [Boolean,],
+        totalDeposit: ['',],
+        depositToHoldPaid: ['',],
+        petDeposit: ['',],
+        additionalDeposit: ['',],
+        balanceDepositDue: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+    })
+
+    //Tenant 2 Section stats here 
+    this.frmTenant2 = this.fb.group({
+      // basicinfo: this.fb.group({      
+      // firstCtrl:['', ],
+      applicantName: ['',],
+      applicantType: [''],
+      property: ['',],
+      city: ['',],
+      state: ['',],
+      zip: ['',],
+      monthlyRent: ['',],
+      section8Rent: ['',],
+      standardDepositProperty: ['',],
+      // propertyTypeId: ['',  ],
+      propertyType: ['',],
+      // applicantTypeId: ['',  ],
+      // ptype: ['',  ],
+      applicantId: ['',],
+      tenantSNo: ['',],
       tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    landlord_ref: this.fb.group({
-      rentalReferance: [Boolean,  ],
-      lL1LandlordType: [Number,  ],
-      lL1ProperNotice: [Boolean,  ],
-      //lL1ProperNoticePoints: [0,  ],
-      lL1NSF: ['',  ],
-      //lL1NSFPoints: [0,  ],
-      lL1LatePayments: ['',  ],
-      //lL1LatePaymentsPoints: [0,  ],
-      lL1PaymentOrVacantNotices: ['',  ],
-      //lL1PaymentOrVacantNoticesPoints: [0,  ],
-      lL1TendayComplyNotice: ['',  ],
-      //lL1TendayComplyNoticePoints: [0,  ],
-      lL1HOAViolations: ['',  ],
-      //lL1HOAViolationsPoints: [0,  ],
-      lL1PropertyCleanliness: ['',  ],
-      //lL1PropertyCleanlinessPoints: [0,  ],
-      lL1Pets: [Boolean,  ],
-      //lL1PetsPoints: ['',  ],
-      lL1AdversePetReferance: [Boolean,  ],
-      //lL1AdversePetReferancePoints: [0,  ],
-      lL1Rerent: [Boolean,  ],
-      //lL1RerentPoints: [0,  ],
+      paystubRecent: ['',],
+      applicantTypeId: [Number],
+      propertyTypeId: ['',],
+      createdBy: ['',],
+
+      // }),
+      incom_verification: this.fb.group({
+        paystubRecent: ['',], //pay stub
+        paystubRecentMonthly: ['',], //monthly
+        ytD_Earnings: ['',], //results
+        secondPayStub: ['',], //2nd stub
+        bankStatementMonthly: ['',], //monthly
+        bankStatement: ['',], //result
+        xRent: ['',], //x-rent
+        incomeAdequate: [Boolean,], //incomeAdequate
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      credit_summary: this.fb.group({
+        creditLines: [Boolean,],
+        creditScore: ['',],
+        //creditScorePoints: [Number,  ],
+        creditScoreAvailable: [Boolean,],
+        // creditScoreAvailablePoints: ['', ],
+        // accountPastDue60Days: ['', ],
+        collectionAccounts: ['',],
+        // collectionAccountsPoints: ['', ],
+        medicalCollections: ['',],
+        propertyRelatedHousingRecord: [Boolean,],
+        // propertyRelatedHousingRecordPoints: ['', ],
+        bankruptcy: [0,],
+        bankRuptyActive: [Boolean,],
+        //bankRuptyActivePoints: ['',  ],
+        liensRepossessions: [Date,],
+        // liensRepossessionsPoints: ['', ],
+        //evectionHistoryPoints: ['',  ],
+        evectionHistory: [null],
+        class1Felonies: [Boolean,],
+        // class1FeloniesPoints: ['', ],
+        class2Felonies: [Date,],
+        // class2FeloniesPoints : ['', ],
+        class1Misdemeaners: [Date,],
+        // class1MisdemeanersPoints: ['', ],
+        class2Misdemeaners: [Date,],
+        depositApproved: [Boolean,],
+        depositToHold: [''],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      landlord_ref: this.fb.group({
+        rentalReferance: [Boolean,],
+        lL1LandlordType: [Number,],
+        lL1ProperNotice: [Boolean,],
+        //lL1ProperNoticePoints: [0,  ],
+        lL1NSF: ['',],
+        //lL1NSFPoints: [0,  ],
+        lL1LatePayments: ['',],
+        //lL1LatePaymentsPoints: [0,  ],
+        lL1PaymentOrVacantNotices: ['',],
+        //lL1PaymentOrVacantNoticesPoints: [0,  ],
+        lL1TendayComplyNotice: ['',],
+        //lL1TendayComplyNoticePoints: [0,  ],
+        lL1HOAViolations: ['',],
+        //lL1HOAViolationsPoints: [0,  ],
+        lL1PropertyCleanliness: ['',],
+        //lL1PropertyCleanlinessPoints: [0,  ],
+        lL1Pets: [Boolean,],
+        //lL1PetsPoints: ['',  ],
+        lL1AdversePetReferance: [Boolean,],
+        //lL1AdversePetReferancePoints: [0,  ],
+        lL1Rerent: [Boolean,],
+        //lL1RerentPoints: [0,  ],
 
 
-      lL2LandlordType: [Number,  ],
-      lL2ProperNotice: [Boolean,  ],
-      //lL2ProperNoticePoints: ['',  ],
-      lL2NSF: ['',  ],
-      //lL2NSFPoints: ['',  ],
-      lL2LatePayments: ['',  ],
-      //L2LatePaymentsPoints: ['',  ],
-      lL2PaymentOrVacantNotices: ['',  ],
-      //lL2PaymentOrVacantNoticesPoints: ['',  ],
-      lL2TendayComplyNotice: ['',  ],
-      //lL2TendayComplyNoticePoints: ['',  ],
-      lL2HOAViolations: ['',  ],
-      //lL2HOAViolationsPoints: ['',  ],
-      lL2PropertyCleanliness: ['',  ],
-      //lL2PropertyCleanlinessPoints: ['',  ],
-      lL2Pets: [Boolean,  ],
-      //lL2PetsPoints: ['',  ],
-      lL2AdversePetReferance: [Boolean,  ],
-      //lL2AdversePetReferancePoints: ['',  ],
-      lL2Rerent: [Boolean,  ],
-      //lL2RerentPoints: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
+        lL2LandlordType: [Number,],
+        lL2ProperNotice: [Boolean,],
+        //lL2ProperNoticePoints: ['',  ],
+        lL2NSF: ['',],
+        //lL2NSFPoints: ['',  ],
+        lL2LatePayments: ['',],
+        //L2LatePaymentsPoints: ['',  ],
+        lL2PaymentOrVacantNotices: ['',],
+        //lL2PaymentOrVacantNoticesPoints: ['',  ],
+        lL2TendayComplyNotice: ['',],
+        //lL2TendayComplyNoticePoints: ['',  ],
+        lL2HOAViolations: ['',],
+        //lL2HOAViolationsPoints: ['',  ],
+        lL2PropertyCleanliness: ['',],
+        //lL2PropertyCleanlinessPoints: ['',  ],
+        lL2Pets: [Boolean,],
+        //lL2PetsPoints: ['',  ],
+        lL2AdversePetReferance: [Boolean,],
+        //lL2AdversePetReferancePoints: ['',  ],
+        lL2Rerent: [Boolean,],
+        //lL2RerentPoints: ['',  ],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      rental_history: this.fb.group({
+        rentalHistoryLength: [Boolean,],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      pets: this.fb.group({
+        petApprovedLandlordReferance1: ['',],
+        petApprovedLandlordReferance2: ['',],
+        noOfCatsCompanion: [Boolean,],
+        noOfCatsCompanions: ['',],
+        noOfLargeDogsCompanion: [Boolean,],
+        noOfLargeDogsCompanions: ['',],
+        noOfSmallDogsCompanion: [Boolean,],
+        noOfSmallDogsCompanions: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      points_summary: this.fb.group({
+        totalPoints: ['',],
+        finalApproval: [Boolean,],
+        // totalDeposit: ['',  ],
+        // depositToHoldPaid: ['',  ],
+        petDeposit: ['',],
+        additionalDeposit: ['',],
+        balanceDepositDue: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+    })
+
+    // Tenant 3 section starts here 
+    this.frmTenant3 = this.fb.group({
+      // basicinfo: this.fb.group({      
+      // firstCtrl:['', ],
+      applicantName: ['',],
+      applicantType: [''],
+      property: ['',],
+      city: ['',],
+      state: ['',],
+      zip: ['',],
+      monthlyRent: ['',],
+      section8Rent: ['',],
+      standardDepositProperty: ['',],
+      // propertyTypeId: ['',  ],
+      propertyType: ['',],
+      // applicantTypeId: ['',  ],
+      // ptype: ['',  ],
+      applicantId: ['',],
+      tenantSNo: ['',],
       tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean,  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
+      paystubRecent: ['',],
+      applicantTypeId: [Number],
+      propertyTypeId: ['',],
+      createdBy: ['',],
+
+      // }),
+      incom_verification: this.fb.group({
+        paystubRecent: ['',], //pay stub
+        paystubRecentMonthly: ['',], //monthly
+        ytD_Earnings: ['',], //results
+        secondPayStub: ['',], //2nd stub
+        bankStatementMonthly: ['',], //monthly
+        bankStatement: ['',], //result
+        xRent: ['',], //x-rent
+        incomeAdequate: [Boolean,], //incomeAdequate
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      credit_summary: this.fb.group({
+        creditLines: [Boolean,],
+        creditScore: ['',],
+        //creditScorePoints: [Number,  ],
+        creditScoreAvailable: [Boolean,],
+        // creditScoreAvailablePoints: ['', ],
+        // accountPastDue60Days: ['', ],
+        collectionAccounts: ['',],
+        // collectionAccountsPoints: ['', ],
+        medicalCollections: ['',],
+        propertyRelatedHousingRecord: [Boolean,],
+        // propertyRelatedHousingRecordPoints: ['', ],
+        bankruptcy: [0,],
+        bankRuptyActive: [Boolean,],
+        //bankRuptyActivePoints: ['',  ],
+        liensRepossessions: [Date,],
+        // liensRepossessionsPoints: ['', ],
+        //evectionHistoryPoints: ['',  ],
+        evectionHistory: [null],
+        class1Felonies: [Boolean,],
+        // class1FeloniesPoints: ['', ],
+        class2Felonies: [Date,],
+        // class2FeloniesPoints : ['', ],
+        class1Misdemeaners: [Date,],
+        // class1MisdemeanersPoints: ['', ],
+        class2Misdemeaners: [Date,],
+        depositApproved: [Boolean,],
+        depositToHold: [''],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      landlord_ref: this.fb.group({
+        rentalReferance: [Boolean,],
+        lL1LandlordType: [Number,],
+        lL1ProperNotice: [Boolean,],
+        //lL1ProperNoticePoints: [0,  ],
+        lL1NSF: ['',],
+        //lL1NSFPoints: [0,  ],
+        lL1LatePayments: ['',],
+        //lL1LatePaymentsPoints: [0,  ],
+        lL1PaymentOrVacantNotices: ['',],
+        //lL1PaymentOrVacantNoticesPoints: [0,  ],
+        lL1TendayComplyNotice: ['',],
+        //lL1TendayComplyNoticePoints: [0,  ],
+        lL1HOAViolations: ['',],
+        //lL1HOAViolationsPoints: [0,  ],
+        lL1PropertyCleanliness: ['',],
+        //lL1PropertyCleanlinessPoints: [0,  ],
+        lL1Pets: [Boolean,],
+        //lL1PetsPoints: ['',  ],
+        lL1AdversePetReferance: [Boolean,],
+        //lL1AdversePetReferancePoints: [0,  ],
+        lL1Rerent: [Boolean,],
+        //lL1RerentPoints: [0,  ],
+
+
+        lL2LandlordType: [Number,],
+        lL2ProperNotice: [Boolean,],
+        //lL2ProperNoticePoints: ['',  ],
+        lL2NSF: ['',],
+        //lL2NSFPoints: ['',  ],
+        lL2LatePayments: ['',],
+        //L2LatePaymentsPoints: ['',  ],
+        lL2PaymentOrVacantNotices: ['',],
+        //lL2PaymentOrVacantNoticesPoints: ['',  ],
+        lL2TendayComplyNotice: ['',],
+        //lL2TendayComplyNoticePoints: ['',  ],
+        lL2HOAViolations: ['',],
+        //lL2HOAViolationsPoints: ['',  ],
+        lL2PropertyCleanliness: ['',],
+        //lL2PropertyCleanlinessPoints: ['',  ],
+        lL2Pets: [Boolean,],
+        //lL2PetsPoints: ['',  ],
+        lL2AdversePetReferance: [Boolean,],
+        //lL2AdversePetReferancePoints: ['',  ],
+        lL2Rerent: [Boolean,],
+        //lL2RerentPoints: ['',  ],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      rental_history: this.fb.group({
+        rentalHistoryLength: [Boolean,],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      pets: this.fb.group({
+        petApprovedLandlordReferance1: ['',],
+        petApprovedLandlordReferance2: ['',],
+        noOfCatsCompanion: [Boolean,],
+        noOfCatsCompanions: ['',],
+        noOfLargeDogsCompanion: [Boolean,],
+        noOfLargeDogsCompanions: ['',],
+        noOfSmallDogsCompanion: [Boolean,],
+        noOfSmallDogsCompanions: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      points_summary: this.fb.group({
+        totalPoints: ['',],
+        finalApproval: [Boolean,],
+        // totalDeposit: ['',  ],
+        // depositToHoldPaid: ['',  ],
+        petDeposit: ['',],
+        additionalDeposit: ['',],
+        balanceDepositDue: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+    })
+
+    //tenant 4 Section Stats here
+    this.frmTenant4 = this.fb.group({
+      // basicinfo: this.fb.group({      
+      // firstCtrl:['', ],
+      applicantName: ['',],
+      applicantType: [''],
+      property: ['',],
+      city: ['',],
+      state: ['',],
+      zip: ['',],
+      monthlyRent: ['',],
+      section8Rent: ['',],
+      standardDepositProperty: ['',],
+      // propertyTypeId: ['',  ],
+      propertyType: ['',],
+      // applicantTypeId: ['',  ],
+      // ptype: ['',  ],
+      applicantId: ['',],
+      tenantSNo: ['',],
       tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['',  ],
-      petApprovedLandlordReferance2: ['',  ],
-      noOfCatsCompanion: [Boolean,  ],
-      noOfCatsCompanions: [Number],
-      noOfLargeDogsCompanion: [Boolean,  ],
-      noOfLargeDogsCompanions: [Number],
-      noOfSmallDogsCompanion: [Boolean,  ],
-      noOfSmallDogsCompanions: [Number],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
+      paystubRecent: ['',],
+      applicantTypeId: [Number],
+      propertyTypeId: ['',],
+      createdBy: ['',],
+
+      // }),
+      incom_verification: this.fb.group({
+        paystubRecent: ['',], //pay stub
+        paystubRecentMonthly: ['',], //monthly
+        ytD_Earnings: ['',], //results
+        secondPayStub: ['',], //2nd stub
+        bankStatementMonthly: ['',], //monthly
+        bankStatement: ['',], //result
+        xRent: ['',], //x-rent
+        incomeAdequate: [Boolean,], //incomeAdequate
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      credit_summary: this.fb.group({
+        creditLines: [Boolean,],
+        creditScore: ['',],
+        //creditScorePoints: [Number,  ],
+        creditScoreAvailable: [Boolean,],
+        // creditScoreAvailablePoints: ['', ],
+        // accountPastDue60Days: ['', ],
+        collectionAccounts: ['',],
+        // collectionAccountsPoints: ['', ],
+        medicalCollections: ['',],
+        propertyRelatedHousingRecord: [Boolean,],
+        // propertyRelatedHousingRecordPoints: ['', ],
+        bankruptcy: [0,],
+        bankRuptyActive: [Boolean,],
+        //bankRuptyActivePoints: ['',  ],
+        liensRepossessions: [Date,],
+        // liensRepossessionsPoints: ['', ],
+        //evectionHistoryPoints: ['',  ],
+        evectionHistory: [null],
+        class1Felonies: [Boolean,],
+        // class1FeloniesPoints: ['', ],
+        class2Felonies: [Date,],
+        // class2FeloniesPoints : ['', ],
+        class1Misdemeaners: [Date,],
+        // class1MisdemeanersPoints: ['', ],
+        class2Misdemeaners: [Date,],
+        depositApproved: [Boolean,],
+        depositToHold: [''],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      landlord_ref: this.fb.group({
+        rentalReferance: [Boolean,],
+        lL1LandlordType: [Number,],
+        lL1ProperNotice: [Boolean,],
+        //lL1ProperNoticePoints: [0,  ],
+        lL1NSF: ['',],
+        //lL1NSFPoints: [0,  ],
+        lL1LatePayments: ['',],
+        //lL1LatePaymentsPoints: [0,  ],
+        lL1PaymentOrVacantNotices: ['',],
+        //lL1PaymentOrVacantNoticesPoints: [0,  ],
+        lL1TendayComplyNotice: ['',],
+        //lL1TendayComplyNoticePoints: [0,  ],
+        lL1HOAViolations: ['',],
+        //lL1HOAViolationsPoints: [0,  ],
+        lL1PropertyCleanliness: ['',],
+        //lL1PropertyCleanlinessPoints: [0,  ],
+        lL1Pets: [Boolean,],
+        //lL1PetsPoints: ['',  ],
+        lL1AdversePetReferance: [Boolean,],
+        //lL1AdversePetReferancePoints: [0,  ],
+        lL1Rerent: [Boolean,],
+        //lL1RerentPoints: [0,  ],
+
+
+        lL2LandlordType: [Number,],
+        lL2ProperNotice: [Boolean,],
+        //lL2ProperNoticePoints: ['',  ],
+        lL2NSF: ['',],
+        //lL2NSFPoints: ['',  ],
+        lL2LatePayments: ['',],
+        //L2LatePaymentsPoints: ['',  ],
+        lL2PaymentOrVacantNotices: ['',],
+        //lL2PaymentOrVacantNoticesPoints: ['',  ],
+        lL2TendayComplyNotice: ['',],
+        //lL2TendayComplyNoticePoints: ['',  ],
+        lL2HOAViolations: ['',],
+        //lL2HOAViolationsPoints: ['',  ],
+        lL2PropertyCleanliness: ['',],
+        //lL2PropertyCleanlinessPoints: ['',  ],
+        lL2Pets: [Boolean,],
+        //lL2PetsPoints: ['',  ],
+        lL2AdversePetReferance: [Boolean,],
+        //lL2AdversePetReferancePoints: ['',  ],
+        lL2Rerent: [Boolean,],
+        //lL2RerentPoints: ['',  ],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+
+      }),
+      rental_history: this.fb.group({
+        rentalHistoryLength: [Boolean,],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      // pets: this.fb.group({
+      //   petApprovedLandlordReferance1: ['',  ],
+      //   petApprovedLandlordReferance2: ['',  ],
+      //   noOfCatsCompanion: [Boolean,  ],
+      //   noOfCatsCompanions: ['',  ],
+      //   noOfLargeDogsCompanion: [Boolean,  ],
+      //   noOfLargeDogsCompanions: ['',  ],
+      //   noOfSmallDogsCompanion: [Boolean,  ],
+      //   noOfSmallDogsCompanions: ['',  ],
+      //   applicantId: ['',  ],
+      //   tenantSNo: ['',  ],
+      //   tenantId: [Number],
+      //   createdBy: ['',  ],
+      // }),
+      points_summary: this.fb.group({
+        totalPoints: ['',],
+        finalApproval: [Boolean,],
+        // totalDeposit: ['',  ],
+        // depositToHoldPaid: ['',  ],
+        petDeposit: ['',],
+        additionalDeposit: ['',],
+        balanceDepositDue: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+    })
+
+    //Co-signer section starts here 
+    this.frmTenant5 = this.fb.group({
+      // basicinfo: this.fb.group({      
+      // firstCtrl:['', ],
+      applicantName: ['',],
+      applicantType: ['',],
+      property: ['',],
+      city: ['',],
+      state: ['',],
+      zip: ['',],
+      monthlyRent: ['',],
+      section8Rent: ['',],
+      standardDepositProperty: ['',],
+      // propertyTypeId: ['',  ],
+      propertyType: ['',],
+      // applicantTypeId: ['',  ],
+      // ptype: ['',  ],
+      applicantId: ['',],
+      tenantSNo: ['',],
       tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    points_summary: this.fb.group({
-      totalPoints: ['',  ],
-      finalApproval: [Boolean,  ],
-      totalDeposit: ['',  ],
-      depositToHoldPaid: ['',  ],
-      petDeposit: ['',  ],
-      additionalDeposit: ['',  ],
-      balanceDepositDue: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-  })
+      paystubRecent: ['',],
+      applicantTypeId: ['',],
+      propertyTypeId: ['',],
+      createdBy: ['',],
 
-  //Tenant 2 Section stats here 
-  frmTenant2 = this.fb.group({
-    // basicinfo: this.fb.group({      
-    // firstCtrl:['', ],
-    applicantName: ['',  ],
-    applicantType: [''],
-    property: ['',  ],
-    city: ['',  ],
-    state: ['',  ],
-    zip: ['',  ],
-    monthlyRent: ['',  ],
-    section8Rent: ['',  ],
-    standardDepositProperty: ['',  ],
-    // propertyTypeId: ['',  ],
-    propertyType: ['',  ],
-    // applicantTypeId: ['',  ],
-    // ptype: ['',  ],
-    applicantId: ['',  ],
-    tenantSNo: ['',  ],
-    tenantId: [Number],
-    paystubRecent: ['',  ],
-    applicantTypeId: [Number],
-    propertyTypeId: ['',  ],
-    createdBy: ['',  ],
+      // }),
+      incom_verification: this.fb.group({
+        paystubRecent: ['',], //pay stub
+        paystubRecentMonthly: ['',], //monthly
+        ytD_Earnings: ['',], //results
+        secondPayStub: ['',], //2nd stub
+        bankStatementMonthly: ['',], //monthly
+        bankStatement: ['',], //result
+        xRent: ['',], //x-rent
+        incomeAdequate: [Boolean,], //incomeAdequate
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      credit_summary: this.fb.group({
+        creditLines: [Boolean,],
+        creditScore: ['',],
+        //creditScorePoints: [Number,  ],
+        creditScoreAvailable: [Boolean,],
+        // creditScoreAvailablePoints: ['', ],
+        // accountPastDue60Days: ['', ],
+        collectionAccounts: ['',],
+        // collectionAccountsPoints: ['', ],
+        medicalCollections: ['',],
+        propertyRelatedHousingRecord: [Boolean,],
+        // propertyRelatedHousingRecordPoints: ['', ],
+        bankruptcy: [0,],
+        bankRuptyActive: [Boolean,],
+        //bankRuptyActivePoints: ['',  ],
+        liensRepossessions: [Date,],
+        // liensRepossessionsPoints: ['', ],
+        //evectionHistoryPoints: ['',  ],
+        evectionHistory: [null],
+        class1Felonies: [Boolean,],
+        // class1FeloniesPoints: ['', ],
+        class2Felonies: [Date,],
+        // class2FeloniesPoints : ['', ],
+        class1Misdemeaners: [Date,],
+        // class1MisdemeanersPoints: ['', ],
+        class2Misdemeaners: [Date,],
+        depositApproved: [Boolean,],
+        depositToHold: [''],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
 
-    // }),
-    incom_verification: this.fb.group({
-      paystubRecent: ['',  ], //pay stub
-      paystubRecentMonthly: ['',  ], //monthly
-      ytD_Earnings: ['',  ], //results
-      secondPayStub: ['',  ], //2nd stub
-      bankStatementMonthly: ['',  ], //monthly
-      bankStatement: ['',  ], //result
-      xRent: ['',  ], //x-rent
-      incomeAdequate: [Boolean,  ], //incomeAdequate
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    credit_summary: this.fb.group({
-      creditLines: [Boolean,  ],
-      creditScore: ['',  ],
-      //creditScorePoints: [Number,  ],
-      creditScoreAvailable: [Boolean,  ],
-      // creditScoreAvailablePoints: ['', ],
-      // accountPastDue60Days: ['', ],
-      collectionAccounts: ['',  ],
-      // collectionAccountsPoints: ['', ],
-      medicalCollections: ['',  ],
-      propertyRelatedHousingRecord: [Boolean,  ],
-      // propertyRelatedHousingRecordPoints: ['', ],
-      bankruptcy: [0,  ],
-      bankRuptyActive: [Boolean,  ],
-      //bankRuptyActivePoints: ['',  ],
-      liensRepossessions: [Date,  ],
-      // liensRepossessionsPoints: ['', ],
-      //evectionHistoryPoints: ['',  ],
-      evectionHistory: [null],
-      class1Felonies: [Boolean,  ],
-      // class1FeloniesPoints: ['', ],
-      class2Felonies: [Date,  ],
-      // class2FeloniesPoints : ['', ],
-      class1Misdemeaners: [Date,  ],
-      // class1MisdemeanersPoints: ['', ],
-      class2Misdemeaners: [Date,  ],
-      depositApproved: [Boolean,  ],
-      depositToHold: [''],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-
-    }),
-    landlord_ref: this.fb.group({
-      rentalReferance: [Boolean,  ],
-      lL1LandlordType: [Number,  ],
-      lL1ProperNotice: [Boolean,  ],
-      //lL1ProperNoticePoints: [0,  ],
-      lL1NSF: ['',  ],
-      //lL1NSFPoints: [0,  ],
-      lL1LatePayments: ['',  ],
-      //lL1LatePaymentsPoints: [0,  ],
-      lL1PaymentOrVacantNotices: ['',  ],
-      //lL1PaymentOrVacantNoticesPoints: [0,  ],
-      lL1TendayComplyNotice: ['',  ],
-      //lL1TendayComplyNoticePoints: [0,  ],
-      lL1HOAViolations: ['',  ],
-      //lL1HOAViolationsPoints: [0,  ],
-      lL1PropertyCleanliness: ['',  ],
-      //lL1PropertyCleanlinessPoints: [0,  ],
-      lL1Pets: [Boolean,  ],
-      //lL1PetsPoints: ['',  ],
-      lL1AdversePetReferance: [Boolean,  ],
-      //lL1AdversePetReferancePoints: [0,  ],
-      lL1Rerent: [Boolean,  ],
-      //lL1RerentPoints: [0,  ],
+      }),
+      landlord_ref: this.fb.group({
+        rentalReferance: [Boolean,],
+        lL1LandlordType: [Number,],
+        lL1ProperNotice: [Boolean,],
+        //lL1ProperNoticePoints: [0,  ],
+        lL1NSF: ['',],
+        //lL1NSFPoints: [0,  ],
+        lL1LatePayments: ['',],
+        //lL1LatePaymentsPoints: [0,  ],
+        lL1PaymentOrVacantNotices: ['',],
+        //lL1PaymentOrVacantNoticesPoints: [0,  ],
+        lL1TendayComplyNotice: ['',],
+        //lL1TendayComplyNoticePoints: [0,  ],
+        lL1HOAViolations: ['',],
+        //lL1HOAViolationsPoints: [0,  ],
+        lL1PropertyCleanliness: ['',],
+        //lL1PropertyCleanlinessPoints: [0,  ],
+        lL1Pets: [Boolean,],
+        //lL1PetsPoints: ['',  ],
+        lL1AdversePetReferance: [Boolean,],
+        //lL1AdversePetReferancePoints: [0,  ],
+        lL1Rerent: [Boolean,],
+        //lL1RerentPoints: [0,  ],
 
 
-      lL2LandlordType: [Number,  ],
-      lL2ProperNotice: [Boolean,  ],
-      //lL2ProperNoticePoints: ['',  ],
-      lL2NSF: ['',  ],
-      //lL2NSFPoints: ['',  ],
-      lL2LatePayments: ['',  ],
-      //L2LatePaymentsPoints: ['',  ],
-      lL2PaymentOrVacantNotices: ['',  ],
-      //lL2PaymentOrVacantNoticesPoints: ['',  ],
-      lL2TendayComplyNotice: ['',  ],
-      //lL2TendayComplyNoticePoints: ['',  ],
-      lL2HOAViolations: ['',  ],
-      //lL2HOAViolationsPoints: ['',  ],
-      lL2PropertyCleanliness: ['',  ],
-      //lL2PropertyCleanlinessPoints: ['',  ],
-      lL2Pets: [Boolean,  ],
-      //lL2PetsPoints: ['',  ],
-      lL2AdversePetReferance: [Boolean,  ],
-      //lL2AdversePetReferancePoints: ['',  ],
-      lL2Rerent: [Boolean,  ],
-      //lL2RerentPoints: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
+        lL2LandlordType: [Number,],
+        lL2ProperNotice: [Boolean,],
+        //lL2ProperNoticePoints: ['',  ],
+        lL2NSF: ['',],
+        //lL2NSFPoints: ['',  ],
+        lL2LatePayments: ['',],
+        //L2LatePaymentsPoints: ['',  ],
+        lL2PaymentOrVacantNotices: ['',],
+        //lL2PaymentOrVacantNoticesPoints: ['',  ],
+        lL2TendayComplyNotice: ['',],
+        //lL2TendayComplyNoticePoints: ['',  ],
+        lL2HOAViolations: ['',],
+        //lL2HOAViolationsPoints: ['',  ],
+        lL2PropertyCleanliness: ['',],
+        //lL2PropertyCleanlinessPoints: ['',  ],
+        lL2Pets: [Boolean,],
+        //lL2PetsPoints: ['',  ],
+        lL2AdversePetReferance: [Boolean,],
+        //lL2AdversePetReferancePoints: ['',  ],
+        lL2Rerent: [Boolean,],
+        //lL2RerentPoints: ['',  ],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
 
-    }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean,  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['',  ],
-      petApprovedLandlordReferance2: ['',  ],
-      noOfCatsCompanion: [Boolean,  ],
-      noOfCatsCompanions: ['',  ],
-      noOfLargeDogsCompanion: [Boolean,  ],
-      noOfLargeDogsCompanions: ['',  ],
-      noOfSmallDogsCompanion: [Boolean,  ],
-      noOfSmallDogsCompanions: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    points_summary: this.fb.group({
-      totalPoints: ['',  ],
-      finalApproval: [Boolean,  ],
-      // totalDeposit: ['',  ],
-      // depositToHoldPaid: ['',  ],
-      petDeposit: ['',  ],
-      additionalDeposit: ['',  ],
-      balanceDepositDue: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-  })
+      }),
+      rental_history: this.fb.group({
+        rentalHistoryLength: [Boolean,],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      pets: this.fb.group({
+        petApprovedLandlordReferance1: ['',],
+        petApprovedLandlordReferance2: ['',],
+        noOfCatsCompanion: [Boolean,],
+        noOfCatsCompanions: ['',],
+        noOfLargeDogsCompanion: [Boolean,],
+        noOfLargeDogsCompanions: ['',],
+        noOfSmallDogsCompanion: [Boolean,],
+        noOfSmallDogsCompanions: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+      points_summary: this.fb.group({
+        totalPoints: ['',],
+        finalApproval: [Boolean,],
+        totalDeposit: ['',],
+        depositToHoldPaid: ['',],
+        petDeposit: ['',],
+        additionalDeposit: ['',],
+        balanceDepositDue: ['',],
+        applicantId: ['',],
+        tenantSNo: ['',],
+        tenantId: [Number],
+        createdBy: ['',],
+      }),
+    })
 
-// Tenant 3 section starts here 
-  frmTenant3 = this.fb.group({
-    // basicinfo: this.fb.group({      
-    // firstCtrl:['', ],
-    applicantName: ['',  ],
-    applicantType: [''],
-    property: ['',  ],
-    city: ['',  ],
-    state: ['',  ],
-    zip: ['',  ],
-    monthlyRent: ['',  ],
-    section8Rent: ['',  ],
-    standardDepositProperty: ['',  ],
-    // propertyTypeId: ['',  ],
-    propertyType: ['',  ],
-    // applicantTypeId: ['',  ],
-    // ptype: ['',  ],
-    applicantId: ['',  ],
-    tenantSNo: ['',  ],
-    tenantId: [Number],
-    paystubRecent: ['',  ],
-    applicantTypeId: [Number],
-    propertyTypeId: ['',  ],
-    createdBy: ['',  ],
+    //Coversheet Section Starts here 
+    this.coverSheetForm = this.fb.group({
+      applicantId: ['',],
+      propertyManager: ['',],
+      primaryTenant: ['',],
+      tenant2: ['',],
+      tenant3: ['',],
+      tenant4: ['',],
+      propertyAddress: ['',],
+      city: ['',],
+      state: ['',],
+      unitCode: ['',],
+      bestPOC: ['',],
+      rentReadyDate: ['',],
+      depositPaidDate: ['',],
+      rentResponsibleDate: ['',],
+      agreementType: ['',],
+      qcDate: ['',],
+      signingDate: ['',],
+      //signingTime: [Time,  ],
+      withWhom: ['',],
+      otherTerms: ['',],
+      listPaidUtilities: ['',],
+      otherMonthlyCharge11: ['',],
+      otherMonthlyCharge12: ['',],
+      otherMonthlyCharge21: ['',],
+      otherMonthlyCharge22: ['',],
+      otherMonthlyCharge31: ['',],
+      otherMonthlyCharge32: ['',],
+      otherMonthlyCharge41: ['',],
+      otherMonthlyCharge42: ['',],
+      otherMoveinCharge1: ['',],
+      otherMoveinChargePaid1: ['',],
+      moveinRentCharge: ['',],
+      moveinRentPaid: ['',],
 
-    // }),
-    incom_verification: this.fb.group({
-      paystubRecent: ['',  ], //pay stub
-      paystubRecentMonthly: ['',  ], //monthly
-      ytD_Earnings: ['',  ], //results
-      secondPayStub: ['',  ], //2nd stub
-      bankStatementMonthly: ['',  ], //monthly
-      bankStatement: ['',  ], //result
-      xRent: ['',  ], //x-rent
-      incomeAdequate: [Boolean,  ], //incomeAdequate
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    credit_summary: this.fb.group({
-      creditLines: [Boolean,  ],
-      creditScore: ['',  ],
-      //creditScorePoints: [Number,  ],
-      creditScoreAvailable: [Boolean,  ],
-      // creditScoreAvailablePoints: ['', ],
-      // accountPastDue60Days: ['', ],
-      collectionAccounts: ['',  ],
-      // collectionAccountsPoints: ['', ],
-      medicalCollections: ['',  ],
-      propertyRelatedHousingRecord: [Boolean,  ],
-      // propertyRelatedHousingRecordPoints: ['', ],
-      bankruptcy: [0,  ],
-      bankRuptyActive: [Boolean,  ],
-      //bankRuptyActivePoints: ['',  ],
-      liensRepossessions: [Date,  ],
-      // liensRepossessionsPoints: ['', ],
-      //evectionHistoryPoints: ['',  ],
-      evectionHistory: [null],
-      class1Felonies: [Boolean,  ],
-      // class1FeloniesPoints: ['', ],
-      class2Felonies: [Date,  ],
-      // class2FeloniesPoints : ['', ],
-      class1Misdemeaners: [Date,  ],
-      // class1MisdemeanersPoints: ['', ],
-      class2Misdemeaners: [Date,  ],
-      depositApproved: [Boolean,  ],
-      depositToHold: [''],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-
-    }),
-    landlord_ref: this.fb.group({
-      rentalReferance: [Boolean,  ],
-      lL1LandlordType: [Number,  ],
-      lL1ProperNotice: [Boolean,  ],
-      //lL1ProperNoticePoints: [0,  ],
-      lL1NSF: ['',  ],
-      //lL1NSFPoints: [0,  ],
-      lL1LatePayments: ['',  ],
-      //lL1LatePaymentsPoints: [0,  ],
-      lL1PaymentOrVacantNotices: ['',  ],
-      //lL1PaymentOrVacantNoticesPoints: [0,  ],
-      lL1TendayComplyNotice: ['',  ],
-      //lL1TendayComplyNoticePoints: [0,  ],
-      lL1HOAViolations: ['',  ],
-      //lL1HOAViolationsPoints: [0,  ],
-      lL1PropertyCleanliness: ['',  ],
-      //lL1PropertyCleanlinessPoints: [0,  ],
-      lL1Pets: [Boolean,  ],
-      //lL1PetsPoints: ['',  ],
-      lL1AdversePetReferance: [Boolean,  ],
-      //lL1AdversePetReferancePoints: [0,  ],
-      lL1Rerent: [Boolean,  ],
-      //lL1RerentPoints: [0,  ],
+      otherMoveinCharge2: ['',],
+      otherMoveinChargePaid2: ['',],
+      otherMoveinCharge3: ['',],
+      otherMoveinChargePaid3: ['',],
+      rubsMoveinCharge: ['',],
+      rubsMoveinChargePaid: ['',],
+      prepaidCleaningCharge: ['',],
+      prepaidCleaningPaid: ['',],
 
 
-      lL2LandlordType: [Number,  ],
-      lL2ProperNotice: [Boolean,  ],
-      //lL2ProperNoticePoints: ['',  ],
-      lL2NSF: ['',  ],
-      //lL2NSFPoints: ['',  ],
-      lL2LatePayments: ['',  ],
-      //L2LatePaymentsPoints: ['',  ],
-      lL2PaymentOrVacantNotices: ['',  ],
-      //lL2PaymentOrVacantNoticesPoints: ['',  ],
-      lL2TendayComplyNotice: ['',  ],
-      //lL2TendayComplyNoticePoints: ['',  ],
-      lL2HOAViolations: ['',  ],
-      //lL2HOAViolationsPoints: ['',  ],
-      lL2PropertyCleanliness: ['',  ],
-      //lL2PropertyCleanlinessPoints: ['',  ],
-      lL2Pets: [Boolean,  ],
-      //lL2PetsPoints: ['',  ],
-      lL2AdversePetReferance: [Boolean,  ],
-      //lL2AdversePetReferancePoints: ['',  ],
-      lL2Rerent: [Boolean,  ],
-      //lL2RerentPoints: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
+      securityDepositCharge: ['',],
+      securityDepositPaid: ['',],
+      nonRefProcessingFeeCharge: ['',],
+      nonRefProcessingFeePaid: ['',],
+      petDepositCharge: ['',],
+      petDepositPaid: ['',],
+      petNonRefFeeCharge: ['',],
+      petNonRefFeePaid: ['',],
 
-    }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean,  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['',  ],
-      petApprovedLandlordReferance2: ['',  ],
-      noOfCatsCompanion: [Boolean,  ],
-      noOfCatsCompanions: ['',  ],
-      noOfLargeDogsCompanion: [Boolean,  ],
-      noOfLargeDogsCompanions: ['',  ],
-      noOfSmallDogsCompanion: [Boolean,  ],
-      noOfSmallDogsCompanions: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    points_summary: this.fb.group({
-      totalPoints: ['',  ],
-      finalApproval: [Boolean,  ],
-      // totalDeposit: ['',  ],
-      // depositToHoldPaid: ['',  ],
-      petDeposit: ['',  ],
-      additionalDeposit: ['',  ],
-      balanceDepositDue: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-  })
+      additionDepositCharge: ['',],
+      additionDepositPaid: ['',],
+      subTotal: ['',],
+      paid: ['',],
+      dueatMoveinKeyPickup: ['',],
+      createdBy: ['',],
 
-  //tenant 4 Section Stats here
-  frmTenant4 = this.fb.group({
-    // basicinfo: this.fb.group({      
-    // firstCtrl:['', ],
-    applicantName: ['',  ],
-    applicantType: [''],
-    property: ['',  ],
-    city: ['',  ],
-    state: ['',  ],
-    zip: ['',  ],
-    monthlyRent: ['',  ],
-    section8Rent: ['',  ],
-    standardDepositProperty: ['',  ],
-    // propertyTypeId: ['',  ],
-    propertyType: ['',  ],
-    // applicantTypeId: ['',  ],
-    // ptype: ['',  ],
-    applicantId: ['',  ],
-    tenantSNo: ['',  ],
-    tenantId: [Number],
-    paystubRecent: ['',  ],
-    applicantTypeId: [Number],
-    propertyTypeId: ['',  ],
-    createdBy: ['',  ],
-
-    // }),
-    incom_verification: this.fb.group({
-      paystubRecent: ['',  ], //pay stub
-      paystubRecentMonthly: ['',  ], //monthly
-      ytD_Earnings: ['',  ], //results
-      secondPayStub: ['',  ], //2nd stub
-      bankStatementMonthly: ['',  ], //monthly
-      bankStatement: ['',  ], //result
-      xRent: ['',  ], //x-rent
-      incomeAdequate: [Boolean,  ], //incomeAdequate
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    credit_summary: this.fb.group({
-      creditLines: [Boolean,  ],
-      creditScore: ['',  ],
-      //creditScorePoints: [Number,  ],
-      creditScoreAvailable: [Boolean,  ],
-      // creditScoreAvailablePoints: ['', ],
-      // accountPastDue60Days: ['', ],
-      collectionAccounts: ['',  ],
-      // collectionAccountsPoints: ['', ],
-      medicalCollections: ['',  ],
-      propertyRelatedHousingRecord: [Boolean,  ],
-      // propertyRelatedHousingRecordPoints: ['', ],
-      bankruptcy: [0,  ],
-      bankRuptyActive: [Boolean,  ],
-      //bankRuptyActivePoints: ['',  ],
-      liensRepossessions: [Date,  ],
-      // liensRepossessionsPoints: ['', ],
-      //evectionHistoryPoints: ['',  ],
-      evectionHistory: [null],
-      class1Felonies: [Boolean,  ],
-      // class1FeloniesPoints: ['', ],
-      class2Felonies: [Date,  ],
-      // class2FeloniesPoints : ['', ],
-      class1Misdemeaners: [Date,  ],
-      // class1MisdemeanersPoints: ['', ],
-      class2Misdemeaners: [Date,  ],
-      depositApproved: [Boolean,  ],
-      depositToHold: [''],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-
-    }),
-    landlord_ref: this.fb.group({
-      rentalReferance: [Boolean,  ],
-      lL1LandlordType: [Number,  ],
-      lL1ProperNotice: [Boolean,  ],
-      //lL1ProperNoticePoints: [0,  ],
-      lL1NSF: ['',  ],
-      //lL1NSFPoints: [0,  ],
-      lL1LatePayments: ['',  ],
-      //lL1LatePaymentsPoints: [0,  ],
-      lL1PaymentOrVacantNotices: ['',  ],
-      //lL1PaymentOrVacantNoticesPoints: [0,  ],
-      lL1TendayComplyNotice: ['',  ],
-      //lL1TendayComplyNoticePoints: [0,  ],
-      lL1HOAViolations: ['',  ],
-      //lL1HOAViolationsPoints: [0,  ],
-      lL1PropertyCleanliness: ['',  ],
-      //lL1PropertyCleanlinessPoints: [0,  ],
-      lL1Pets: [Boolean,  ],
-      //lL1PetsPoints: ['',  ],
-      lL1AdversePetReferance: [Boolean,  ],
-      //lL1AdversePetReferancePoints: [0,  ],
-      lL1Rerent: [Boolean,  ],
-      //lL1RerentPoints: [0,  ],
+      modifiedBy: ['',],
 
 
-      lL2LandlordType: [Number,  ],
-      lL2ProperNotice: [Boolean,  ],
-      //lL2ProperNoticePoints: ['',  ],
-      lL2NSF: ['',  ],
-      //lL2NSFPoints: ['',  ],
-      lL2LatePayments: ['',  ],
-      //L2LatePaymentsPoints: ['',  ],
-      lL2PaymentOrVacantNotices: ['',  ],
-      //lL2PaymentOrVacantNoticesPoints: ['',  ],
-      lL2TendayComplyNotice: ['',  ],
-      //lL2TendayComplyNoticePoints: ['',  ],
-      lL2HOAViolations: ['',  ],
-      //lL2HOAViolationsPoints: ['',  ],
-      lL2PropertyCleanliness: ['',  ],
-      //lL2PropertyCleanlinessPoints: ['',  ],
-      lL2Pets: [Boolean,  ],
-      //lL2PetsPoints: ['',  ],
-      lL2AdversePetReferance: [Boolean,  ],
-      //lL2AdversePetReferancePoints: ['',  ],
-      lL2Rerent: [Boolean,  ],
-      //lL2RerentPoints: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
+      // Other charges...
+    });
 
-    }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean,  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    // pets: this.fb.group({
-    //   petApprovedLandlordReferance1: ['',  ],
-    //   petApprovedLandlordReferance2: ['',  ],
-    //   noOfCatsCompanion: [Boolean,  ],
-    //   noOfCatsCompanions: ['',  ],
-    //   noOfLargeDogsCompanion: [Boolean,  ],
-    //   noOfLargeDogsCompanions: ['',  ],
-    //   noOfSmallDogsCompanion: [Boolean,  ],
-    //   noOfSmallDogsCompanions: ['',  ],
-    //   applicantId: ['',  ],
-    //   tenantSNo: ['',  ],
-    //   tenantId: [Number],
-    //   createdBy: ['',  ],
-    // }),
-    points_summary: this.fb.group({
-      totalPoints: ['',  ],
-      finalApproval: [Boolean,  ],
-      // totalDeposit: ['',  ],
-      // depositToHoldPaid: ['',  ],
-      petDeposit: ['',  ],
-      additionalDeposit: ['',  ],
-      balanceDepositDue: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-  })
-
-  //Co-signer section starts here 
-  frmTenant5 = this.fb.group({
-    // basicinfo: this.fb.group({      
-    // firstCtrl:['', ],
-    applicantName: ['',  ],
-    applicantType: ['',  ],
-    property: ['',  ],
-    city: ['',  ],
-    state: ['',  ],
-    zip: ['',  ],
-    monthlyRent: ['',  ],
-    section8Rent: ['',  ],
-    standardDepositProperty: ['',  ],
-    // propertyTypeId: ['',  ],
-    propertyType: ['',  ],
-    // applicantTypeId: ['',  ],
-    // ptype: ['',  ],
-    applicantId: ['',  ],
-    tenantSNo: ['',  ],
-    tenantId: [Number],
-    paystubRecent: ['',  ],
-    applicantTypeId: ['',  ],
-    propertyTypeId: ['',  ],
-    createdBy: ['',  ],
-
-    // }),
-    incom_verification: this.fb.group({
-      paystubRecent: ['',  ], //pay stub
-      paystubRecentMonthly: ['',  ], //monthly
-      ytD_Earnings: ['',  ], //results
-      secondPayStub: ['',  ], //2nd stub
-      bankStatementMonthly: ['',  ], //monthly
-      bankStatement: ['',  ], //result
-      xRent: ['',  ], //x-rent
-      incomeAdequate: [Boolean,  ], //incomeAdequate
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    credit_summary: this.fb.group({
-      creditLines: [Boolean,  ],
-      creditScore: ['',  ],
-      //creditScorePoints: [Number,  ],
-      creditScoreAvailable: [Boolean,  ],
-      // creditScoreAvailablePoints: ['', ],
-      // accountPastDue60Days: ['', ],
-      collectionAccounts: ['',  ],
-      // collectionAccountsPoints: ['', ],
-      medicalCollections: ['',  ],
-      propertyRelatedHousingRecord: [Boolean,  ],
-      // propertyRelatedHousingRecordPoints: ['', ],
-      bankruptcy: [0,  ],
-      bankRuptyActive: [Boolean,  ],
-      //bankRuptyActivePoints: ['',  ],
-      liensRepossessions: [Date,  ],
-      // liensRepossessionsPoints: ['', ],
-      //evectionHistoryPoints: ['',  ],
-      evectionHistory: [null],
-      class1Felonies: [Boolean,  ],
-      // class1FeloniesPoints: ['', ],
-      class2Felonies: [Date,  ],
-      // class2FeloniesPoints : ['', ],
-      class1Misdemeaners: [Date,  ],
-      // class1MisdemeanersPoints: ['', ],
-      class2Misdemeaners: [Date,  ],
-      depositApproved: [Boolean,  ],
-      depositToHold: [''],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-
-    }),
-    landlord_ref: this.fb.group({
-      rentalReferance: [Boolean,  ],
-      lL1LandlordType: [Number,  ],
-      lL1ProperNotice: [Boolean,  ],
-      //lL1ProperNoticePoints: [0,  ],
-      lL1NSF: ['',  ],
-      //lL1NSFPoints: [0,  ],
-      lL1LatePayments: ['',  ],
-      //lL1LatePaymentsPoints: [0,  ],
-      lL1PaymentOrVacantNotices: ['',  ],
-      //lL1PaymentOrVacantNoticesPoints: [0,  ],
-      lL1TendayComplyNotice: ['',  ],
-      //lL1TendayComplyNoticePoints: [0,  ],
-      lL1HOAViolations: ['',  ],
-      //lL1HOAViolationsPoints: [0,  ],
-      lL1PropertyCleanliness: ['',  ],
-      //lL1PropertyCleanlinessPoints: [0,  ],
-      lL1Pets: [Boolean,  ],
-      //lL1PetsPoints: ['',  ],
-      lL1AdversePetReferance: [Boolean,  ],
-      //lL1AdversePetReferancePoints: [0,  ],
-      lL1Rerent: [Boolean,  ],
-      //lL1RerentPoints: [0,  ],
-
-
-      lL2LandlordType: [Number,  ],
-      lL2ProperNotice: [Boolean,  ],
-      //lL2ProperNoticePoints: ['',  ],
-      lL2NSF: ['',  ],
-      //lL2NSFPoints: ['',  ],
-      lL2LatePayments: ['',  ],
-      //L2LatePaymentsPoints: ['',  ],
-      lL2PaymentOrVacantNotices: ['',  ],
-      //lL2PaymentOrVacantNoticesPoints: ['',  ],
-      lL2TendayComplyNotice: ['',  ],
-      //lL2TendayComplyNoticePoints: ['',  ],
-      lL2HOAViolations: ['',  ],
-      //lL2HOAViolationsPoints: ['',  ],
-      lL2PropertyCleanliness: ['',  ],
-      //lL2PropertyCleanlinessPoints: ['',  ],
-      lL2Pets: [Boolean,  ],
-      //lL2PetsPoints: ['',  ],
-      lL2AdversePetReferance: [Boolean,  ],
-      //lL2AdversePetReferancePoints: ['',  ],
-      lL2Rerent: [Boolean,  ],
-      //lL2RerentPoints: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-
-    }),
-    rental_history: this.fb.group({
-      rentalHistoryLength: [Boolean,  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    pets: this.fb.group({
-      petApprovedLandlordReferance1: ['',  ],
-      petApprovedLandlordReferance2: ['',  ],
-      noOfCatsCompanion: [Boolean,  ],
-      noOfCatsCompanions: ['',  ],
-      noOfLargeDogsCompanion: [Boolean,  ],
-      noOfLargeDogsCompanions: ['',  ],
-      noOfSmallDogsCompanion: [Boolean,  ],
-      noOfSmallDogsCompanions: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-    points_summary: this.fb.group({
-      totalPoints: ['',  ],
-      finalApproval: [Boolean,  ],
-      totalDeposit: ['',  ],
-      depositToHoldPaid: ['',  ],
-      petDeposit: ['',  ],
-      additionalDeposit: ['',  ],
-      balanceDepositDue: ['',  ],
-      applicantId: ['',  ],
-      tenantSNo: ['',  ],
-      tenantId: [Number],
-      createdBy: ['',  ],
-    }),
-  })
-
-  //Coversheet Section Starts here 
-  coverSheetForm = this.fb.group({
-    applicantId: ['',  ],
-    propertyManager: ['',  ],
-    primaryTenant: ['',  ],
-    tenant2: ['',  ],
-    tenant3: ['',  ],
-    tenant4: ['',  ],
-    propertyAddress: ['',  ],
-    city: ['',  ],
-    state: ['',  ],
-    unitCode: ['',  ],
-    bestPOC: ['',  ],
-    rentReadyDate: ['',  ],
-    depositPaidDate: ['',  ],
-    rentResponsibleDate: ['',  ],
-    agreementType: ['',  ],
-    qcDate: ['',  ],
-    signingDate: ['',  ],
-    //signingTime: [Time,  ],
-    withWhom: ['',  ],
-    otherTerms: ['',  ],
-    listPaidUtilities: ['',  ],
-    otherMonthlyCharge11: ['',  ],
-    otherMonthlyCharge12: ['',  ],
-    otherMonthlyCharge21: ['',  ],
-    otherMonthlyCharge22: ['',  ],
-    otherMonthlyCharge31: ['',  ],
-    otherMonthlyCharge32: ['',  ],
-    otherMonthlyCharge41: ['',  ],
-    otherMonthlyCharge42: ['',  ],
-    otherMoveinCharge1: ['',  ],
-    otherMoveinChargePaid1: ['',  ],
-    moveinRentCharge: ['',  ],
-    moveinRentPaid: ['',  ],
-
-    otherMoveinCharge2: ['',  ],
-    otherMoveinChargePaid2: ['',  ],
-    otherMoveinCharge3: ['',  ],
-    otherMoveinChargePaid3: ['',  ],
-    rubsMoveinCharge: ['',  ],
-    rubsMoveinChargePaid: ['',  ],
-    prepaidCleaningCharge: ['',  ],
-    prepaidCleaningPaid: ['',  ],
-
-
-    securityDepositCharge: ['',  ],
-    securityDepositPaid: ['',  ],
-    nonRefProcessingFeeCharge: ['',  ],
-    nonRefProcessingFeePaid: ['',  ],
-    petDepositCharge: ['',  ],
-    petDepositPaid: ['',  ],
-    petNonRefFeeCharge: ['',  ],
-    petNonRefFeePaid: ['',  ],
-
-    additionDepositCharge: ['',  ],
-    additionDepositPaid: ['',  ],
-    subTotal: ['',  ],
-    paid: ['',  ],
-    dueatMoveinKeyPickup: ['',  ],
-    createdBy: ['',  ],
-
-    modifiedBy: ['',  ],
-
-
-    // Other charges...
-  });
-
-
+  }
 
   done() {
     this.completed = true;
@@ -988,7 +990,7 @@ export class PrimaryTenantComponent {
 
   }
   onTenantSubmit(tenantSNo: any) {
-    
+
     if (tenantSNo == '1') {
       this.frmTenant = this.frmPrimary;
     }
@@ -1010,31 +1012,31 @@ export class PrimaryTenantComponent {
       applicantId: '0',
       incom_verification: {
         createdBy: this.currentUser.id.toString(),
-        
+
       },
       credit_summary: {
         createdBy: this.currentUser.id.toString(),
-        
+
       }
       ,
       landlord_ref: {
         createdBy: this.currentUser.id.toString(),
-        
+
       }
       ,
       rental_history: {
         createdBy: this.currentUser.id.toString(),
-       
+
       }
       ,
       pets: {
         createdBy: this.currentUser.id.toString(),
-        
+
       }
       ,
       points_summary: {
         createdBy: this.currentUser.id.toString(),
-        
+
       }
     })
     if (this.snapid) {
@@ -1217,22 +1219,22 @@ export class PrimaryTenantComponent {
   }
 
   onStepChange(event: StepperSelectionEvent): void {
-     
+
     //if (event.selectedIndex == 0) {
     //  this.tenantSNO = 1;
     //}
     //else {
-      
+
     //}
     this.tenantSNO = event.selectedIndex + 1;
-    
-    if (this.snapid && this.tenantSNO<4) {
+
+    if (this.snapid && this.tenantSNO < 4) {
       this.getScroreSheetByApplicantId(this.snapid, this.tenantSNO.toString());
     }
     // Additional logic can be added here based on the step change
   }
-  selectionChange(sNo:any) {
-    
+  selectionChange(sNo: any) {
+
   }
 
 
@@ -1270,7 +1272,7 @@ export class PrimaryTenantComponent {
   }
 
   getScroreSheetByApplicantId(snapid: any, sno: any) {
-    
+
     this._userservice.GetScroreSheetByApplicantId(this.snapid, sno).subscribe((data) => {
       console.log(data, "getting data");
       console.log(data[0].applicantType, "applicant type");
@@ -1297,7 +1299,7 @@ export class PrimaryTenantComponent {
         // firstname: this.result[0].firstname,
 
         // firstname: this.result[0].firstname,
-        tenantId: this.result[0].tenantId ,
+        tenantId: this.result[0].tenantId,
         tenantSNo: sno,
         applicantName: this.result[0].applicantName,
         property: this.result[0].property,
@@ -1441,7 +1443,7 @@ export class PrimaryTenantComponent {
     })
 
   }
-  
+
   stepColorClass(step: CdkStep | undefined): string {
     if (step) {
       if (step === this.stepper?.selected) {
@@ -1472,26 +1474,39 @@ export class PrimaryTenantComponent {
 
       this.tabGroup.selectedIndex = nextIndex;
     }
-   
+
+  }
+  subscribeControls() {
+
+    this.frmPrimary.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
   }
   calculateIncomeAdequate() {
-    //const primaryPaystubRecentValue = pathis.frmPrimary.get('incom_verification.paystubRecent')?.value) || 0;
+    const primarypaystubRecentValue = parseFloat(this.frmPrimary.get('incom_verification.paystubRecent')?.value) || 0;
+    const primaryytD_EarningsValue = parseFloat(this.frmPrimary.get('incom_verification.ytD_Earnings')?.value) || 0;
+    const primarysecondPayStubValue = parseFloat(this.frmPrimary.get('incom_verification.secondPayStub')?.value) || 0;
+    const primarybankStatementValue = parseFloat(this.frmPrimary.get('incom_verification.bankStatement')?.value) || 0;
+    //const primarypaystubRecentMonthlyValue = parseFloat(this.frmPrimary.get('incom_verification.paystubRecentMonthly')?.value) || 0;
+    
     //const primaryytD_EarningsValue = this.frmPrimary.get('incom_verification.ytD_Earnings')?.value || 0;
     //const dueatMoveinKeyPickupValue = (primaryPaystubRecentValue/primaryytD_EarningsValue);
-    //this.frmPrimary.patchValue({
-    //  incom_verification: {
+    this.frmPrimary.patchValue({
+      incom_verification: {
 
-    //    paystubRecentMonthly: (primaryPaystubRecentValue / primaryytD_EarningsValue).toFixed(2),
-    //    ytD_Earnings: this.result[0].ytD_Earnings,
-    //    secondPayStub: this.result[0].secondPayStub,
-    //    bankStatementMonthly: this.result[0].bankStatementMonthly,
-    //    bankStatement: this.result[0].bankStatement,
-    //    xRent: this.result[0].xRent,
-    //    incomeAdequate: this.result[0].incomeAdequate
-    //  }
-     
+        paystubRecentMonthly: (primarypaystubRecentValue / primaryytD_EarningsValue).toFixed(2),
+        bankStatementMonthly: (primarysecondPayStubValue / primarybankStatementValue).toFixed(2),
+        //ytD_Earnings: this.result[0].ytD_Earnings,
+        //secondPayStub: this.result[0].secondPayStub,
+        //bankStatementMonthly: this.result[0].bankStatementMonthly,
+        //bankStatement: this.result[0].bankStatement,
+        //xRent: this.result[0].xRent,
+        //incomeAdequate: this.result[0].incomeAdequate
+      }
 
-    //})
+
+    })
   }
   // changeStep(index: number) {
   //   this.currentStep = index;

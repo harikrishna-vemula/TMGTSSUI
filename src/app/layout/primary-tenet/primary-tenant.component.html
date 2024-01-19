@@ -85,7 +85,7 @@
                       <span class="input-group-text" style="height: 58px;">$</span>
                       <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
                         <mat-label>Standard Deposit for Property</mat-label>
-                        <input type="text" matInput formControlName="standardDepositProperty">
+                        <input type="number" matInput formControlName="standardDepositProperty">
                       </mat-form-field>
                     </div>
                     <!-- <div class="one">
@@ -164,7 +164,7 @@
                       <mat-form-field appearance="outline">
 
                         <mat-label>Monthly</mat-label>
-                        <input type="number" matInput formControlName="paystubRecentMonthly">
+                        <input type="number" matInput formControlName="paystubRecentMonthly" readonly>
                       </mat-form-field>
 
                     </div>
@@ -181,7 +181,7 @@
                       <span class="input-group-text" style="height: 58px;">$</span>
                       <mat-form-field appearance="outline">
                         <mat-label>Monthly</mat-label>
-                        <input type="number" matInput formControlName="bankStatementMonthly">
+                        <input type="number" matInput formControlName="bankStatementMonthly" readonly>
                       </mat-form-field>
 
                     </div>
@@ -193,7 +193,7 @@
                       </mat-form-field>
                       <mat-form-field appearance="outline" style="width: 762px">
                         <mat-label>Income Adequate Y/N</mat-label>
-                        <mat-select formControlName="incomeAdequate">
+                        <mat-select formControlName="incomeAdequate" readonly>
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
                         </mat-select>

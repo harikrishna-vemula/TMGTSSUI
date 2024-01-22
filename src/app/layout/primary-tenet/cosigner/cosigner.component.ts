@@ -46,6 +46,7 @@ export class CosignerComponent {
       tenantId: [Number],
       // paystubRecent: ['',  ],
       applicantTypeId: ['',],
+      petDeposit:['',],
       propertyTypeId: ['',],
       createdBy: ['',],
 
@@ -205,6 +206,7 @@ export class CosignerComponent {
         monthlyRent: this.result[0].monthlyRent,
         section8Rent: this.result[0].section8Rent,
         standardDepositProperty: this.result[0].standardDepositProperty,
+        petDeposit: this.result[0].petDeposit,
         propertyTypeId: this.result[0].propertyTypeId,
 
         incom_verification: {

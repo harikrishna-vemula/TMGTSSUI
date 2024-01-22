@@ -52,6 +52,19 @@ export class UsersService {
         
       );
   }
+  GetFormulae(): Observable<any> {
+
+    return this._http.get<any>(this.url + 'Scoresheet/GetFormulae')
+      .pipe(
+        tap((data) => {
+          console.log('Data from GetFormulae:', data);
+        }),
+        catchError((error) => {
+          console.error('Error in GetFormulae:', error);
+          throw error; // Rethrow the error or handle as needed
+        })
+      );
+  }
 
   // GetAllUsers1(snapid:any): Observable<any> {
   //   alert("working")

@@ -28,6 +28,7 @@ export class PrimaryTenantComponent {
   steps = [true, true]; // Use an array to represent steps, e.g., [true, false, false] for three steps
   currentStep = 0;
   state?: string;
+  inputValue!: number;
   frmPrimary!: FormGroup; frmTenant2!: FormGroup; frmTenant3!: FormGroup; frmTenant4!: FormGroup; frmTenant5!: FormGroup; coverSheetForm!: FormGroup;
   propertyTypes: string[] = ['Multi-Family', 'Single-Family']
   options1: any = ['Yes', 'No'];
@@ -41,7 +42,8 @@ export class PrimaryTenantComponent {
   createApplicant: any;
   snapid: any;
   applicantId: number = 0; frmTenant: any; tenantId: number = 0; tenantSNO: number = 0;
-  primaryTenantIncomeVerification: number = 0;
+  primaryTenantIncomeVerification: number = 0; formulaeData: any; formulaValue?: string; filteredItem: any; dateToCheck?: Date;
+
   constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private _userservice: UsersService, private activate: ActivatedRoute) {
     this.authservice.currentUser.subscribe(x => this.currentUser = x);
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
@@ -49,17 +51,15 @@ export class PrimaryTenantComponent {
 
 
   ngOnInit() {
+    this.getFormulae();
     this.initForm();
     this.subscribeControls()
     this.frmPrimary.get('applicantName')?.setValue('');
-
     this.snapid = this.activate.snapshot.paramMap.get('id') || '';
-
     if (this.snapid) {
-
       this.getScroreSheetByApplicantId(this.snapid, 1);
-
     }
+
 
   }
   initForm(): void {
@@ -77,6 +77,7 @@ export class PrimaryTenantComponent {
       monthlyRent: ['', Validators.required],
       section8Rent: ['', Validators.required],
       standardDepositProperty: ['', Validators.required],
+      petDeposit: [''],
       // propertyTypeId: ['', Validators.required],
       propertyType: ['', Validators.required],
       // applicantTypeId: ['', Validators.required],
@@ -86,6 +87,7 @@ export class PrimaryTenantComponent {
       tenantId: [Number],
       paystubRecent: ['', Validators.required],
       applicantTypeId: [Number, Validators.required],
+
       propertyTypeId: ['', Validators.required],
       applicationStatusId: ['', Validators.required],
       createdBy: ['', Validators.required],
@@ -103,6 +105,13 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
+
+        paystubMonthlyRentPoints: ['',],
+        paystubsection8RentPoints: ['',],
+        secondPaystubMonthlyRentPoints: ['',],
+        secondPaystubsection8RentPoints: ['',],
+        totalPayStubPoints: ['',],
+
       }),
       credit_summary: this.fb.group({
         creditLines: [Boolean,],
@@ -237,6 +246,7 @@ export class PrimaryTenantComponent {
       monthlyRent: ['',],
       section8Rent: ['',],
       standardDepositProperty: ['',],
+      petDeposit: [''],
       // propertyTypeId: ['',  ],
       propertyType: ['',],
       // applicantTypeId: ['',  ],
@@ -399,6 +409,7 @@ export class PrimaryTenantComponent {
       monthlyRent: ['',],
       section8Rent: ['',],
       standardDepositProperty: ['',],
+      petDeposit: [''],
       // propertyTypeId: ['',  ],
       propertyType: ['',],
       // applicantTypeId: ['',  ],
@@ -561,6 +572,7 @@ export class PrimaryTenantComponent {
       monthlyRent: ['',],
       section8Rent: ['',],
       standardDepositProperty: ['',],
+      petDeposit: [''],
       // propertyTypeId: ['',  ],
       propertyType: ['',],
       // applicantTypeId: ['',  ],
@@ -722,6 +734,7 @@ export class PrimaryTenantComponent {
       zip: ['',],
       monthlyRent: ['',],
       section8Rent: ['',],
+      petDeposit: [''],
       standardDepositProperty: ['',],
       // propertyTypeId: ['',  ],
       propertyType: ['',],
@@ -1257,6 +1270,7 @@ export class PrimaryTenantComponent {
         monthlyRent: this.result.data.monthlyRent,
         section8Rent: this.result.data.section8Rent,
         standardDepositProperty: this.result.data.standardDepositProperty,
+        petDeposit: this.result.data.petDeposit,
         // propertyTypeId: this.result.data.propertyTypeId,
         propertyType: this.result.data.propertyType,
         applicantId: this.result.data.id,
@@ -1310,6 +1324,7 @@ export class PrimaryTenantComponent {
         monthlyRent: this.result[0].monthlyRent,
         section8Rent: this.result[0].section8Rent,
         standardDepositProperty: this.result[0].standardDepositProperty,
+        petDeposit: this.result[0].petDeposit,
         propertyTypeId: this.result[0].propertyTypeId,
         applicationStatusId: this.result[0].applicationStatusId,
 
@@ -1476,47 +1491,316 @@ export class PrimaryTenantComponent {
     }
 
   }
-  subscribeControls() {
 
+  applyFiltersAndGetColumnValue(column: string, filters: { key: string, value: any }[]): any {
+    const calculationValue = 0;
+    this.filteredItem = this.formulaeData.filter((item: { [x: string]: any; }) => {
+      return filters.every(filter => {
+        const columnValue = item[filter.key];
+
+        // Customize the comparison logic based on your column types
+        if (filter.key === 'Credit Score1213') {
+          return "";
+        } else {
+          return columnValue === filter.value;
+        }
+      });
+    });
+    if (this.filteredItem.length > 0) {
+      if (column == "Credit Score") {
+
+      }
+      calculationValue == this.filteredItem[0].calculation;
+      return calculationValue;
+    }
+  }
+  calculateDeposittoHold() {
+    const standardDepositProperty = parseFloat(this.frmPrimary.get('standardDepositProperty')?.value) || 0;
+    const DepositToHold = 0.7 * standardDepositProperty;
+    this.frmPrimary.patchValue({
+      credit_summary: {
+
+        depositToHold: DepositToHold.toFixed(2),
+       
+
+      }
+    })
+
+
+  }
+  subscribeControls() {
+    //Basic details
+    this.frmPrimary.get('monthlyRent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('section8Rent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('applicantTypeId')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('propertyTypeId')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('standardDepositProperty')?.valueChanges.subscribe(() => this.calculateDeposittoHold());
+
+    //Primary Tenant
     this.frmPrimary.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmPrimary.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmPrimary.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmPrimary.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
+    this.frmPrimary.get('credit_summary.creditScore')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.creditScoreAvailable')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.collectionAccounts')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.medicalCollections')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.propertyRelatedHousingRecord')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.bankruptcy')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.bankRuptyActive')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.liensRepossessions')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.evectionHistory')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.class1Felonies')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.class2Felonies')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.class1Misdemeaners')?.valueChanges.subscribe(() => this.calculateCreditSummary());
+    this.frmPrimary.get('credit_summary.class2Misdemeaners')?.valueChanges.subscribe(() => this.calculateCreditSummary());
 
+    //Tenant 2
     this.frmTenant2.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmTenant2.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmTenant2.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmTenant2.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
 
+    //Tenant 3
     this.frmTenant3.get('incom_verification.paystubRecent')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmTenant3.get('incom_verification.ytD_Earnings')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmTenant3.get('incom_verification.secondPayStub')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
     this.frmTenant3.get('incom_verification.bankStatement')?.valueChanges.subscribe(() => this.calculateIncomeAdequate());
   }
+
+  calculateCreditSummary() {
+    const applicantTypeId = parseFloat(this.frmPrimary.get('applicantTypeId')?.value) || 0;
+    const propertyTypeId = parseFloat(this.frmPrimary.get('propertyTypeId')?.value) || 0;
+    const primarycreditScoreValue = parseFloat(this.frmPrimary.get('credit_summary.creditScore')?.value) || 0;
+    let primarycreditScorePoints = 0;
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
+      const startValue = +item.startValue; // Convert to number
+      const endValue = +item.endValue; // Convert to number      
+      return startValue <= primarycreditScoreValue && primarycreditScoreValue <= endValue && item.description == "Credit Score" && item.propertyTypeId == propertyTypeId;
+    });
+    if (this.filteredItem.length > 0) {
+      primarycreditScorePoints = parseFloat(this.filteredItem[0].calculation) || 0;
+    }
+
+
+    //credit score available
+    let primarycreditScroreAvaiablePoints = 0;
+    const primarycreditScoreAvailableValue = this.frmPrimary.get('credit_summary.creditScoreAvailable')?.value;
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; propertyTypeId: string | number; description: string | number }) => {
+
+      return item.description == "Credit Score Available" && item.propertyTypeId == propertyTypeId && item.startValue == (primarycreditScoreAvailableValue == false ? "No" : "Yes");
+    });
+    if (this.filteredItem.length > 0) {
+      primarycreditScroreAvaiablePoints = parseFloat(this.filteredItem[0].calculation) || 0;
+    }
+
+    //collection accounts
+    let primaryCollectionAccountsPoints = 0; let primaryCMAccountsPoints = 0;
+    const primaryCollectionAccountsValue = parseFloat(this.frmPrimary.get('credit_summary.collectionAccounts')?.value) || 0;
+    const primaryMedicalCollectionsValue = parseFloat(this.frmPrimary.get('credit_summary.medicalCollections')?.value) || 0;
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; description: string | number }) => {
+      const startValue = +item.startValue; // Convert to number
+      const endValue = +item.endValue; // Convert to number     
+      return startValue <= primaryCollectionAccountsValue && primaryCollectionAccountsValue <= endValue && item.description == "Collection Accounts";
+    });
+    if (this.filteredItem.length > 0) {
+      primaryCollectionAccountsPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+    }
+    primaryCMAccountsPoints = primaryCollectionAccountsValue - primaryMedicalCollectionsValue;
+
+    //Property Related Housing Record
+    let primaryPropertyRelatedHousingRecordPoints = 0;
+    const primaryPropertyRelatedHousingRecordValue = this.frmPrimary.get('credit_summary.propertyRelatedHousingRecord')?.value;
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+      return item.description == "Housing Records" && item.startValue == (primaryPropertyRelatedHousingRecordValue == false ? "No" : "Yes");
+    });
+    if (this.filteredItem.length > 0) {
+      primaryPropertyRelatedHousingRecordPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+    }
+    //Bankruptcy
+    let primaryBankRuptcyDischargedPoints = 0; let primaryBankRuptcyActivePoints = 0;
+    const primaryBankruptcyValue = parseFloat(this.frmPrimary.get('credit_summary.bankruptcy')?.value) || 0;
+    primaryBankRuptcyDischargedPoints = primaryBankruptcyValue
+    const primaryBankRuptyActiveValue = this.frmPrimary.get('credit_summary.bankRuptyActive')?.value;
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+      return item.description == "Bankruptcy" && item.startValue == (primaryBankRuptyActiveValue == false ? "No" : "Yes");
+    });
+    if (this.filteredItem.length > 0) {
+      primaryBankRuptcyActivePoints = parseFloat(this.filteredItem[0].calculation) || 0;
+    }
+
+    this.dateToCheck = new Date();
+    let threeYearAgo = new Date(this.dateToCheck.setFullYear(this.dateToCheck.getFullYear() - 3));
+    let fiveYearAgo = new Date(this.dateToCheck.setFullYear(this.dateToCheck.getFullYear() - 5));
+    let sevenYearAgo = new Date(this.dateToCheck.setFullYear(this.dateToCheck.getFullYear() - 7));
+
+    //Liens Repossessions
+    let primaryLiensRepossessionsPoints = 0;
+    const primaryLiensRepossessionsValue = this.frmPrimary.get('credit_summary.liensRepossessions')?.value;
+    if (primaryLiensRepossessionsValue) {
+      if (fiveYearAgo < primaryLiensRepossessionsValue) {
+        this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+          return item.description == "Eviction History" && item.startValue == "Last 5 Yrs";
+        });
+        if (this.filteredItem.length > 0) {
+          primaryLiensRepossessionsPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+
+        }
+
+      }
+      else {
+        primaryLiensRepossessionsPoints = 0;
+      }
+    }
+
+    //Other Screening Summary
+    let primaryEvictionHistoryPoints = 0, primaryClass1FeloniesPoints = 0, primaryClass2FeloniesPoints = 0, primaryClass1MisdemeanersPoints = 0, primaryClass2MisdemeanersPoints = 0;
+
+    const primaryevectionHistoryValue = this.frmPrimary.get('credit_summary.evectionHistory')?.value;
+    const primaryclass2FeloniesValue = this.frmPrimary.get('credit_summary.class2Felonies')?.value;
+    const primaryclass1FeloniesValue = this.frmPrimary.get('credit_summary.class1Felonies')?.value;
+    const primaryclass1MisdemeanersValue = this.frmPrimary.get('credit_summary.class1Misdemeaners')?.value;
+    const primaryclass2MisdemeanersValue = this.frmPrimary.get('credit_summary.class2Misdemeaners')?.value;
+
+    if (primaryevectionHistoryValue) {
+      if (fiveYearAgo < primaryevectionHistoryValue) {
+        this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+          return item.description == "Eviction History" && item.startValue == "Last 5 Yrs";
+        });
+        if (this.filteredItem.length > 0) {
+          primaryEvictionHistoryPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+
+        }
+
+      }
+      else {
+        primaryEvictionHistoryPoints = 0;
+      }
+    }
+    if (primaryclass1MisdemeanersValue) {
+      if (fiveYearAgo < primaryclass1MisdemeanersValue) {
+        this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+          return item.description == "Eviction History" && item.startValue == "Last 5 Yrs";
+        });
+        if (this.filteredItem.length > 0) {
+          primaryClass1MisdemeanersPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+
+        }
+
+      }
+      else {
+        primaryClass1MisdemeanersPoints = 0;
+      }
+    }
+    if (primaryclass2FeloniesValue) {
+      if (sevenYearAgo < primaryclass2FeloniesValue) {
+        this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+          return item.description == "Eviction History" && item.startValue == "Last 7 Yrs";
+        });
+        if (this.filteredItem.length > 0) {
+          primaryClass2FeloniesPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+
+        }
+
+      }
+      else {
+        primaryClass2FeloniesPoints = 0;
+      }
+    }
+    if (primaryclass2MisdemeanersValue) {
+      if (threeYearAgo < primaryclass2MisdemeanersValue) {
+        this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+          return item.description == "Eviction History" && item.startValue == "Last 3 Yrs";
+        });
+        if (this.filteredItem.length > 0) {
+          primaryClass2MisdemeanersPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+
+        }
+
+      }
+      else {
+        primaryClass2MisdemeanersPoints = 0;
+      }
+    }
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; description: string | number }) => {
+
+      return item.description == "Housing Records" && item.startValue == (primaryclass1FeloniesValue == false ? "No" : "Yes");
+    });
+    if (this.filteredItem.length > 0) {
+      primaryClass1FeloniesPoints = parseFloat(this.filteredItem[0].calculation) || 0;
+    }
+
+    //Deposit Approved
+    let primaryTotalCreditSummaryPoints = (primarycreditScorePoints + primarycreditScroreAvaiablePoints + primaryCollectionAccountsPoints + primaryPropertyRelatedHousingRecordPoints + primaryBankRuptcyDischargedPoints
+      + primaryBankRuptcyActivePoints + primaryLiensRepossessionsPoints + primaryEvictionHistoryPoints + primaryClass1FeloniesPoints + primaryClass2FeloniesPoints + primaryClass1MisdemeanersPoints +
+      primaryClass2MisdemeanersPoints), primaryDepositApproved = 0;
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
+      const startValue = +item.startValue; // Convert to number
+      const endValue = +item.endValue;
+      return item.description == "Deposit Approved" && item.propertyTypeId == propertyTypeId && startValue <= primaryTotalCreditSummaryPoints && primaryTotalCreditSummaryPoints <= endValue;
+    });
+    if (this.filteredItem.length > 0) {
+      primaryDepositApproved = parseFloat(this.filteredItem[0].calculation) || 0;
+
+    }
+  }
+
   calculateIncomeAdequate() {
+
+    const monthlyRentValue = parseFloat(this.frmPrimary.get('monthlyRent')?.value) || 0;
+    const section8RentValue = parseFloat(this.frmPrimary.get('section8Rent')?.value) || 0;
+    const applicantTypeId = parseFloat(this.frmPrimary.get('applicantTypeId')?.value) || 0;
+    const propertyTypeId = parseFloat(this.frmPrimary.get('propertyTypeId')?.value) || 0;
+    const filters = [
+      { key: 'applicantTypeId', value: applicantTypeId },
+      { key: 'propertyTypeId', value: propertyTypeId },
+      { key: 'description', value: 'Income Criteria' },
+    ];
+    const incomeformula = parseFloat(this.applyFiltersAndGetColumnValue('Income Criteria', filters)) || 0;
+
+
+    //Primary Tenant
     const primarypaystubRecentValue = parseFloat(this.frmPrimary.get('incom_verification.paystubRecent')?.value) || 0;
     const primaryytD_EarningsValue = parseFloat(this.frmPrimary.get('incom_verification.ytD_Earnings')?.value) || 0;
     const primarysecondPayStubValue = parseFloat(this.frmPrimary.get('incom_verification.secondPayStub')?.value) || 0;
     const primarybankStatementValue = parseFloat(this.frmPrimary.get('incom_verification.bankStatement')?.value) || 0;
 
+    const paystubRecentMonthly = (primarypaystubRecentValue / primaryytD_EarningsValue);
+    const bankStatementMonthly = (primarysecondPayStubValue / primarybankStatementValue);
+    const paystubMonthlyRentPoints = ((primarypaystubRecentValue / primaryytD_EarningsValue) / monthlyRentValue);
+    const paystubsection8RentPoints = ((primarypaystubRecentValue / primaryytD_EarningsValue) / section8RentValue);
+    const secondPaystubMonthlyRentPoints = ((primarysecondPayStubValue / primarybankStatementValue) / monthlyRentValue);
+    const secondPaystubsection8RentPoints = ((primarysecondPayStubValue / primarybankStatementValue) / section8RentValue);
+    const totalPayStubPoints = (paystubMonthlyRentPoints + paystubsection8RentPoints + secondPaystubMonthlyRentPoints + secondPaystubsection8RentPoints);
+
+    this.frmPrimary.patchValue({
+      incom_verification: {
+
+        paystubRecentMonthly: paystubRecentMonthly.toFixed(2),
+        bankStatementMonthly: bankStatementMonthly.toFixed(2),
+        paystubMonthlyRentPoints: paystubMonthlyRentPoints.toFixed(2),
+        paystubsection8RentPoints: paystubsection8RentPoints.toFixed(2),
+        secondPaystubMonthlyRentPoints: secondPaystubMonthlyRentPoints.toFixed(2),
+        secondPaystubsection8RentPoints: secondPaystubsection8RentPoints.toFixed(2),
+        totalPayStubPoints: totalPayStubPoints.toFixed(2),
+        xRent: incomeformula,
+        incomeAdequate: (totalPayStubPoints > incomeformula) ? true : false
+
+      }
+    })
+
+    //Tenant 2
     const tenant2paystubRecentValue = parseFloat(this.frmTenant2.get('incom_verification.paystubRecent')?.value) || 0;
     const tenant2ytD_EarningsValue = parseFloat(this.frmTenant2.get('incom_verification.ytD_Earnings')?.value) || 0;
     const tenant2secondPayStubValue = parseFloat(this.frmTenant2.get('incom_verification.secondPayStub')?.value) || 0;
     const tenant2bankStatementValue = parseFloat(this.frmTenant2.get('incom_verification.bankStatement')?.value) || 0;
-
-    const tenant3paystubRecentValue = parseFloat(this.frmTenant3.get('incom_verification.paystubRecent')?.value) || 0;
-    const tenant3ytD_EarningsValue = parseFloat(this.frmTenant3.get('incom_verification.ytD_Earnings')?.value) || 0;
-    const tenant3secondPayStubValue = parseFloat(this.frmTenant3.get('incom_verification.secondPayStub')?.value) || 0;
-    const tenant3bankStatementValue = parseFloat(this.frmTenant3.get('incom_verification.bankStatement')?.value) || 0;
-
-    
-    this.frmPrimary.patchValue({
-      incom_verification: {
-
-        paystubRecentMonthly: (primarypaystubRecentValue / primaryytD_EarningsValue).toFixed(2),
-        bankStatementMonthly: (primarysecondPayStubValue / primarybankStatementValue).toFixed(2),        
-      }
-    })
 
     this.frmTenant2.patchValue({
       incom_verification: {
@@ -1526,6 +1810,12 @@ export class PrimaryTenantComponent {
       }
     })
 
+    //Tenant 3
+    const tenant3paystubRecentValue = parseFloat(this.frmTenant3.get('incom_verification.paystubRecent')?.value) || 0;
+    const tenant3ytD_EarningsValue = parseFloat(this.frmTenant3.get('incom_verification.ytD_Earnings')?.value) || 0;
+    const tenant3secondPayStubValue = parseFloat(this.frmTenant3.get('incom_verification.secondPayStub')?.value) || 0;
+    const tenant3bankStatementValue = parseFloat(this.frmTenant3.get('incom_verification.bankStatement')?.value) || 0;
+
     this.frmTenant3.patchValue({
       incom_verification: {
 
@@ -1533,6 +1823,22 @@ export class PrimaryTenantComponent {
         bankStatementMonthly: (tenant3secondPayStubValue / tenant3bankStatementValue).toFixed(2),
       }
     })
+  }
+
+  getFormulae() {
+
+    this._userservice.GetFormulae()
+      .subscribe((data: any) => {
+
+        this.formulaeData = data;
+      });
+  }
+
+  formatInput() {
+    if (!isNaN(this.inputValue)) {
+      // Use toFixed to ensure two decimal places
+      this.inputValue = parseFloat(this.inputValue.toFixed(2));
+    }
   }
   // changeStep(index: number) {
   //   this.currentStep = index;

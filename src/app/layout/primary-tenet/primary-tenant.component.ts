@@ -233,6 +233,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
+        balanceDepositDuePoints: ['',],
       }),
     })
 
@@ -404,6 +405,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
+        balanceDepositDuePoints: ['',],
       }),
     })
 
@@ -562,6 +564,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
+
       }),
       points_summary: this.fb.group({
         totalPoints: ['',],
@@ -575,6 +578,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
+        balanceDepositDuePoints: ['',],
       }),
     })
 
@@ -738,6 +742,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
+        balanceDepositDuePoints: ['',],
       }),
     })
 
@@ -2004,40 +2009,50 @@ export class PrimaryTenantComponent {
     let noOfLargeDogsCompanionPoints = parseFloat(this.frmPrimary.get('pets.noOfLargeDogsCompanionPoints')?.value) || 0;
     let noOfSmallDogsCompanionPoints = parseFloat(this.frmPrimary.get('pets.noOfSmallDogsCompanionPoints')?.value) || 0;
 
-    //total points
-    totalPoints =
-      parseFloat(this.frmPrimary.get('credit_summary.creditScorePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.creditScoreAvailablePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.collectionAccountsPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.propertyRelatedHousingRecordPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.bankruptcyPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.bankRuptyActivePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.liensRepossessionsPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.evectionHistoryPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.class1FeloniesPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.class2FeloniesPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.class1MisdemeanersPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('credit_summary.class2MisdemeanersPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.rentalReferancePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1ProperNoticePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1NSFPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1LatePaymentsPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1PaymentOrVacantNoticesPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1TendayComplyNoticePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1HOAViolationsPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1PropertyCleanlinessPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL1RerentPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2ProperNoticePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2NSFPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2LatePaymentsPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2PaymentOrVacantNoticesPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2TendayComplyNoticePoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2HOAViolationsPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2PropertyCleanlinessPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.lL2RerentPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.noOfCatsCompanionPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.noOfLargeDogsCompanionPoints')?.value) || 0 +
-      parseFloat(this.frmPrimary.get('landlord_ref.noOfSmallDogsCompanionPoints')?.value) || 0;
+    // Create an array of field names
+    const fieldNames = [
+      'credit_summary.creditScorePoints',
+      'credit_summary.creditScoreAvailablePoints',
+      'credit_summary.collectionAccountsPoints',
+      'credit_summary.propertyRelatedHousingRecordPoints',
+      'credit_summary.bankruptcyPoints',
+      'credit_summary.bankRuptyActivePoints',
+      'credit_summary.liensRepossessionsPoints',
+      'credit_summary.evectionHistoryPoints',
+      'credit_summary.class1FeloniesPoints',
+      'credit_summary.class2FeloniesPoints',
+      'credit_summary.class1MisdemeanersPoints',
+      'credit_summary.class2MisdemeanersPoints',
+      'landlord_ref.rentalReferancePoints',
+      'landlord_ref.lL1ProperNoticePoints',
+      'landlord_ref.lL1NSFPoints',
+      'landlord_ref.lL1LatePaymentsPoints',
+      'landlord_ref.lL1PaymentOrVacantNoticesPoints',
+      'landlord_ref.lL1TendayComplyNoticePoints',
+      'landlord_ref.lL1HOAViolationsPoints',
+      'landlord_ref.lL1PropertyCleanlinessPoints',
+      'landlord_ref.lL1RerentPoints',
+      'landlord_ref.lL2ProperNoticePoints',
+      'landlord_ref.lL2NSFPoints',
+      'landlord_ref.lL2LatePaymentsPoints',
+      'landlord_ref.lL2PaymentOrVacantNoticesPoints',
+      'landlord_ref.lL2TendayComplyNoticePoints',
+      'landlord_ref.lL2HOAViolationsPoints',
+      'landlord_ref.lL2PropertyCleanlinessPoints',
+      'landlord_ref.lL2RerentPoints',
+      'landlord_ref.noOfCatsCompanionPoints',
+      'landlord_ref.noOfLargeDogsCompanionPoints',
+      'landlord_ref.noOfSmallDogsCompanionPoints',
+    ];
+
+    // Create an array of values by mapping over the field names and extracting values
+    const values = fieldNames.map(fieldName =>
+      parseFloat(this.frmTenant2.get(fieldName)?.value) || 0
+    );
+
+    totalPoints = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const maxValue = Math.max(...values);
+
 
     //final approval
     this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
@@ -2055,7 +2070,7 @@ export class PrimaryTenantComponent {
     petDeposit = noOfCatsCompanionPoints + noOfLargeDogsCompanionPoints + noOfSmallDogsCompanionPoints;
 
     //total deposit
-    totalDeposit = standardDepositProperty + petDeposit;
+    totalDeposit = standardDepositProperty + maxValue+ petDeposit;
 
     //additional deposit
     AddDeposit = totalDeposit - standardDepositProperty;
@@ -2551,7 +2566,7 @@ export class PrimaryTenantComponent {
   calculateT2TotalPoints() {
 
 
-    let totalPoints = 0, finalApprove = false, totalDeposit = 0, petDeposit = 0, AddDeposit = 0, DepositDue = 0;
+    let totalPoints = 0, finalApprove = false, totalDeposit = 0, petDeposit = 0, AddDeposit = 0, DepositDue = 0, balanceDuePoints = 0;
     const applicantTypeId = parseFloat(this.frmPrimary.get('applicantTypeId')?.value) || 0;
     const propertyTypeId = parseFloat(this.frmPrimary.get('propertyTypeId')?.value) || 0;
     const standardDepositProperty = parseFloat(this.frmPrimary.get('standardDepositProperty')?.value) || 0;
@@ -2562,40 +2577,52 @@ export class PrimaryTenantComponent {
     let noOfLargeDogsCompanionPoints = parseFloat(this.frmTenant2.get('pets.noOfLargeDogsCompanionPoints')?.value) || 0;
     let noOfSmallDogsCompanionPoints = parseFloat(this.frmTenant2.get('pets.noOfSmallDogsCompanionPoints')?.value) || 0;
 
-    //total points
-    totalPoints =
-      parseFloat(this.frmTenant2.get('credit_summary.creditScorePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.creditScoreAvailablePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.collectionAccountsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.propertyRelatedHousingRecordPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.bankruptcyPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.bankRuptyActivePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.liensRepossessionsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.evectionHistoryPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.class1FeloniesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.class2FeloniesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.class1MisdemeanersPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('credit_summary.class2MisdemeanersPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.rentalReferancePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1ProperNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1NSFPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1LatePaymentsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1PaymentOrVacantNoticesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1TendayComplyNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1HOAViolationsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1PropertyCleanlinessPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL1RerentPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2ProperNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2NSFPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2LatePaymentsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2PaymentOrVacantNoticesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2TendayComplyNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2HOAViolationsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2PropertyCleanlinessPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.lL2RerentPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.noOfCatsCompanionPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.noOfLargeDogsCompanionPoints')?.value) || 0 +
-      parseFloat(this.frmTenant2.get('landlord_ref.noOfSmallDogsCompanionPoints')?.value) || 0;
+    //Tenant1 Additional Deposit
+    let primaryTenantAddDeposit = parseFloat(this.frmPrimary.get('points_summary.additionalDeposit')?.value) || 0;
+
+    // Create an array of field names
+    const fieldNames = [
+      'credit_summary.creditScorePoints',
+      'credit_summary.creditScoreAvailablePoints',
+      'credit_summary.collectionAccountsPoints',
+      'credit_summary.propertyRelatedHousingRecordPoints',
+      'credit_summary.bankruptcyPoints',
+      'credit_summary.bankRuptyActivePoints',
+      'credit_summary.liensRepossessionsPoints',
+      'credit_summary.evectionHistoryPoints',
+      'credit_summary.class1FeloniesPoints',
+      'credit_summary.class2FeloniesPoints',
+      'credit_summary.class1MisdemeanersPoints',
+      'credit_summary.class2MisdemeanersPoints',
+      'landlord_ref.rentalReferancePoints',
+      'landlord_ref.lL1ProperNoticePoints',
+      'landlord_ref.lL1NSFPoints',
+      'landlord_ref.lL1LatePaymentsPoints',
+      'landlord_ref.lL1PaymentOrVacantNoticesPoints',
+      'landlord_ref.lL1TendayComplyNoticePoints',
+      'landlord_ref.lL1HOAViolationsPoints',
+      'landlord_ref.lL1PropertyCleanlinessPoints',
+      'landlord_ref.lL1RerentPoints',
+      'landlord_ref.lL2ProperNoticePoints',
+      'landlord_ref.lL2NSFPoints',
+      'landlord_ref.lL2LatePaymentsPoints',
+      'landlord_ref.lL2PaymentOrVacantNoticesPoints',
+      'landlord_ref.lL2TendayComplyNoticePoints',
+      'landlord_ref.lL2HOAViolationsPoints',
+      'landlord_ref.lL2PropertyCleanlinessPoints',
+      'landlord_ref.lL2RerentPoints',
+      'landlord_ref.noOfCatsCompanionPoints',
+      'landlord_ref.noOfLargeDogsCompanionPoints',
+      'landlord_ref.noOfSmallDogsCompanionPoints',
+    ];
+
+    // Create an array of values by mapping over the field names and extracting values
+    const values = fieldNames.map(fieldName =>
+      parseFloat(this.frmTenant2.get(fieldName)?.value) || 0
+    );
+
+    totalPoints = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    
 
     //final approval
     this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
@@ -2607,20 +2634,29 @@ export class PrimaryTenantComponent {
       finalApprove = this.filteredItem[0].calculation == "Yes" ? true : false;
 
     }
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
+      const startValue = +item.startValue; // Convert to number
+      const endValue = +item.endValue;
+      return item.description == "Extra Deposits" && item.propertyTypeId == propertyTypeId && startValue <= totalPoints && totalPoints <= endValue;
+    });
+    if (this.filteredItem.length > 0) {
+      balanceDuePoints = this.filteredItem[0].calculation;
 
+    }
+    const maxValue = Math.max(...values, balanceDuePoints);
 
     //pet deposit
     petDeposit = noOfCatsCompanionPoints + noOfLargeDogsCompanionPoints + noOfSmallDogsCompanionPoints;
 
     //total deposit
-    totalDeposit = standardDepositProperty + petDeposit;
+    totalDeposit = standardDepositProperty + maxValue+petDeposit;
 
     //additional deposit
-    AddDeposit = totalDeposit - standardDepositProperty;
+    AddDeposit = maxValue;
 
     //balance deposit due
 
-    DepositDue = totalDeposit - depositToHold;
+    DepositDue = propertyTypeId == 2 ? (AddDeposit - primaryTenantAddDeposit) : AddDeposit;
 
     this.frmTenant2.patchValue({
       points_summary: {
@@ -3108,7 +3144,7 @@ export class PrimaryTenantComponent {
   calculateT3TotalPoints() {
 
 
-    let totalPoints = 0, finalApprove = false, totalDeposit = 0, petDeposit = 0, AddDeposit = 0, DepositDue = 0;
+    let totalPoints = 0, finalApprove = false, totalDeposit = 0, petDeposit = 0, AddDeposit = 0, DepositDue = 0, balanceDuePoints=0;
     const applicantTypeId = parseFloat(this.frmPrimary.get('applicantTypeId')?.value) || 0;
     const propertyTypeId = parseFloat(this.frmPrimary.get('propertyTypeId')?.value) || 0;
     const standardDepositProperty = parseFloat(this.frmPrimary.get('standardDepositProperty')?.value) || 0;
@@ -3117,42 +3153,53 @@ export class PrimaryTenantComponent {
 
     let noOfCatsCompanionPoints = parseFloat(this.frmTenant3.get('pets.noOfCatsCompanionPoints')?.value) || 0;
     let noOfLargeDogsCompanionPoints = parseFloat(this.frmTenant3.get('pets.noOfLargeDogsCompanionPoints')?.value) || 0;
-    let noOfSmallDogsCompanionPoints = parseFloat(this.frmTenant3.get('pets.noOfSmallDogsCompanionPoints')?.value) || 0;
+    let noOfSmallDogsCompanionPoints = parseFloat(this.frmTenant3.get('pets.noOfSmallDogsCompanionPoints')?.value) || 0
 
-    //total points
-    totalPoints =
-      parseFloat(this.frmTenant3.get('credit_summary.creditScorePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.creditScoreAvailablePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.collectionAccountsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.propertyRelatedHousingRecordPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.bankruptcyPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.bankRuptyActivePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.liensRepossessionsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.evectionHistoryPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.class1FeloniesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.class2FeloniesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.class1MisdemeanersPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('credit_summary.class2MisdemeanersPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.rentalReferancePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1ProperNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1NSFPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1LatePaymentsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1PaymentOrVacantNoticesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1TendayComplyNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1HOAViolationsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1PropertyCleanlinessPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL1RerentPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2ProperNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2NSFPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2LatePaymentsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2PaymentOrVacantNoticesPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2TendayComplyNoticePoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2HOAViolationsPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2PropertyCleanlinessPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.lL2RerentPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.noOfCatsCompanionPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.noOfLargeDogsCompanionPoints')?.value) || 0 +
-      parseFloat(this.frmTenant3.get('landlord_ref.noOfSmallDogsCompanionPoints')?.value) || 0;
+    
+    let primaryTenantAddDeposit = parseFloat(this.frmPrimary.get('points_summary.additionalDeposit')?.value) || 0;
+    let tenant2BalanceDue = parseFloat(this.frmTenant2.get('points_summary.balanceDepositDue')?.value) || 0;
+
+    const fieldNames = [
+      'credit_summary.creditScorePoints',
+      'credit_summary.creditScoreAvailablePoints',
+      'credit_summary.collectionAccountsPoints',
+      'credit_summary.propertyRelatedHousingRecordPoints',
+      'credit_summary.bankruptcyPoints',
+      'credit_summary.bankRuptyActivePoints',
+      'credit_summary.liensRepossessionsPoints',
+      'credit_summary.evectionHistoryPoints',
+      'credit_summary.class1FeloniesPoints',
+      'credit_summary.class2FeloniesPoints',
+      'credit_summary.class1MisdemeanersPoints',
+      'credit_summary.class2MisdemeanersPoints',
+      'landlord_ref.rentalReferancePoints',
+      'landlord_ref.lL1ProperNoticePoints',
+      'landlord_ref.lL1NSFPoints',
+      'landlord_ref.lL1LatePaymentsPoints',
+      'landlord_ref.lL1PaymentOrVacantNoticesPoints',
+      'landlord_ref.lL1TendayComplyNoticePoints',
+      'landlord_ref.lL1HOAViolationsPoints',
+      'landlord_ref.lL1PropertyCleanlinessPoints',
+      'landlord_ref.lL1RerentPoints',
+      'landlord_ref.lL2ProperNoticePoints',
+      'landlord_ref.lL2NSFPoints',
+      'landlord_ref.lL2LatePaymentsPoints',
+      'landlord_ref.lL2PaymentOrVacantNoticesPoints',
+      'landlord_ref.lL2TendayComplyNoticePoints',
+      'landlord_ref.lL2HOAViolationsPoints',
+      'landlord_ref.lL2PropertyCleanlinessPoints',
+      'landlord_ref.lL2RerentPoints',
+      'landlord_ref.noOfCatsCompanionPoints',
+      'landlord_ref.noOfLargeDogsCompanionPoints',
+      'landlord_ref.noOfSmallDogsCompanionPoints',
+    ];
+
+    // Create an array of values by mapping over the field names and extracting values
+    const values = fieldNames.map(fieldName =>
+      parseFloat(this.frmTenant2.get(fieldName)?.value) || 0
+    );
+
+    totalPoints = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
     //final approval
     this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
@@ -3164,7 +3211,16 @@ export class PrimaryTenantComponent {
       finalApprove = this.filteredItem[0].calculation == "Yes" ? true : false;
 
     }
+    this.filteredItem = this.formulaeData.filter((item: { startValue: string | number; endValue: string | number; propertyTypeId: string | number; description: string | number }) => {
+      const startValue = +item.startValue; // Convert to number
+      const endValue = +item.endValue;
+      return item.description == "Extra Deposits" && item.propertyTypeId == propertyTypeId && startValue <= totalPoints && totalPoints <= endValue;
+    });
+    if (this.filteredItem.length > 0) {
+      balanceDuePoints = this.filteredItem[0].calculation;
 
+    }
+    const maxValue = Math.max(...values, balanceDuePoints);
 
     //pet deposit
     petDeposit = noOfCatsCompanionPoints + noOfLargeDogsCompanionPoints + noOfSmallDogsCompanionPoints;
@@ -3173,11 +3229,11 @@ export class PrimaryTenantComponent {
     totalDeposit = standardDepositProperty + petDeposit;
 
     //additional deposit
-    AddDeposit = totalDeposit - standardDepositProperty;
+    AddDeposit = maxValue;
 
     //balance deposit due
 
-    DepositDue = totalDeposit - depositToHold;
+    DepositDue = propertyTypeId == 2 ? (AddDeposit - primaryTenantAddDeposit - tenant2BalanceDue) : AddDeposit;
 
     this.frmTenant3.patchValue({
       points_summary: {

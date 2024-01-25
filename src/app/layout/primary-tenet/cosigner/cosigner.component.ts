@@ -171,6 +171,17 @@ export class CosignerComponent {
     }
 
   }
+  isValidNumber(value: any): boolean {
+    // Check if the value is a valid number and not NaN
+    return typeof value === 'number' && !isNaN(value);
+  }
+  formatNumber(value: any): string | null {
+    if (this.isValidNumber(value)) {
+      return value.toFixed(2);
+    } else {
+      return null;
+    }
+  }
   subscribeT5Controls() {
 
     //Basic details
@@ -258,15 +269,17 @@ export class CosignerComponent {
     this.frmTenant5.patchValue({
       incom_verification: {
 
-        paystubRecentMonthly: paystubRecentMonthly.toFixed(2),
-        bankStatementMonthly: bankStatementMonthly.toFixed(2),
-        paystubMonthlyRentPoints: paystubMonthlyRentPoints.toFixed(2),
-        paystubsection8RentPoints: paystubsection8RentPoints.toFixed(2),
-        secondPaystubMonthlyRentPoints: secondPaystubMonthlyRentPoints.toFixed(2),
-        secondPaystubsection8RentPoints: secondPaystubsection8RentPoints.toFixed(2),
-        totalPayStubPoints: totalPayStubPoints.toFixed(2),
-        xRent: incomeformula,
-        incomeAdequate: (totalPayStubPoints > incomeformula) ? true : false
+        paystubRecentMonthly: this.formatNumber(paystubRecentMonthly),
+        bankStatementMonthly: this.formatNumber(bankStatementMonthly),
+        paystubMonthlyRentPoints: this.formatNumber(paystubMonthlyRentPoints),
+        paystubsection8RentPoints: this.formatNumber(paystubsection8RentPoints),
+        secondPaystubMonthlyRentPoints: this.formatNumber(secondPaystubMonthlyRentPoints),
+        secondPaystubsection8RentPoints: this.formatNumber(secondPaystubsection8RentPoints),
+        totalPayStubPoints: this.formatNumber(totalPayStubPoints),
+        xRent: this.formatNumber(incomeformula),
+        incomeAdequate: this.isValidNumber(totalPayStubPoints) && this.isValidNumber(incomeformula)
+          ? totalPayStubPoints > incomeformula
+          : false,
 
       }
     })
@@ -467,22 +480,22 @@ export class CosignerComponent {
     this.frmTenant5.patchValue({
       credit_summary: {
 
-        creditScorePoints: primarycreditScorePoints.toFixed(2),
-        creditScoreAvailablePoints: primarycreditScroreAvaiablePoints.toFixed(2),
-        collectionAccountsPoints: primaryCollectionAccountsPoints.toFixed(2),
-        collectionMedicalAccountsPoints: primaryCMAccountsPoints.toFixed(2),
-        propertyRelatedHousingRecordPoints: primaryPropertyRelatedHousingRecordPoints.toFixed(2),
-        bankruptcyPoints: primaryBankRuptcyDischargedPoints.toFixed(2),
-        bankRuptyActivePoints: primaryBankRuptcyActivePoints.toFixed(2),
-        liensRepossessionsPoints: primaryLiensRepossessionsPoints.toFixed(2),
-        evectionHistoryPoints: primaryEvictionHistoryPoints.toFixed(2),
-        class1FeloniesPoints: primaryClass1FeloniesPoints.toFixed(2),
-        class2FeloniesPoints: primaryClass2FeloniesPoints.toFixed(2),
-        class1MisdemeanersPoints: primaryClass1MisdemeanersPoints.toFixed(2),
-        class2MisdemeanersPoints: primaryClass2MisdemeanersPoints.toFixed(2),
-        totalCreditSummaryPoints: totalCreditSummaryPoints.toFixed(2),
+        creditScorePoints: this.formatNumber(primarycreditScorePoints),
+        creditScoreAvailablePoints: this.formatNumber(primarycreditScroreAvaiablePoints),
+        collectionAccountsPoints: this.formatNumber(primaryCollectionAccountsPoints),
+        collectionMedicalAccountsPoints: this.formatNumber(primaryCMAccountsPoints),
+        propertyRelatedHousingRecordPoints: this.formatNumber(primaryPropertyRelatedHousingRecordPoints),
+        bankruptcyPoints: this.formatNumber(primaryBankRuptcyDischargedPoints),
+        bankRuptyActivePoints: this.formatNumber(primaryBankRuptcyActivePoints),
+        liensRepossessionsPoints: this.formatNumber(primaryLiensRepossessionsPoints),
+        evectionHistoryPoints: this.formatNumber(primaryEvictionHistoryPoints),
+        class1FeloniesPoints: this.formatNumber(primaryClass1FeloniesPoints),
+        class2FeloniesPoints: this.formatNumber(primaryClass2FeloniesPoints),
+        class1MisdemeanersPoints: this.formatNumber(primaryClass1MisdemeanersPoints),
+        class2MisdemeanersPoints: this.formatNumber(primaryClass2MisdemeanersPoints),
+        totalCreditSummaryPoints: this.formatNumber(totalCreditSummaryPoints),
         depositApproved: primaryDepositApproved,
-        depositToHold: depositToHold.toFixed(2),
+        depositToHold: this.formatNumber(depositToHold),
 
       }
     })
@@ -573,23 +586,23 @@ export class CosignerComponent {
     this.frmTenant5.patchValue({
       landlord_ref: {
 
-        rentalReferancePoints: primaryLLRentalReferancePoints.toFixed(2),
-        lL1ProperNoticePoints: primarylL1ProperNoticePoints.toFixed(2),
-        lL1NSFPoints: primarylL1NSFPoints.toFixed(2),
-        lL1LatePaymentsPoints: primarylL1LatePaymentPoints.toFixed(2),
-        lL1PaymentOrVacantNoticesPoints: primarylL1PaymentOrVacantNoticesPoints.toFixed(2),
-        lL1TendayComplyNoticePoints: primarylL1TendayComplyNoticePoints.toFixed(2),
-        lL1HOAViolationsPoints: primarylL1HOAViolationsPoints.toFixed(2),
-        lL1PropertyCleanlinessPoints: primarylL1PropertyCleanlinessPoints.toFixed(2),
-        lL1RerentPoints: primarylL1RerentPoints.toFixed(2),
-        lL2ProperNoticePoints: primarylL2ProperNoticePoints.toFixed(2),
-        lL2NSFPoints: primarylL2NSFPoints.toFixed(2),
-        lL2LatePaymentsPoints: primarylL2LatePaymentsPoints.toFixed(2),
-        lL2PaymentOrVacantNoticesPoints: primarylL2PaymentOrVacantNoticesPoints.toFixed(2),
-        lL2TendayComplyNoticePoints: primarylL2TendayComplyNoticePoints.toFixed(2),
-        lL2HOAViolationsPoints: primarylL2HOAViolationsPoints.toFixed(2),
-        lL2PropertyCleanlinessPoints: primarylL2PropertyCleanlinessPoints.toFixed(2),
-        lL2RerentPoints: primarylL2RerentPoints.toFixed(2),
+        rentalReferancePoints: this.formatNumber(primaryLLRentalReferancePoints),
+        lL1ProperNoticePoints: this.formatNumber(primarylL1ProperNoticePoints),
+        lL1NSFPoints: this.formatNumber(primarylL1NSFPoints),
+        lL1LatePaymentsPoints: this.formatNumber(primarylL1LatePaymentPoints),
+        lL1PaymentOrVacantNoticesPoints: this.formatNumber(primarylL1PaymentOrVacantNoticesPoints),
+        lL1TendayComplyNoticePoints: this.formatNumber(primarylL1TendayComplyNoticePoints),
+        lL1HOAViolationsPoints: this.formatNumber(primarylL1HOAViolationsPoints),
+        lL1PropertyCleanlinessPoints: this.formatNumber(primarylL1PropertyCleanlinessPoints),
+        lL1RerentPoints: this.formatNumber(primarylL1RerentPoints),
+        lL2ProperNoticePoints: this.formatNumber(primarylL2ProperNoticePoints),
+        lL2NSFPoints: this.formatNumber(primarylL2NSFPoints),
+        lL2LatePaymentsPoints: this.formatNumber(primarylL2LatePaymentsPoints),
+        lL2PaymentOrVacantNoticesPoints: this.formatNumber(primarylL2PaymentOrVacantNoticesPoints),
+        lL2TendayComplyNoticePoints: this.formatNumber(primarylL2TendayComplyNoticePoints),
+        lL2HOAViolationsPoints: this.formatNumber(primarylL2HOAViolationsPoints),
+        lL2PropertyCleanlinessPoints: this.formatNumber(primarylL2PropertyCleanlinessPoints),
+        lL2RerentPoints: this.formatNumber(primarylL2RerentPoints),
 
       }
     })
@@ -628,9 +641,9 @@ export class CosignerComponent {
     this.frmTenant5.patchValue({
       pets: {
 
-        noOfCatsCompanionPoints: primarynoOfCatsCompanionsPoints.toFixed(2),
-        noOfLargeDogsCompanionPoints: primarynoOfLargeDogsCompanionsPoints.toFixed(2),
-        noOfSmallDogsCompanionPoints: primarynoOfSmallDogsCompanionsPoints.toFixed(2),
+        noOfCatsCompanionPoints: this.formatNumber(primarynoOfCatsCompanionsPoints),
+        noOfLargeDogsCompanionPoints: this.formatNumber(primarynoOfLargeDogsCompanionsPoints),
+        noOfSmallDogsCompanionPoints: this.formatNumber(primarynoOfSmallDogsCompanionsPoints),
 
 
       }
@@ -725,13 +738,13 @@ export class CosignerComponent {
     this.frmTenant5.patchValue({
       points_summary: {
 
-        totalPoints: totalPoints.toFixed(2),
+        totalPoints: this.formatNumber(totalPoints),
         finalApproval: finalApprove,
-        totalDeposit: totalDeposit.toFixed(2),
-        depositToHoldPaid: depositToHold.toFixed(2),
-        petDeposit: petDeposit.toFixed(2),
-        additionalDeposit: AddDeposit.toFixed(2),
-        balanceDepositDue: DepositDue.toFixed(2)
+        totalDeposit: this.formatNumber(totalDeposit),
+        depositToHoldPaid: this.formatNumber(depositToHold),
+        petDeposit: this.formatNumber(petDeposit),
+        additionalDeposit: this.formatNumber(AddDeposit),
+        balanceDepositDue: this.formatNumber(DepositDue),
       }
     })
 
@@ -753,6 +766,8 @@ export class CosignerComponent {
 
 
       this.result = data
+      if (this.result.length==0)
+        return;
       if (sno == '5') {
         this.frmTenant = this.frmTenant5;
       }

@@ -1,7 +1,7 @@
 import { CdkStep, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatStep } from '@angular/material/stepper';
+import { MatStep, MatStepper } from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -33,11 +33,13 @@ export class PrimaryTenantComponent {
   propertyTypes: string[] = ['Multi-Family', 'Single-Family']
   options1: any = ['Yes', 'No'];
   options2: any = ['Fair/good', 'Poor']
-  stepper: any;
+ 
   currentUser: any;
   incomeVerificationData: any;
   result: any
   @ViewChild('tabGroup', { static: false }) tabGroup: MatTabGroup | undefined;
+  @ViewChild('stepper')
+    stepper!: MatStepper;
   private _http: any;
   createApplicant: any;
   snapid: any;
@@ -233,7 +235,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
-        balanceDepositDuePoints: ['',],
+        balanceDepositDuePoints: [0,],
       }),
     })
 
@@ -405,7 +407,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
-        balanceDepositDuePoints: ['',],
+        balanceDepositDuePoints: [0,],
       }),
     })
 
@@ -549,8 +551,8 @@ export class PrimaryTenantComponent {
         createdBy: ['',],
       }),
       pets: this.fb.group({
-        petApprovedLandlordReferance1: ['',],
-        petApprovedLandlordReferance2: ['',],
+        petApprovedLandlordReferance1: [0,''],
+        petApprovedLandlordReferance2: [0,''],
         noOfCatsCompanion: [Boolean,],
         noOfCatsCompanions: [Number],
         noOfCatsCompanionPoints: [0, ''],
@@ -578,7 +580,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
-        balanceDepositDuePoints: ['',],
+        balanceDepositDuePoints: [0,],
       }),
     })
 
@@ -742,7 +744,7 @@ export class PrimaryTenantComponent {
         tenantSNo: ['',],
         tenantId: [Number],
         createdBy: ['',],
-        balanceDepositDuePoints: ['',],
+        balanceDepositDuePoints: [0,],
       }),
     })
 
@@ -1244,7 +1246,8 @@ export class PrimaryTenantComponent {
 
       this._userservice.CreatePointsSummary(this.frmTenant.value.points_summary).subscribe(
         (data) => {
-
+          this.stepper.next();
+          this.tabIndex = 0;
         },
         (error) => {
           console.error('Error creating points summary:', error);
@@ -1252,6 +1255,7 @@ export class PrimaryTenantComponent {
       );
     }
     this.tabIndex++;
+  
     // }
   }
 
@@ -1263,6 +1267,7 @@ export class PrimaryTenantComponent {
     //else {
 
     //}
+    this.tabIndex = 0;
     this.tenantSNO = event.selectedIndex + 1;
     this.subscribeT1Controls();
     if (this.snapid && this.tenantSNO < 4) {
@@ -2047,7 +2052,7 @@ export class PrimaryTenantComponent {
 
     // Create an array of values by mapping over the field names and extracting values
     const values = fieldNames.map(fieldName =>
-      parseFloat(this.frmTenant2.get(fieldName)?.value) || 0
+      parseFloat(this.frmPrimary.get(fieldName)?.value) || 0
     );
 
     totalPoints = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -3196,7 +3201,7 @@ export class PrimaryTenantComponent {
 
     // Create an array of values by mapping over the field names and extracting values
     const values = fieldNames.map(fieldName =>
-      parseFloat(this.frmTenant2.get(fieldName)?.value) || 0
+      parseFloat(this.frmTenant3.get(fieldName)?.value) || 0
     );
 
     totalPoints = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);

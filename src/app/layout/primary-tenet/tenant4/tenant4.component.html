@@ -7,11 +7,11 @@
 
               <div>
                 <div class="one">
-                  <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"class="Acc_width " style=" width: 35%">
                      <mat-label class="label-styling">Tenant 4</mat-label>
                     <input type="text" matInput formControlName="applicantName">
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Single/Couple/Roommates</mat-label>
 
                     <mat-select formControlName="applicantTypeId">
@@ -21,7 +21,7 @@
                       <mat-option [value]="4">Couple+Roommates</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Property</mat-label>
                     <input type="text" matInput formControlName="property">
                   </mat-form-field>
@@ -29,31 +29,31 @@
 
 
                 <div class="one">
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">City</mat-label>
                     <input type="text" matInput formControlName="city">
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">State</mat-label>
                     <input type="text" matInput formControlName="state">
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Zip</mat-label>
                     <input type="text" matInput formControlName="zip">
                   </mat-form-field>
                 </div>
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"class="Acc_width " style=" width: 35%">
                      <mat-label class="label-styling">Monthly Rent</mat-label>
                     <input type="number" matInput formControlName="monthlyRent">
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Section 8 Rent (if applicable)</mat-label>
                     <input type="number" matInput formControlName="section8Rent">
                   </mat-form-field>
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline" class="Acc_width " style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"class="Acc_width " style=" width: 35%">
                      <mat-label class="label-styling">Standard Deposit for Property</mat-label>
                     <input type="text" matInput formControlName="standardDepositProperty">
                   </mat-form-field>
@@ -61,11 +61,11 @@
 
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline" class="Acc_width ">
+                  <mat-form-field appearance="outline" floatLabel="always"class="Acc_width ">
                      <mat-label class="label-styling">Pet Deposit - if applicable (per pet) </mat-label>
                     <input type="number" matInput formControlName="petDeposit" placeholder="$500 Small/$800 Large Per">
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Property Type</mat-label>
                     <mat-select formControlName="propertyTypeId">
                       <mat-option [value]="1">Single-Family</mat-option>
@@ -96,16 +96,16 @@
 
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Pay Stub-(recent)-YTD Earnings :</mat-label>
                     <input type="number" matInput formControlName="paystubRecent">
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Months</mat-label>
                     <input type="number" matInput formControlName="ytD_Earnings">
                   </mat-form-field>
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
 
                      <mat-label class="label-styling">Monthly</mat-label>
                     <input type="number" matInput formControlName="paystubRecentMonthly">
@@ -114,16 +114,16 @@
                 </div>
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Bank statement (recent)/2nd Pay Stub :</mat-label>
                     <input type="number" matInput formControlName="secondPayStub">
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Months</mat-label>
                     <input type="number" matInput formControlName="bankStatement">
                   </mat-form-field>
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Monthly</mat-label>
                     <input type="number" matInput formControlName="bankStatementMonthly">
                   </mat-form-field>
@@ -131,11 +131,11 @@
                 </div>
                 <div class="one">
 
-                  <mat-form-field appearance="outline" style="width: 762px">
+                  <mat-form-field appearance="outline" floatLabel="always"style="width: 762px">
                      <mat-label class="label-styling">X rent</mat-label>
                     <input type="text" matInput formControlName="xRent" value="#NA">
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style="width: 762px">
+                  <mat-form-field appearance="outline" floatLabel="always"style="width: 762px">
                      <mat-label class="label-styling">Income Adequate Y/N</mat-label>
                     <mat-select formControlName="incomeAdequate">
                       <mat-option [value]="true">Yes</mat-option>
@@ -167,18 +167,18 @@
                   </p>
                 </div>
                 <div class="one">
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Credit Lines Y/N</mat-label>
                     <mat-select formControlName="creditLines">
                       <mat-option [value]="true">Yes</mat-option>
                       <mat-option [value]="false">No</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Credit Score</mat-label>
                     <input type="number" matInput formControlName="creditScore">
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Credit Score Available Y/N</mat-label>
                     <mat-select formControlName="creditScoreAvailable">
                       <mat-option [value]="true">Yes</mat-option>
@@ -189,15 +189,15 @@
                 </div>
 
                 <div class="one">
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Collection Accounts</mat-label>
                     <input type="number" matInput formControlName="collectionAccounts">
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Medical Collection</mat-label>
                     <input type="number" matInput formControlName="medicalCollections">
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Property Related Housing Record Y/N</mat-label>
                     <mat-select formControlName="propertyRelatedHousingRecord">
                       <mat-option [value]="true">Yes</mat-option>
@@ -208,12 +208,12 @@
                 </div>
 
                 <div class="one">
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Bankruptcy discharged or dismissed</mat-label>
                     <input type="number" matInput formControlName="bankruptcy">
 
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Bankruptcy Active Y/N</mat-label>
                     <mat-select formControlName="bankRuptyActive">
                       <mat-option [value]="true">Yes</mat-option>
@@ -221,7 +221,7 @@
                     </mat-select>
 
                   </mat-form-field>
-                  <mat-form-field appearance="outline" style=" width: 35%">
+                  <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                      <mat-label class="label-styling">Lines Repossessions</mat-label>
                     <input matInput [matDatepicker]="liensRepossessionsDatePicker4" placeholder="Choose a date" formControlName="liensRepossessions">
                     <mat-datepicker-toggle matSuffix [for]="liensRepossessionsDatePicker4"></mat-datepicker-toggle>
@@ -232,7 +232,7 @@
                 <div class="other_summary">
                   <h2>Other Screening Summary :</h2>
                   <div class="one">
-                    <mat-form-field appearance="outline" style=" width: 55%">
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 55%">
                        <mat-label class="label-styling">Eviction History</mat-label>
                       <input matInput [matDatepicker]="evectionHistoryDatePicker4" placeholder="Choose a date" formControlName="evectionHistory">
                       <mat-datepicker-toggle matSuffix [for]="evectionHistoryDatePicker4"></mat-datepicker-toggle>
@@ -242,23 +242,23 @@
 
                   <h2>Criminal Search :</h2>
                   <div class="one">
-                    <mat-form-field appearance="outline" style=" width: 35%">
-                       <mat-label class="label-styling">Class1 Felonies Y/N</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
+                       <mat-label class="label-styling">Class 1 Felonies Y/N</mat-label>
                       <mat-select formControlName="class1Felonies">
                         <mat-option [value]="true">Yes</mat-option>
                         <mat-option [value]="false">No</mat-option>
                       </mat-select>
 
                     </mat-form-field>
-                    <mat-form-field appearance="outline" style=" width: 35%">
-                       <mat-label class="label-styling">Class2 Felonies</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
+                       <mat-label class="label-styling">Class 2 Felonies</mat-label>
                       <input matInput [matDatepicker]="class2FeloniesDatePicker4" placeholder="Choose a date" formControlName="class2Felonies">
                       <mat-datepicker-toggle matSuffix [for]="class2FeloniesDatePicker4"></mat-datepicker-toggle>
                       <mat-datepicker #class2FeloniesDatePicker4></mat-datepicker>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" style=" width: 35%">
-                       <mat-label class="label-styling">Class1 Misdemeaners</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
+                       <mat-label class="label-styling">Class 1 Misdemeaners</mat-label>
                       <input matInput [matDatepicker]="class1MisdemeanersDatePicker4" placeholder="Choose a date" formControlName="class1Misdemeaners">
                       <mat-datepicker-toggle matSuffix [for]="class1MisdemeanersDatePicker4"></mat-datepicker-toggle>
                       <mat-datepicker #class1MisdemeanersDatePicker4></mat-datepicker>
@@ -266,13 +266,13 @@
                   </div>
                   <div class="one">
 
-                    <mat-form-field appearance="outline" style=" width: 35%">
-                       <mat-label class="label-styling">Class2 Misdemeaners</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
+                       <mat-label class="label-styling">Class 2 Misdemeaners</mat-label>
                       <input matInput [matDatepicker]="class2MisdemeanersDatePicker4" placeholder="Choose a date" formControlName="class2Misdemeaners">
                       <mat-datepicker-toggle matSuffix [for]="class2MisdemeanersDatePicker4"></mat-datepicker-toggle>
                       <mat-datepicker #class2MisdemeanersDatePicker4></mat-datepicker>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" style=" width: 35%">
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                        <mat-label class="label-styling">Deposit Approved Y/N</mat-label>
                       <mat-select formControlName="depositApproved">
                         <mat-option [value]="true">Yes</mat-option>
@@ -282,12 +282,12 @@
                     </mat-form-field>
 
                     <span class="input-group-text" style="height: 58px;">$</span>
-                    <mat-form-field appearance="outline" style=" width: 35%">
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                        <mat-label class="label-styling">Deposit To Hold</mat-label>
                       <input type="number" matInput formControlName="depositToHold">
                     </mat-form-field>
                     <span class="input-group-text" style="height: 58px;">$</span>
-                    <mat-form-field appearance="outline" style=" width: 35%">
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                        <mat-label class="label-styling">Paid by Primary Tenant</mat-label>
                       <input type="number" matInput formControlName="">
                     </mat-form-field>
@@ -319,7 +319,7 @@
                 </div>
                 <div>
                   <div class="one">
-                    <mat-form-field appearance="outline" style=" width: 55%">
+                    <mat-form-field appearance="outline" floatLabel="always"style=" width: 55%">
                        <mat-label class="label-styling">Rental Reference Y/N</mat-label>
                       <mat-select formControlName="rentalReferance">
                         <mat-option [value]="true">Yes</mat-option>
@@ -335,7 +335,7 @@
                   </div>
                   <div>
                     <div class="one">
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Proper Notice Y/N</mat-label>
                         <mat-select formControlName="lL1ProperNotice">
                           <mat-option [value]="true">Yes</mat-option>
@@ -343,36 +343,36 @@
                         </mat-select>
 
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">NSF</mat-label>
                         <input type="text" matInput formControlName="lL1NSF">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Late Payments</mat-label>
                         <input type="text" matInput formControlName="lL1LatePayments">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Pay Rent or Vacate Notice</mat-label>
                         <input type="text" matInput formControlName="lL1PaymentOrVacantNotices">
                       </mat-form-field>
                     </div>
                     <div class="one">
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">10 days Notice to Comply </mat-label>
                         <input type="text" matInput formControlName="lL1TendayComplyNotice">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">HOA Voliation</mat-label>
                         <input type="text" matInput formControlName="lL1HOAViolations">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Property Cleanliness</mat-label>
                         <mat-select formControlName="lL1PropertyCleanliness">
                           <mat-option [value]="0">Good/Fair</mat-option>
                           <mat-option [value]="1">Poor</mat-option>
                         </mat-select>
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Pets Y/N</mat-label>
                         <mat-select formControlName="lL1Pets">
                           <mat-option [value]="true">Yes</mat-option>
@@ -383,14 +383,14 @@
                     </div>
                     <div class="one">
 
-                      <mat-form-field appearance="outline" style=" width: 50%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 50%">
                          <mat-label class="label-styling">Adverse Pet Reference Y/N</mat-label>
                         <mat-select formControlName="lL1AdversePetReferance">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
                         </mat-select>
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 50%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 50%">
                          <mat-label class="label-styling">Re-Rent Y/N</mat-label>
                         <mat-select formControlName="lL1Rerent">
                           <mat-option [value]="true">Yes</mat-option>
@@ -407,7 +407,7 @@
                   </div>
                   <div>
                     <div class="one">
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Proper Notice Y/N</mat-label>
                         <mat-select formControlName="lL2ProperNotice">
                           <mat-option [value]="true">Yes</mat-option>
@@ -415,36 +415,36 @@
                         </mat-select>
 
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">NSF</mat-label>
                         <input type="text" matInput formControlName="lL2NSF">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Late Payments</mat-label>
                         <input type="text" matInput formControlName="lL2LatePayments">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Pay Rent or Vacate Notice</mat-label>
                         <input type="text" matInput formControlName="lL2PaymentOrVacantNotices">
                       </mat-form-field>
                     </div>
                     <div class="one">
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">10 days Notice to Comply </mat-label>
                         <input type="text" matInput formControlName="lL2TendayComplyNotice">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">HOA Voliation</mat-label>
                         <input type="text" matInput formControlName="lL2HOAViolations">
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Property Cleanliness</mat-label>
                         <mat-select formControlName="lL2PropertyCleanliness">
                           <mat-option [value]="0">Good/Fair</mat-option>
                           <mat-option [value]="1">Poor</mat-option>
                         </mat-select>
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 35%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 35%">
                          <mat-label class="label-styling">Pets Y/N</mat-label>
                         <mat-select formControlName="lL2Pets">
                           <mat-option [value]="true">Yes</mat-option>
@@ -455,14 +455,14 @@
                     </div>
                     <div class="one">
 
-                      <mat-form-field appearance="outline" style=" width: 50%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 50%">
                          <mat-label class="label-styling">Adverse Pet Reference Y/N</mat-label>
                         <mat-select formControlName="lL2AdversePetReferance">
                           <mat-option [value]="true">Yes</mat-option>
                           <mat-option [value]="false">No</mat-option>
                         </mat-select>
                       </mat-form-field>
-                      <mat-form-field appearance="outline" style=" width: 50%">
+                      <mat-form-field appearance="outline" floatLabel="always"style=" width: 50%">
                          <mat-label class="label-styling">Re-Rent Y/N</mat-label>
                         <mat-select formControlName="lL2Rerent">
                           <mat-option [value]="true">Yes</mat-option>
@@ -495,7 +495,7 @@
                   </p>
                 </div>
                 <div class="one">
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Rental History Length Y/N</mat-label>
                     <mat-select formControlName="rentalHistoryLength">
                       <mat-option [value]="true">Yes</mat-option>
@@ -519,11 +519,11 @@
             <div class="card" style=" padding: 2%">
               <div class="final_session" formGroupName="points_summary">
                 <div class="one">
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Total points</mat-label>
                     <input type="number" matInput formControlName="totalPoints">
                   </mat-form-field>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Final Approval Y/N</mat-label>
                     <mat-select formControlName="finalApproval">
                       <mat-option [value]="true">Yes</mat-option>
@@ -534,31 +534,31 @@
 
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Total Deposit Tenant 1</mat-label>
                     <input type="number" formControlName="totalDeposit" matInput placeholder="$0.00">
                   </mat-form-field>
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Deposit To Hold</mat-label>
                     <input type="number" formControlName="depositToHoldPaid" matInput placeholder="$0.00">
                   </mat-form-field>
                 </div>
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Pet Deposit - Primary Tenant</mat-label>
                     <input type="number" formControlName="petDeposit" matInput placeholder="$0.00">
                   </mat-form-field>
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling"> Aditional Deposit - Primary Tenant</mat-label>
                     <input type="number" formControlName="additionalDeposit" matInput placeholder="$0.00">
                   </mat-form-field>
                 </div>
                 <div class="one">
                   <span class="input-group-text" style="height: 58px;">$</span>
-                  <mat-form-field appearance="outline">
+                  <mat-form-field appearance="outline" floatLabel="always" >
                      <mat-label class="label-styling">Balance of Deposit Due</mat-label>
                     <input type="number" formControlName="balanceDepositDue" matInput placeholder="$0.00">
                   </mat-form-field>

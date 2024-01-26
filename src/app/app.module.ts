@@ -32,6 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core'; // Import MatNativ
 import { CosignerComponent } from './layout/primary-tenet/cosigner/cosigner.component';
 import { ArchivedComponent } from './archived/archived.component';
 import { ApprovalsummaryComponent } from './approvalsummary/approvalsummary.component';
+import { CurrencyFormatDirective } from './shared/directives/currency-format.directive';
 
 
 
@@ -61,6 +62,7 @@ import { ApprovalsummaryComponent } from './approvalsummary/approvalsummary.comp
     ArchivedComponent,
     ApprovalsummaryComponent,
     // NavMenuComponent,
+    CurrencyFormatDirective
 
   ],
   imports: [

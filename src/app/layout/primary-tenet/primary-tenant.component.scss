@@ -6,41 +6,46 @@
     font-weight: bold;
   }
 }
+
 .one {
   display: flex;
-  height:62px;
- 
+  height: 62px;
 }
+
 mat-form-field {
   width: -webkit-fill-available;
   margin: 0px 5px;
-  height:10px !important;
+  height: 10px !important;
 }
+
 .button-container a {
-  margin-right: 30px; 
+  margin-right: 30px;
 }
 
 .button-container {
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
-::ng-deep .mat-step-header .mat-step-icon-state-done {
+/*::ng-deep .mat-step-header .mat-step-icon-state-done {
   background-color: green; 
-}
+}*/
 
-.Account-2-bind{
-  padding: 10px;
-    width: 55%;
-    font-size: 20px;
-}
+// .Account-2-bind {
+//   padding: 10px;
+//   width: 55%;
+//   font-size: 20px;
+// }
+
 .mat-form-field-appearance-outline .mat-form-field-infix {
   font-size: 12px;
 }
+
 mat-label {
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.005em;
   // color: #000000;
 }
+
 .label-styling {
   font-size: 20px;
   /*font-weight: bold;*/
@@ -56,3 +61,88 @@ mat-label {
 //   width: 2px; /* Adjust the width of the outline */
 // }
 
+
+.mat-stepper-vertical, .mat-stepper-horizontal {
+  transform: scale(0.9);
+}
+
+.mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  height: 10px !important
+}
+
+.one1 {
+  display: flex;
+  height: 62px;
+}
+
+.form-row {
+  display: flex;
+  height: 62px;
+}
+
+.form-field1 {
+  flex: 1;
+  margin-right: 10px; /* Adjust spacing between fields */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.label-styling1 {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 15px;
+  white-space: nowrap;
+  font-weight: 550;
+  width: 150px;
+}
+
+.input-field1 {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.two {
+  display: flex;
+  height: 62px;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.form-field2 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.input-field2 {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 10px;
+}
+
+.label-styling2 {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 550;
+  width: 150px;
+}
+
+.fixed-width {
+  width: 200px !important;
+   /* Set your desired fixed width */
+}
+.height-width {
+  width: 200px !important;
+  height: 5px !important;
+}
+ 
+/*.mdc-text-field__input {
+    height:10px !important;
+}*/
+
+.dollar_price {
+  display: flex !important;
+  align-items: center !important;
+}
